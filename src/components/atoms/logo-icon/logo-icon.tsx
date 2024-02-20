@@ -1,4 +1,4 @@
-function Logo() {
+function LogoIcon() {
   return (
     <div className="header__left">
       <a className="header__logo-link" href="main.html">
@@ -14,4 +14,4 @@ function Logo() {
   );
 }
 
-export default Logo;
+export default LogoIcon;

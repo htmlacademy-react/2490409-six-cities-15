@@ -1,4 +1,4 @@
-import MainScreen from '../../pages/main/main.tsx';
+import MainScreen from '../pages/main/main.tsx';
 
 type AppProps = {
   rentOfferCount: number;

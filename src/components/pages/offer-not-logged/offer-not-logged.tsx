@@ -1,4 +1,4 @@
-import Logo from '../../components/logo/logo.tsx';
+import LogoIcon from '../../atoms/logo-icon/logo-icon.tsx';
 
 function OfferNotLoggedScreen(): JSX.Element {
   return (
@@ -6,7 +6,7 @@ function OfferNotLoggedScreen(): JSX.Element {
       <header className="header">
         <div className="container">
           <div className="header__wrapper">
-            <Logo />
+            <LogoIcon />
             <nav className="header__nav">
               <ul className="header__nav-list">
                 <li className="header__nav-item user">

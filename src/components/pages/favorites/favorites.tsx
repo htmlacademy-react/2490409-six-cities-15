@@ -1,4 +1,5 @@
-import Logo from '../../components/logo/logo.tsx';
+import LogoIcon from '../../atoms/logo-icon/logo-icon.tsx';
+import PremiumLabel from '../../atoms/premium-label/premium-label.tsx';
 
 function FavoritesScreen(): JSX.Element {
   return (
@@ -6,7 +7,7 @@ function FavoritesScreen(): JSX.Element {
       <header className="header">
         <div className="container">
           <div className="header__wrapper">
-            <Logo />
+            <LogoIcon />
             <nav className="header__nav">
               <ul className="header__nav-list">
                 <li className="header__nav-item user">
@@ -46,9 +47,7 @@ function FavoritesScreen(): JSX.Element {
                 </div>
                 <div className="favorites__places">
                   <article className="favorites__card place-card">
-                    <div className="place-card__mark">
-                      <span>Premium</span>
-                    </div>
+                    <PremiumLabel />
                     <div className="favorites__image-wrapper place-card__image-wrapper">
                       <a href="#">
                         <img
