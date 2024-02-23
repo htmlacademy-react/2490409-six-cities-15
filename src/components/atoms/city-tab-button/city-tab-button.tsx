@@ -1,11 +1,11 @@
 import {CITIES} from '../../../constants/cities.ts';
 
-type cityTabButtonProps = {
+type CityTabButtonProps = {
   cityName: typeof CITIES[number];
   isSelected: boolean;
 };
 
-function CityTabButton({cityName, isSelected}: cityTabButtonProps) {
+function CityTabButton({cityName, isSelected}: CityTabButtonProps) {
   return (
     <li className="locations__item">
       <a

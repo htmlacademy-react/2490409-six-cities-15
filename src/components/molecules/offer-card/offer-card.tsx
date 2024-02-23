@@ -22,7 +22,7 @@ type RentOffer = {
   // };
   isFavorite: boolean;
   isPremium: boolean;
-  // rating: number;
+  rating: number;
 };
 
 function OfferCard(props: RentOffer) {
@@ -44,7 +44,7 @@ function OfferCard(props: RentOffer) {
         </div>
         <div className="place-card__rating rating">
           <div className="place-card__stars rating__stars">
-            <span style={{width: '80%'}}></span>
+            <span style={{width: `${props.rating * 20}%`}}></span>
             <span className="visually-hidden">Rating</span>
           </div>
         </div>

@@ -4,12 +4,22 @@ import OfferCard from '../../molecules/offer-card/offer-card.tsx';
 import CityTabs from '../../molecules/city-tabs/city-tabs.tsx';
 import SortSelector from '../../molecules/sort-selector/sort-selector.tsx';
 
+type Offer = {
+  id: string;
+  title: string;
+  type: string;
+  price: number;
+  previewImage: string;
+  isFavorite: boolean;
+  isPremium: boolean;
+  rating: number;
+};
 
-type mainScreenProps = {
+type MainScreenProps = {
   rentOfferCount: number;
 };
 
-function MainScreen({rentOfferCount}: mainScreenProps): JSX.Element {
+function MainScreen({rentOfferCount}: MainScreenProps): JSX.Element {
   return (
     <div className="page page--gray page--main">
       <header className="header">
@@ -48,8 +58,17 @@ function MainScreen({rentOfferCount}: mainScreenProps): JSX.Element {
               <SortSelector selectedItemName={'Popular'} />
               <div className="cities__places-list places__list tabs__content">
                 {
-                  offers.map(({id, title, type, price, previewImage, isFavorite, isPremium}) => (
-                    <OfferCard key={id} title={title} type={type} price={price} previewImage={previewImage} isFavorite={isFavorite} isPremium={isPremium} />
+                  offers.map((offer: Offer) => (
+                    <OfferCard
+                      key={offer.id}
+                      title={offer.title}
+                      type={offer.type}
+                      price={offer.price}
+                      previewImage={offer.previewImage}
+                      isFavorite={offer.isFavorite}
+                      isPremium={offer.isPremium}
+                      rating={offer.rating}
+                    />
                   ))
                 }
               </div>

@@ -1,11 +1,15 @@
-type bookmarkIconProps = {
+type BookmarkIconProps = {
   isFavourite?: boolean;
 };
 
-function BookmarkIcon({isFavourite = false}: bookmarkIconProps) {
+const getBookmarkIconClass = (isFavourite: boolean): string => (
+  `place-card__bookmark-button ${isFavourite ? 'place-card__bookmark-button--active' : ''} button`
+);
+
+function BookmarkIcon({isFavourite = false}: BookmarkIconProps) {
   return (
     <button
-      className={`place-card__bookmark-button ${isFavourite ? 'place-card__bookmark-button--active' : ''} button`}
+      className={getBookmarkIconClass(isFavourite)}
       type="button"
     >
       <svg className="place-card__bookmark-icon" width="18" height="19">

@@ -1,10 +1,10 @@
 import SortSelectorItem from '../../atoms/sort-selector-item/sort-selector-item.tsx';
 import { SORT_TYPES } from '../../../constants/sort.ts';
 
-type sortSelectorProps = {
+type SortSelectorProps = {
   selectedItemName: typeof SORT_TYPES[number];
 };
-function SortSelector({selectedItemName}: sortSelectorProps) {
+function SortSelector({selectedItemName}: SortSelectorProps) {
   return (
     <form className="places__sorting" action="#" method="get">
       <span className="places__sorting-caption">Sort by</span>
