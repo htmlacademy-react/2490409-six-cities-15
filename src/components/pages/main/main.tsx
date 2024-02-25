@@ -1,8 +1,7 @@
+import { ReactElement } from 'react';
+import { Header } from '../../organisms';
+import { OfferCard, CityTabs, SortSelector } from '../../molecules';
 import { offers } from '../../../examples/1.ts';
-import OfferCard from '../../molecules/offer-card/offer-card.tsx';
-import CityTabs from '../../molecules/city-tabs/city-tabs.tsx';
-import SortSelector from '../../molecules/sort-selector/sort-selector.tsx';
-import Header from '../../organisms/header/header.tsx';
 
 type Offer = {
   id: string;
@@ -19,7 +18,7 @@ type MainScreenProps = {
   rentOfferCount: number;
 };
 
-function MainScreen({rentOfferCount}: MainScreenProps): JSX.Element {
+function MainScreen({rentOfferCount}: MainScreenProps): ReactElement {
   return (
     <div className="page page--gray page--main">
       <Header/>

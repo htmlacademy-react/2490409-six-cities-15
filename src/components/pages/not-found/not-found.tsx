@@ -1,7 +1,7 @@
-import ContentOnTheRight from '../../templates/content-on-the-right.tsx';
-import {ReactElement} from 'react';
-import TabButton from '../../atoms/city-tab-button/tab-button.tsx';
-import {AppRoute} from '../../../constants/routes.tsx';
+import { ReactElement } from 'react';
+import { ContentOnTheRight } from '../../templates';
+import { TabButton } from '../../atoms';
+import { AppRoute } from '../../../constants';
 
 function NotFound(): ReactElement {
   return (

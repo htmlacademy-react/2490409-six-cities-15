@@ -1,5 +1,5 @@
-import {ReactElement} from 'react';
-import GoodListItem from '../../atoms/gool-list-item/gool-list-item.tsx';
+import { ReactElement } from 'react';
+import { GoodListItem } from '../../atoms';
 
 type GoodsListProps = {
   goods: string[];

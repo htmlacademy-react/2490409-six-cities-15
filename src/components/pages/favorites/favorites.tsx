@@ -1,8 +1,7 @@
-import {ReactElement} from 'react';
-import PremiumLabel from '../../atoms/premium-label/premium-label.tsx';
-import Header from '../../organisms/header/header.tsx';
-import TabButton from '../../atoms/city-tab-button/tab-button.tsx';
-import {CITIES} from '../../../constants/cities.ts';
+import { ReactElement } from 'react';
+import { PremiumLabel, TabButton } from '../../atoms';
+import { Header } from '../../organisms';
+import { CITIES } from '../../../constants';
 
 function FavoritesScreen(): ReactElement {
   return (

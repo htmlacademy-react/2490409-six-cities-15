@@ -1,8 +1,9 @@
-import Header from '../../organisms/header/header.tsx';
-import GoodsList from '../../molecules/goods-list/goods-list.tsx';
-import {detailOffer} from '../../../examples/detail.ts';
+import { ReactElement } from 'react';
+import { Header } from '../../organisms';
+import { GoodsList } from '../../molecules';
+import { detailOffer } from '../../../examples/detail.ts';
 
-function OfferNotLoggedScreen(): JSX.Element {
+function OfferNotLoggedScreen(): ReactElement {
   return (
     <div className="page">
       <Header />

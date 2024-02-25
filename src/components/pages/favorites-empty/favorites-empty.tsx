@@ -1,5 +1,5 @@
-import Header from '../../organisms/header/header.tsx';
-import {ReactElement} from 'react';
+import { Header } from '../../organisms';
+import { ReactElement } from 'react';
 
 function FavoritesEmptyScreen(): ReactElement {
   return (

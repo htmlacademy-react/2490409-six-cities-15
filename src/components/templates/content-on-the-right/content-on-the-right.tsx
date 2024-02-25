@@ -1,5 +1,5 @@
-import LogoIcon from '../atoms/logo-icon/logo-icon.tsx';
-import {ReactElement} from 'react';
+import { ReactElement } from 'react';
+import { LogoIcon } from '../../atoms';
 
 type SmallContentOnTheRightProps = {
   leftSideContent: ReactElement;

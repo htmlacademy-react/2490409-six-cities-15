@@ -1,6 +1,7 @@
-import Header from '../../organisms/header/header.tsx';
+import { ReactElement } from 'react';
+import { Header } from '../../organisms';
 
-function MainEmptyScreen(): JSX.Element {
+function MainEmptyScreen(): ReactElement {
   return (
     <div className="page page--gray page--main">
       <Header/>

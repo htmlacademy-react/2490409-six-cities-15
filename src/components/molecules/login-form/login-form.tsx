@@ -1,4 +1,4 @@
-import SmallInput from '../../atoms/small-input/small-input.tsx';
+import { SmallInput } from '../../atoms';
 
 function LoginForm() {
   return (

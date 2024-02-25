@@ -1,6 +1,6 @@
-import LogoIcon from '../../atoms/logo-icon/logo-icon.tsx';
-import {Link} from 'react-router-dom';
-import {ReactElement} from 'react';
+import { LogoIcon } from '../../atoms';
+import { Link } from 'react-router-dom';
+import { ReactElement } from 'react';
 
 type ProfileDataProp = {
   link: string;

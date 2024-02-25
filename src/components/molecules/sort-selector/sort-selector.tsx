@@ -1,5 +1,5 @@
-import SortSelectorItem from '../../atoms/sort-selector-item/sort-selector-item.tsx';
-import { SORT_TYPES } from '../../../constants/sort.ts';
+import { SortSelectorItem } from '../../atoms';
+import { SORT_TYPES } from '../../../constants';
 
 type SortSelectorProps = {
   selectedItemName: typeof SORT_TYPES[number];

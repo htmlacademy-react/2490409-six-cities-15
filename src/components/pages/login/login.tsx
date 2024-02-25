@@ -1,8 +1,8 @@
-import {ReactElement} from 'react';
-import ContentOnTheRight from '../../templates/content-on-the-right.tsx';
-import {CITIES} from '../../../constants/cities.ts';
-import TabButton from '../../atoms/city-tab-button/tab-button.tsx';
-import LoginForm from '../../molecules/login-form/login-form.tsx';
+import { ReactElement } from 'react';
+import { ContentOnTheRight } from '../../templates';
+import { LoginForm } from '../../molecules';
+import { TabButton } from '../../atoms';
+import { CITIES } from '../../../constants';
 
 function LoginScreen(): ReactElement {
   return (

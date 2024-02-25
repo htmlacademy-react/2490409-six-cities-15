@@ -1,12 +1,14 @@
 import { ReactElement } from 'react';
-import MainScreen from '../pages/main/main.tsx';
-import {BrowserRouter, Route, Routes} from 'react-router-dom';
-import {AppRoute} from '../../constants/routes.tsx';
-import Login from '../pages/login/login.tsx';
-import Favorites from '../pages/favorites/favorites.tsx';
-import Offer from '../pages/offer/offer.tsx';
+import {
+  FavoritesScreen,
+  MainScreen,
+  LoginScreen,
+  OfferScreen,
+  NotFound,
+} from '../pages';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { AppRoute } from '../../constants';
 import OfferNotLogged from '../pages/offer-not-logged/offer-not-logged.tsx';
-import NotFound from '../pages/not-found/not-found.tsx';
 
 type AppProps = {
   rentOfferCount: number;
@@ -26,15 +28,15 @@ function App({rentOfferCount}: AppProps): ReactElement {
         />
         <Route
           path={AppRoute.Login}
-          element={<Login/>}
+          element={<LoginScreen/>}
         />
         <Route
           path={AppRoute.Offer}
-          element={<Offer/>}
+          element={<OfferScreen/>}
         />
         <Route
           path={AppRoute.Favorites}
-          element={<Favorites/>}
+          element={<FavoritesScreen/>}
         />
         <Route
           path={'*'}

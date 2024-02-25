@@ -1,5 +1,5 @@
-import { CITIES } from '../../../constants/cities.ts';
-import TabButton from '../../atoms/city-tab-button/tab-button.tsx';
+import { CITIES } from '../../../constants';
+import { TabButton } from '../../atoms';
 
 function CityTabs() {
   return (
