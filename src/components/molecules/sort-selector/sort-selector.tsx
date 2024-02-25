@@ -2,7 +2,7 @@ import { SortSelectorItem } from '../../atoms';
 import { SORT_TYPES } from '../../../constants';
 
 type SortSelectorProps = {
-  selectedItemName: typeof SORT_TYPES[number];
+  selectedItemName: typeof SORT_TYPES[keyof typeof SORT_TYPES];
 };
 function SortSelector({selectedItemName}: SortSelectorProps) {
   return (
@@ -16,7 +16,7 @@ function SortSelector({selectedItemName}: SortSelectorProps) {
       </span>
       <ul className="places__options places__options--custom places__options--opened">
         {
-          SORT_TYPES.map((type) => (
+          Object.keys(SORT_TYPES).map((type) => (
             <SortSelectorItem key={type} isSelected={type === selectedItemName} value={type} />
           ))
         }
