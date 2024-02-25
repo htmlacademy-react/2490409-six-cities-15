@@ -7,9 +7,9 @@ import {
   NotFound,
 } from '../pages';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import {AppRoute, AUTH_STATUS} from '../../constants';
+import { AppRoute } from '../../constants';
 import OfferNotLogged from '../pages/offer-not-logged/offer-not-logged.tsx';
-import {PrivateRoute} from '../../routing';
+import { PrivateRoute } from '../../routing';
 
 type AppProps = {
   rentOfferCount: number;
@@ -29,7 +29,11 @@ function App({rentOfferCount}: AppProps): ReactElement {
         />
         <Route
           path={AppRoute.Login}
-          element={<LoginScreen/>}
+          element={
+            <PrivateRoute isReverse>
+              <LoginScreen/>
+            </PrivateRoute>
+          }
         />
         <Route
           path={AppRoute.Offer}
@@ -38,7 +42,7 @@ function App({rentOfferCount}: AppProps): ReactElement {
         <Route
           path={AppRoute.Favorites}
           element={
-            <PrivateRoute authStatus={AUTH_STATUS.NoAuth}>
+            <PrivateRoute>
               <FavoritesScreen/>
             </PrivateRoute>
           }

@@ -1,12 +1,19 @@
 import { LogoIcon } from '../../atoms';
 import { Link } from 'react-router-dom';
 import { ReactElement } from 'react';
+import {getAuthStatus} from '../../../routing';
+import {AUTH_STATUS} from '../../../constants';
 
-type ProfileDataProp = {
+type ProfileDataProps = {
   link: string;
   email: string;
   favoritesCounter: number;
 };
+
+type HeaderProps = {
+  isLogoActive?: boolean;
+};
+
 const Counter = ({count}: {count: number}): ReactElement => (
   <span className="header__favorite-count">{count}</span>
 );
@@ -41,7 +48,7 @@ const Email = ({email}: {email: string}): ReactElement => (
   </span>
 );
 
-const ProfileData = (props: ProfileDataProp): ReactElement => (
+const ProfileData = (props: ProfileDataProps): ReactElement => (
   <li className="header__nav-item user">
     <Link
       className="header__nav-link header__nav-link--profile"
@@ -54,16 +61,15 @@ const ProfileData = (props: ProfileDataProp): ReactElement => (
   </li>
 );
 
-function Header() {
-  const isAuthorised = false;
+function Header({ isLogoActive }: HeaderProps) {
   //todo: get info from Redux (?)
-  const profileData: ProfileDataProp = {
+  const profileData: ProfileDataProps = {
     link: '#',
     email: 'Oliver.conner@gmail.com',
     favoritesCounter: 3,
   };
 
-  const navListData: ReactElement = isAuthorised ? (
+  const navListData: ReactElement = getAuthStatus() === AUTH_STATUS.Auth ? (
     <>
       <ProfileData
         link={profileData.link}
@@ -80,7 +86,7 @@ function Header() {
     <header className="header">
       <div className="container">
         <div className="header__wrapper">
-          <LogoIcon/>
+          <LogoIcon isActive={isLogoActive}/>
           <nav className="header__nav">
             <ul className="header__nav-list">
               {navListData}

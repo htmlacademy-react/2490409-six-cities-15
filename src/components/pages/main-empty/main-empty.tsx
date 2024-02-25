@@ -4,7 +4,7 @@ import { Header } from '../../organisms';
 function MainEmptyScreen(): ReactElement {
   return (
     <div className="page page--gray page--main">
-      <Header/>
+      <Header isLogoActive/>
       <main className="page__main page__main--index page__main--index-empty">
         <h1 className="visually-hidden">Cities</h1>
         <div className="tabs">

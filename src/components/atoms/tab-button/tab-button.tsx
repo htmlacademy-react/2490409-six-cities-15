@@ -7,10 +7,12 @@ type TabButtonProps = {
 };
 
 function TabButton({tabName, isSelected, link = '#'}: TabButtonProps) {
+  const locationClassName = `locations__item-link tabs__item ${ isSelected ? 'tabs__item--active' : ''}`;
+
   return (
     <li className="locations__item">
       <Link
-        className={`locations__item-link tabs__item ${ isSelected ? 'tabs__item--active' : ''}`}
+        className={locationClassName}
         to={link}
       >
         <span>{tabName}</span>

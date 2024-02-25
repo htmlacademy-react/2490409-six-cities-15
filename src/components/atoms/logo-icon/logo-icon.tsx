@@ -1,9 +1,15 @@
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
-function LogoIcon() {
+type LogoIconProps = {
+  isActive?: boolean;
+};
+
+function LogoIcon({ isActive = false }: LogoIconProps) {
+  const linkClass = `header__logo-link${isActive ? '--active' : ''}`;
+
   return (
     <div className="header__left">
-      <Link className="header__logo-link" to="main.html">
+      <Link className={linkClass} to="main.html">
         <img
           className="header__logo"
           src="img/logo.svg"
