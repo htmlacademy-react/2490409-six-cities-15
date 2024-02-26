@@ -10,6 +10,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { AppRoute } from '../../constants';
 import OfferNotLogged from '../pages/offer-not-logged/offer-not-logged.tsx';
 import { PrivateRoute } from '../../routing';
+import { ScrollToTop } from '../../utils';
 
 type AppProps = {
   rentOfferCount: number;
@@ -18,6 +19,7 @@ type AppProps = {
 function App({rentOfferCount}: AppProps): ReactElement {
   return (
     <BrowserRouter>
+      <ScrollToTop />
       <Routes>
         <Route
           path={AppRoute.OfferNotLogged}
