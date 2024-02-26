@@ -1,4 +1,4 @@
-import { LogoIcon } from '../../atoms';
+import { HeaderLogoIcon } from '../../atoms';
 import { Link } from 'react-router-dom';
 import { ReactElement } from 'react';
 import {getAuthStatus} from '../../../routing';
@@ -86,7 +86,7 @@ function Header({ isLogoActive }: HeaderProps) {
     <header className="header">
       <div className="container">
         <div className="header__wrapper">
-          <LogoIcon isActive={isLogoActive}/>
+          <HeaderLogoIcon isActive={isLogoActive}/>
           <nav className="header__nav">
             <ul className="header__nav-list">
               {navListData}

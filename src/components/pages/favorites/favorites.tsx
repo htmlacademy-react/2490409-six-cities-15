@@ -2,6 +2,7 @@ import { ReactElement } from 'react';
 import { PremiumLabel, TabButton } from '../../atoms';
 import { Header } from '../../organisms';
 import { CITIES } from '../../../constants';
+import { Footer } from '../../organisms';
 
 function FavoritesScreen(): ReactElement {
   return (
@@ -173,17 +174,7 @@ function FavoritesScreen(): ReactElement {
           </section>
         </div>
       </main>
-      <footer className="footer container">
-        <a className="footer__logo-link" href="main.html">
-          <img
-            className="footer__logo"
-            src="img/logo.svg"
-            alt="6 cities logo"
-            width={64}
-            height={33}
-          />
-        </a>
-      </footer>
+      <Footer/>
     </div>
 
   );

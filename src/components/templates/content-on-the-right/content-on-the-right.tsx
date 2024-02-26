@@ -1,5 +1,5 @@
 import { ReactElement } from 'react';
-import { LogoIcon } from '../../atoms';
+import { HeaderLogoIcon } from '../../atoms';
 
 type SmallContentOnTheRightProps = {
   leftSideContent: ReactElement;
@@ -12,7 +12,7 @@ function ContentOnTheRight({leftSideContent, rightSideButton}: SmallContentOnThe
       <header className="header">
         <div className="container">
           <div className="header__wrapper">
-            <LogoIcon />
+            <HeaderLogoIcon/>
           </div>
         </div>
       </header>
