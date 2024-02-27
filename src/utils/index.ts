@@ -1,5 +1,5 @@
-import useScrollToTop from './use-scroll-to-top.ts';
+import ScrollToTop from './use-scroll-to-top.ts';
 
 export {
-  useScrollToTop,
+  ScrollToTop,
 };
