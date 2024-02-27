@@ -3,7 +3,9 @@ import { Link } from 'react-router-dom';
 import { OfferData } from '../../../mocks';
 import { ReactElement } from 'react';
 
-function OfferCard(props: OfferData): ReactElement {
+type OfferCardProps = Omit<OfferData, 'city' | 'location'>
+
+function OfferCard(props: OfferCardProps): ReactElement {
   return (
     <article className="cities__card place-card">
       {props.isPremium && <PremiumLabel/>}

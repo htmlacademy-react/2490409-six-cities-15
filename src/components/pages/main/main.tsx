@@ -25,6 +25,7 @@ function MainScreen({rentOfferCount, offers}: MainScreenProps): ReactElement {
                 {
                   offers.map((offer: OfferData) => (
                     <OfferCard
+                      id = {offer.id}
                       key={offer.id}
                       title={offer.title}
                       type={offer.type}
