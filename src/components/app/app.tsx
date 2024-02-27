@@ -11,12 +11,14 @@ import { AppRoute } from '../../constants';
 import OfferNotLogged from '../pages/offer-not-logged/offer-not-logged.tsx';
 import { PrivateRoute } from '../../routing';
 import { ScrollToTop } from '../../utils';
+import type { OfferData } from '../../mocks';
 
 type AppProps = {
   rentOfferCount: number;
+  offers: OfferData[];
 };
 
-function App({rentOfferCount}: AppProps): ReactElement {
+function App({rentOfferCount, offers}: AppProps): ReactElement {
   return (
     <BrowserRouter>
       <ScrollToTop />
@@ -27,7 +29,7 @@ function App({rentOfferCount}: AppProps): ReactElement {
         />
         <Route
           path={AppRoute.Main}
-          element={<MainScreen rentOfferCount={rentOfferCount} />}
+          element={<MainScreen rentOfferCount={rentOfferCount} offers={offers} />}
         />
         <Route
           path={AppRoute.Login}

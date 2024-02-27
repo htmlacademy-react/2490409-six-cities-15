@@ -1,7 +1,7 @@
 import { ReactElement } from 'react';
 import { Header } from '../../organisms';
 import { GoodsList } from '../../molecules';
-import { detailOffer } from '../../../examples/detail.ts';
+import { detailOffer } from '../../../mocks';
 
 function OfferNotLoggedScreen(): ReactElement {
   return (

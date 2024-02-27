@@ -1,24 +1,14 @@
 import { ReactElement } from 'react';
 import { Header } from '../../organisms';
 import { OfferCard, CityTabs, SortSelector } from '../../molecules';
-import { offers } from '../../../examples/1.ts';
-
-type Offer = {
-  id: string;
-  title: string;
-  type: string;
-  price: number;
-  previewImage: string;
-  isFavorite: boolean;
-  isPremium: boolean;
-  rating: number;
-};
+import { OfferData } from '../../../mocks';
 
 type MainScreenProps = {
   rentOfferCount: number;
+  offers: OfferData[];
 };
 
-function MainScreen({rentOfferCount}: MainScreenProps): ReactElement {
+function MainScreen({rentOfferCount, offers}: MainScreenProps): ReactElement {
   return (
     <div className="page page--gray page--main">
       <Header isLogoActive/>
@@ -33,7 +23,7 @@ function MainScreen({rentOfferCount}: MainScreenProps): ReactElement {
               <SortSelector selectedItemName={'Popular'} />
               <div className="cities__places-list places__list tabs__content">
                 {
-                  offers.map((offer: Offer) => (
+                  offers.map((offer: OfferData) => (
                     <OfferCard
                       key={offer.id}
                       title={offer.title}
