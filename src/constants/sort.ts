@@ -1,8 +1,8 @@
-const SORT_TYPES = [
-  'Popular',
-  'Price: low to high',
-  'Price: high to low',
-  'Top rated first',
-] as const;
+const SORT_TYPES = {
+  Popular: 'Popular',
+  PriceASC: 'Price: low to high',
+  PriceDESC: 'Price: high to low',
+  Rating: 'Top rated first',
+} as const;
 
-export { SORT_TYPES };
+export default SORT_TYPES;

@@ -1,5 +1,5 @@
-import PremiumLabel from '../../atoms/premium-label/premium-label.tsx';
-import BookmarkIcon from '../../atoms/bookmark-icon/bookmark-icon.tsx';
+import { PremiumLabel, BookmarkIcon } from '../../atoms';
+import { Link } from 'react-router-dom';
 
 type RentOffer = {
   // id: string;
@@ -49,7 +49,7 @@ function OfferCard(props: RentOffer) {
           </div>
         </div>
         <h2 className="place-card__name">
-          <a href="#">{props.title}</a>
+          <Link to="#">{props.title}</Link>
         </h2>
         <p className="place-card__type">{props.type}</p>
       </div>
