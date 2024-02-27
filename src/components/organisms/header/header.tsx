@@ -1,9 +1,10 @@
 import { HeaderLogoIcon } from '../../atoms';
-import { Link } from 'react-router-dom';
 import { ReactElement } from 'react';
-import {getAuthStatus} from '../../../routing';
-import {AUTH_STATUS} from '../../../constants';
+import { getAuthStatus } from '../../../routing';
+import { AUTH_STATUS } from '../../../constants';
+import {ProfileData, SignInButton, SignOutButton} from '../../atoms/header';
 
+// todo: remove later
 type ProfileDataProps = {
   link: string;
   email: string;
@@ -13,53 +14,6 @@ type ProfileDataProps = {
 type HeaderProps = {
   isLogoActive?: boolean;
 };
-
-const Counter = ({count}: {count: number}): ReactElement => (
-  <span className="header__favorite-count">{count}</span>
-);
-
-const AvatarImage = (): ReactElement => (
-  <div className="header__avatar-wrapper user__avatar-wrapper"></div>
-);
-
-const SignInButton = ({link}: {link: string}): ReactElement => (
-  <li className="header__nav-item user">
-    <Link
-      className="header__nav-link header__nav-link--profile"
-      to={link}
-    >
-      <AvatarImage />
-      <span className="header__login">Sign in</span>
-    </Link>
-  </li>
-);
-
-const SignOutButton = ({link}: {link: string}): ReactElement => (
-  <li className="header__nav-item">
-    <Link className="header__nav-link" to={link}>
-      <span className="header__signout">Sign out</span>
-    </Link>
-  </li>
-);
-
-const Email = ({email}: {email: string}): ReactElement => (
-  <span className="header__user-name user__name">
-    {email}
-  </span>
-);
-
-const ProfileData = (props: ProfileDataProps): ReactElement => (
-  <li className="header__nav-item user">
-    <Link
-      className="header__nav-link header__nav-link--profile"
-      to={props.link}
-    >
-      <AvatarImage/>
-      <Email email={props.email}/>
-      <Counter count={props.favoritesCounter}/>
-    </Link>
-  </li>
-);
 
 function Header({ isLogoActive }: HeaderProps) {
   //todo: get info from Redux (?)

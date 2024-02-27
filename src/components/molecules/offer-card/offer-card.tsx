@@ -2,12 +2,12 @@ import { PremiumLabel, BookmarkIcon } from '../../atoms';
 import { Link } from 'react-router-dom';
 import { OfferData } from '../../../mocks';
 import { ReactElement } from 'react';
-import {AppRoute} from '../../../constants';
+import { APP_ROUTE } from '../../../constants';
 
 type OfferCardProps = Omit<OfferData, 'city' | 'location'>
 
 function OfferCard(props: OfferCardProps): ReactElement {
-  const getOfferLink = (id: string) => AppRoute.Offer.replace(':id', id);
+  const getOfferLink = (id: string) => APP_ROUTE.Offer.replace(':id', id);
 
   return (
     <article className="cities__card place-card">

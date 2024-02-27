@@ -1,4 +1,5 @@
-type OfferData = {id: string;
+type OfferData = {
+  id: string;
   title: string;
   type: string;
   price: number;

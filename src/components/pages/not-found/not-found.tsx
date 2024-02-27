@@ -1,7 +1,7 @@
 import { ReactElement } from 'react';
 import { ContentOnTheRight } from '../../templates';
 import { TabButton } from '../../atoms';
-import { AppRoute } from '../../../constants';
+import { APP_ROUTE } from '../../../constants';
 
 function NotFound(): ReactElement {
   return (
@@ -17,7 +17,7 @@ function NotFound(): ReactElement {
           </div>
         </div>
       }
-      rightSideButton={<TabButton tabName={'Back to main page'} isSelected={false} link={AppRoute.Main} />}
+      rightSideButton={<TabButton tabName={'Back to main page'} isSelected={false} link={APP_ROUTE.Main} />}
     />
   );
 }
