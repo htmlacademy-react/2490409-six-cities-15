@@ -1,38 +1,16 @@
 import { PremiumLabel, BookmarkIcon } from '../../atoms';
 import { Link } from 'react-router-dom';
+import { OfferData } from '../../../mocks';
+import { ReactElement } from 'react';
 
-type RentOffer = {
-  // id: string;
-  title: string;
-  type: string;
-  price: number;
-  previewImage: string;
-  // city: {
-  //   name: string;
-  //   location: {
-  //     latitude: number;
-  //     longitude: number;
-  //     zoom: number;
-  //   };
-  // };
-  // location: {
-  //   latitude: number;
-  //   longitude: number;
-  //   zoom: number;
-  // };
-  isFavorite: boolean;
-  isPremium: boolean;
-  rating: number;
-};
-
-function OfferCard(props: RentOffer) {
+function OfferCard(props: OfferData): ReactElement {
   return (
     <article className="cities__card place-card">
       {props.isPremium && <PremiumLabel/>}
       <div className="cities__image-wrapper place-card__image-wrapper">
-        <a href="#">
+        <Link to="#">
           <img className="place-card__image" src={props.previewImage} width="260" height="200" alt="Place image"/>
-        </a>
+        </Link>
       </div>
       <div className="place-card__info">
         <div className="place-card__price-wrapper">
@@ -58,4 +36,3 @@ function OfferCard(props: RentOffer) {
 }
 
 export default OfferCard;
-export type { RentOffer };
