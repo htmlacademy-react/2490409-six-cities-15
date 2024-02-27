@@ -6,7 +6,7 @@ import {useLocation, useSearchParams} from 'react-router-dom';
 function CityTabs(): ReactElement {
   const [searchParams] = useSearchParams();
   const { pathname } = useLocation();
-  const currentTab = searchParams.get('tab') || CITIES.Paris;
+  const currentTab = searchParams.get('city') || CITIES.Paris;
 
   return (
     <div className="tabs">
@@ -18,7 +18,7 @@ function CityTabs(): ReactElement {
                 key={cityName}
                 tabName={cityName}
                 isSelected={cityName.toLowerCase() === currentTab.toLowerCase()}
-                link={`${pathname}?tab=${cityName.toLowerCase()}`}
+                link={`${pathname}?city=${cityName.toLowerCase()}`}
               />
             ))
           }

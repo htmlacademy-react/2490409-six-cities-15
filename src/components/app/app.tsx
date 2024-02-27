@@ -7,7 +7,7 @@ import {
   NotFound,
 } from '../pages';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import { AppRoute } from '../../constants';
+import { APP_ROUTE } from '../../constants';
 import OfferNotLogged from '../pages/offer-not-logged/offer-not-logged.tsx';
 import { PrivateRoute } from '../../routing';
 import { ScrollToTop } from '../../utils';
@@ -22,15 +22,15 @@ function App({rentOfferCount}: AppProps): ReactElement {
       <ScrollToTop />
       <Routes>
         <Route
-          path={AppRoute.OfferNotLogged}
+          path={APP_ROUTE.OfferNotLogged}
           element={<OfferNotLogged/>}
         />
         <Route
-          path={AppRoute.Main}
+          path={APP_ROUTE.Main}
           element={<MainScreen rentOfferCount={rentOfferCount} />}
         />
         <Route
-          path={AppRoute.Login}
+          path={APP_ROUTE.Login}
           element={
             <PrivateRoute isReverse>
               <LoginScreen/>
@@ -38,11 +38,11 @@ function App({rentOfferCount}: AppProps): ReactElement {
           }
         />
         <Route
-          path={AppRoute.Offer}
+          path={APP_ROUTE.Offer}
           element={<OfferScreen/>}
         />
         <Route
-          path={AppRoute.Favorites}
+          path={APP_ROUTE.Favorites}
           element={
             <PrivateRoute>
               <FavoritesScreen/>
