@@ -16,7 +16,7 @@ function SortSelector({selectedItemName}: SortSelectorProps) {
       </span>
       <ul className="places__options places__options--custom places__options--opened">
         {
-          Object.keys(SORT_TYPES).map((type) => (
+          Object.values(SORT_TYPES).map((type) => (
             <SortSelectorItem key={type} isSelected={type === selectedItemName} value={type} />
           ))
         }
