@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import { LogoIcon } from '..';
+import {APP_ROUTE} from '../../../constants';
 
 type LogoIconProps = {
   isActive?: boolean;
@@ -10,7 +11,7 @@ function HeaderLogoIcon({ isActive = false }: LogoIconProps) {
 
   return (
     <div className="header__left">
-      <Link className={linkClass} to="main.html">
+      <Link className={linkClass} to={APP_ROUTE.Main}>
         <LogoIcon/>
       </Link>
     </div>

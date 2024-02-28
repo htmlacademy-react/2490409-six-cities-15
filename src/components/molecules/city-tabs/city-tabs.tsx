@@ -1,12 +1,19 @@
 import { ReactElement } from 'react';
-import { CITIES } from '../../../constants';
+import { CITIES, CitiesType } from '../../../constants';
 import { TabButton } from '../../atoms';
-import {useLocation, useSearchParams} from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 
-function CityTabs(): ReactElement {
-  const [searchParams] = useSearchParams();
+type CityTabsProps = {
+  onCityChanged: (city: CitiesType) => void;
+  currTab: CitiesType;
+};
+
+function CityTabs({onCityChanged, currTab}: CityTabsProps): ReactElement {
   const { pathname } = useLocation();
-  const currentTab = searchParams.get('city') || CITIES.Paris;
+
+  const handleTabChange = (city: CitiesType) => {
+    onCityChanged(city);
+  };
 
   return (
     <div className="tabs">
@@ -17,7 +24,8 @@ function CityTabs(): ReactElement {
               <TabButton
                 key={cityName}
                 tabName={cityName}
-                isSelected={cityName.toLowerCase() === currentTab.toLowerCase()}
+                isSelected={cityName.toLowerCase() === currTab.toLowerCase()}
+                onClick={handleTabChange}
                 link={`${pathname}?city=${cityName.toLowerCase()}`}
               />
             ))

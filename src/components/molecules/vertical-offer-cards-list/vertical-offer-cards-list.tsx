@@ -1,12 +1,14 @@
 import { VerticalOfferCard, SortSelector } from '../index.ts';
 import { OfferData } from '../../../mocks';
 import { useState } from 'react';
+import {CitiesType} from '../../../constants';
 
 type OfferCardsListProps = {
   offers: OfferData[];
+  city: CitiesType;
 };
 
-function VerticalOfferCardsList({offers}: OfferCardsListProps) {
+function VerticalOfferCardsList({offers, city}: OfferCardsListProps) {
   const [ , setMouseOveredCardId] = useState('');
 
   const handleMouseOver = (id: string) => {
@@ -16,7 +18,7 @@ function VerticalOfferCardsList({offers}: OfferCardsListProps) {
   return (
     <section className="cities__places places">
       <h2 className="visually-hidden">Places</h2>
-      <b className="places__found">{offers.length} places to stay in Amsterdam</b>
+      <b className="places__found">{offers.length} places to stay in {city}</b>
       <SortSelector selectedItemName={'Popular'}/>
       <div className="cities__places-list places__list tabs__content">
         {
