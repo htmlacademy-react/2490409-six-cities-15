@@ -19,7 +19,6 @@ type AppProps = {
 };
 
 function App({rentOfferCount, offers}: AppProps): ReactElement {
-
   return (
     <BrowserRouter>
       <ScrollToTop/>

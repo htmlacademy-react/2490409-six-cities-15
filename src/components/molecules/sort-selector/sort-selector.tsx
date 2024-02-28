@@ -1,28 +1,49 @@
 import { SortSelectorItem } from '../../atoms';
 import { SORT_TYPES } from '../../../constants';
+import {useState} from 'react';
+
+type SortType = typeof SORT_TYPES[keyof typeof SORT_TYPES];
 
 type SortSelectorProps = {
-  selectedItemName: typeof SORT_TYPES[keyof typeof SORT_TYPES];
+  selectedItemName: SortType;
 };
 function SortSelector({selectedItemName}: SortSelectorProps) {
+  const [isOpened, setIsOpened] = useState(false);
+  const [sort, setSort] = useState(selectedItemName);
+
+  const handleOpenState = () => {
+    setIsOpened((openState) => !openState);
+  };
+
+  const handleSort = (value: SortType) => {
+    setSort(value);
+    setIsOpened(false);
+  };
+
   return (
     <form className="places__sorting" action="#" method="get">
       <span className="places__sorting-caption">Sort by</span>
-      <span className="places__sorting-type" tabIndex={0}>
-        { selectedItemName }
+      &nbsp;
+      <span className="places__sorting-type" tabIndex={0} onClick={handleOpenState}>
+        { sort }
         <svg className="places__sorting-arrow" width="7" height="4">
           <use xlinkHref="#icon-arrow-select"></use>
         </svg>
       </span>
-      <ul className="places__options places__options--custom places__options--opened">
-        {
-          Object.values(SORT_TYPES).map((type) => (
-            <SortSelectorItem key={type} isSelected={type === selectedItemName} value={type} />
-          ))
-        }
-      </ul>
+      {
+        isOpened ? (
+          <ul className="places__options places__options--custom places__options--opened">
+            {
+              Object.values(SORT_TYPES).map((type) => (
+                <SortSelectorItem key={type} isSelected={type === sort} value={type} onSelected={handleSort}/>
+              ))
+            }
+          </ul>
+        ) : null
+      }
     </form>
   );
 }
 
 export default SortSelector;
+export type { SortType };
