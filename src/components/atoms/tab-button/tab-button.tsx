@@ -4,11 +4,11 @@ import { CitiesType } from '../../../constants';
 type TabButtonProps = {
   tabName: CitiesType;
   isSelected: boolean;
-  onClick: (name: CitiesType) => void;
+  onClick?: (name: CitiesType) => void;
   link?: string;
 };
 
-function TabButton({tabName, isSelected, onClick, link = '#'}: TabButtonProps) {
+function TabButton({tabName, isSelected, onClick = () => {}, link = '#'}: TabButtonProps) {
   const locationClassName = `locations__item-link tabs__item ${ isSelected ? 'tabs__item--active' : ''}`;
 
   const handleOnClick = () => {

@@ -14,7 +14,7 @@ function MainScreen({ offers }: MainScreenProps): ReactElement {
   const getOffersByCity = (city: CitiesType) => offers.filter((offer) => offer.city.name === city);
 
   const [ searchParams ] = useSearchParams();
-  let currentTabFromSearch = filterCityName(searchParams.get('city') || '') || CITIES.Paris;
+  const currentTabFromSearch = filterCityName(searchParams.get('city') || '') || CITIES.Paris;
   const [ currCity, setCurrCity ] = useState(currentTabFromSearch as CitiesType);
 
   const handleCityChange = (city: CitiesType) => {
