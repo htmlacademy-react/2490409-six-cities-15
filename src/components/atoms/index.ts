@@ -6,6 +6,7 @@ import SmallInput from './small-input/small-input.tsx';
 import SortSelectorItem from './sort-selector-item/sort-selector-item.tsx';
 import TabButton from './tab-button/tab-button.tsx';
 import LogoIcon from './logo-icon/logo-icon.tsx';
+import Rating from './rating/rating.tsx';
 
 export {
   BookmarkIcon,
@@ -16,4 +17,5 @@ export {
   SortSelectorItem,
   TabButton,
   LogoIcon,
+  Rating,
 };

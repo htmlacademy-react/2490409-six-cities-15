@@ -14,11 +14,10 @@ import { ScrollToTop } from '../../utils';
 import type { OfferData } from '../../mocks';
 
 type AppProps = {
-  rentOfferCount: number;
   offers: OfferData[];
 };
 
-function App({rentOfferCount, offers}: AppProps): ReactElement {
+function App({ offers }: AppProps): ReactElement {
   return (
     <BrowserRouter>
       <ScrollToTop/>
@@ -29,7 +28,7 @@ function App({rentOfferCount, offers}: AppProps): ReactElement {
         />
         <Route
           path={APP_ROUTE.Main}
-          element={<MainScreen rentOfferCount={rentOfferCount} offers={offers} />}
+          element={<MainScreen offers={offers} />}
         />
         <Route
           path={APP_ROUTE.Login}
@@ -47,7 +46,7 @@ function App({rentOfferCount, offers}: AppProps): ReactElement {
           path={APP_ROUTE.Favorites}
           element={
             <PrivateRoute>
-              <FavoritesScreen/>
+              <FavoritesScreen offers={offers.filter((item) => item.isFavorite)}/>
             </PrivateRoute>
           }
         />

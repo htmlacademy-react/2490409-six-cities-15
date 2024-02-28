@@ -7,12 +7,8 @@ const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
 
-const SiteParams = {
-  rentOffersCount: 312,
-} as const;
-
 root.render(
   <React.StrictMode>
-    <App rentOfferCount={SiteParams.rentOffersCount} offers={offers} />
+    <App offers={offers} />
   </React.StrictMode>
 );

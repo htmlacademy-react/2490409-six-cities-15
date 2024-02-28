@@ -1260,7 +1260,7 @@ const offers = [
       'longitude': 4.376697,
       'zoom': 16
     },
-    'isFavorite': false,
+    'isFavorite': true,
     'isPremium': false,
     'rating': 2.8
   },
@@ -1398,7 +1398,7 @@ const offers = [
       'longitude': 4.911976,
       'zoom': 16
     },
-    'isFavorite': false,
+    'isFavorite': true,
     'isPremium': true,
     'rating': 1.2
   },
@@ -2571,7 +2571,7 @@ const offers = [
       'longitude': 6.800314,
       'zoom': 16
     },
-    'isFavorite': false,
+    'isFavorite': true,
     'isPremium': false,
     'rating': 1.5
   },
@@ -2732,7 +2732,7 @@ const offers = [
       'longitude': 6.764314000000001,
       'zoom': 16
     },
-    'isFavorite': false,
+    'isFavorite': true,
     'isPremium': true,
     'rating': 4.3
   },
@@ -2755,7 +2755,7 @@ const offers = [
       'longitude': 6.784314,
       'zoom': 16
     },
-    'isFavorite': false,
+    'isFavorite': true,
     'isPremium': true,
     'rating': 3.8
   }

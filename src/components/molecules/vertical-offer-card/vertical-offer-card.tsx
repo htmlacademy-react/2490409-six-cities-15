@@ -1,16 +1,18 @@
-import { PremiumLabel, BookmarkIcon } from '../../atoms';
+import {PremiumLabel, BookmarkIcon, Rating} from '../../atoms';
 import { Link } from 'react-router-dom';
 import { OfferData } from '../../../mocks';
 import { ReactElement } from 'react';
 import { APP_ROUTE } from '../../../constants';
 
-type OfferCardProps = Omit<OfferData, 'city' | 'location'>
+type OfferCardVerticalProps = Omit<OfferData, 'city' | 'location'> & {
+  onMouseOver: (id: string) => void;
+};
 
-function OfferCard(props: OfferCardProps): ReactElement {
+function VerticalOfferCard(props: OfferCardVerticalProps): ReactElement {
   const getOfferLink = (id: string) => APP_ROUTE.Offer.replace(':id', id);
 
   return (
-    <article className="cities__card place-card">
+    <article className="cities__card place-card" onMouseOver={props.onMouseOver.bind(null, props.id)}>
       {props.isPremium && <PremiumLabel/>}
       <div className="cities__image-wrapper place-card__image-wrapper">
         <Link to={getOfferLink(props.id)}>
@@ -23,14 +25,9 @@ function OfferCard(props: OfferCardProps): ReactElement {
             <b className="place-card__price-value">&euro;{props.price}</b>
             <span className="place-card__price-text">&#47;&nbsp;night</span>
           </div>
-          <BookmarkIcon isFavourite={props.isFavorite}/>
+          <BookmarkIcon isActive={props.isFavorite}/>
         </div>
-        <div className="place-card__rating rating">
-          <div className="place-card__stars rating__stars">
-            <span style={{width: `${props.rating * 20}%`}}></span>
-            <span className="visually-hidden">Rating</span>
-          </div>
-        </div>
+        <Rating rating={props.rating} />
         <h2 className="place-card__name">
           <Link to="#">{props.title}</Link>
         </h2>
@@ -40,4 +37,4 @@ function OfferCard(props: OfferCardProps): ReactElement {
   );
 }
 
-export default OfferCard;
+export default VerticalOfferCard;

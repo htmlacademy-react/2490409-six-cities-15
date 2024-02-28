@@ -35,7 +35,7 @@ function SortSelector({selectedItemName}: SortSelectorProps) {
           <ul className="places__options places__options--custom places__options--opened">
             {
               Object.values(SORT_TYPES).map((type) => (
-                <SortSelectorItem key={type} isSelected={type === sort} value={type} onSelected={handleSort}/>
+                <SortSelectorItem key={type} isSelected={type === sort} value={type} onClick={handleSort}/>
               ))
             }
           </ul>

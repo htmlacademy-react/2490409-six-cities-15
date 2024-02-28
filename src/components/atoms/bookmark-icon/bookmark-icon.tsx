@@ -1,8 +1,8 @@
 type BookmarkIconProps = {
-  isFavourite?: boolean;
+  isActive?: boolean;
 };
-function BookmarkIcon({isFavourite = false}: BookmarkIconProps) {
-  const className = `place-card__bookmark-button ${isFavourite ? 'place-card__bookmark-button--active' : ''} button`;
+function BookmarkIcon({isActive = false}: BookmarkIconProps) {
+  const className = `place-card__bookmark-button ${isActive ? 'place-card__bookmark-button--active' : ''} button`;
 
   return (
     <button
