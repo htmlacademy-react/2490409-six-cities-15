@@ -8,7 +8,6 @@ import {
 } from '../pages';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { APP_ROUTE } from '../../constants';
-import OfferNotLogged from '../pages/offer-not-logged/offer-not-logged.tsx';
 import { PrivateRoute } from '../../routing';
 import { ScrollToTop } from '../../utils';
 import {comments, detailOffer, OfferData} from '../../mocks';
@@ -22,10 +21,6 @@ function App({ offers }: AppProps): ReactElement {
     <BrowserRouter>
       <ScrollToTop/>
       <Routes>
-        <Route
-          path={APP_ROUTE.OfferNotLogged}
-          element={<OfferNotLogged/>}
-        />
         <Route
           path={APP_ROUTE.Main}
           element={<MainScreen offers={offers} />}

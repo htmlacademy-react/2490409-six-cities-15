@@ -1,5 +1,5 @@
 import { TabButton } from '../../atoms';
-import { CitiesType } from '../../../constants';
+import {APP_ROUTE, CitiesType} from '../../../constants';
 import { OfferData } from '../../../mocks';
 import { HorizontalOfferCard } from '../../molecules';
 
@@ -33,7 +33,7 @@ function OffersByLocationSection({offers, city}: OffersByLocationSectionProps) {
   return (
     <li className="favorites__locations-items">
       <div className="favorites__locations locations locations--current">
-        <TabButton tabName={city} isSelected/>
+        <TabButton tabName={city} link={`${APP_ROUTE.Main}?city=${city}`} isSelected/>
       </div>
       <div className="favorites__places">
         {

@@ -7,7 +7,7 @@ function Footer(): ReactElement {
   return (
     <footer className="footer container">
       <Link className="footer__logo-link" to={APP_ROUTE.Main}>
-        <LogoIcon/>
+        <LogoIcon size={{ width: 64, height: 33 }}/>
       </Link>
     </footer>
   );

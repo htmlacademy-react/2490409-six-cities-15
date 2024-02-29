@@ -2,15 +2,12 @@ import { ReactElement } from 'react';
 import { CITIES, CitiesType } from '../../../constants';
 import { TabButton } from '../../atoms';
 import { useLocation } from 'react-router-dom';
+import { isCity } from '../../../types';
 
 type CityTabsProps = {
   onCityChanged: (city: CitiesType) => void;
   currTab: CitiesType;
 };
-
-const isCity = (value: string): value is CitiesType => (
-  Object.values<string>(CITIES).includes(value)
-);
 
 function CityTabs({onCityChanged, currTab}: CityTabsProps): ReactElement {
   const { pathname } = useLocation();

@@ -1,5 +1,7 @@
 import { CommentData } from '../../../mocks';
 import {ReviewComment, ReviewForm} from '..';
+import {getAuthStatus} from '../../../routing';
+import {AUTH_STATUS} from '../../../constants';
 
 type ReviewsSectionProps = {
   reviews: CommentData[];
@@ -14,7 +16,7 @@ function ReviewsSection({reviews}: ReviewsSectionProps) {
       <ul className="reviews__list">
         {reviews.map((review) => <ReviewComment key={review.id} review={review} />)}
       </ul>
-      <ReviewForm />
+      {getAuthStatus() === AUTH_STATUS.Auth && <ReviewForm />}
     </section>
   );
 }
