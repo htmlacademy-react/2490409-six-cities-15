@@ -6,6 +6,7 @@ import HorizontalOfferCard from './horizontal-offer-card/horizontal-offer-card.t
 import SortSelector from './sort-selector/sort-selector.tsx';
 import VerticalOfferCardsList from './vertical-offer-cards-list/vertical-offer-cards-list.tsx';
 import HorizontalOffersCardsList from './horizontal-offers-cards-list/horizontal-offers-cards-list.tsx';
+import FavoritesEmptyState from './empty-states/favorites-empty-state/favorites-empty-state.tsx';
 
 export {
   CityTabs,
@@ -16,4 +17,5 @@ export {
   SortSelector,
   VerticalOfferCardsList,
   HorizontalOffersCardsList,
+  FavoritesEmptyState,
 };
