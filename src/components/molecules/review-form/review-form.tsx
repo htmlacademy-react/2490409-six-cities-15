@@ -1,6 +1,15 @@
 import { RatingButton } from '../../molecules';
+import {ChangeEvent, ChangeEventHandler, useState} from 'react';
 
 function ReviewForm() {
+  const [text, setText] = useState('');
+
+  const handleOnChange: ChangeEventHandler<HTMLTextAreaElement> = (e: ChangeEvent<HTMLTextAreaElement>) => {
+    const newText = String(e.target.value || '');
+
+    setText(newText);
+  };
+
   return (
     <form className="reviews__form form" action="#" method="post">
       <label className="reviews__label form__label" htmlFor="review">
@@ -15,6 +24,8 @@ function ReviewForm() {
         name="review"
         placeholder="Tell how was your stay, what you like and what can be improved"
         defaultValue={''}
+        value={text}
+        onChange={handleOnChange}
       />
       <div className="reviews__button-wrapper">
         <p className="reviews__help">
