@@ -11,7 +11,7 @@ import { APP_ROUTE } from '../../constants';
 import OfferNotLogged from '../pages/offer-not-logged/offer-not-logged.tsx';
 import { PrivateRoute } from '../../routing';
 import { ScrollToTop } from '../../utils';
-import type { OfferData } from '../../mocks';
+import {comments, detailOffer, OfferData} from '../../mocks';
 
 type AppProps = {
   offers: OfferData[];
@@ -40,7 +40,7 @@ function App({ offers }: AppProps): ReactElement {
         />
         <Route
           path={APP_ROUTE.Offer}
-          element={<OfferScreen/>}
+          element={<OfferScreen otherPlacesNear={offers.slice(0, 3)} offer={detailOffer} reviews={comments}/>}
         />
         <Route
           path={APP_ROUTE.Favorites}

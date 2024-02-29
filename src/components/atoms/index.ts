@@ -7,6 +7,9 @@ import SortSelectorItem from './sort-selector-item/sort-selector-item.tsx';
 import TabButton from './tab-button/tab-button.tsx';
 import LogoIcon from './logo-icon/logo-icon.tsx';
 import Rating from './rating/rating.tsx';
+import GalleryItem from './gallery-item/gallery-item.tsx';
+import Price from './price/price.tsx';
+import OfferFeatureItem from './offer-feature-item/offer-feature-item.tsx';
 
 export {
   BookmarkIcon,
@@ -18,4 +21,7 @@ export {
   TabButton,
   LogoIcon,
   Rating,
+  GalleryItem,
+  Price,
+  OfferFeatureItem,
 };

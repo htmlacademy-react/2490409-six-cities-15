@@ -42,16 +42,18 @@ type OfferDetailData = {
     zoom: number;
   };
   goods: string[];
-  host: {
-    isPro: boolean;
-    name: string;
-    avatarUrl: string;
-  };
+  host: HostUserType;
   isPremium: boolean;
   isFavorite: boolean;
   rating: number;
   bedrooms: number;
   maxAdults: number;
+};
+
+type HostUserType = {
+  isPro: boolean;
+  name: string;
+  avatarUrl: string;
 };
 
 type CommentData = {
@@ -69,5 +71,6 @@ type CommentData = {
 export type {
   OfferData,
   OfferDetailData,
+  HostUserType,
   CommentData,
 };

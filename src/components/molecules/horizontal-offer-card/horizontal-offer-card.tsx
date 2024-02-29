@@ -1,4 +1,4 @@
-import { BookmarkIcon, PremiumLabel, Rating } from '../../atoms';
+import {BookmarkIcon, PremiumLabel, Price, Rating} from '../../atoms';
 import { OfferData } from '../../../mocks';
 import { Link } from 'react-router-dom';
 import { APP_ROUTE } from '../../../constants';
@@ -25,11 +25,8 @@ function HorizontalOfferCard(props: OfferCardHorizontalProps) {
       </div>
       <div className="favorites__card-info place-card__info">
         <div className="place-card__price-wrapper">
-          <div className="place-card__price">
-            <b className="place-card__price-value">€{props.price}</b>
-            <span className="place-card__price-text">/&nbsp;night</span>
-          </div>
-          <BookmarkIcon isActive/>
+          <Price price={props.price} />
+          <BookmarkIcon isActive size={{ width: 18, height: 19 }}/>
         </div>
         <Rating rating={props.rating} />
         <h2 className="place-card__name">

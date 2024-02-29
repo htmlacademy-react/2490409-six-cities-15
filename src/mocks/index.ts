@@ -5,6 +5,7 @@ import type {
   CommentData,
   OfferData,
   OfferDetailData,
+  HostUserType,
 } from './types.ts';
 
 export {
@@ -17,4 +18,5 @@ export type {
   CommentData,
   OfferData,
   OfferDetailData,
+  HostUserType,
 };

@@ -1,11 +1,14 @@
+import { ComponentStyleType } from '../../../types';
+
 type RatingProps = {
   rating: number;
+  type?: ComponentStyleType;
 };
 
-function Rating({ rating }: RatingProps) {
+function Rating({ rating, type = 'place-card' }: RatingProps) {
   return (
-    <div className="place-card__rating rating">
-      <div className="place-card__stars rating__stars">
+    <div className={`${type}__rating rating`}>
+      <div className={`${type}__stars rating__stars`}>
         <span style={{width: `${rating * 20}%`}}></span>
         <span className="visually-hidden">Rating</span>
       </div>
