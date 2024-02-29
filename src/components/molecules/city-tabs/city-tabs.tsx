@@ -11,8 +11,10 @@ type CityTabsProps = {
 function CityTabs({onCityChanged, currTab}: CityTabsProps): ReactElement {
   const { pathname } = useLocation();
 
-  const handleTabChange = (city: CitiesType) => {
-    onCityChanged(city);
+  const handleTabChange = (city: string) => {
+    if (city in Object.values(CITIES)) {
+      onCityChanged(city as CitiesType);
+    }
   };
 
   return (

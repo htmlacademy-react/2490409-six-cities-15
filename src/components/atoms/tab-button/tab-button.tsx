@@ -1,10 +1,9 @@
 import { Link } from 'react-router-dom';
-import { CitiesType } from '../../../constants';
 
 type TabButtonProps = {
-  tabName: CitiesType;
+  tabName: string;
   isSelected: boolean;
-  onClick?: (name: CitiesType) => void;
+  onClick?: (name: string) => void;
   link?: string;
 };
 
