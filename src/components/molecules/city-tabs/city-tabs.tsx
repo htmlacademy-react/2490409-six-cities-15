@@ -8,12 +8,16 @@ type CityTabsProps = {
   currTab: CitiesType;
 };
 
+const isCity = (value: string): value is CitiesType => (
+  Object.values<string>(CITIES).includes(value)
+);
+
 function CityTabs({onCityChanged, currTab}: CityTabsProps): ReactElement {
   const { pathname } = useLocation();
 
   const handleTabChange = (city: string) => {
-    if (city in Object.values(CITIES)) {
-      onCityChanged(city as CitiesType);
+    if (isCity(city)) {
+      onCityChanged(city);
     }
   };
 

@@ -1,6 +1,6 @@
-import {ReactElement, useState} from 'react';
-import { Header } from '../../organisms';
-import { CityTabs, VerticalOfferCardsList } from '../../molecules';
+import { ReactElement, useState } from 'react';
+import { Header, OffersListWithMap } from '../../organisms';
+import { CityTabs, MainEmptyState } from '../../molecules';
 import { OfferData } from '../../../mocks';
 import { CITIES, CitiesType } from '../../../constants';
 import { useSearchParams } from 'react-router-dom';
@@ -10,8 +10,10 @@ type MainScreenProps = {
 };
 
 function MainScreen({ offers }: MainScreenProps): ReactElement {
+  const isEmpty = offers.length === 0;
+  const mainClassName = `page__main page__main--index ${isEmpty ? 'page__main--index-empty' : ''}`;
+  const divClassname = `cities__places-container ${isEmpty ? 'cities__places-container--empty' : ''} container`;
   const filterCityName = (city: string) => city in Object.values(CITIES) ? city : null;
-  const getOffersByCity = (city: CitiesType) => offers.filter((offer) => offer.city.name === city);
 
   const [ searchParams ] = useSearchParams();
   const currentTabFromSearch = filterCityName(searchParams.get('city') || '') || CITIES.Paris;
@@ -24,15 +26,12 @@ function MainScreen({ offers }: MainScreenProps): ReactElement {
   return (
     <div className="page page--gray page--main">
       <Header isLogoActive/>
-      <main className="page__main page__main--index">
+      <main className={mainClassName}>
         <h1 className="visually-hidden">Cities</h1>
         <CityTabs onCityChanged={handleCityChange} currTab={currCity}/>
         <div className="cities">
-          <div className="cities__places-container container">
-            <VerticalOfferCardsList city={currCity} offers={getOffersByCity(currCity)} />
-            <div className="cities__right-section">
-              <section className="cities__map map"></section>
-            </div>
+          <div className={divClassname}>
+            { isEmpty ? <MainEmptyState city={currCity}/> : <OffersListWithMap offers={offers} currCity={currCity} /> }
           </div>
         </div>
       </main>
