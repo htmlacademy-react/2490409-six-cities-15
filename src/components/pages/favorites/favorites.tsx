@@ -1,7 +1,8 @@
 import { ReactElement } from 'react';
 import { Header, Footer } from '../../organisms';
 import { OfferData } from '../../../mocks';
-import {FavoritesEmptyState, HorizontalOffersCardsList} from '../../molecules';
+import { FavoritesEmptyState, HorizontalOffersCardsList } from '../../molecules';
+import classNames from 'classnames';
 
 type FavoritesScreenProps = {
   offers: OfferData[];
@@ -9,8 +10,15 @@ type FavoritesScreenProps = {
 
 function FavoritesScreen({offers}: FavoritesScreenProps): ReactElement {
   const isEmpty = offers.length === 0;
-  const divClassName = `page ${isEmpty ? 'page--favorites-empty' : ''}`;
-  const mainClassName = `page__main page__main--favorites ${isEmpty ? 'page__main--favorites-empty' : ''}`;
+  const divClassName = classNames(
+    'page',
+    {'page--favorites-empty': isEmpty},
+  );
+  const mainClassName = classNames(
+    'page__main',
+    'page__main--favorites',
+    {'page__main--favorites-empty': isEmpty},
+  );
 
   return (
     <div className={divClassName}>

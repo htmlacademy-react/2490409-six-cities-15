@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import classNames from 'classnames';
 
 type TabButtonProps = {
   tabName: string;
@@ -8,7 +9,11 @@ type TabButtonProps = {
 };
 
 function TabButton({tabName, isSelected, onClick = () => {}, link = '#'}: TabButtonProps) {
-  const locationClassName = `locations__item-link tabs__item ${ isSelected ? 'tabs__item--active' : ''}`;
+  const locationClassName = classNames(
+    'locations__item-link',
+    'tabs__item',
+    {'tabs__item--active': isSelected},
+  );
 
   const handleOnClick = () => {
     onClick(tabName);

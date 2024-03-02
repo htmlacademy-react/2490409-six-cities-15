@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import { LogoIcon } from '..';
 import {APP_ROUTE} from '../../../constants';
+import classNames from 'classnames';
 
 type LogoIconProps = {
   isActive?: boolean;
@@ -11,7 +12,10 @@ type LogoIconProps = {
 };
 
 function HeaderLogoIcon({ size, isActive = false }: LogoIconProps) {
-  const linkClass = `header__logo-link${isActive ? '--active' : ''}`;
+  const linkClass = classNames(
+    {'header__logo-link': !isActive},
+    {'header__logo-link--active': isActive},
+  );
 
   return (
     <div className="header__left">

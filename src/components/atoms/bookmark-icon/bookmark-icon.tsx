@@ -1,4 +1,5 @@
 import { ComponentStyleType } from '../../../types';
+import classNames from 'classnames';
 
 type BookmarkIconProps = {
   isActive?: boolean;
@@ -9,7 +10,11 @@ type BookmarkIconProps = {
   };
 };
 function BookmarkIcon({isActive = false, type = 'place-card', size}: BookmarkIconProps) {
-  const className = `${type}__bookmark-button ${isActive ? `${type}__bookmark-button--active` : ''} button`;
+  const className = classNames(
+    'button',
+    `${type}__bookmark-button`,
+    {[`${type}__bookmark-button--active`]: isActive},
+  );
 
   return (
     <button className={className} type="button">

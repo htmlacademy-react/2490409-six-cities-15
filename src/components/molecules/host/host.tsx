@@ -1,4 +1,5 @@
 import {HostUserType} from '../../../mocks';
+import classNames from 'classnames';
 
 type HostProps = {
   user: HostUserType;
@@ -6,11 +7,17 @@ type HostProps = {
 };
 
 function Host({user, description}: HostProps) {
+  const avatarWrapperClass = classNames(
+    'offer__avatar-wrapper',
+    'user__avatar-wrapper',
+    {'offer__avatar-wrapper--pro': user.isPro}
+  );
+
   return (
     <div className="offer__host">
       <h2 className="offer__host-title">Meet the host</h2>
       <div className="offer__host-user user">
-        <div className={`offer__avatar-wrapper ${user.isPro ? 'offer__avatar-wrapper--pro' : ''} user__avatar-wrapper`}>
+        <div className={avatarWrapperClass}>
           <img
             className="offer__avatar user__avatar"
             src={user.avatarUrl}
