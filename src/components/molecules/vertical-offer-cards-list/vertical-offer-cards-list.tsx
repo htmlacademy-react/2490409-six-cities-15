@@ -1,4 +1,4 @@
-import { OfferCard, SortSelector } from '../index.ts';
+import { OffersList, SortSelector } from '..';
 import { OfferData } from '../../../mocks';
 import { CitiesType } from '../../../constants';
 
@@ -16,20 +16,14 @@ function VerticalOfferCardsList({offers, city, handleCardHover, handleCardLeave}
       <h2 className="visually-hidden">Places</h2>
       <b className="places__found">{offers.length} places to stay in {city}</b>
       <SortSelector selectedItemName={'Popular'}/>
-      <div className="cities__places-list places__list tabs__content">
-        {
-          offers.map((offer: OfferData) => (
-            <OfferCard
-              key={offer.id}
-              {...offer}
-              onMouseOver={handleCardHover}
-              onMouseOut={handleCardLeave}
-              placeType={'cities'}
-              hasVerticalLayout
-            />
-          ))
-        }
-      </div>
+      <OffersList
+        offers={offers}
+        classNames={'cities__places-list places__list tabs__content'}
+        handleHoverOnCard={handleCardHover}
+        handleCardLeave={handleCardLeave}
+        placeType={'cities'}
+        hasVerticalLayout
+      />
     </section>
   );
 }

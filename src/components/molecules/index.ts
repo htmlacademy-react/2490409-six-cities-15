@@ -18,6 +18,7 @@ import RatingButton from './rating-button/rating-button.tsx';
 import StarInput from './star-input/star-input.tsx';
 import Map from './map/map.tsx';
 import OffersByLocationSection from './offers-by-location-section/offers-by-location-section.tsx';
+import OffersList from './offers-list/offers-list.tsx';
 
 export {
   CityTabs,
@@ -40,4 +41,5 @@ export {
   StarInput,
   Map,
   OffersByLocationSection,
+  OffersList,
 };

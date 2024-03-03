@@ -1,7 +1,7 @@
-import {TabButton} from '../../atoms';
-import {APP_ROUTE, CitiesType} from '../../../constants';
-import {OfferCard} from '../index.ts';
-import {OfferData} from '../../../mocks';
+import { TabButton } from '../../atoms';
+import { APP_ROUTE, CitiesType } from '../../../constants';
+import { OffersList } from '..';
+import { OfferData } from '../../../mocks';
 
 type OffersByLocationSectionProps = {
   offers: OfferData[];
@@ -14,18 +14,14 @@ function OffersByLocationSection({offers, city}: OffersByLocationSectionProps) {
       <div className="favorites__locations locations locations--current">
         <TabButton tabName={city} link={`${APP_ROUTE.Main}?city=${city}`} isSelected/>
       </div>
-      <div className="favorites__places">
-        {
-          offers.map((offer) => (
-            <OfferCard
-              key={offer.id}
-              {...offer}
-              hasVerticalLayout={false}
-              placeType={'favorites'}
-            />
-          ))
-        }
-      </div>
+      <OffersList
+        offers={offers}
+        classNames={'favorites__places'}
+        handleHoverOnCard={() => {}}
+        handleCardLeave={() => {}}
+        hasVerticalLayout={false}
+        placeType={'favorites'}
+      />
     </li>
   );
 }
