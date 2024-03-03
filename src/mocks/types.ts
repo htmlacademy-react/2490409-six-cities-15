@@ -19,7 +19,7 @@ type OfferDetailData = {
   price: number;
   images: string[];
   city: CityType;
-  location: Location;
+  location: LocationType;
   goods: string[];
   host: HostUserType;
   isPremium: boolean;
