@@ -1,20 +1,15 @@
 import { VerticalOfferCard, SortSelector } from '../index.ts';
 import { OfferData } from '../../../mocks';
-import { useState } from 'react';
-import {CitiesType} from '../../../constants';
-import {Nullable} from 'vitest';
+import { CitiesType } from '../../../constants';
 
 type OfferCardsListProps = {
   offers: OfferData[];
   city: CitiesType;
+  handleCardHover: (id?: string) => void;
+  handleCardLeave: () => void;
 };
 
-function VerticalOfferCardsList({offers, city}: OfferCardsListProps) {
-  const [ , setMouseOveredCardId] = useState<Nullable<string>>(null);
-
-  const handleMouseOver = (id?: string) => {
-    setMouseOveredCardId(id || null);
-  };
+function VerticalOfferCardsList({offers, city, handleCardHover, handleCardLeave}: OfferCardsListProps) {
 
   return (
     <section className="cities__places places">
@@ -34,7 +29,8 @@ function VerticalOfferCardsList({offers, city}: OfferCardsListProps) {
               isFavorite={offer.isFavorite}
               isPremium={offer.isPremium}
               rating={offer.rating}
-              onMouseOver={ handleMouseOver }
+              onMouseOver={ handleCardHover }
+              onMouseOut={ handleCardLeave }
             />
           ))
         }
