@@ -1,4 +1,4 @@
-import { VerticalOfferCard, SortSelector } from '../index.ts';
+import { OfferCard, SortSelector } from '../index.ts';
 import { OfferData } from '../../../mocks';
 import { CitiesType } from '../../../constants';
 
@@ -19,18 +19,13 @@ function VerticalOfferCardsList({offers, city, handleCardHover, handleCardLeave}
       <div className="cities__places-list places__list tabs__content">
         {
           offers.map((offer: OfferData) => (
-            <VerticalOfferCard
-              id={offer.id}
+            <OfferCard
               key={offer.id}
-              title={offer.title}
-              type={offer.type}
-              price={offer.price}
-              previewImage={offer.previewImage}
-              isFavorite={offer.isFavorite}
-              isPremium={offer.isPremium}
-              rating={offer.rating}
-              onMouseOver={ handleCardHover }
-              onMouseOut={ handleCardLeave }
+              {...offer}
+              onMouseOver={handleCardHover}
+              onMouseOut={handleCardLeave}
+              placeType={'cities'}
+              hasVerticalLayout
             />
           ))
         }

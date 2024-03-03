@@ -1,7 +1,7 @@
 import { TabButton } from '../../atoms';
 import {APP_ROUTE, CitiesType} from '../../../constants';
 import { OfferData } from '../../../mocks';
-import { HorizontalOfferCard } from '../../molecules';
+import { OfferCard } from '../../molecules';
 
 type HorizontalOffersCardsListProps = {
   offers: OfferData[];
@@ -37,7 +37,14 @@ function OffersByLocationSection({offers, city}: OffersByLocationSectionProps) {
       </div>
       <div className="favorites__places">
         {
-          offers.map((offer) => <HorizontalOfferCard key={offer.id} {...offer} />)
+          offers.map((offer) => (
+            <OfferCard
+              key={offer.id}
+              {...offer}
+              hasVerticalLayout={false}
+              placeType={'favorites'}
+            />
+          ))
         }
       </div>
     </li>
