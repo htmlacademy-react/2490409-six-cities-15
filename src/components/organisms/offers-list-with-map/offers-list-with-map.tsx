@@ -1,8 +1,7 @@
 import { OfferData } from '../../../mocks';
 import { CitiesType } from '../../../constants';
 import { Map, VerticalOfferCardsList } from '../../molecules';
-import { useState } from 'react';
-import { Nullable } from 'vitest';
+import { useHoverHandlers } from '../../../hooks';
 
 type OffersListWithMapProps = {
   offers: OfferData[];
@@ -13,15 +12,11 @@ function OffersListWithMap({offers, currCity}: OffersListWithMapProps) {
   const getOffersByCity = (city: CitiesType) => offers.filter((offer) => offer.city.name === city);
   const offersByCity = getOffersByCity(currCity);
 
-  const [ hoveredCardId, setHoveredCardId] = useState<Nullable<string>>(null);
-
-  const handleHoverOnCard = (id?: string) => {
-    setHoveredCardId(id);
-  };
-
-  const handleCardLeave = () => {
-    setHoveredCardId(null);
-  };
+  const [
+    hoveredCardId,
+    handleHoverOnCard,
+    handleCardLeave,
+  ] = useHoverHandlers();
 
   return (
     <>

@@ -3,6 +3,7 @@ import { Header } from '../../organisms';
 import { Gallery, GoodsList, Host, Map, OfferFeatures, ReviewsSection, VerticalOfferCard } from '../../molecules';
 import { CommentData, OfferData, OfferDetailData } from '../../../mocks';
 import { BookmarkIcon, PremiumLabel, Price, Rating } from '../../atoms';
+import {useHoverHandlers} from '../../../hooks';
 
 type OfferScreenProps = {
   offer: OfferDetailData;
@@ -15,6 +16,11 @@ function OfferScreen({offer, reviews, otherPlacesNear}: OfferScreenProps): React
   const otherPlacesNearLocations = otherPlacesNear.map((place) => (
     {...place.location, id: place.id}
   ));
+  const [
+    hoveredCardId,
+    handleHoverOnCard,
+    handleCardLeave,
+  ] = useHoverHandlers();
 
   return (
     <div className="page">
@@ -43,7 +49,7 @@ function OfferScreen({offer, reviews, otherPlacesNear}: OfferScreenProps): React
               style={{maxWidth: '60%'}}
               locations={otherPlacesNearLocations}
               city={offer.city}
-              selectedCardId={null}
+              selectedCardId={hoveredCardId}
             />
           </div>
         </section>
@@ -57,8 +63,8 @@ function OfferScreen({offer, reviews, otherPlacesNear}: OfferScreenProps): React
                 <VerticalOfferCard
                   {...place}
                   key={place.id}
-                  onMouseOver={()=> {}}
-                  onMouseOut={()=> {}}
+                  onMouseOver={handleHoverOnCard}
+                  onMouseOut={handleCardLeave}
                   placeType={'near-places'}
                 />
               ))}
