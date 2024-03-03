@@ -12,6 +12,7 @@ import Gallery from './gallery/gallery.tsx';
 import OfferFeatures from './offer-features/offer-features.tsx';
 import Host from './host/host.tsx';
 import ReviewsSection from './reviews-section/reviews-section.tsx';
+import ReviewsList from './reviews-list/reviews-list.tsx';
 import ReviewComment from './review-comment/review-comment.tsx';
 import ReviewForm from './review-form/review-form.tsx';
 import RatingButton from './rating-button/rating-button.tsx';
@@ -33,6 +34,7 @@ export {
   OfferFeatures,
   Host,
   ReviewsSection,
+  ReviewsList,
   ReviewComment,
   ReviewForm,
   RatingButton,

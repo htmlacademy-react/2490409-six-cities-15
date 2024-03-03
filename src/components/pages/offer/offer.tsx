@@ -1,6 +1,6 @@
 import { ReactElement } from 'react';
 import { Header } from '../../organisms';
-import { Gallery, GoodsList, Host, OfferFeatures, ReviewsSection, VerticalOfferCard } from '../../molecules';
+import { Gallery, GoodsList, Host, Map, OfferFeatures, ReviewsSection, VerticalOfferCard } from '../../molecules';
 import { CommentData, OfferData, OfferDetailData } from '../../../mocks';
 import { BookmarkIcon, PremiumLabel, Price, Rating } from '../../atoms';
 
@@ -12,29 +12,40 @@ type OfferScreenProps = {
 
 function OfferScreen({offer, reviews, otherPlacesNear}: OfferScreenProps): ReactElement {
   const elementsType = 'offer';
+  const otherPlacesNearLocations = otherPlacesNear.map((place) => (
+    {...place.location, id: place.id}
+  ));
 
   return (
     <div className="page">
       <Header/>
       <main className="page__main page__main--offer">
         <section className="offer">
-          <Gallery images={offer.images} />
+          <Gallery images={offer.images}/>
           <div className="offer__container container">
             <div className="offer__wrapper">
-              <PremiumLabel type={elementsType} />
+              <PremiumLabel type={elementsType}/>
               <div className="offer__name-wrapper">
                 <h1 className="offer__name">{offer.title}</h1>
-                <BookmarkIcon size={{ width: 31, height: 33}} isActive={offer.isFavorite}/>
+                <BookmarkIcon size={{width: 31, height: 33}} isActive={offer.isFavorite}/>
               </div>
-              <Rating rating={offer.rating} type={elementsType} />
-              <OfferFeatures maxAdultsCount={offer.maxAdults} bedroomsCount={offer.bedrooms} housingType={offer.type} />
+              <Rating rating={offer.rating} type={elementsType}/>
+              <OfferFeatures maxAdultsCount={offer.maxAdults} bedroomsCount={offer.bedrooms} housingType={offer.type}/>
               <Price price={offer.price} type={'offer'}/>
-              <GoodsList goods={offer.goods} />
-              <Host user={offer.host} description={offer.description} />
-              <ReviewsSection reviews={reviews} />
+              <GoodsList goods={offer.goods}/>
+              <Host user={offer.host} description={offer.description}/>
+              <ReviewsSection reviews={reviews}/>
             </div>
           </div>
-          <section className="offer__map map"/>
+          <div style={{width: '100%', display: 'flex', justifyContent: 'center'}}>
+            <Map
+              className="offer__map map"
+              style={{maxWidth: '60%'}}
+              locations={otherPlacesNearLocations}
+              city={offer.city}
+              selectedCardId={null}
+            />
+          </div>
         </section>
         <div className="container">
           <section className="near-places places">
@@ -43,7 +54,13 @@ function OfferScreen({offer, reviews, otherPlacesNear}: OfferScreenProps): React
             </h2>
             <div className="near-places__list places__list">
               {otherPlacesNear.map((place) => (
-                <VerticalOfferCard {...place} key={place.id} onMouseOver={()=> {}} placeType={'near-places'} />
+                <VerticalOfferCard
+                  {...place}
+                  key={place.id}
+                  onMouseOver={()=> {}}
+                  onMouseOut={()=> {}}
+                  placeType={'near-places'}
+                />
               ))}
             </div>
           </section>
