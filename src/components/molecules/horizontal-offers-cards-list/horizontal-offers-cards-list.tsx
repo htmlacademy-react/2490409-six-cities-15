@@ -1,15 +1,9 @@
-import { TabButton } from '../../atoms';
-import {APP_ROUTE, CitiesType} from '../../../constants';
+import { CitiesType } from '../../../constants';
 import { OfferData } from '../../../mocks';
-import { OfferCard } from '../../molecules';
+import { OffersByLocationSection } from '../../molecules';
 
 type HorizontalOffersCardsListProps = {
   offers: OfferData[];
-};
-
-type OffersByLocationSectionProps = {
-  offers: OfferData[];
-  city: CitiesType;
 };
 
 type SortedByCitiesOffers = {
@@ -28,28 +22,6 @@ const getOffersSortedByCities = (offers: OfferData[]) => offers.reduce((res, off
 
   return res;
 }, {});
-
-function OffersByLocationSection({offers, city}: OffersByLocationSectionProps) {
-  return (
-    <li className="favorites__locations-items">
-      <div className="favorites__locations locations locations--current">
-        <TabButton tabName={city} link={`${APP_ROUTE.Main}?city=${city}`} isSelected/>
-      </div>
-      <div className="favorites__places">
-        {
-          offers.map((offer) => (
-            <OfferCard
-              key={offer.id}
-              {...offer}
-              hasVerticalLayout={false}
-              placeType={'favorites'}
-            />
-          ))
-        }
-      </div>
-    </li>
-  );
-}
 
 function HorizontalOffersCardsList({offers}: HorizontalOffersCardsListProps) {
   const sortedOffers: SortedByCitiesOffers = getOffersSortedByCities(offers);
