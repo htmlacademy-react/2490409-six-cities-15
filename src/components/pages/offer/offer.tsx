@@ -3,7 +3,7 @@ import { Header } from '../../organisms';
 import { Gallery, GoodsList, Host, Map, OfferFeatures, ReviewsSection, VerticalOfferCard } from '../../molecules';
 import { CommentData, OfferData, OfferDetailData } from '../../../mocks';
 import { BookmarkIcon, PremiumLabel, Price, Rating } from '../../atoms';
-import {useHoverHandlers} from '../../../hooks';
+import { useHoverHandlers } from '../../../hooks';
 
 type OfferScreenProps = {
   offer: OfferDetailData;
@@ -45,7 +45,7 @@ function OfferScreen({offer, reviews, otherPlacesNear}: OfferScreenProps): React
           </div>
           <div style={{width: '100%', display: 'flex', justifyContent: 'center'}}>
             <Map
-              className="offer__map map"
+              classType="offer"
               style={{maxWidth: '60%'}}
               locations={otherPlacesNearLocations}
               city={offer.city}

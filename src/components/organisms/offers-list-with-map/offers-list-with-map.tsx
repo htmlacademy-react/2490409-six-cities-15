@@ -28,7 +28,7 @@ function OffersListWithMap({offers, currCity}: OffersListWithMapProps) {
       />
       <div className="cities__right-section">
         <Map
-          className="cities__map map"
+          classType="cities"
           locations={offersByCity.map((offer) => ({ ...offer.location, id: offer.id }))}
           city={offersByCity[0].city}
           selectedCardId={hoveredCardId}
