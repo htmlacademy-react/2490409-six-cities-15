@@ -3,7 +3,7 @@ import GoodsList from './goods-list/goods-list.tsx';
 import LoginForm from './login-form/login-form.tsx';
 import OfferCard from './offer-card/offer-card.tsx';
 import SortSelector from './sort-selector/sort-selector.tsx';
-import VerticalOfferCardsList from './vertical-offer-cards-list/vertical-offer-cards-list.tsx';
+import OffersListWithSort from './offers-list-with-sort/offers-list-with-sort.tsx';
 import HorizontalOffersCardsList from './horizontal-offers-cards-list/horizontal-offers-cards-list.tsx';
 import FavoritesEmptyState from './empty-states/favorites-empty-state/favorites-empty-state.tsx';
 import MainEmptyState from './empty-states/main-empty-state/main-empty-state.tsx';
@@ -26,7 +26,7 @@ export {
   LoginForm,
   OfferCard,
   SortSelector,
-  VerticalOfferCardsList,
+  OffersListWithSort,
   HorizontalOffersCardsList,
   FavoritesEmptyState,
   MainEmptyState,

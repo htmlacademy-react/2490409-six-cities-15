@@ -9,7 +9,7 @@ type OfferCardsListProps = {
   handleCardLeave: () => void;
 };
 
-function VerticalOfferCardsList({offers, city, handleCardHover, handleCardLeave}: OfferCardsListProps) {
+function OffersListWithSort({offers, city, handleCardHover, handleCardLeave}: OfferCardsListProps) {
 
   return (
     <section className="cities__places places">
@@ -28,4 +28,4 @@ function VerticalOfferCardsList({offers, city, handleCardHover, handleCardLeave}
   );
 }
 
-export default VerticalOfferCardsList;
+export default OffersListWithSort;

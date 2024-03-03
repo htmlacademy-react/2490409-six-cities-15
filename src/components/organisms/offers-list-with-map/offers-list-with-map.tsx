@@ -1,6 +1,6 @@
 import { OfferData } from '../../../mocks';
 import { CitiesType } from '../../../constants';
-import { Map, VerticalOfferCardsList } from '../../molecules';
+import { Map, OffersListWithSort } from '../../molecules';
 import { useHoverHandlers } from '../../../hooks';
 
 type OffersListWithMapProps = {
@@ -20,7 +20,7 @@ function OffersListWithMap({offers, currCity}: OffersListWithMapProps) {
 
   return (
     <>
-      <VerticalOfferCardsList
+      <OffersListWithSort
         city={currCity}
         offers={offersByCity}
         handleCardHover={handleHoverOnCard}
