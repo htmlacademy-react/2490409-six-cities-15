@@ -37,6 +37,12 @@ function Map({locations, city, selectedCardId}: MapProps) {
     map
       .panTo(new LatLng(location.latitude, location.longitude))
       .setZoom(location.zoom);
+  }, [city]);
+
+  useEffect(() => {
+    if (!map) {
+      return;
+    }
 
     const markerLayer = layerGroup().addTo(map);
     locations.forEach((loc) => {
