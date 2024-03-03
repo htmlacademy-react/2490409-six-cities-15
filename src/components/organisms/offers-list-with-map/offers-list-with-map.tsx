@@ -1,6 +1,6 @@
 import { OfferData } from '../../../mocks';
 import { CitiesType } from '../../../constants';
-import { VerticalOfferCardsList } from '../../molecules';
+import { Map, VerticalOfferCardsList } from '../../molecules';
 
 type OffersListWithMapProps = {
   offers: OfferData[];
@@ -9,12 +9,13 @@ type OffersListWithMapProps = {
 
 function OffersListWithMap({offers, currCity}: OffersListWithMapProps) {
   const getOffersByCity = (city: CitiesType) => offers.filter((offer) => offer.city.name === city);
+  const offersByCity = getOffersByCity(currCity);
 
   return (
     <>
-      <VerticalOfferCardsList city={currCity} offers={getOffersByCity(currCity)} />
+      <VerticalOfferCardsList city={currCity} offers={offersByCity} />
       <div className="cities__right-section">
-        <section className="cities__map map"></section>
+        <Map locations={offersByCity.map((offer) => offer.location)} city={offersByCity[0].city} />
       </div>
     </>
   );
