@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { LatLng, Map } from 'leaflet';
 import { CityType, LocationType } from '../mocks';
 
-function useSetCityLocation(map: Map | null, city: CityType, location: LocationType) {
+function useCityLocation(map: Map | null, city: CityType, location: LocationType) {
   useEffect(() => {
     if (!map) {
       return;
@@ -14,4 +14,4 @@ function useSetCityLocation(map: Map | null, city: CityType, location: LocationT
   }, [city]);
 }
 
-export default useSetCityLocation;
+export default useCityLocation;
