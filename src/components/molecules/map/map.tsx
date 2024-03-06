@@ -1,5 +1,5 @@
-import { CSSProperties, useRef } from 'react';
-import {useSetCityLocation, useMap, useSetMarkers} from '../../../hooks';
+import { useRef, CSSProperties } from 'react';
+import { useCityLocation, useMap, useMarkers } from '../../../hooks';
 import { CityType, LocationType } from '../../../mocks';
 import 'leaflet/dist/leaflet.css';
 import { Nullable } from 'vitest';
@@ -18,9 +18,9 @@ function Map({locations, city, selectedCardId, classType, style}: MapProps) {
   const mapRef = useRef(null);
   const map = useMap(mapRef, location);
 
-  useSetCityLocation(map, city, location);
+  useCityLocation(map, city, location);
 
-  useSetMarkers(map, locations, selectedCardId);
+  useMarkers(map, locations, selectedCardId);
 
   return (
     <section id="map" ref={mapRef} className={`${classType}__map map`} style={style}></section>
