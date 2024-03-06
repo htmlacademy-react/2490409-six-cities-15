@@ -1,9 +1,9 @@
 import useMap from './use-map.ts';
-import useSetCityLocation from './use-set-city-location.ts';
-import useSetMarkers from './use-set-markers.ts';
+import useCityLocation from './use-city-location.ts';
+import useMarkers from './use-markers.ts';
 
 export {
   useMap,
-  useSetCityLocation,
-  useSetMarkers,
+  useCityLocation,
+  useMarkers,
 };

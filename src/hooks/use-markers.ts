@@ -16,7 +16,7 @@ const currentCustomIcon = new Icon({
   iconAnchor: [20, 40]
 });
 
-function useSetMarkers(
+function useMarkers(
   map: Map | null, locations: Array<LocationType & { id: string }>, selectedCardId: Nullable<string>
 ) {
   useEffect(() => {
@@ -46,4 +46,4 @@ function useSetMarkers(
   }, [map, locations, selectedCardId]);
 }
 
-export default useSetMarkers;
+export default useMarkers;
