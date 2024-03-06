@@ -3,7 +3,7 @@ import { Header } from '../../organisms';
 import { Gallery, GoodsList, Host, Map, OfferFeatures, ReviewsSection, OffersList } from '../../molecules';
 import { CommentData, OfferData, OfferDetailData } from '../../../mocks';
 import { BookmarkIcon, PremiumLabel, Price, Rating } from '../../atoms';
-import { useHoverHandlers } from '../../../hooks';
+import { useSelect } from '../../../hooks';
 
 type OfferScreenProps = {
   offer: OfferDetailData;
@@ -20,7 +20,7 @@ function OfferScreen({offer, reviews, otherPlacesNear}: OfferScreenProps): React
     hoveredCardId,
     handleHoverOnCard,
     handleCardLeave,
-  ] = useHoverHandlers();
+  ] = useSelect();
 
   return (
     <div className="page">

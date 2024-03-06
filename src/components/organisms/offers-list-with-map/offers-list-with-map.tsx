@@ -1,7 +1,7 @@
 import { OfferData } from '../../../mocks';
 import { CitiesType } from '../../../constants';
 import { Map, OffersListWithSort } from '../../molecules';
-import { useHoverHandlers } from '../../../hooks';
+import { useSelect } from '../../../hooks';
 
 type OffersListWithMapProps = {
   offers: OfferData[];
@@ -16,7 +16,7 @@ function OffersListWithMap({offers, currCity}: OffersListWithMapProps) {
     hoveredCardId,
     handleHoverOnCard,
     handleCardLeave,
-  ] = useHoverHandlers();
+  ] = useSelect();
 
   return (
     <>
