@@ -4,7 +4,7 @@ import { TabButton } from '../../atoms';
 import { APP_ROUTE } from '../../../constants';
 
 type NotFoundPageProps = {
-  type: keyof typeof variant;
+  type?: keyof typeof variant;
 };
 
 const variant = {
