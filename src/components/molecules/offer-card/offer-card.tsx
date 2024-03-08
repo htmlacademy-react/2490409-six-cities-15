@@ -18,7 +18,7 @@ function OfferCard({
   onMouseOut = () => {},
   ...props
 }: OfferCardVerticalProps): ReactElement {
-  const getOfferLink = (id: string) => APP_ROUTE.Offer.replace(':id', id);
+  const offerLink = APP_ROUTE.Offer.replace(':id', props.id);
 
   const previewImageSize = props.hasVerticalLayout
     ? { width: 260, height: 200 }
@@ -30,14 +30,15 @@ function OfferCard({
   );
 
   return (
-    <article
-      className={`${props.placeType}__card place-card`}
-      onMouseOver={onMouseOver.bind(null, props.id)}
-      onMouseOut={onMouseOut}
-    >
-      {props.isPremium && <PremiumLabel/>}
-      <div className={`${props.placeType}__image-wrapper place-card__image-wrapper`}>
-        <Link to={getOfferLink(props.id)}>
+    <Link to={offerLink}>
+      <article
+        className={`${props.placeType}__card place-card`}
+        onMouseEnter={onMouseOver.bind(null, props.id)}
+        onMouseOut={onMouseOut}
+      >
+        {props.isPremium && <PremiumLabel/>}
+        <div className={`${props.placeType}__image-wrapper place-card__image-wrapper`}>
+
           <img
             className="place-card__image"
             src={props.previewImage}
@@ -45,20 +46,20 @@ function OfferCard({
             height={previewImageSize.height}
             alt="Place image"
           />
-        </Link>
-      </div>
-      <div className={infoClassName}>
-        <div className="place-card__price-wrapper">
-          <Price price={props.price} />
-          <BookmarkIcon isActive={props.isFavorite} size={{ width: 18, height: 19 }}/>
         </div>
-        <Rating rating={props.rating} />
-        <h2 className="place-card__name">
-          <Link to={getOfferLink(props.id)}>{props.title}</Link>
-        </h2>
-        <p className="place-card__type">{capitalize(props.type)}</p>
-      </div>
-    </article>
+        <div className={infoClassName}>
+          <div className="place-card__price-wrapper">
+            <Price price={props.price} />
+            <BookmarkIcon isActive={props.isFavorite} size={{ width: 18, height: 19 }}/>
+          </div>
+          <Rating rating={props.rating} />
+          <h2 className="place-card__name">
+            {props.title}
+          </h2>
+          <p className="place-card__type">{capitalize(props.type)}</p>
+        </div>
+      </article>
+    </Link>
   );
 }
 
