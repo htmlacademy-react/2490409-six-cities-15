@@ -12,7 +12,7 @@ function ContentOnTheRight({leftSideContent, rightSideButton}: SmallContentOnThe
       <header className="header">
         <div className="container">
           <div className="header__wrapper">
-            <HeaderLogoIcon size={{ width: 81, height: 41 }}/>
+            <HeaderLogoIcon size="medium"/>
           </div>
         </div>
       </header>

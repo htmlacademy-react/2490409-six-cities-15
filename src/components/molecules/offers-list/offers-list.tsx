@@ -18,8 +18,8 @@ function OffersList({handleHoverOnCard = ()=> {}, handleCardLeave = () => {}, ..
           <OfferCard
             {...place}
             key={place.id}
-            onMouseOver={handleHoverOnCard}
-            onMouseOut={handleCardLeave}
+            onMouseEnter={handleHoverOnCard}
+            onMouseLeave={handleCardLeave}
             placeType={props.placeType}
             hasVerticalLayout={props.hasVerticalLayout}
           />

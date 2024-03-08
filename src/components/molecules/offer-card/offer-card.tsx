@@ -1,23 +1,23 @@
 import { PremiumLabel, BookmarkIcon, Rating, Price } from '../../atoms';
 import { Link } from 'react-router-dom';
 import { OfferData } from '../../../mocks';
-import { ReactElement } from 'react';
+import {ReactElement, useCallback} from 'react';
 import { APP_ROUTE } from '../../../constants';
 import { capitalize } from '../../../utils';
 import classNames from 'classnames';
 
-type OfferCardVerticalProps = Omit<OfferData, 'city' | 'location'> & {
-  onMouseOver?: (id?: string) => void;
-  onMouseOut?: () => void;
+type OfferCardProps = Omit<OfferData, 'city' | 'location'> & {
+  onMouseEnter?: (id?: string) => void;
+  onMouseLeave?: () => void;
   placeType: 'cities' | 'near-places' | 'favorites';
   hasVerticalLayout: boolean;
 };
 
 function OfferCard({
-  onMouseOver = () => {},
-  onMouseOut = () => {},
+  onMouseEnter = () => {},
+  onMouseLeave = () => {},
   ...props
-}: OfferCardVerticalProps): ReactElement {
+}: OfferCardProps): ReactElement {
   const offerLink = APP_ROUTE.Offer.replace(':id', props.id);
 
   const previewImageSize = props.hasVerticalLayout
@@ -29,12 +29,14 @@ function OfferCard({
     {'favorites__card-info': props.placeType === 'favorites'},
   );
 
+  const handleOnMouseEnter = useCallback(() => onMouseEnter(props.id), [props.id, onMouseEnter]);
+
   return (
     <Link to={offerLink}>
       <article
         className={`${props.placeType}__card place-card`}
-        onMouseEnter={onMouseOver.bind(null, props.id)}
-        onMouseOut={onMouseOut}
+        onMouseEnter={handleOnMouseEnter}
+        onMouseOut={onMouseLeave}
       >
         {props.isPremium && <PremiumLabel/>}
         <div className={`${props.placeType}__image-wrapper place-card__image-wrapper`}>

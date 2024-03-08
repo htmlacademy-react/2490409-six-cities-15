@@ -1,11 +1,12 @@
+import { LOGO_ICON_SIZE } from '..';
+
 type LocoIconProps = {
-  size: {
-    width: number;
-    height: number;
-  };
+  size: keyof typeof LOGO_ICON_SIZE;
 };
 
-function LogoIcon({size: { width, height }}: LocoIconProps) {
+function LogoIcon({size}: LocoIconProps) {
+  const [width, height] = LOGO_ICON_SIZE[size];
+
   return (
     <img
       className="footer__logo"

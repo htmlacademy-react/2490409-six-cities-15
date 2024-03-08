@@ -40,7 +40,7 @@ function Header({ isLogoActive }: HeaderProps) {
     <header className="header">
       <div className="container">
         <div className="header__wrapper">
-          <HeaderLogoIcon isActive={isLogoActive} size={{width: 81, height: 41}}/>
+          <HeaderLogoIcon isActive={isLogoActive} size="medium"/>
           <nav className="header__nav">
             <ul className="header__nav-list">
               {navListData}
