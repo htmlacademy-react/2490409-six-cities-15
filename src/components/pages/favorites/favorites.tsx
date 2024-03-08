@@ -1,7 +1,7 @@
 import { ReactElement } from 'react';
 import { Header, Footer } from '../../organisms';
 import { OfferData } from '../../../mocks';
-import { FavoritesEmptyState, HorizontalOffersCardsList } from '../../molecules';
+import { FavoritesEmptyState, OffersListWithCitiesSections } from '../../molecules';
 import classNames from 'classnames';
 
 type FavoritesScreenProps = {
@@ -25,7 +25,7 @@ function FavoritesScreen({offers}: FavoritesScreenProps): ReactElement {
       <Header/>
       <main className={mainClassName}>
         <div className="page__favorites-container container">
-          { isEmpty ? <FavoritesEmptyState/> : <HorizontalOffersCardsList offers={offers} /> }
+          { isEmpty ? <FavoritesEmptyState/> : <OffersListWithCitiesSections offers={offers} /> }
         </div>
       </main>
       <Footer/>

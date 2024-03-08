@@ -1,15 +1,9 @@
-import { TabButton } from '../../atoms';
-import {APP_ROUTE, CitiesType} from '../../../constants';
+import { CitiesType } from '../../../constants';
 import { OfferData } from '../../../mocks';
-import { HorizontalOfferCard } from '../../molecules';
+import { OffersByLocationSection } from '../../molecules';
 
 type HorizontalOffersCardsListProps = {
   offers: OfferData[];
-};
-
-type OffersByLocationSectionProps = {
-  offers: OfferData[];
-  city: CitiesType;
 };
 
 type SortedByCitiesOffers = {
@@ -17,7 +11,7 @@ type SortedByCitiesOffers = {
 };
 
 const getOffersSortedByCities = (offers: OfferData[]) => offers.reduce((res, offer) => {
-  const cityName = offer.city.name as CitiesType;
+  const cityName = offer.city.name;
   const newRes: SortedByCitiesOffers = res;
 
   if (!Array.isArray(newRes[cityName])) {
@@ -29,22 +23,7 @@ const getOffersSortedByCities = (offers: OfferData[]) => offers.reduce((res, off
   return res;
 }, {});
 
-function OffersByLocationSection({offers, city}: OffersByLocationSectionProps) {
-  return (
-    <li className="favorites__locations-items">
-      <div className="favorites__locations locations locations--current">
-        <TabButton tabName={city} link={`${APP_ROUTE.Main}?city=${city}`} isSelected/>
-      </div>
-      <div className="favorites__places">
-        {
-          offers.map((offer) => <HorizontalOfferCard key={offer.id} {...offer} />)
-        }
-      </div>
-    </li>
-  );
-}
-
-function HorizontalOffersCardsList({offers}: HorizontalOffersCardsListProps) {
+function OffersListWithCitiesSections({offers}: HorizontalOffersCardsListProps) {
   const sortedOffers: SortedByCitiesOffers = getOffersSortedByCities(offers);
 
   return (
@@ -61,4 +40,4 @@ function HorizontalOffersCardsList({offers}: HorizontalOffersCardsListProps) {
   );
 }
 
-export default HorizontalOffersCardsList;
+export default OffersListWithCitiesSections;

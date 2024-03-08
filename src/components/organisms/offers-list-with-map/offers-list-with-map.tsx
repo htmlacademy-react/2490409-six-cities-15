@@ -1,8 +1,7 @@
 import { OfferData } from '../../../mocks';
 import { CitiesType } from '../../../constants';
-import { Map, VerticalOfferCardsList } from '../../molecules';
-import { useState } from 'react';
-import { Nullable } from 'vitest';
+import { Map, OffersListWithSort } from '../../molecules';
+import { useSelect } from '../../../hooks';
 
 type OffersListWithMapProps = {
   offers: OfferData[];
@@ -13,19 +12,15 @@ function OffersListWithMap({offers, currCity}: OffersListWithMapProps) {
   const getOffersByCity = (city: CitiesType) => offers.filter((offer) => offer.city.name === city);
   const offersByCity = getOffersByCity(currCity);
 
-  const [ hoveredCardId, setHoveredCardId] = useState<Nullable<string>>(null);
-
-  const handleHoverOnCard = (id?: string) => {
-    setHoveredCardId(id);
-  };
-
-  const handleCardLeave = () => {
-    setHoveredCardId(null);
-  };
+  const [
+    hoveredCardId,
+    handleHoverOnCard,
+    handleCardLeave,
+  ] = useSelect();
 
   return (
     <>
-      <VerticalOfferCardsList
+      <OffersListWithSort
         city={currCity}
         offers={offersByCity}
         handleCardHover={handleHoverOnCard}
@@ -33,6 +28,7 @@ function OffersListWithMap({offers, currCity}: OffersListWithMapProps) {
       />
       <div className="cities__right-section">
         <Map
+          classType="cities"
           locations={offersByCity.map((offer) => ({ ...offer.location, id: offer.id }))}
           city={offersByCity[0].city}
           selectedCardId={hoveredCardId}

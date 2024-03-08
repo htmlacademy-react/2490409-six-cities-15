@@ -31,7 +31,7 @@ function SortSelector({selectedItemName}: SortSelectorProps) {
         </svg>
       </span>
       {
-        isOpened ? (
+        isOpened && (
           <ul className="places__options places__options--custom places__options--opened">
             {
               Object.values(SORT_TYPES).map((type) => (
@@ -39,7 +39,7 @@ function SortSelector({selectedItemName}: SortSelectorProps) {
               ))
             }
           </ul>
-        ) : null
+        )
       }
     </form>
   );

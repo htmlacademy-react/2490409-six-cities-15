@@ -1,6 +1,6 @@
 import { comments } from './comments.ts';
 import { detailOffer } from './detail.ts';
-import { offers } from './offers.ts';
+import { offers, getOffersInNear } from './offers.ts';
 import type {
   CommentData,
   OfferData,
@@ -14,6 +14,7 @@ export {
   comments,
   detailOffer,
   offers,
+  getOffersInNear,
 };
 
 export type {

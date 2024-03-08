@@ -1,14 +1,11 @@
 import { Link } from 'react-router-dom';
-import { LogoIcon } from '..';
-import {APP_ROUTE} from '../../../constants';
+import { LogoIcon, TLogoIconSize } from '..';
+import { APP_ROUTE } from '../../../constants';
 import classNames from 'classnames';
 
 type LogoIconProps = {
   isActive?: boolean;
-  size: {
-    width: number;
-    height: number;
-  };
+  size: TLogoIconSize;
 };
 
 function HeaderLogoIcon({ size, isActive = false }: LogoIconProps) {

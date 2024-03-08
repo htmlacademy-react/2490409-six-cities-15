@@ -1,7 +1,7 @@
 import {OfferDetailData} from './types.ts';
 
 const detailOffer: OfferDetailData = {
-  'id': '0a4a8329-519e-4553-b463-d00a35f24a46',
+  'id': 'e083bbfc-259c-41b9-8991-67cef8ff96a0',
   'title': 'Wood and stone place',
   'description': 'This is a place for dreamers to reset, reflect, and create. Designed with a \'slow\' pace in mind, our hope is that you enjoy every part of your stay; from making local coffee by drip in the morning, choosing the perfect record to put on as the sun sets.',
   'type': 'house',
@@ -23,7 +23,8 @@ const detailOffer: OfferDetailData = {
     }
   },
   'location': {
-    'latitude': 48.858610000000006,
+    // eslint-disable-next-line @typescript-eslint/no-loss-of-precision
+    'latitude': 48.868610000000006,
     'longitude': 2.330499,
     'zoom': 16
   },

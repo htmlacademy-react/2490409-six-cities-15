@@ -1,5 +1,6 @@
 import { SortType } from '../../molecules/sort-selector/sort-selector.tsx';
 import classNames from 'classnames';
+import {useCallback} from 'react';
 
 type SortSelectorItemProps = {
   isSelected: boolean;
@@ -13,11 +14,13 @@ function SortSelectorItem({isSelected, value, onClick}: SortSelectorItemProps) {
     {'places__option--active': isSelected},
   );
 
+  const handleOnClick = useCallback(() => onClick(value), [onClick, value]);
+
   return (
     <li
       className={className}
       tabIndex={0}
-      onClick={onClick.bind(null, value)}
+      onClick={handleOnClick}
     >
       {value}
     </li>

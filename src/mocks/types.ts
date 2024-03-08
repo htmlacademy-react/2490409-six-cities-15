@@ -1,3 +1,5 @@
+import { CitiesType } from '../constants';
+
 type OfferData = {
   id: string;
   title: string;
@@ -44,7 +46,7 @@ type CommentData = {
 };
 
 type CityType = {
-  name: string;
+  name: CitiesType;
   location: LocationType;
 };
 

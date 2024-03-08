@@ -1,4 +1,7 @@
-const offers = [
+import { CITIES } from '../constants';
+import { OfferData, OfferDetailData } from './types.ts';
+
+const offers: OfferData[] = [
   {
     'id': '854bbd80-6ba5-4c41-a0e1-6fc8b5c4fad4',
     'title': 'The Pondhouse - A Magical Place',
@@ -2761,4 +2764,26 @@ const offers = [
   }
 ];
 
-export { offers };
+const getOffersInNear = (offer: OfferDetailData) => {
+  const index = Object.values(CITIES).indexOf(offer.city.name);
+
+  const offersInTheSameCity: OfferData[] = offers.slice(index * 20, (index + 1) * 20);
+  const offersInNear: OfferData[] = [];
+
+  for (const offerInTheSameCity of offersInTheSameCity) {
+    if (offerInTheSameCity.id !== offer.id) {
+      offersInNear.push(offerInTheSameCity);
+    }
+
+    if (offersInNear.length >= 3) {
+      break;
+    }
+  }
+
+  return offersInNear;
+};
+
+export {
+  offers,
+  getOffersInNear,
+};

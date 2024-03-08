@@ -10,6 +10,8 @@ import Rating from './rating/rating.tsx';
 import GalleryItem from './gallery-item/gallery-item.tsx';
 import Price from './price/price.tsx';
 import OfferFeatureItem from './offer-feature-item/offer-feature-item.tsx';
+import LOGO_ICON_SIZE from './logo-icon/logo-icon-size.ts';
+import { TLogoIconSize } from './logo-icon/logo-icon-size.ts';
 
 export {
   BookmarkIcon,
@@ -24,4 +26,10 @@ export {
   GalleryItem,
   Price,
   OfferFeatureItem,
+  LOGO_ICON_SIZE,
 };
+
+export type {
+  TLogoIconSize,
+};
+

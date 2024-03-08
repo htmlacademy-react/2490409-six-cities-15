@@ -1,13 +1,18 @@
 import { RatingButton } from '../../molecules';
 import {ChangeEvent, ChangeEventHandler, useState} from 'react';
 
+type THandleOnChange = ChangeEventHandler<HTMLTextAreaElement | HTMLInputElement>;
+
 function ReviewForm() {
-  const [text, setText] = useState('');
+  const [review, setReview] = useState({rating: 0, comment: ''});
 
-  const handleOnChange: ChangeEventHandler<HTMLTextAreaElement> = (e: ChangeEvent<HTMLTextAreaElement>) => {
-    const newText = String(e.target.value || '');
+  const handleOnChange: THandleOnChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
+    const { name, value } = e.currentTarget;
 
-    setText(newText);
+    setReview({
+      ...review,
+      [name]: isNaN(Number(value)) ? value : Number(value),
+    });
   };
 
   return (
@@ -16,15 +21,14 @@ function ReviewForm() {
         Your review
       </label>
       <div className="reviews__rating-form form__rating">
-        <RatingButton />
+        <RatingButton handleOnChange={handleOnChange}/>
       </div>
       <textarea
         className="reviews__textarea form__textarea"
-        id="review"
-        name="review"
+        id="comment"
+        name="comment"
         placeholder="Tell how was your stay, what you like and what can be improved"
-        defaultValue={''}
-        value={text}
+        value={review.comment}
         onChange={handleOnChange}
       />
       <div className="reviews__button-wrapper">
@@ -37,7 +41,7 @@ function ReviewForm() {
         <button
           className="reviews__submit form__submit button"
           type="submit"
-          disabled
+          disabled={review.comment.length < 50 || review.rating <= 0}
         >
           Submit
         </button>
