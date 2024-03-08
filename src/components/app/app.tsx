@@ -10,7 +10,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { APP_ROUTE } from '../../constants';
 import { PrivateRoute } from '../../routing';
 import { ScrollToTop } from '../../utils';
-import {comments, detailOffer, OfferData} from '../../mocks';
+import { comments, detailOffer, OfferData } from '../../mocks';
 
 type AppProps = {
   offers: OfferData[];

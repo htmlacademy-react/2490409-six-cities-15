@@ -7,7 +7,8 @@ import {PlaceStyleType} from '../../../types';
 import {capitalize} from '../../../utils';
 
 type OfferCardVerticalProps = Omit<OfferData, 'city' | 'location'> & {
-  onMouseOver: (id: string) => void;
+  onMouseOver: (id?: string) => void;
+  onMouseOut: () => void;
   placeType?: PlaceStyleType;
 };
 
@@ -16,7 +17,11 @@ function VerticalOfferCard(props: OfferCardVerticalProps): ReactElement {
   const placeType = props.placeType || 'cities';
 
   return (
-    <article className={`${placeType}__card place-card`} onMouseOver={props.onMouseOver.bind(null, props.id)}>
+    <article
+      className={`${placeType}__card place-card`}
+      onMouseOver={props.onMouseOver.bind(null, props.id)}
+      onMouseOut={props.onMouseOut}
+    >
       {props.isPremium && <PremiumLabel/>}
       <div className={`${placeType}__image-wrapper place-card__image-wrapper`}>
         <Link to={getOfferLink(props.id)}>

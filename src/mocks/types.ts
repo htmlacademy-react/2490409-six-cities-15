@@ -4,18 +4,8 @@ type OfferData = {
   type: string;
   price: number;
   previewImage: string;
-  city: {
-    name: string;
-    location: {
-      latitude: number;
-      longitude: number;
-      zoom: number;
-    };
-  };
-  location: {latitude: number;
-    longitude: number;
-    zoom: number;
-  };
+  city: CityType;
+  location: LocationType;
   isFavorite: boolean;
   isPremium: boolean;
   rating: number;
@@ -28,19 +18,8 @@ type OfferDetailData = {
   type: string;
   price: number;
   images: string[];
-  city: {
-    name: string;
-    location: {
-      latitude: number;
-      longitude: number;
-      zoom: number;
-    };
-  };
-  location: {
-    latitude: number;
-    longitude: number;
-    zoom: number;
-  };
+  city: CityType;
+  location: LocationType;
   goods: string[];
   host: HostUserType;
   isPremium: boolean;
@@ -61,11 +40,18 @@ type CommentData = {
   comment: string;
   date: string;
   rating: number;
-  user: {
-    name: string;
-    avatarUrl: string;
-    isPro: boolean;
-  };
+  user: HostUserType;
+};
+
+type CityType = {
+  name: string;
+  location: LocationType;
+};
+
+type LocationType = {
+  latitude: number;
+  longitude: number;
+  zoom: number;
 };
 
 export type {
@@ -73,4 +59,6 @@ export type {
   OfferDetailData,
   HostUserType,
   CommentData,
+  CityType,
+  LocationType,
 };

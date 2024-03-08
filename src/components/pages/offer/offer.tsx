@@ -43,7 +43,13 @@ function OfferScreen({offer, reviews, otherPlacesNear}: OfferScreenProps): React
             </h2>
             <div className="near-places__list places__list">
               {otherPlacesNear.map((place) => (
-                <VerticalOfferCard {...place} key={place.id} onMouseOver={()=> {}} placeType={'near-places'} />
+                <VerticalOfferCard
+                  {...place}
+                  key={place.id}
+                  onMouseOver={()=> {}}
+                  onMouseOut={() => {}}
+                  placeType={'near-places'}
+                />
               ))}
             </div>
           </section>

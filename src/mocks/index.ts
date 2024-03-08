@@ -6,6 +6,8 @@ import type {
   OfferData,
   OfferDetailData,
   HostUserType,
+  CityType,
+  LocationType,
 } from './types.ts';
 
 export {
@@ -19,4 +21,6 @@ export type {
   OfferData,
   OfferDetailData,
   HostUserType,
+  CityType,
+  LocationType,
 };
