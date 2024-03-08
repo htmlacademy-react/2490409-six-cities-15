@@ -1,7 +1,7 @@
 import { HeaderLogoIcon } from '../../atoms';
 import { ReactElement } from 'react';
 import { getAuthStatus } from '../../../routing';
-import { AUTH_STATUS } from '../../../constants';
+import {APP_ROUTE, AUTH_STATUS} from '../../../constants';
 import {ProfileData, SignInButton, SignOutButton} from '../../atoms/header';
 
 // todo: remove later
@@ -18,7 +18,7 @@ type HeaderProps = {
 function Header({ isLogoActive }: HeaderProps) {
   //todo: get info from Redux (?)
   const profileData: ProfileDataProps = {
-    link: '#',
+    link: APP_ROUTE.Favorites,
     email: 'Oliver.conner@gmail.com',
     favoritesCounter: 3,
   };
@@ -33,14 +33,14 @@ function Header({ isLogoActive }: HeaderProps) {
       <SignOutButton link={'#'} />
     </>
   ) : (
-    <SignInButton link={'#'} />
+    <SignInButton link={APP_ROUTE.Login} />
   );
 
   return (
     <header className="header">
       <div className="container">
         <div className="header__wrapper">
-          <HeaderLogoIcon isActive={isLogoActive}/>
+          <HeaderLogoIcon isActive={isLogoActive} size={{width: 81, height: 41}}/>
           <nav className="header__nav">
             <ul className="header__nav-list">
               {navListData}

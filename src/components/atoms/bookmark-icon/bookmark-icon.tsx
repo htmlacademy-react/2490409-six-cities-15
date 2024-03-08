@@ -1,15 +1,24 @@
+import { ComponentStyleType } from '../../../types';
+import classNames from 'classnames';
+
 type BookmarkIconProps = {
-  isFavourite?: boolean;
+  isActive?: boolean;
+  type?: ComponentStyleType;
+  size: {
+    width: number;
+    height: number;
+  };
 };
-function BookmarkIcon({isFavourite = false}: BookmarkIconProps) {
-  const className = `place-card__bookmark-button ${isFavourite ? 'place-card__bookmark-button--active' : ''} button`;
+function BookmarkIcon({isActive = false, type = 'place-card', size}: BookmarkIconProps) {
+  const className = classNames(
+    'button',
+    `${type}__bookmark-button`,
+    {[`${type}__bookmark-button--active`]: isActive},
+  );
 
   return (
-    <button
-      className={className}
-      type="button"
-    >
-      <svg className="place-card__bookmark-icon" width="18" height="19">
+    <button className={className} type="button">
+      <svg className={`${type}__bookmark-icon`} width={size.width} height={size.height}>
         <use xlinkHref="#icon-bookmark"></use>
       </svg>
       <span className="visually-hidden">To bookmarks</span>

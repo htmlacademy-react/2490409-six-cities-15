@@ -8,28 +8,22 @@ import {
 } from '../pages';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { APP_ROUTE } from '../../constants';
-import OfferNotLogged from '../pages/offer-not-logged/offer-not-logged.tsx';
 import { PrivateRoute } from '../../routing';
-import { useScrollToTop } from '../../utils';
+import { ScrollToTop } from '../../utils';
+import {comments, detailOffer, OfferData} from '../../mocks';
 
 type AppProps = {
-  rentOfferCount: number;
+  offers: OfferData[];
 };
 
-function App({rentOfferCount}: AppProps): ReactElement {
-
-  useScrollToTop();
-
+function App({ offers }: AppProps): ReactElement {
   return (
     <BrowserRouter>
+      <ScrollToTop/>
       <Routes>
         <Route
-          path={APP_ROUTE.OfferNotLogged}
-          element={<OfferNotLogged/>}
-        />
-        <Route
           path={APP_ROUTE.Main}
-          element={<MainScreen rentOfferCount={rentOfferCount} />}
+          element={<MainScreen offers={offers} />}
         />
         <Route
           path={APP_ROUTE.Login}
@@ -41,13 +35,13 @@ function App({rentOfferCount}: AppProps): ReactElement {
         />
         <Route
           path={APP_ROUTE.Offer}
-          element={<OfferScreen/>}
+          element={<OfferScreen otherPlacesNear={offers.slice(0, 3)} offer={detailOffer} reviews={comments}/>}
         />
         <Route
           path={APP_ROUTE.Favorites}
           element={
             <PrivateRoute>
-              <FavoritesScreen/>
+              <FavoritesScreen offers={offers.filter((item) => item.isFavorite)}/>
             </PrivateRoute>
           }
         />

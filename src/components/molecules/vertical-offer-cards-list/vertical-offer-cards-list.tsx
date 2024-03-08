@@ -1,0 +1,46 @@
+import { VerticalOfferCard, SortSelector } from '../index.ts';
+import { OfferData } from '../../../mocks';
+import { useState } from 'react';
+import {CitiesType} from '../../../constants';
+import {Nullable} from 'vitest';
+
+type OfferCardsListProps = {
+  offers: OfferData[];
+  city: CitiesType;
+};
+
+function VerticalOfferCardsList({offers, city}: OfferCardsListProps) {
+  const [ , setMouseOveredCardId] = useState<Nullable<string>>(null);
+
+  const handleMouseOver = (id?: string) => {
+    setMouseOveredCardId(id || null);
+  };
+
+  return (
+    <section className="cities__places places">
+      <h2 className="visually-hidden">Places</h2>
+      <b className="places__found">{offers.length} places to stay in {city}</b>
+      <SortSelector selectedItemName={'Popular'}/>
+      <div className="cities__places-list places__list tabs__content">
+        {
+          offers.map((offer: OfferData) => (
+            <VerticalOfferCard
+              id={offer.id}
+              key={offer.id}
+              title={offer.title}
+              type={offer.type}
+              price={offer.price}
+              previewImage={offer.previewImage}
+              isFavorite={offer.isFavorite}
+              isPremium={offer.isPremium}
+              rating={offer.rating}
+              onMouseOver={ handleMouseOver }
+            />
+          ))
+        }
+      </div>
+    </section>
+  );
+}
+
+export default VerticalOfferCardsList;
