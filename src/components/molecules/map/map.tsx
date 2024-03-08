@@ -8,12 +8,12 @@ import { MapStyleType } from '../../../types';
 type MapProps = {
   locations: Array<LocationType & { id: string }>;
   city: CityType;
-  selectedCardId: Nullable<string>;
+  selectedCardId?: Nullable<string>;
   classType?: MapStyleType;
   style?: CSSProperties;
 };
 
-function Map({locations, city, selectedCardId, classType, style}: MapProps) {
+function Map({locations, city, selectedCardId = null, classType, style}: MapProps) {
   const { location } = city;
   const mapRef = useRef(null);
   const map = useMap(mapRef, location);
