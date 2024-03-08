@@ -1,8 +1,8 @@
 import { useEffect } from 'react';
-import { LatLng, Map } from 'leaflet';
-import { CityType, LocationType } from '../mocks';
+import { Map } from 'leaflet';
+import { LocationType } from '../mocks';
 
-function useCityLocation(map: Map | null, city: CityType, location: LocationType) {
+function useCityLocation(map: Map | null, location: LocationType) {
   const { latitude, longitude, zoom } = location;
 
   useEffect(() => {
@@ -10,10 +10,8 @@ function useCityLocation(map: Map | null, city: CityType, location: LocationType
       return;
     }
 
-    map
-      .panTo(new LatLng(latitude, longitude))
-      .setZoom(zoom);
-  }, [city, latitude, longitude, zoom, map]);
+    map.setView([latitude, longitude], zoom);
+  }, [latitude, longitude, zoom, map]);
 }
 
 export default useCityLocation;
