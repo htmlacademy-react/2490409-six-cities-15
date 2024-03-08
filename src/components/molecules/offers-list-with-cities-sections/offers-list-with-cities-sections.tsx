@@ -11,7 +11,7 @@ type SortedByCitiesOffers = {
 };
 
 const getOffersSortedByCities = (offers: OfferData[]) => offers.reduce((res, offer) => {
-  const cityName = offer.city.name as CitiesType;
+  const cityName = offer.city.name;
   const newRes: SortedByCitiesOffers = res;
 
   if (!Array.isArray(newRes[cityName])) {
@@ -23,7 +23,7 @@ const getOffersSortedByCities = (offers: OfferData[]) => offers.reduce((res, off
   return res;
 }, {});
 
-function HorizontalOffersCardsList({offers}: HorizontalOffersCardsListProps) {
+function OffersListWithCitiesSections({offers}: HorizontalOffersCardsListProps) {
   const sortedOffers: SortedByCitiesOffers = getOffersSortedByCities(offers);
 
   return (
@@ -40,4 +40,4 @@ function HorizontalOffersCardsList({offers}: HorizontalOffersCardsListProps) {
   );
 }
 
-export default HorizontalOffersCardsList;
+export default OffersListWithCitiesSections;

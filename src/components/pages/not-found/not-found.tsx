@@ -3,7 +3,16 @@ import { ContentOnTheRight } from '../../templates';
 import { TabButton } from '../../atoms';
 import { APP_ROUTE } from '../../../constants';
 
-function NotFound(): ReactElement {
+type NotFoundPageProps = {
+  type: keyof typeof variant;
+};
+
+const variant = {
+  offer: 'This offer isn\'t active or doesn\'t exist',
+  page: 'This page does not exist',
+};
+
+function NotFound({type = 'page'}: NotFoundPageProps): ReactElement {
   return (
     <ContentOnTheRight
       leftSideContent={
@@ -13,7 +22,7 @@ function NotFound(): ReactElement {
           </div>
           <br/>
           <div style={{fontSize: 18}}>
-            Not Found
+            {variant[type]}
           </div>
         </div>
       }

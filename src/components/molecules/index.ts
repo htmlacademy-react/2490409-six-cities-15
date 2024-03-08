@@ -4,7 +4,7 @@ import LoginForm from './login-form/login-form.tsx';
 import OfferCard from './offer-card/offer-card.tsx';
 import SortSelector from './sort-selector/sort-selector.tsx';
 import OffersListWithSort from './offers-list-with-sort/offers-list-with-sort.tsx';
-import HorizontalOffersCardsList from './horizontal-offers-cards-list/horizontal-offers-cards-list.tsx';
+import OffersListWithCitiesSections from './offers-list-with-cities-sections/offers-list-with-cities-sections.tsx';
 import FavoritesEmptyState from './empty-states/favorites-empty-state/favorites-empty-state.tsx';
 import MainEmptyState from './empty-states/main-empty-state/main-empty-state.tsx';
 import Gallery from './gallery/gallery.tsx';
@@ -27,7 +27,7 @@ export {
   OfferCard,
   SortSelector,
   OffersListWithSort,
-  HorizontalOffersCardsList,
+  OffersListWithCitiesSections,
   FavoritesEmptyState,
   MainEmptyState,
   Gallery,
