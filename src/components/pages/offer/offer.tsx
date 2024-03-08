@@ -12,9 +12,11 @@ type OfferScreenProps = {
 
 function OfferScreen({offer, reviews, otherPlacesNear}: OfferScreenProps): ReactElement {
   const elementsType = 'offer';
-  const otherPlacesNearLocations = otherPlacesNear.map((place) => (
+  const placesNear = otherPlacesNear.map((place) => (
     {...place.location, id: place.id}
   ));
+
+  const placesNearAndCurrent = [...placesNear, {...offer.location, id: offer.id}];
 
   return (
     <div className="page">
@@ -41,8 +43,9 @@ function OfferScreen({offer, reviews, otherPlacesNear}: OfferScreenProps): React
             <Map
               classType="offer"
               style={{maxWidth: '60%'}}
-              locations={otherPlacesNearLocations}
+              locations={placesNearAndCurrent}
               city={offer.city}
+              selectedCardId={offer.id}
             />
           </div>
         </section>

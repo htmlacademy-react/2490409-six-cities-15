@@ -10,7 +10,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { APP_ROUTE } from '../../constants';
 import { PrivateRoute } from '../../routing';
 import { ScrollToTop } from '../../utils';
-import { comments, detailOffer, OfferData } from '../../mocks';
+import { comments, detailOffer, getOffersInNear, OfferData } from '../../mocks';
 
 type AppProps = {
   offers: OfferData[];
@@ -35,7 +35,7 @@ function App({ offers }: AppProps): ReactElement {
         />
         <Route
           path={APP_ROUTE.Offer}
-          element={<OfferScreen otherPlacesNear={offers.slice(0, 3)} offer={detailOffer} reviews={comments}/>}
+          element={<OfferScreen otherPlacesNear={getOffersInNear(detailOffer)} offer={detailOffer} reviews={comments}/>}
         />
         <Route
           path={APP_ROUTE.Favorites}

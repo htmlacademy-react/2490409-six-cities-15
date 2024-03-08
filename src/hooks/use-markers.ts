@@ -33,7 +33,7 @@ function useMarkers(
 
       marker
         .setIcon(
-          selectedCardId !== undefined && loc.id === selectedCardId
+          selectedCardId && loc.id === selectedCardId
             ? currentCustomIcon
             : defaultCustomIcon
         )
