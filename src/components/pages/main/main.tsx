@@ -5,14 +5,15 @@ import { CITIES, CitiesType } from '../../../constants';
 import { useSearchParams } from 'react-router-dom';
 import { isCity } from '../../../types';
 import classNames from 'classnames';
-import { store } from '../../../store';
 import { changeCityAction } from '../../../store/action.ts';
-import { useAppDispatch } from '../../../store/helpers.ts';
+import { useAppDispatch, useAppSelector } from '../../../store/helpers.ts';
 import { capitalize } from '../../../utils';
 
 function MainScreen(): ReactElement {
-  const globalState = store.getState();
-  const isEmpty = globalState.offers.length === 0;
+  const currentCity = useAppSelector((state) => state.currentCity);
+  const offers = useAppSelector((state) => state.offers);
+
+  const isEmpty = offers.length === 0;
   const mainClassName = classNames(
     'page__main',
     'page__main--index',
@@ -42,13 +43,13 @@ function MainScreen(): ReactElement {
       <Header isLogoActive/>
       <main className={mainClassName}>
         <h1 className="visually-hidden">Cities</h1>
-        <CityTabs onCityChanged={handleCityChange} currTab={globalState.currentCity}/>
+        <CityTabs onCityChanged={handleCityChange} currTab={currentCity}/>
         <div className="cities">
           <div className={divClassname}>
             {
               isEmpty
-                ? <MainEmptyState city={globalState.currentCity}/>
-                : <OffersListWithMap offers={globalState.offers} currCity={globalState.currentCity} />
+                ? <MainEmptyState city={currentCity}/>
+                : <OffersListWithMap offers={offers} currCity={currentCity} />
             }
           </div>
         </div>
