@@ -1,11 +1,11 @@
-import { SortType } from '../../molecules/sort-selector/sort-selector.tsx';
 import classNames from 'classnames';
-import {useCallback} from 'react';
+import { useCallback } from 'react';
+import { TSortTypes } from '../../../constants';
 
 type SortSelectorItemProps = {
   isSelected: boolean;
-  value: SortType;
-  onClick: (value: SortType) => void;
+  value: TSortTypes;
+  onClick: (value: TSortTypes) => void;
 };
 
 function SortSelectorItem({isSelected, value, onClick}: SortSelectorItemProps) {
