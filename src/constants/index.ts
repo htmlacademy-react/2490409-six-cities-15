@@ -5,6 +5,7 @@ import AUTH_STATUS from './auth-status.ts';
 import { URL_MARKER_CURRENT } from './map-icons.ts';
 import { URL_MARKER_DEFAULT } from './map-icons.ts';
 import { CitiesType } from './cities.ts';
+import { TSortTypes } from './sort.ts';
 
 export {
   CITIES,
@@ -17,4 +18,5 @@ export {
 
 export type {
   CitiesType,
+  TSortTypes,
 };
