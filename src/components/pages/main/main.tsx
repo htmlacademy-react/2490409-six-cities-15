@@ -1,13 +1,13 @@
 import { ReactElement } from 'react';
 import { Header, OffersListWithMap } from '../../organisms';
 import { CityTabs, MainEmptyState } from '../../molecules';
-import { CITIES, CitiesType } from '../../../constants';
+import { CITIES } from '../../../constants';
 import { useSearchParams } from 'react-router-dom';
 import { isCity } from '../../../types';
 import classNames from 'classnames';
-import { changeCityAction } from '../../../store/action.ts';
-import { useAppDispatch, useAppSelector } from '../../../store/helpers.ts';
+import { useAppSelector } from '../../../store/helpers.ts';
 import { capitalize } from '../../../utils';
+import {useCitySelect} from '../../../hooks';
 
 function MainScreen(): ReactElement {
   const currentCity = useAppSelector((state) => state.currentCity);
@@ -30,20 +30,15 @@ function MainScreen(): ReactElement {
   const [ searchParams ] = useSearchParams();
   const cityFromSearchParams = searchParams.get('city') || '';
   const currentTabFromSearch = filterCityName(capitalize(cityFromSearchParams.toLowerCase())) || CITIES.Paris;
-  const dispatch = useAppDispatch();
 
-  const handleCityChange = (city: CitiesType) => {
-    dispatch(changeCityAction(city));
-  };
-
-  handleCityChange(currentTabFromSearch);
+  useCitySelect(currentTabFromSearch);
 
   return (
     <div className="page page--gray page--main">
       <Header isLogoActive/>
       <main className={mainClassName}>
         <h1 className="visually-hidden">Cities</h1>
-        <CityTabs onCityChanged={handleCityChange} currTab={currentCity}/>
+        <CityTabs onCityChanged={useCitySelect} currTab={currentCity}/>
         <div className="cities">
           <div className={divClassname}>
             {
