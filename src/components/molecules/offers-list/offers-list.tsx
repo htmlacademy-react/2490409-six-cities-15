@@ -1,5 +1,5 @@
 import { OfferCard } from '../index.ts';
-import { OfferData } from '../../../mocks';
+import { OfferData } from '../../../types';
 
 type OffersListProps = {
   offers: OfferData[];

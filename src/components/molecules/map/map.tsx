@@ -1,6 +1,6 @@
 import { useRef, CSSProperties } from 'react';
 import { useCityLocation, useMap, useMarkers } from '../../../hooks';
-import { CityType, LocationType } from '../../../mocks';
+import { CityType, LocationType } from '../../../types';
 import 'leaflet/dist/leaflet.css';
 import { Nullable } from 'vitest';
 import { MapStyleType } from '../../../types';

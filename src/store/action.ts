@@ -1,6 +1,6 @@
 import { createAction } from '@reduxjs/toolkit';
 import { CitiesType } from '../constants';
-import { OfferData } from '../mocks';
+import { OfferData } from '../types';
 
 const ACTIONS = {
   changeCity: 'main/changeCity',

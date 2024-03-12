@@ -1,4 +1,4 @@
-import { CommentData } from '../../../mocks';
+import { CommentData } from '../../../types';
 import { ReviewForm, ReviewsList } from '..';
 import { getAuthStatus } from '../../../routing';
 import { AUTH_STATUS } from '../../../constants';

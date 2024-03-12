@@ -1,7 +1,7 @@
 import { ReactElement } from 'react';
 import { Header } from '../../organisms';
 import { Gallery, GoodsList, Host, Map, OfferFeatures, ReviewsSection, OffersList } from '../../molecules';
-import { CommentData, OfferData, OfferDetailData } from '../../../mocks';
+import { CommentData, OfferData, OfferDetailData } from '../../../types';
 import { BookmarkIcon, PremiumLabel, Price, Rating } from '../../atoms';
 
 type OfferScreenProps = {

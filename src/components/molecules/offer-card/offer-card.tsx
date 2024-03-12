@@ -1,6 +1,6 @@
 import { PremiumLabel, BookmarkIcon, Rating, Price } from '../../atoms';
 import { Link } from 'react-router-dom';
-import { OfferData } from '../../../mocks';
+import { OfferData } from '../../../types';
 import {ReactElement, useCallback} from 'react';
 import { APP_ROUTE } from '../../../constants';
 import { capitalize } from '../../../utils';

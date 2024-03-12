@@ -1,8 +1,8 @@
 import { useEffect } from 'react';
 import {layerGroup, Marker, Map, Icon} from 'leaflet';
-import { LocationType } from '../mocks';
-import {URL_MARKER_CURRENT, URL_MARKER_DEFAULT} from '../constants';
-import {Nullable} from 'vitest';
+import { LocationType } from '../types';
+import { URL_MARKER_CURRENT, URL_MARKER_DEFAULT } from '../constants';
+import { Nullable } from 'vitest';
 
 const defaultCustomIcon = new Icon({
   iconUrl: URL_MARKER_DEFAULT,

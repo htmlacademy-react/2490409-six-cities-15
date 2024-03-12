@@ -1,5 +1,5 @@
 import { OffersList, SortSelector } from '..';
-import { OfferData } from '../../../mocks';
+import { OfferData } from '../../../types';
 import { CitiesType, SORT_TYPES, SortTypesType } from '../../../constants';
 import { useState } from 'react';
 import { sortOffers } from '../../../utils';

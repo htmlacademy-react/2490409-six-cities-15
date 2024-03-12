@@ -1,4 +1,4 @@
-import { OfferData } from '../../../mocks';
+import { OfferData } from '../../../types';
 import { CitiesType } from '../../../constants';
 import { Map, OffersListWithSort } from '../../molecules';
 import { useSelect } from '../../../hooks';

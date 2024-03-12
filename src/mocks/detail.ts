@@ -1,4 +1,4 @@
-import {OfferDetailData} from './types.ts';
+import { OfferDetailData } from '../types';
 
 const detailOffer: OfferDetailData = {
   'id': 'e083bbfc-259c-41b9-8991-67cef8ff96a0',

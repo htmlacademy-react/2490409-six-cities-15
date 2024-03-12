@@ -1,5 +1,5 @@
 import { CITIES } from '../constants';
-import { OfferData, OfferDetailData } from './types.ts';
+import { OfferData, OfferDetailData } from '../types/offer.ts';
 
 const offers: OfferData[] = [
   {

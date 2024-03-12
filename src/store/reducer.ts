@@ -1,6 +1,7 @@
 import { createReducer } from '@reduxjs/toolkit';
 import { CITIES, CitiesType } from '../constants';
-import { OfferData, offers } from '../mocks';
+import { OfferData } from '../types';
+import { offers } from '../mocks';
 import { changeCityAction, setOffersAction } from './action.ts';
 
 type InitialStateProps = {

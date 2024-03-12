@@ -1,5 +1,5 @@
-import {CommentData} from '../../../mocks';
-import {Rating} from '../../atoms';
+import { CommentData } from '../../../types';
+import { Rating } from '../../atoms';
 
 type ReviewCommentProps = {
   review: CommentData;
