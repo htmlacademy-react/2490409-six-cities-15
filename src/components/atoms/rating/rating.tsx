@@ -1,8 +1,8 @@
-import { ComponentStyleType } from '../../../types';
+import { IconsAndLabelsStyleClassType } from '../../../types';
 
 type RatingProps = {
   rating: number;
-  type?: ComponentStyleType;
+  type?: IconsAndLabelsStyleClassType;
 };
 
 function Rating({ rating, type = 'place-card' }: RatingProps) {

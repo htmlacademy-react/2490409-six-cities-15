@@ -1,12 +1,12 @@
-import { OfferCard } from '../index.ts';
-import { OfferData } from '../../../types';
+import { OfferCard } from '..';
+import {OfferCardStyleClassType, OfferData} from '../../../types';
 
 type OffersListProps = {
   offers: OfferData[];
   classNames: string;
   handleHoverOnCard?: (id?: string) => void;
   handleCardLeave?: () => void;
-  placeType: 'cities' | 'near-places' | 'favorites';
+  placeType: OfferCardStyleClassType;
   hasVerticalLayout: boolean;
 };
 

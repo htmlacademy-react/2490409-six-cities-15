@@ -2,7 +2,7 @@ import { ReactElement } from 'react';
 import { CITIES, CitiesType } from '../../../constants';
 import { TabButton } from '../../atoms';
 import { useLocation } from 'react-router-dom';
-import { isCity } from '../../../types';
+import { isCity } from '../../../utils';
 
 type CityTabsProps = {
   onCityChanged: (city: CitiesType) => void;

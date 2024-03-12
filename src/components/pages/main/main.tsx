@@ -3,7 +3,7 @@ import { Header, OffersListWithMap } from '../../organisms';
 import { CityTabs, MainEmptyState } from '../../molecules';
 import { CITIES } from '../../../constants';
 import { useSearchParams } from 'react-router-dom';
-import { isCity } from '../../../types';
+import { isCity } from '../../../utils';
 import classNames from 'classnames';
 import { useAppSelector } from '../../../store/helpers.ts';
 import { capitalize } from '../../../utils';

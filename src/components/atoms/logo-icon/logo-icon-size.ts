@@ -2,7 +2,7 @@ type TLogoIconSizeDict = {
   [key in 'small' | 'medium']: [number, number];
 };
 
-type TLogoIconSize = keyof TLogoIconSizeDict;
+type LogoIconSizeType = keyof TLogoIconSizeDict;
 
 const LOGO_ICON_SIZE: TLogoIconSizeDict = {
   small: [64, 33],
@@ -10,4 +10,4 @@ const LOGO_ICON_SIZE: TLogoIconSizeDict = {
 };
 
 export default LOGO_ICON_SIZE;
-export type { TLogoIconSize };
+export type { LogoIconSizeType };
