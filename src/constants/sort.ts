@@ -1,4 +1,4 @@
-type TSortTypes = typeof SORT_TYPES[keyof typeof SORT_TYPES];
+type SortTypesType = typeof SORT_TYPES[keyof typeof SORT_TYPES];
 
 const SORT_TYPES = {
   Popular: 'Popular',
@@ -9,5 +9,5 @@ const SORT_TYPES = {
 
 export default SORT_TYPES;
 export type {
-  TSortTypes,
+  SortTypesType,
 };

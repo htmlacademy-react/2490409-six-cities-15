@@ -1,7 +1,7 @@
 import { OfferData } from '../mocks';
-import { SORT_TYPES, TSortTypes } from '../constants';
+import { SORT_TYPES, SortTypesType } from '../constants';
 
-export function useOffersSort(sortType: TSortTypes, offers: OfferData[]) {
+export function sortOffers(sortType: SortTypesType, offers: OfferData[]) {
   switch (sortType) {
     case SORT_TYPES.Popular:
       return offers;

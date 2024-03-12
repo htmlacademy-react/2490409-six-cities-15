@@ -11,7 +11,6 @@ import { APP_ROUTE } from '../../constants';
 import { PrivateRoute } from '../../routing';
 import { ScrollToTop } from '../../utils';
 import { comments, detailOffer, getOffersInNear } from '../../mocks';
-import { store } from '../../store';
 
 function App(): ReactElement {
   return (
@@ -38,7 +37,7 @@ function App(): ReactElement {
           path={APP_ROUTE.Favorites}
           element={
             <PrivateRoute>
-              <FavoritesScreen offers={store.getState().offers.filter((item) => item.isFavorite)}/>
+              <FavoritesScreen/>
             </PrivateRoute>
           }
         />

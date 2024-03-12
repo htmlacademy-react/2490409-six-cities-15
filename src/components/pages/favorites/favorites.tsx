@@ -1,15 +1,16 @@
 import { ReactElement } from 'react';
 import { Header, Footer } from '../../organisms';
-import { OfferData } from '../../../mocks';
 import { FavoritesEmptyState, OffersListWithCitiesSections } from '../../molecules';
 import classNames from 'classnames';
+import { useAppSelector } from '../../../store/helpers.ts';
 
-type FavoritesScreenProps = {
-  offers: OfferData[];
-};
+function FavoritesScreen(): ReactElement {
+  const favoriteOffers = useAppSelector(
+    (state) => state.offers,
+  )
+    .filter((item) => item.isFavorite);
 
-function FavoritesScreen({offers}: FavoritesScreenProps): ReactElement {
-  const isEmpty = offers.length === 0;
+  const isEmpty = favoriteOffers.length === 0;
   const divClassName = classNames(
     'page',
     {'page--favorites-empty': isEmpty},
@@ -25,7 +26,11 @@ function FavoritesScreen({offers}: FavoritesScreenProps): ReactElement {
       <Header/>
       <main className={mainClassName}>
         <div className="page__favorites-container container">
-          { isEmpty ? <FavoritesEmptyState/> : <OffersListWithCitiesSections offers={offers} /> }
+          {
+            isEmpty
+              ? <FavoritesEmptyState/>
+              : <OffersListWithCitiesSections offers={favoriteOffers} />
+          }
         </div>
       </main>
       <Footer/>

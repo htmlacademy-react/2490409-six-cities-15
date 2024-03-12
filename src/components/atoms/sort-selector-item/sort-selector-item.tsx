@@ -1,11 +1,11 @@
 import classNames from 'classnames';
 import { useCallback } from 'react';
-import { TSortTypes } from '../../../constants';
+import { SortTypesType } from '../../../constants';
 
 type SortSelectorItemProps = {
   isSelected: boolean;
-  value: TSortTypes;
-  onClick: (value: TSortTypes) => void;
+  value: SortTypesType;
+  onClick: (value: SortTypesType) => void;
 };
 
 function SortSelectorItem({isSelected, value, onClick}: SortSelectorItemProps) {

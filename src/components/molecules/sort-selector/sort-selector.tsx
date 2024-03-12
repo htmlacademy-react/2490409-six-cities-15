@@ -1,10 +1,10 @@
 import { SortSelectorItem } from '../../atoms';
-import { SORT_TYPES, TSortTypes } from '../../../constants';
+import { SORT_TYPES, SortTypesType } from '../../../constants';
 import { useState } from 'react';
 
 type SortSelectorProps = {
-  selectedSort: TSortTypes;
-  onSelect: (sort: TSortTypes) => void;
+  selectedSort: SortTypesType;
+  onSelect: (sort: SortTypesType) => void;
 };
 
 function SortSelector({selectedSort, onSelect}: SortSelectorProps) {
@@ -14,7 +14,7 @@ function SortSelector({selectedSort, onSelect}: SortSelectorProps) {
     setIsOpened((openState) => !openState);
   };
 
-  const handleSort = (sort: TSortTypes) => {
+  const handleSort = (sort: SortTypesType) => {
     onSelect(sort);
     setIsOpened(false);
   };
