@@ -10,7 +10,7 @@ type OfferScreenProps = {
   otherPlacesNear: OfferData[];
 };
 
-function OfferScreen({offer, reviews, otherPlacesNear}: OfferScreenProps): ReactElement {
+function OfferPage({offer, reviews, otherPlacesNear}: OfferScreenProps): ReactElement {
   const elementsType = 'offer';
   const placesNear = otherPlacesNear.map((place) => (
     {...place.location, id: place.id}
@@ -67,4 +67,4 @@ function OfferScreen({offer, reviews, otherPlacesNear}: OfferScreenProps): React
   );
 }
 
-export default OfferScreen;
+export default OfferPage;

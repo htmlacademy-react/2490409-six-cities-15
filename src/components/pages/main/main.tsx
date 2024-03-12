@@ -9,7 +9,7 @@ import { useAppSelector } from '../../../store/helpers.ts';
 import { capitalize } from '../../../utils';
 import {useCitySelect} from '../../../hooks';
 
-function MainScreen(): ReactElement {
+function MainPage(): ReactElement {
   const currentCity = useAppSelector((state) => state.currentCity);
   const offers = useAppSelector((state) => state.offers);
 
@@ -53,4 +53,4 @@ function MainScreen(): ReactElement {
   );
 }
 
-export default MainScreen;
+export default MainPage;

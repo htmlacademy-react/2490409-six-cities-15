@@ -12,7 +12,7 @@ const variant = {
   page: 'This page does not exist',
 };
 
-function NotFound({type = 'page'}: NotFoundPageProps): ReactElement {
+function NotFoundPage({type = 'page'}: NotFoundPageProps): ReactElement {
   return (
     <ContentOnTheRight
       leftSideContent={
@@ -31,4 +31,4 @@ function NotFound({type = 'page'}: NotFoundPageProps): ReactElement {
   );
 }
 
-export default NotFound;
+export default NotFoundPage;

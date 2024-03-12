@@ -4,7 +4,7 @@ import { FavoritesEmptyState, OffersListWithCitiesSections } from '../../molecul
 import classNames from 'classnames';
 import { useAppSelector } from '../../../store/helpers.ts';
 
-function FavoritesScreen(): ReactElement {
+function FavoritesPage(): ReactElement {
   const favoriteOffers = useAppSelector(
     (state) => state.offers,
   )
@@ -39,4 +39,4 @@ function FavoritesScreen(): ReactElement {
   );
 }
 
-export default FavoritesScreen;
+export default FavoritesPage;
