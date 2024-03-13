@@ -17,10 +17,10 @@ const initialState: InitialStateProps = {
 export const reducer = createReducer(initialState, (builder) => {
   builder
     .addCase(changeCityAction, (state, action) => {
-      state.currentCity = action.payload;
+      state.currentCity = action.payload.city;
     })
     .addCase(setOffersAction, (state, action) => {
-      state.offers = action.payload;
+      state.offers = action.payload.offers;
     });
 });
 

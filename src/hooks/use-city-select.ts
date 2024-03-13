@@ -7,8 +7,8 @@ function useCitySelect(city: CitiesType) {
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    dispatch(changeCityAction(city));
-  }, [city]);
+    dispatch(changeCityAction({ city }));
+  }, [city, dispatch]);
 }
 
 export default useCitySelect;
