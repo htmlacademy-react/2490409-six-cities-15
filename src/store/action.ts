@@ -7,19 +7,9 @@ const ACTIONS = {
   setOffers: 'main/setOffers',
 };
 
-const changeCityAction = createAction(
-  ACTIONS.changeCity,
-  (city: CitiesType) => ({
-    payload: city,
-  }),
-);
+const changeCityAction = createAction<{city: CitiesType}>(ACTIONS.changeCity);
 
-const setOffersAction = createAction(
-  ACTIONS.setOffers,
-  (offers: OfferData[]) => ({
-    payload: offers,
-  }),
-);
+const setOffersAction = createAction<{offers: OfferData[]}>(ACTIONS.setOffers);
 
 export {
   setOffersAction,

@@ -28,7 +28,7 @@ function MainPage(): ReactElement {
   const filterCityName = (city: string) => isCity(city) ? city : null;
 
   const [ searchParams ] = useSearchParams();
-  const cityFromSearchParams = searchParams.get('city') || '';
+  const cityFromSearchParams = searchParams.get('city') ?? '';
   const currentTabFromSearch = filterCityName(capitalize(cityFromSearchParams.toLowerCase())) || CITIES.Paris;
 
   useCitySelect(currentTabFromSearch);
