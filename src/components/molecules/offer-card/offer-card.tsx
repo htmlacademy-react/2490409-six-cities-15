@@ -1,14 +1,14 @@
 import { PremiumLabel, BookmarkIcon, Rating, Price } from '../../atoms';
 import { Link } from 'react-router-dom';
 import { OfferData } from '../../../types';
-import { ReactElement, useCallback } from 'react';
+import { ReactElement } from 'react';
 import { APP_ROUTE } from '../../../constants';
 import { capitalize } from '../../../utils';
 import classNames from 'classnames';
 import { OfferCardStyleClassType } from '../../../types';
 
 type OfferCardProps = Omit<OfferData, 'city' | 'location'> & {
-  onMouseEnter?: (id?: string) => void;
+  onMouseEnter?: (id: string) => void;
   onMouseLeave?: () => void;
   placeType: OfferCardStyleClassType;
   hasVerticalLayout: boolean;
@@ -30,7 +30,7 @@ function OfferCard({
     {'favorites__card-info': props.placeType === 'favorites'},
   );
 
-  const handleOnMouseEnter = useCallback(() => onMouseEnter(props.id), []);
+  const handleOnMouseEnter = () => onMouseEnter(props.id);
 
   return (
     <Link to={offerLink}>

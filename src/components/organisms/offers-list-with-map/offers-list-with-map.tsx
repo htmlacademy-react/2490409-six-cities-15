@@ -11,11 +11,11 @@ type OffersListWithMapProps = {
 
 function OffersListWithMap({offersFromCurrentCity, currentCity}: OffersListWithMapProps) {
   const { setActiveOfferId } = useActionCreators(offersActions);
-  const handleHoverOnCard = (id?: string) => {
+  const handleHoverOnCard = (id: string) => {
     setActiveOfferId(id);
   };
   const handleCardLeave = () => {
-    setActiveOfferId();
+    setActiveOfferId(null);
   };
 
   const activeOfferId = useAppSelector(offerSelectors.activeOfferId);

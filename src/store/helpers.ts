@@ -2,6 +2,7 @@ import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';
 import { store } from './index.ts';
 import { ActionCreatorsMapObject, bindActionCreators } from '@reduxjs/toolkit';
 import { useMemo } from 'react';
+import { AxiosInstance } from 'axios';
 
 type StoreStateType = ReturnType<typeof store.getState>;
 
@@ -17,6 +18,12 @@ const useActionCreators = <Actions extends ActionCreatorsMapObject>(actions: Act
   return useMemo(() => bindActionCreators(actions, dispatch), []);
 };
 
+type AsyncActionsArgsType = {
+  dispatch: AppDispatch;
+  state: StoreStateType;
+  extra: AxiosInstance;
+};
+
 export {
   useAppDispatch,
   useAppSelector,
@@ -25,5 +32,7 @@ export {
 
 export type {
   StoreStateType,
+  AppDispatch,
+  AsyncActionsArgsType,
 };
 

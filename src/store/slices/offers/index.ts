@@ -1,36 +1,35 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { createSlice } from '@reduxjs/toolkit';
 import { OfferData } from '../../../types';
-import { offers } from '../../../mocks';
-import { Nullable } from 'vitest';
+import { fetchOffers } from './thunk.ts';
+import { offersReducer } from './reducers.ts';
+import { sliceName } from './meta.ts';
+import { clearOffers } from './extra-reducers.ts';
 
 type OffersStateType = {
   offers: OfferData[];
-  activeOfferId?: Nullable<string>;
+  activeOfferId: string | null;
+  error: string | null;
 };
 
 const initialState: OffersStateType = {
-  offers: offers,
+  offers: [],
+  activeOfferId: null,
+  error: null,
 };
 
 const offersSlice = createSlice({
   initialState,
-  name: 'general/offers',
-  reducers: {
-    setOffers: (state, action: PayloadAction<OfferData[]>) => {
-      state.offers = action.payload;
-    },
-    setActiveOfferId: (state, action: PayloadAction<Nullable<OfferData['id']>>) => {
-      state.activeOfferId = action.payload;
-    }
-  },
+  name: sliceName,
+  reducers: offersReducer,
   selectors: {
     offers: (state) => state.offers,
     activeOfferId: (state) => state.activeOfferId,
   },
-  // extraReducers: (builder) => {
-  //   builder
-  //     .addCase();
-  // },
+  extraReducers: (builder) => {
+    builder
+      .addCase(fetchOffers.fulfilled, offersReducer.setOffers)
+      .addCase(fetchOffers.rejected, clearOffers);
+  },
 });
 
 const { actions: offersActions } = offersSlice;
@@ -40,4 +39,8 @@ export {
   offersSlice,
   offersActions,
   offerSelectors,
+};
+
+export type {
+  OffersStateType,
 };

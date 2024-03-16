@@ -18,8 +18,8 @@ function App(): ReactElement {
       <ScrollToTop/>
       <Routes>
         <Route path={APP_ROUTE.Main}>
-          <Route index element={<MainPage/>}></Route>
-          <Route path={APP_ROUTE.MainWithCity} element={<MainPage/>}></Route>
+          <Route index element={<MainPage/>} />
+          <Route path={APP_ROUTE.MainWithCity} element={<MainPage/>} />
         </Route>
         <Route
           path={APP_ROUTE.Login}

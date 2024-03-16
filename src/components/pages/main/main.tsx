@@ -7,7 +7,7 @@ import { createMainRouteWithCity, isCity } from '../../../utils';
 import classNames from 'classnames';
 import { useAppSelector } from '../../../store/helpers.ts';
 import { capitalize } from '../../../utils';
-import {offerSelectors} from '../../../store/slices/offers';
+import { offerSelectors } from '../../../store/slices/offers';
 
 function MainPage(): ReactElement {
   const filterCityName = (city: string) => isCity(city) ? city : null;

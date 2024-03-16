@@ -7,7 +7,7 @@ import { sortOffers } from '../../../utils';
 type OfferCardsListProps = {
   offers: OfferData[];
   city: CitiesType;
-  handleCardHover: (id?: string) => void;
+  handleCardHover: (id: string) => void;
   handleCardLeave: () => void;
 };
 

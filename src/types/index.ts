@@ -9,8 +9,15 @@ import { OfferData,
   CommentData,
   CityType,
   LocationType,
-  HostUserType,
 } from './offer.ts';
+import {
+  HostUserType,
+  AuthenticatedUserType,
+} from './user.ts';
+import {
+  AuthStatusType,
+  AuthenticationForm,
+} from './auth.ts';
 
 export type {
   IconsAndLabelsStyleClassType,
@@ -23,4 +30,7 @@ export type {
   CityType,
   LocationType,
   HostUserType,
+  AuthenticatedUserType,
+  AuthStatusType,
+  AuthenticationForm,
 };

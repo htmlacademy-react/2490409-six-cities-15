@@ -3,6 +3,7 @@ import useCityLocation from './use-city-location.ts';
 import useMarkers from './use-markers.ts';
 import useSelect from './use-select.ts';
 import { useBoolean } from './use-boolean.ts';
+import { useAuthStatus } from './routing.ts';
 
 export {
   useMap,
@@ -10,4 +11,5 @@ export {
   useMarkers,
   useSelect,
   useBoolean,
+  useAuthStatus,
 };

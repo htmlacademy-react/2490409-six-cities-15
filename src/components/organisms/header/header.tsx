@@ -1,8 +1,8 @@
 import { HeaderLogoIcon } from '../../atoms';
 import { ReactElement } from 'react';
-import { getAuthStatus } from '../../../routing';
-import {APP_ROUTE, AUTH_STATUS} from '../../../constants';
-import {ProfileData, SignInButton, SignOutButton} from '../../atoms/header';
+import { useAuthStatus } from '../../../hooks';
+import { APP_ROUTE, AUTH_STATUS } from '../../../constants';
+import { ProfileData, SignInButton, SignOutButton } from '../../atoms/header';
 
 // todo: remove later
 type ProfileDataProps = {
@@ -23,7 +23,7 @@ function Header({ isLogoActive }: HeaderProps) {
     favoritesCounter: 3,
   };
 
-  const navListData: ReactElement = getAuthStatus() === AUTH_STATUS.Auth ? (
+  const navListData: ReactElement = useAuthStatus() === AUTH_STATUS.Auth ? (
     <>
       <ProfileData
         link={profileData.link}
