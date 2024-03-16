@@ -1,17 +1,16 @@
 import { ReactElement } from 'react';
 import {
-  FavoritesScreen,
-  MainScreen,
-  LoginScreen,
-  OfferScreen,
-  NotFound,
+  FavoritesPage,
+  MainPage,
+  LoginPage,
+  OfferPage,
+  NotFoundPage,
 } from '../pages';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { APP_ROUTE } from '../../constants';
 import { PrivateRoute } from '../../routing';
 import { ScrollToTop } from '../../utils';
 import { comments, detailOffer, getOffersInNear } from '../../mocks';
-import { store } from '../../store';
 
 function App(): ReactElement {
   return (
@@ -20,31 +19,31 @@ function App(): ReactElement {
       <Routes>
         <Route
           path={APP_ROUTE.Main}
-          element={<MainScreen/>}
+          element={<MainPage/>}
         />
         <Route
           path={APP_ROUTE.Login}
           element={
             <PrivateRoute isReverse>
-              <LoginScreen/>
+              <LoginPage/>
             </PrivateRoute>
           }
         />
         <Route
           path={APP_ROUTE.Offer}
-          element={<OfferScreen otherPlacesNear={getOffersInNear(detailOffer)} offer={detailOffer} reviews={comments}/>}
+          element={<OfferPage otherPlacesNear={getOffersInNear(detailOffer)} offer={detailOffer} reviews={comments}/>}
         />
         <Route
           path={APP_ROUTE.Favorites}
           element={
             <PrivateRoute>
-              <FavoritesScreen offers={store.getState().offers.filter((item) => item.isFavorite)}/>
+              <FavoritesPage/>
             </PrivateRoute>
           }
         />
         <Route
           path={'*'}
-          element={<NotFound/>}
+          element={<NotFoundPage/>}
         />
       </Routes>
     </BrowserRouter>

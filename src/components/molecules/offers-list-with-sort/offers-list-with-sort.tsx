@@ -1,6 +1,8 @@
 import { OffersList, SortSelector } from '..';
-import { OfferData } from '../../../mocks';
-import { CitiesType } from '../../../constants';
+import { OfferData } from '../../../types';
+import { CitiesType, SORT_TYPES, SortTypesType } from '../../../constants';
+import { useState } from 'react';
+import { sortOffers } from '../../../utils';
 
 type OfferCardsListProps = {
   offers: OfferData[];
@@ -11,13 +13,19 @@ type OfferCardsListProps = {
 
 function OffersListWithSort({offers, city, handleCardHover, handleCardLeave}: OfferCardsListProps) {
 
+  const [currentSort , setCurrentSort] = useState<SortTypesType>(SORT_TYPES.Popular);
+
+  const handleSetSort = (sort: SortTypesType) => {
+    setCurrentSort(sort);
+  };
+
   return (
     <section className="cities__places places">
       <h2 className="visually-hidden">Places</h2>
       <b className="places__found">{offers.length} places to stay in {city}</b>
-      <SortSelector selectedItemName={'Popular'}/>
+      <SortSelector selectedSort={currentSort} onSelect={handleSetSort}/>
       <OffersList
-        offers={offers}
+        offers={sortOffers(currentSort, offers)}
         classNames={'cities__places-list places__list tabs__content'}
         handleHoverOnCard={handleCardHover}
         handleCardLeave={handleCardLeave}

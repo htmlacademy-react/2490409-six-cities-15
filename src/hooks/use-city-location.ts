@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { Map } from 'leaflet';
-import { LocationType } from '../mocks';
+import { LocationType } from '../types';
 
 function useCityLocation(map: Map | null, location: LocationType) {
   const { latitude, longitude, zoom } = location;

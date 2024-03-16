@@ -1,7 +1,7 @@
-import { ComponentStyleType } from '../../../types';
+import { IconsAndLabelsStyleClassType } from '../../../types';
 
 type PremiumLabelProps = {
-  type?: ComponentStyleType;
+  type?: IconsAndLabelsStyleClassType;
 };
 
 function PremiumLabel({type = 'place-card'}: PremiumLabelProps) {

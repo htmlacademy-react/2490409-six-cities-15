@@ -4,7 +4,7 @@ import { LoginForm } from '../../molecules';
 import { TabButton } from '../../atoms';
 import { APP_ROUTE, CITIES } from '../../../constants';
 
-function LoginScreen(): ReactElement {
+function LoginPage(): ReactElement {
   return (
     <ContentOnTheRight
       leftSideContent={<LoginForm />}
@@ -18,4 +18,4 @@ function LoginScreen(): ReactElement {
   );
 }
 
-export default LoginScreen;
+export default LoginPage;

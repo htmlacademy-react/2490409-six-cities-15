@@ -1,4 +1,4 @@
-import {HostUserType} from '../../../mocks';
+import { HostUserType } from '../../../types';
 import classNames from 'classnames';
 
 type HostProps = {

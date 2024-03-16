@@ -1,8 +1,8 @@
-import {ComponentStyleType} from '../../../types';
+import {IconsAndLabelsStyleClassType} from '../../../types';
 
 type PriceProps = {
   price: number;
-  type?: ComponentStyleType;
+  type?: IconsAndLabelsStyleClassType;
 };
 
 function Price({price, type = 'place-card'}: PriceProps) {

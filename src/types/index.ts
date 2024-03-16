@@ -1,16 +1,26 @@
-import { ComponentStyleType } from './general.ts';
-import { PlaceStyleType } from './general.ts';
-import { OfferFeatureType } from './general.ts';
-import { MapStyleType } from './general.ts';
-import { isCity } from './general.ts';
-
-export {
-  isCity,
-};
+import {
+  IconsAndLabelsStyleClassType,
+  OfferCardStyleClassType,
+  OfferFeatureClassType,
+  MapStyleClassType,
+} from './style-class.ts';
+import { OfferData,
+  OfferDetailData,
+  CommentData,
+  CityType,
+  LocationType,
+  HostUserType,
+} from './offer.ts';
 
 export type {
-  ComponentStyleType,
-  PlaceStyleType,
-  OfferFeatureType,
-  MapStyleType,
+  IconsAndLabelsStyleClassType,
+  OfferCardStyleClassType,
+  OfferFeatureClassType,
+  MapStyleClassType,
+  OfferData,
+  OfferDetailData,
+  CommentData,
+  CityType,
+  LocationType,
+  HostUserType,
 };

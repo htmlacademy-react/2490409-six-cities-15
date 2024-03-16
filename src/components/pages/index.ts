@@ -1,13 +1,13 @@
-import FavoritesScreen from './favorites/favorites.tsx';
-import LoginScreen from './login/login.tsx';
-import MainScreen from './main/main.tsx';
-import NotFound from './not-found/not-found.tsx';
-import OfferScreen from './offer/offer.tsx';
+import FavoritesPage from './favorites/favorites.tsx';
+import LoginPage from './login/login.tsx';
+import MainPage from './main/main.tsx';
+import NotFoundPage from './not-found/not-found.tsx';
+import OfferPage from './offer/offer.tsx';
 
 export {
-  FavoritesScreen,
-  LoginScreen,
-  MainScreen,
-  NotFound,
-  OfferScreen,
+  FavoritesPage,
+  LoginPage,
+  MainPage,
+  NotFoundPage,
+  OfferPage,
 };

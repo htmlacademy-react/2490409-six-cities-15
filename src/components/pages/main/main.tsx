@@ -1,18 +1,19 @@
 import { ReactElement } from 'react';
 import { Header, OffersListWithMap } from '../../organisms';
 import { CityTabs, MainEmptyState } from '../../molecules';
-import { CITIES, CitiesType } from '../../../constants';
+import { CITIES } from '../../../constants';
 import { useSearchParams } from 'react-router-dom';
-import { isCity } from '../../../types';
+import { isCity } from '../../../utils';
 import classNames from 'classnames';
-import { store } from '../../../store';
-import { changeCityAction } from '../../../store/action.ts';
-import { useAppDispatch } from '../../../store/helpers.ts';
+import { useAppSelector } from '../../../store/helpers.ts';
 import { capitalize } from '../../../utils';
+import {useCitySelect} from '../../../hooks';
 
-function MainScreen(): ReactElement {
-  const globalState = store.getState();
-  const isEmpty = globalState.offers.length === 0;
+function MainPage(): ReactElement {
+  const currentCity = useAppSelector((state) => state.currentCity);
+  const offers = useAppSelector((state) => state.offers);
+
+  const isEmpty = offers.length === 0;
   const mainClassName = classNames(
     'page__main',
     'page__main--index',
@@ -27,28 +28,23 @@ function MainScreen(): ReactElement {
   const filterCityName = (city: string) => isCity(city) ? city : null;
 
   const [ searchParams ] = useSearchParams();
-  const cityFromSearchParams = searchParams.get('city') || '';
+  const cityFromSearchParams = searchParams.get('city') ?? '';
   const currentTabFromSearch = filterCityName(capitalize(cityFromSearchParams.toLowerCase())) || CITIES.Paris;
-  const dispatch = useAppDispatch();
 
-  const handleCityChange = (city: CitiesType) => {
-    dispatch(changeCityAction(city));
-  };
-
-  handleCityChange(currentTabFromSearch);
+  useCitySelect(currentTabFromSearch);
 
   return (
     <div className="page page--gray page--main">
       <Header isLogoActive/>
       <main className={mainClassName}>
         <h1 className="visually-hidden">Cities</h1>
-        <CityTabs onCityChanged={handleCityChange} currTab={globalState.currentCity}/>
+        <CityTabs onCityChanged={useCitySelect} currTab={currentCity}/>
         <div className="cities">
           <div className={divClassname}>
             {
               isEmpty
-                ? <MainEmptyState city={globalState.currentCity}/>
-                : <OffersListWithMap offers={globalState.offers} currCity={globalState.currentCity} />
+                ? <MainEmptyState city={currentCity}/>
+                : <OffersListWithMap offers={offers} currCity={currentCity} />
             }
           </div>
         </div>
@@ -57,4 +53,4 @@ function MainScreen(): ReactElement {
   );
 }
 
-export default MainScreen;
+export default MainPage;

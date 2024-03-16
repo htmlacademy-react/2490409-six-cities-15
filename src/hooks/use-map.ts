@@ -1,5 +1,5 @@
-import {MutableRefObject, useEffect, useRef, useState} from 'react';
-import { LocationType } from '../mocks';
+import { MutableRefObject, useEffect, useRef, useState } from 'react';
+import { LocationType } from '../types';
 import { Map, TileLayer } from 'leaflet';
 
 const TILE_LAYER_URL_TEMPLATE = 'https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png';

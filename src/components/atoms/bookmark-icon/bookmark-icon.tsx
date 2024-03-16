@@ -1,9 +1,9 @@
-import { ComponentStyleType } from '../../../types';
+import { IconsAndLabelsStyleClassType } from '../../../types';
 import classNames from 'classnames';
 
 type BookmarkIconProps = {
   isActive?: boolean;
-  type?: ComponentStyleType;
+  type?: IconsAndLabelsStyleClassType;
   size: {
     width: number;
     height: number;

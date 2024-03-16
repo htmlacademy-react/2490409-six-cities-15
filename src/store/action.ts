@@ -1,25 +1,15 @@
 import { createAction } from '@reduxjs/toolkit';
 import { CitiesType } from '../constants';
-import { OfferData } from '../mocks';
+import { OfferData } from '../types';
 
 const ACTIONS = {
   changeCity: 'main/changeCity',
   setOffers: 'main/setOffers',
 };
 
-const changeCityAction = createAction(
-  ACTIONS.changeCity,
-  (city: CitiesType) => ({
-    payload: city,
-  }),
-);
+const changeCityAction = createAction<{city: CitiesType}>(ACTIONS.changeCity);
 
-const setOffersAction = createAction(
-  ACTIONS.setOffers,
-  (offers: OfferData[]) => ({
-    payload: offers,
-  }),
-);
+const setOffersAction = createAction<{offers: OfferData[]}>(ACTIONS.setOffers);
 
 export {
   setOffersAction,

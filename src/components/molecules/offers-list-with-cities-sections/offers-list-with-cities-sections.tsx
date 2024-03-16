@@ -1,5 +1,5 @@
 import { CitiesType } from '../../../constants';
-import { OfferData } from '../../../mocks';
+import { OfferData } from '../../../types';
 import { OffersByLocationSection } from '../../molecules';
 
 type HorizontalOffersCardsListProps = {

@@ -1,7 +1,7 @@
 import { TabButton } from '../../atoms';
 import { APP_ROUTE, CitiesType } from '../../../constants';
 import { OffersList } from '..';
-import { OfferData } from '../../../mocks';
+import { OfferData } from '../../../types';
 
 type OffersByLocationSectionProps = {
   offers: OfferData[];

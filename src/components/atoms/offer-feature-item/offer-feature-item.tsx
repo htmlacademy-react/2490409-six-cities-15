@@ -1,4 +1,4 @@
-import {OfferFeatureType} from '../../../types';
+type OfferFeatureType = 'entire' | 'bedrooms' | 'adults';
 
 type OfferFeatureItemProps = {
   content: string;

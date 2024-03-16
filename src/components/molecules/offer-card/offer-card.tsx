@@ -1,15 +1,16 @@
 import { PremiumLabel, BookmarkIcon, Rating, Price } from '../../atoms';
 import { Link } from 'react-router-dom';
-import { OfferData } from '../../../mocks';
-import {ReactElement, useCallback} from 'react';
+import { OfferData } from '../../../types';
+import { ReactElement, useCallback } from 'react';
 import { APP_ROUTE } from '../../../constants';
 import { capitalize } from '../../../utils';
 import classNames from 'classnames';
+import { OfferCardStyleClassType } from '../../../types';
 
 type OfferCardProps = Omit<OfferData, 'city' | 'location'> & {
   onMouseEnter?: (id?: string) => void;
   onMouseLeave?: () => void;
-  placeType: 'cities' | 'near-places' | 'favorites';
+  placeType: OfferCardStyleClassType;
   hasVerticalLayout: boolean;
 };
 

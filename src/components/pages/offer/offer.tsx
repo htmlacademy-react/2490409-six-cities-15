@@ -1,7 +1,7 @@
 import { ReactElement } from 'react';
 import { Header } from '../../organisms';
 import { Gallery, GoodsList, Host, Map, OfferFeatures, ReviewsSection, OffersList } from '../../molecules';
-import { CommentData, OfferData, OfferDetailData } from '../../../mocks';
+import { CommentData, OfferData, OfferDetailData } from '../../../types';
 import { BookmarkIcon, PremiumLabel, Price, Rating } from '../../atoms';
 
 type OfferScreenProps = {
@@ -10,7 +10,7 @@ type OfferScreenProps = {
   otherPlacesNear: OfferData[];
 };
 
-function OfferScreen({offer, reviews, otherPlacesNear}: OfferScreenProps): ReactElement {
+function OfferPage({offer, reviews, otherPlacesNear}: OfferScreenProps): ReactElement {
   const elementsType = 'offer';
   const placesNear = otherPlacesNear.map((place) => (
     {...place.location, id: place.id}
@@ -67,4 +67,4 @@ function OfferScreen({offer, reviews, otherPlacesNear}: OfferScreenProps): React
   );
 }
 
-export default OfferScreen;
+export default OfferPage;

@@ -1,5 +1,5 @@
 import { ReviewComment } from '../index.ts';
-import { CommentData } from '../../../mocks';
+import { CommentData } from '../../../types';
 
 type ReviewsListProps = {
   reviews: CommentData[];
