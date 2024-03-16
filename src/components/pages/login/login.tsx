@@ -2,7 +2,8 @@ import { ReactElement } from 'react';
 import { ContentOnTheRight } from '../../templates';
 import { LoginForm } from '../../molecules';
 import { TabButton } from '../../atoms';
-import { APP_ROUTE, CITIES } from '../../../constants';
+import { CITIES } from '../../../constants';
+import { createMainRouteWithCity } from '../../../utils';
 
 function LoginPage(): ReactElement {
   return (
@@ -11,7 +12,7 @@ function LoginPage(): ReactElement {
       rightSideButton={
         <TabButton
           tabName={CITIES.Amsterdam} isSelected={false}
-          link={`${APP_ROUTE.Main}?city=${CITIES.Amsterdam}`}
+          link={createMainRouteWithCity(CITIES.Amsterdam)}
         />
       }
     />

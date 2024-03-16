@@ -17,10 +17,10 @@ function App(): ReactElement {
     <BrowserRouter>
       <ScrollToTop/>
       <Routes>
-        <Route
-          path={APP_ROUTE.Main}
-          element={<MainPage/>}
-        />
+        <Route path={APP_ROUTE.Main}>
+          <Route index element={<MainPage/>}></Route>
+          <Route path={APP_ROUTE.MainWithCity} element={<MainPage/>}></Route>
+        </Route>
         <Route
           path={APP_ROUTE.Login}
           element={

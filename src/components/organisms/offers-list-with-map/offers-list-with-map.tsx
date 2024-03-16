@@ -1,37 +1,39 @@
 import { OfferData } from '../../../types';
 import { CitiesType } from '../../../constants';
 import { Map, OffersListWithSort } from '../../molecules';
-import { useSelect } from '../../../hooks';
+import { offersActions, offerSelectors } from '../../../store/slices/offers';
+import {useActionCreators, useAppSelector} from '../../../store/helpers.ts';
 
 type OffersListWithMapProps = {
-  offers: OfferData[];
-  currCity: CitiesType;
+  offersFromCurrentCity: OfferData[];
+  currentCity: CitiesType;
 };
 
-function OffersListWithMap({offers, currCity}: OffersListWithMapProps) {
-  const getOffersByCity = (city: CitiesType) => offers.filter((offer) => offer.city.name === city);
-  const offersByCity = getOffersByCity(currCity);
+function OffersListWithMap({offersFromCurrentCity, currentCity}: OffersListWithMapProps) {
+  const { setActiveOfferId } = useActionCreators(offersActions);
+  const handleHoverOnCard = (id?: string) => {
+    setActiveOfferId(id);
+  };
+  const handleCardLeave = () => {
+    setActiveOfferId();
+  };
 
-  const [
-    hoveredCardId,
-    handleHoverOnCard,
-    handleCardLeave,
-  ] = useSelect();
+  const activeOfferId = useAppSelector(offerSelectors.activeOfferId);
 
   return (
     <>
       <OffersListWithSort
-        city={currCity}
-        offers={offersByCity}
+        city={currentCity}
+        offers={offersFromCurrentCity}
         handleCardHover={handleHoverOnCard}
         handleCardLeave={handleCardLeave}
       />
       <div className="cities__right-section">
         <Map
           classType="cities"
-          locations={offersByCity.map((offer) => ({ ...offer.location, id: offer.id }))}
-          city={offersByCity[0].city}
-          selectedCardId={hoveredCardId}
+          locations={offersFromCurrentCity.map((offer) => ({ ...offer.location, id: offer.id }))}
+          city={offersFromCurrentCity[0].city}
+          selectedCardId={activeOfferId}
         />
       </div>
     </>

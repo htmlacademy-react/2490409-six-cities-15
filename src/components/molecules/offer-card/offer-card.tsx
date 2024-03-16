@@ -30,7 +30,7 @@ function OfferCard({
     {'favorites__card-info': props.placeType === 'favorites'},
   );
 
-  const handleOnMouseEnter = useCallback(() => onMouseEnter(props.id), [props.id, onMouseEnter]);
+  const handleOnMouseEnter = useCallback(() => onMouseEnter(props.id), []);
 
   return (
     <Link to={offerLink}>

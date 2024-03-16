@@ -1,8 +1,7 @@
 import { ReactElement } from 'react';
 import { CITIES, CitiesType } from '../../../constants';
 import { TabButton } from '../../atoms';
-import { useLocation } from 'react-router-dom';
-import { isCity } from '../../../utils';
+import { createMainRouteWithCity, isCity } from '../../../utils';
 
 type CityTabsProps = {
   onCityChanged: (city: CitiesType) => void;
@@ -10,8 +9,6 @@ type CityTabsProps = {
 };
 
 function CityTabs({onCityChanged, currTab}: CityTabsProps): ReactElement {
-  const { pathname } = useLocation();
-
   const handleTabChange = (city: string) => {
     if (isCity(city)) {
       onCityChanged(city);
@@ -29,7 +26,7 @@ function CityTabs({onCityChanged, currTab}: CityTabsProps): ReactElement {
                 tabName={cityName}
                 isSelected={cityName.toLowerCase() === currTab.toLowerCase()}
                 onClick={handleTabChange}
-                link={`${pathname}?city=${cityName.toLowerCase()}`}
+                link={createMainRouteWithCity(cityName)}
               />
             ))
           }
