@@ -2,7 +2,7 @@ import { ReactElement } from 'react';
 import { ContentOnTheRight } from '../../templates';
 import { LoginForm } from '../../molecules';
 import { TabButton } from '../../atoms';
-import {APP_ROUTE, CITIES} from '../../../constants';
+import { APP_ROUTE, CITIES } from '../../../constants';
 
 function LoginScreen(): ReactElement {
   return (

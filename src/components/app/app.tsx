@@ -10,20 +10,17 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { APP_ROUTE } from '../../constants';
 import { PrivateRoute } from '../../routing';
 import { ScrollToTop } from '../../utils';
-import { comments, detailOffer, getOffersInNear, OfferData } from '../../mocks';
+import { comments, detailOffer, getOffersInNear } from '../../mocks';
+import { store } from '../../store';
 
-type AppProps = {
-  offers: OfferData[];
-};
-
-function App({ offers }: AppProps): ReactElement {
+function App(): ReactElement {
   return (
     <BrowserRouter>
       <ScrollToTop/>
       <Routes>
         <Route
           path={APP_ROUTE.Main}
-          element={<MainScreen offers={offers} />}
+          element={<MainScreen/>}
         />
         <Route
           path={APP_ROUTE.Login}
@@ -41,7 +38,7 @@ function App({ offers }: AppProps): ReactElement {
           path={APP_ROUTE.Favorites}
           element={
             <PrivateRoute>
-              <FavoritesScreen offers={offers.filter((item) => item.isFavorite)}/>
+              <FavoritesScreen offers={store.getState().offers.filter((item) => item.isFavorite)}/>
             </PrivateRoute>
           }
         />
