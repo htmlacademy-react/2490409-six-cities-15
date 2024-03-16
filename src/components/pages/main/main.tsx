@@ -8,6 +8,7 @@ import classNames from 'classnames';
 import { useAppSelector } from '../../../store/helpers.ts';
 import { capitalize } from '../../../utils';
 import { offerSelectors } from '../../../store/slices/offers';
+import { LoaderContainer } from '../../molecules';
 
 function MainPage(): ReactElement {
   const filterCityName = (city: string) => isCity(city) ? city : null;
@@ -34,21 +35,29 @@ function MainPage(): ReactElement {
     redirect(createMainRouteWithCity(cityName));
   };
 
+  const isLoading = useAppSelector(offerSelectors.isLoading);
+
   return (
     <div className="page page--gray page--main">
       <Header isLogoActive/>
       <main className={mainClassName}>
         <h1 className="visually-hidden">Cities</h1>
         <CityTabs onCityChanged={handleCitySelect} currTab={currentCity}/>
-        <div className="cities">
-          <div className={divClassname}>
-            {
-              isEmpty
-                ? <MainEmptyState city={currentCity}/>
-                : <OffersListWithMap offersFromCurrentCity={offersFromCurrentCity} currentCity={currentCity} />
-            }
-          </div>
-        </div>
+        {
+          isLoading
+            ? <LoaderContainer/>
+            : (
+              <div className="cities">
+                <div className={divClassname}>
+                  {
+                    isEmpty
+                      ? <MainEmptyState city={currentCity}/>
+                      : <OffersListWithMap offersFromCurrentCity={offersFromCurrentCity} currentCity={currentCity} />
+                  }
+                </div>
+              </div>
+            )
+        }
       </main>
     </div>
   );

@@ -9,6 +9,8 @@ const fetchOffers = createAsyncThunk<OfferData[], undefined, AsyncActionsArgsTyp
   async () => {
     const response = await API.get<OfferData[]>(API_ROUTE.Get.OffersList);
 
+    await new Promise((resolve) => setTimeout(resolve, 300));
+
     return response.data;
   },
 );

@@ -4,6 +4,11 @@ const clearOffers = (state: OffersStateType) => {
   state.offers = [];
 };
 
+const setOffersLoading = (state: OffersStateType) => {
+  state.isLoading = true;
+};
+
 export {
   clearOffers,
+  setOffersLoading,
 };
