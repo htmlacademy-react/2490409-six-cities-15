@@ -1,14 +1,15 @@
 import { MouseEventHandler, ReactElement } from 'react';
 import { Link } from 'react-router-dom';
-import { store } from '../../../../store';
 import { logoutAction } from '../../../../store/slices/user/thunk.ts';
 import { getToken } from '../../../../services';
+import { useAppDispatch } from '../../../../store/helpers.ts';
 
 function SignOutButton(): ReactElement {
+  const dispatch = useAppDispatch();
   const handleOnClick: MouseEventHandler<HTMLAnchorElement> = (event) => {
     event.preventDefault();
 
-    store.dispatch(logoutAction(getToken()));
+    dispatch(logoutAction(getToken()));
   };
 
   return (

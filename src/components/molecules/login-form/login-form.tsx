@@ -1,16 +1,18 @@
 import { SmallInput } from '../../atoms';
 import { FormEvent } from 'react';
 import { loginAction } from '../../../store/slices/user/thunk.ts';
-import { store } from '../../../store';
+import { useAppDispatch } from '../../../store/helpers.ts';
 
 function LoginForm() {
+  const dispatch = useAppDispatch();
+
   const handleSubmitForm = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const formData = new FormData(event.currentTarget);
     const email = formData.get('email')?.toString() ?? '';
     const password = formData.get('password')?.toString() ?? '';
 
-    store.dispatch(loginAction({login: email, password}));
+    dispatch(loginAction({login: email, password}));
   };
 
   return (

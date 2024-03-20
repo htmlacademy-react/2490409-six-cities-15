@@ -1,67 +1,54 @@
 import { ReactElement } from 'react';
-import { Header } from '../../organisms';
-import { Gallery, GoodsList, Host, Map, OfferFeatures, ReviewsSection, OffersList } from '../../molecules';
-import { CommentData, OfferData, OfferDetailData } from '../../../types';
-import { BookmarkIcon, PremiumLabel, Price, Rating } from '../../atoms';
+import { DetailOfferContent, Header } from '../../organisms';
+import { LoaderContainer } from '../../molecules';
+import { useParams } from 'react-router-dom';
+import { fetchDetailOfferAction, fetchNearbyOffersAction } from '../../../store/slices/offers/thunk.ts';
+import { useAppDispatch, useAppSelector } from '../../../store/helpers.ts';
+import { offerSelectors } from '../../../store/slices/offers';
+import { NotFoundPage } from '../index.ts';
 
-type OfferScreenProps = {
-  offer: OfferDetailData;
-  reviews: CommentData[];
-  otherPlacesNear: OfferData[];
-};
+function OfferPage(): ReactElement {
+  const { id: offerId = '' } = useParams();
+  const dispatch = useAppDispatch();
 
-function OfferPage({offer, reviews, otherPlacesNear}: OfferScreenProps): ReactElement {
-  const elementsType = 'offer';
-  const placesNear = otherPlacesNear.map((place) => (
-    {...place.location, id: place.id}
-  ));
+  dispatch(fetchDetailOfferAction(offerId));
+  dispatch(fetchNearbyOffersAction(offerId));
 
-  const placesNearAndCurrent = [...placesNear, {...offer.location, id: offer.id}];
+  const isLoading = useAppSelector(offerSelectors.isLoading);
+  const offer = useAppSelector(offerSelectors.detailOffer);
+  const nearbyOffers = useAppSelector(offerSelectors.nearbyOffers);
+  const reviews = useAppSelector(offerSelectors.detailOfferReviews);
+
+  if (!isLoading && offer === null) {
+    return <NotFoundPage type="offer" />;
+  }
+
+  let placesNear = null;
+  if (nearbyOffers) {
+    placesNear = nearbyOffers.map((place) => (
+      {...place.location, id: place.id}
+    ));
+  }
 
   return (
     <div className="page">
       <Header/>
       <main className="page__main page__main--offer">
-        <section className="offer">
-          <Gallery images={offer.images}/>
-          <div className="offer__container container">
-            <div className="offer__wrapper">
-              <PremiumLabel type={elementsType}/>
-              <div className="offer__name-wrapper">
-                <h1 className="offer__name">{offer.title}</h1>
-                <BookmarkIcon size={{width: 31, height: 33}} isActive={offer.isFavorite}/>
-              </div>
-              <Rating rating={offer.rating} type={elementsType}/>
-              <OfferFeatures maxAdultsCount={offer.maxAdults} bedroomsCount={offer.bedrooms} housingType={offer.type}/>
-              <Price price={offer.price} type={'offer'}/>
-              <GoodsList goods={offer.goods}/>
-              <Host user={offer.host} description={offer.description}/>
-              <ReviewsSection reviews={reviews}/>
-            </div>
-          </div>
-          <div style={{width: '100%', display: 'flex', justifyContent: 'center'}}>
-            <Map
-              classType="offer"
-              style={{maxWidth: '60%'}}
-              locations={placesNearAndCurrent}
-              city={offer.city}
-              selectedCardId={offer.id}
-            />
-          </div>
-        </section>
-        <div className="container">
-          <section className="near-places places">
-            <h2 className="near-places__title">
-              Other places in the neighbourhood
-            </h2>
-            <OffersList
-              offers={otherPlacesNear}
-              classNames={'near-places__list places__list'}
-              placeType={'near-places'}
-              hasVerticalLayout
-            />
-          </section>
-        </div>
+        {
+          isLoading
+            ? <LoaderContainer/>
+            : (
+              offer &&
+              <DetailOfferContent
+                offer={offer}
+                elementsType="offer"
+                reviews={reviews}
+                nearbyOffers={nearbyOffers}
+                nearbyLocations={placesNear}
+                currentLocation={{...offer.location, id: offer.id}}
+              />
+            )
+        }
       </main>
     </div>
   );

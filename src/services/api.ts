@@ -5,7 +5,7 @@ import {getToken} from './token.ts';
 const createAPI = (): AxiosInstance => {
   const api = axios.create({
     baseURL: BASE_URL,
-    timeout: 5000,
+    timeout: 50000,
   });
 
   api.interceptors.request.use(

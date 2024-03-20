@@ -4,16 +4,19 @@ import { useAuthStatus } from '../../../hooks';
 import { AUTH_STATUS } from '../../../constants';
 
 type ReviewsSectionProps = {
-  reviews: CommentData[];
+  reviews: CommentData[] | null;
 };
 
 function ReviewsSection({reviews}: ReviewsSectionProps) {
+  // todo: check how section looks with 0 reviews
+  // const reviews: CommentData[] = [];
   return (
     <section className="offer__reviews reviews">
       <h2 className="reviews__title">
-        Reviews · <span className="reviews__amount">{reviews.length}</span>
+        Reviews · <span className="reviews__amount">{reviews ? reviews.length : 0}</span>
       </h2>
-      <ReviewsList reviews={reviews} />
+      {reviews && reviews.length > 0 && <ReviewsList reviews={reviews} />}
+      {!reviews || reviews.length === 0 && 'No reviews yet'}
       {useAuthStatus() === AUTH_STATUS.Auth && <ReviewForm />}
     </section>
   );

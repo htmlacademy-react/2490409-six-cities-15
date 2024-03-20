@@ -9,6 +9,7 @@ const APP_ROUTE = {
 const API_ROUTE = {
   Get : {
     OffersList: '/offers',
+    DetailOffer: '/offers/:offerId',
     NearBy: '/offers/:offerId/nearby',
     Favorites: '/favorite',
     Comments: '/comments/:offerId',
