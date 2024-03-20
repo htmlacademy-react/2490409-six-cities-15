@@ -1,13 +1,14 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { CommentData, OfferData, OfferDetailData } from '../../../types';
-import { fetchDetailOfferAction, fetchNearbyOffersAction, fetchOffersAction } from './thunk.ts';
+import {fetchCommentsAction, fetchDetailOfferAction, fetchNearbyOffersAction, fetchOffersAction} from './thunk.ts';
 import { offersReducer } from './reducers.ts';
 import { sliceName } from './meta.ts';
 import {
   clearDetailOffer,
   clearNearbyOffers,
   clearOffers,
-  setOffersLoading
+  clearReviews,
+  setOffersLoading,
 } from './extra-reducers.ts';
 
 type OffersStateType = {
@@ -52,7 +53,9 @@ const offersSlice = createSlice({
       .addCase(fetchDetailOfferAction.rejected, clearDetailOffer)
       .addCase(fetchNearbyOffersAction.pending, setOffersLoading)
       .addCase(fetchNearbyOffersAction.fulfilled, offersReducer.setNearbyOffers)
-      .addCase(fetchNearbyOffersAction.rejected, clearNearbyOffers);
+      .addCase(fetchNearbyOffersAction.rejected, clearNearbyOffers)
+      .addCase(fetchCommentsAction.fulfilled, offersReducer.setReviews)
+      .addCase(fetchCommentsAction.rejected, clearReviews);
   },
 });
 

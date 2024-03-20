@@ -30,6 +30,11 @@ const clearNearbyOffers = (state: OffersStateType) => {
   state.isLoading = false;
 };
 
+const clearReviews = (state: OffersStateType) => {
+  state.detailOfferReviews = null;
+  state.isLoading = false;
+};
+
 export {
   clearOffers,
   setOffersLoading,
@@ -37,4 +42,5 @@ export {
   clearDetailOffer,
   setNearbyOffers,
   clearNearbyOffers,
+  clearReviews,
 };

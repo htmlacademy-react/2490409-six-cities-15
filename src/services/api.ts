@@ -1,6 +1,6 @@
-import axios, {AxiosInstance, InternalAxiosRequestConfig} from 'axios';
+import axios, { AxiosInstance, InternalAxiosRequestConfig } from 'axios';
 import { BASE_URL } from '../constants';
-import {getToken} from './token.ts';
+import { getToken } from './token.ts';
 
 const createAPI = (): AxiosInstance => {
   const api = axios.create({

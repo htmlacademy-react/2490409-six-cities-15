@@ -4,6 +4,8 @@ import { API_ROUTE } from '../../../constants';
 import { API } from '../../../services';
 import { CommentData, OfferData, OfferDetailData } from '../../../types';
 
+const replaceOfferId = (route: string, id: string) => route.replace(':offerId', id);
+
 const fetchOffersAction = createAsyncThunk<OfferData[], undefined, AsyncActionsArgsType>(
   'fetch/offersList',
   async () => {
@@ -18,8 +20,7 @@ const fetchOffersAction = createAsyncThunk<OfferData[], undefined, AsyncActionsA
 const fetchDetailOfferAction = createAsyncThunk<OfferDetailData, OfferData['id'], AsyncActionsArgsType>(
   'fetch/detailOffer',
   async (id) => {
-    const route = API_ROUTE.Get.DetailOffer.replace(':offerId', id);
-    const response = await API.get<OfferDetailData>(route);
+    const response = await API.get<OfferDetailData>(replaceOfferId(API_ROUTE.Get.DetailOffer, id));
 
     return response.data;
   },
@@ -28,8 +29,7 @@ const fetchDetailOfferAction = createAsyncThunk<OfferDetailData, OfferData['id']
 const fetchNearbyOffersAction = createAsyncThunk<OfferData[], OfferData['id'], AsyncActionsArgsType>(
   'fetch/nearByOffers',
   async (id) => {
-    const route = API_ROUTE.Get.NearBy.replace(':offerId', id);
-    const response = await API.get<OfferData[]>(route);
+    const response = await API.get<OfferData[]>(replaceOfferId(API_ROUTE.Get.NearBy, id));
 
     return response.data;
   },
@@ -47,7 +47,7 @@ const fetchFavoritesOffersAction = createAsyncThunk<OfferData[], undefined, Asyn
 const fetchCommentsAction = createAsyncThunk<CommentData[], OfferData['id'], AsyncActionsArgsType>(
   'fetch/fetchComments',
   async (id) => {
-    const response = await API.get<CommentData[]>(API_ROUTE.Get.Comments, { data: id });
+    const response = await API.get<CommentData[]>(replaceOfferId(API_ROUTE.Get.Comments, id));
 
     return response.data;
   },
@@ -55,13 +55,14 @@ const fetchCommentsAction = createAsyncThunk<CommentData[], OfferData['id'], Asy
 
 const changeFavoriteStatusAction = createAsyncThunk<
   OfferData,
-  {offerId: OfferData['id']; status: boolean},
+  {id: OfferData['id']; status: boolean},
   AsyncActionsArgsType
 >(
   'send/changeFavoriteStatus',
-  async ({offerId, status}) => {
+  async ({id: offerId, status}) => {
     const response = await API.post<OfferData>(
-      API_ROUTE.Post.SetFavorite,
+      replaceOfferId(API_ROUTE.Post.SetFavorite, offerId)
+        .replace(':status', status ? '1' : '0'),
       {
         offerId,
         status: status ? 1 : 0
@@ -74,12 +75,12 @@ const changeFavoriteStatusAction = createAsyncThunk<
 
 const addCommentAction = createAsyncThunk<
   OfferData,
-  CommentData,
+  CommentData & OfferDetailData['id'],
   AsyncActionsArgsType
 >(
   'send/addComment',
-  async ({comment, rating}) => {
-    const response = await API.post<OfferData>(API_ROUTE.Post.AddComment, { comment, rating},);
+  async ({id: offerId, comment, rating}) => {
+    const response = await API.post<OfferData>(replaceOfferId(API_ROUTE.Post.AddComment, offerId), { comment, rating });
 
     return response.data;
   },

@@ -1,5 +1,5 @@
 import { PayloadAction } from '@reduxjs/toolkit';
-import {OfferData, OfferDetailData} from '../../../types';
+import { CommentData, OfferData, OfferDetailData } from '../../../types';
 import { OffersStateType } from './index.ts';
 
 const offersReducer = {
@@ -16,6 +16,10 @@ const offersReducer = {
   },
   setNearbyOffers: (state: OffersStateType, action: PayloadAction<OfferData[]>) => {
     state.nearbyOffers = action.payload;
+    state.isLoading = false;
+  },
+  setReviews: (state: OffersStateType, action: PayloadAction<CommentData[]>) => {
+    state.detailOfferReviews = action.payload;
     state.isLoading = false;
   },
   setIsOffersLoading: (state: OffersStateType, action: PayloadAction<boolean>) => {

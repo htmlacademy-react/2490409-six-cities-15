@@ -1,8 +1,12 @@
-import { ReactElement } from 'react';
+import {ReactElement, useEffect} from 'react';
 import { DetailOfferContent, Header } from '../../organisms';
 import { LoaderContainer } from '../../molecules';
 import { useParams } from 'react-router-dom';
-import { fetchDetailOfferAction, fetchNearbyOffersAction } from '../../../store/slices/offers/thunk.ts';
+import {
+  fetchCommentsAction,
+  fetchDetailOfferAction,
+  fetchNearbyOffersAction
+} from '../../../store/slices/offers/thunk.ts';
 import { useAppDispatch, useAppSelector } from '../../../store/helpers.ts';
 import { offerSelectors } from '../../../store/slices/offers';
 import { NotFoundPage } from '../index.ts';
@@ -11,8 +15,12 @@ function OfferPage(): ReactElement {
   const { id: offerId = '' } = useParams();
   const dispatch = useAppDispatch();
 
-  dispatch(fetchDetailOfferAction(offerId));
-  dispatch(fetchNearbyOffersAction(offerId));
+  useEffect(() => {
+    dispatch(fetchDetailOfferAction(offerId));
+    dispatch(fetchNearbyOffersAction(offerId));
+    dispatch(fetchCommentsAction(offerId));
+    // eslint-disable-next-line
+  }, [offerId]);
 
   const isLoading = useAppSelector(offerSelectors.isLoading);
   const offer = useAppSelector(offerSelectors.detailOffer);
