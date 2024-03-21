@@ -17,6 +17,7 @@ function Header({ isLogoActive }: HeaderProps) {
   const navListData: ReactElement = useAuthStatus() === AUTH_STATUS.Auth ? (
     <>
       <ProfileData
+        avatarUrl={profileData?.avatarUrl}
         email={profileData?.email ?? ''}
         favoritesCounter={3}
       />

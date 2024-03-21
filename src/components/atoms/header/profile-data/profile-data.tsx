@@ -1,11 +1,12 @@
 import { ReactElement } from 'react';
 import { Link } from 'react-router-dom';
 import { AvatarImage, Counter, Email } from '..';
-import {APP_ROUTE} from '../../../../constants';
+import { APP_ROUTE } from '../../../../constants';
 
 type ProfileDataProps = {
   email: string;
   favoritesCounter: number;
+  avatarUrl?: string;
 };
 
 function ProfileData(props: ProfileDataProps): ReactElement {
@@ -15,7 +16,7 @@ function ProfileData(props: ProfileDataProps): ReactElement {
         className="header__nav-link header__nav-link--profile"
         to={APP_ROUTE.Favorites}
       >
-        <AvatarImage/>
+        <AvatarImage avatarUrl={props.avatarUrl}/>
         <Email email={props.email}/>
         <Counter count={props.favoritesCounter}/>
       </Link>

@@ -1,10 +1,11 @@
-import {ReactElement} from 'react';
+import {FormEvent, ReactElement} from 'react';
 
 type SmallInputProps = {
   label: string;
   type: string;
   name: string;
   placeholder: string;
+  handleChange: (e: FormEvent<HTMLInputElement>) => void;
   isRequired: boolean;
 };
 
@@ -19,6 +20,7 @@ function SmallInput(props: SmallInputProps): ReactElement {
         name={props.name}
         placeholder={props.placeholder}
         required={props.isRequired}
+        onChange={props.handleChange}
       />
     </div>
   );

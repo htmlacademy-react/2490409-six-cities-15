@@ -8,7 +8,8 @@ type THandleOnChange = ChangeEventHandler<HTMLTextAreaElement | HTMLInputElement
 
 function ReviewForm() {
   const dispatch = useAppDispatch();
-  const [review, setReview] = useState({rating: 0, comment: ''});
+  const initialReviewState = {rating: 0, comment: ''};
+  const [review, setReview] = useState(initialReviewState);
 
   const handleOnChange: THandleOnChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
     const { name, value } = e.currentTarget;
@@ -24,11 +25,16 @@ function ReviewForm() {
 
   const handleSubmit: FormEventHandler<HTMLFormElement> = (event) => {
     event.preventDefault();
-    const formData = new FormData(event.currentTarget);
-    const rating = parseInt(formData.get('rating')?.toString() ?? '', 10) ?? 0;
-    const comment = formData.get('comment')?.toString() ?? '';
 
-    dispatch(addCommentAction({id: offerId, comment, rating }));
+    dispatch(
+      addCommentAction({
+        id: offerId,
+        comment: review.comment,
+        rating: review.rating,
+      })
+    );
+
+    setReview(initialReviewState);
   };
 
   return (
@@ -37,7 +43,7 @@ function ReviewForm() {
         Your review
       </label>
       <div className="reviews__rating-form form__rating">
-        <RatingButton handleOnChange={handleOnChange}/>
+        <RatingButton handleOnChange={handleOnChange} value={review.rating} />
       </div>
       <textarea
         className="reviews__textarea form__textarea"
