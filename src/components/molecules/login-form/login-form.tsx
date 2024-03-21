@@ -18,7 +18,7 @@ function LoginForm() {
   return (
     <>
       <h1 className="login__title">Sign in</h1>
-      <form className="login__form form" onSubmit={handleSubmitForm} method="post">
+      <form className="login__form form" onSubmit={handleSubmitForm}>
         <SmallInput label={'E-mail'} type={'email'} name={'email'} placeholder={'Email'} isRequired />
         <SmallInput label={'Password'} type={'password'} name={'password'} placeholder={'Password'} isRequired />
         <button className="login__submit form__submit button" type="submit">

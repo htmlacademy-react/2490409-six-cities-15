@@ -74,13 +74,13 @@ const changeFavoriteStatusAction = createAsyncThunk<
 );
 
 const addCommentAction = createAsyncThunk<
-  OfferData,
-  CommentData & OfferDetailData['id'],
+  CommentData,
+  Pick<CommentData, 'comment' | 'rating'> & { id: OfferDetailData['id'] },
   AsyncActionsArgsType
 >(
   'send/addComment',
   async ({id: offerId, comment, rating}) => {
-    const response = await API.post<OfferData>(replaceOfferId(API_ROUTE.Post.AddComment, offerId), { comment, rating });
+    const response = await API.post<CommentData>(replaceOfferId(API_ROUTE.Post.AddComment, offerId), { comment, rating });
 
     return response.data;
   },

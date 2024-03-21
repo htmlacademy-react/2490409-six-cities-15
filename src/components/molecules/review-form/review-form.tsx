@@ -1,9 +1,13 @@
 import { RatingButton } from '../../molecules';
-import {ChangeEvent, ChangeEventHandler, useState} from 'react';
+import { ChangeEvent, ChangeEventHandler, FormEventHandler, useState } from 'react';
+import { useAppDispatch, useAppSelector } from '../../../store/helpers.ts';
+import { addCommentAction} from '../../../store/slices/offers/thunk.ts';
+import { offerSelectors } from '../../../store/slices/offers';
 
 type THandleOnChange = ChangeEventHandler<HTMLTextAreaElement | HTMLInputElement>;
 
 function ReviewForm() {
+  const dispatch = useAppDispatch();
   const [review, setReview] = useState({rating: 0, comment: ''});
 
   const handleOnChange: THandleOnChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
@@ -15,8 +19,20 @@ function ReviewForm() {
     });
   };
 
+
+  const offerId = useAppSelector(offerSelectors.detailOffer)?.id || '';
+
+  const handleSubmit: FormEventHandler<HTMLFormElement> = (event) => {
+    event.preventDefault();
+    const formData = new FormData(event.currentTarget);
+    const rating = parseInt(formData.get('rating')?.toString() ?? '', 10) ?? 0;
+    const comment = formData.get('comment')?.toString() ?? '';
+
+    dispatch(addCommentAction({id: offerId, comment, rating }));
+  };
+
   return (
-    <form className="reviews__form form" action="#" method="post">
+    <form className="reviews__form form" onSubmit={handleSubmit}>
       <label className="reviews__label form__label" htmlFor="review">
         Your review
       </label>
@@ -31,7 +47,7 @@ function ReviewForm() {
         value={review.comment}
         onChange={handleOnChange}
       />
-      <div className="reviews__button-wrapper">
+      <div className="reviews__button-wrapper" >
         <p className="reviews__help">
           To submit review please make sure to set{' '}
           <span className="reviews__star">rating</span> and describe
