@@ -1,21 +1,19 @@
 import { Navigate } from 'react-router-dom';
-import { APP_ROUTE, AUTH_STATUS } from '../../constants';
 import { PropsWithChildren } from 'react';
 import { useAuthStatus } from '../../hooks';
+import { AuthStatusType } from '../../types';
 
 type PrivateRouteProps = PropsWithChildren<{
-  isReverse?: boolean;
+  allowedAuthStatuses: AuthStatusType | AuthStatusType[];
+  redirectTo: string;
 }>;
 
-function PrivateRoute({children, isReverse = false}: PrivateRouteProps) {
-  let hasAccess = isReverse;
-  const authStatus = useAuthStatus();
+function PrivateRoute({children, allowedAuthStatuses, redirectTo}: PrivateRouteProps) {
+  const currentAuthStatus = useAuthStatus();
+  const preparedAuthStatuses = Array.isArray(allowedAuthStatuses) ? allowedAuthStatuses : [allowedAuthStatuses];
+  const isAllowed = preparedAuthStatuses.includes(currentAuthStatus);
 
-  if (authStatus === AUTH_STATUS.Auth) {
-    hasAccess = !isReverse;
-  }
-
-  return hasAccess ? children : <Navigate to={isReverse ? APP_ROUTE.Main : APP_ROUTE.Login} />;
+  return isAllowed ? children : <Navigate to={redirectTo} />;
 }
 
 export default PrivateRoute;
