@@ -7,7 +7,7 @@ import {
   NotFoundPage,
 } from '../pages';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import { APP_ROUTE } from '../../constants';
+import {APP_ROUTE, AUTH_STATUS} from '../../constants';
 import { PrivateRoute } from '../../routing';
 import { ScrollToTop } from '../../utils';
 
@@ -23,7 +23,10 @@ function App(): ReactElement {
         <Route
           path={APP_ROUTE.Login}
           element={
-            <PrivateRoute isReverse>
+            <PrivateRoute
+              allowedAuthStatuses={[AUTH_STATUS.Unknown, AUTH_STATUS.NoAuth]}
+              redirectTo={APP_ROUTE.Main}
+            >
               <LoginPage/>
             </PrivateRoute>
           }
@@ -35,7 +38,10 @@ function App(): ReactElement {
         <Route
           path={APP_ROUTE.Favorites}
           element={
-            <PrivateRoute>
+            <PrivateRoute
+              allowedAuthStatuses={AUTH_STATUS.Auth}
+              redirectTo={APP_ROUTE.Login}
+            >
               <FavoritesPage/>
             </PrivateRoute>
           }
