@@ -1,5 +1,5 @@
 import { SmallInput } from '../../atoms';
-import {FormEvent, useState} from 'react';
+import { FormEvent, useState } from 'react';
 import { loginAction } from '../../../store/slices/user/thunk.ts';
 import { useAppDispatch } from '../../../store/helpers.ts';
 
