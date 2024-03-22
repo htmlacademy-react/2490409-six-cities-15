@@ -11,10 +11,6 @@ function PrivateRoute({children, isReverse = false}: PrivateRouteProps) {
   let hasAccess = isReverse;
   const authStatus = useAuthStatus();
 
-  if (authStatus === AUTH_STATUS.NoAuth || authStatus === AUTH_STATUS.Unknown) {
-    hasAccess = isReverse;
-  }
-
   if (authStatus === AUTH_STATUS.Auth) {
     hasAccess = !isReverse;
   }
