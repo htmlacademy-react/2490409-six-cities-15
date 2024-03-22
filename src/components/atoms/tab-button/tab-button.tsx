@@ -15,12 +15,12 @@ function TabButton({tabName, isSelected, onClick = () => {}, link = '#'}: TabBut
     {'tabs__item--active': isSelected},
   );
 
-  const handleOnClick = () => {
+  const handleClick = () => {
     onClick(tabName);
   };
 
   return (
-    <li className="locations__item" onClick={handleOnClick}>
+    <li className="locations__item" onClick={handleClick}>
       <Link
         className={locationClassName}
         to={link}

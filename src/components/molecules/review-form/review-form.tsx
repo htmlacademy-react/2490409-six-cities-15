@@ -11,7 +11,7 @@ function ReviewForm() {
   const initialReviewState = {rating: 0, comment: ''};
   const [review, setReview] = useState(initialReviewState);
 
-  const handleOnChange: THandleOnChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
+  const handleChange: THandleOnChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
     const { name, value } = e.currentTarget;
 
     setReview({
@@ -43,7 +43,7 @@ function ReviewForm() {
         Your review
       </label>
       <div className="reviews__rating-form form__rating">
-        <RatingButton handleOnChange={handleOnChange} value={review.rating} />
+        <RatingButton handleChange={handleChange} value={review.rating} />
       </div>
       <textarea
         className="reviews__textarea form__textarea"
@@ -51,7 +51,7 @@ function ReviewForm() {
         name="comment"
         placeholder="Tell how was your stay, what you like and what can be improved"
         value={review.comment}
-        onChange={handleOnChange}
+        onChange={handleChange}
       />
       <div className="reviews__button-wrapper" >
         <p className="reviews__help">
