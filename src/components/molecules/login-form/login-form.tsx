@@ -5,7 +5,8 @@ import { useAppDispatch } from '../../../store/helpers.ts';
 
 function LoginForm() {
   const dispatch = useAppDispatch();
-  const [review, setReview] = useState({email: '', password: ''})
+  const [review, setReview] =
+    useState({email: '', password: ''});
 
   const handleSubmitForm = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
