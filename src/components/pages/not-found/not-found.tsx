@@ -2,6 +2,7 @@ import { ReactElement } from 'react';
 import { ContentOnTheRight } from '../../templates';
 import { TabButton } from '../../atoms';
 import { APP_ROUTE } from '../../../constants';
+import './not-found.css';
 
 type NotFoundPageProps = {
   type?: keyof typeof variant;
@@ -16,12 +17,12 @@ function NotFoundPage({type = 'page'}: NotFoundPageProps): ReactElement {
   return (
     <ContentOnTheRight
       leftSideContent={
-        <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center'}}>
-          <div style={{fontSize: 24, fontWeight: 500}}>
+        <div className="not-found__container">
+          <div className="not-found__error-number">
             404
           </div>
           <br/>
-          <div style={{fontSize: 18, maxWidth: 260, textAlign: 'center'}}>
+          <div className="not-found__error-text">
             {variant[type]}
           </div>
         </div>
