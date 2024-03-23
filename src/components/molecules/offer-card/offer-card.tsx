@@ -1,7 +1,7 @@
 import { PremiumLabel, BookmarkIcon, Rating, Price } from '../../atoms';
 import { Link } from 'react-router-dom';
 import { OfferData } from '../../../types';
-import { ReactElement } from 'react';
+import { ReactElement, useCallback} from 'react';
 import { APP_ROUTE } from '../../../constants';
 import { capitalize } from '../../../utils';
 import classNames from 'classnames';
@@ -15,8 +15,8 @@ type OfferCardProps = Omit<OfferData, 'city' | 'location'> & {
 };
 
 function OfferCard({
-  onMouseEnter = () => {},
-  onMouseLeave = () => {},
+  onMouseEnter,
+  onMouseLeave,
   ...props
 }: OfferCardProps): ReactElement {
   const offerLink = APP_ROUTE.Offer.replace(':id', props.id);
@@ -30,14 +30,26 @@ function OfferCard({
     {'favorites__card-info': props.placeType === 'favorites'},
   );
 
-  const handleMouseEnter = () => onMouseEnter(props.id);
+  const handleMouseEnter = useCallback(() => {
+    if (onMouseEnter) {
+      onMouseEnter(props.id);
+    }
+    // eslint-disable-next-line
+  }, []);
+
+  const handleMouseLeave = useCallback(() => {
+    if (onMouseLeave) {
+      onMouseLeave();
+    }
+    // eslint-disable-next-line
+  }, []);
 
   return (
     <Link to={offerLink}>
       <article
         className={`${props.placeType}__card place-card`}
-        onMouseEnter={handleMouseEnter}
-        onMouseOut={onMouseLeave}
+        onMouseOver={handleMouseEnter}
+        onMouseOut={handleMouseLeave}
       >
         {props.isPremium && <PremiumLabel/>}
         <div className={`${props.placeType}__image-wrapper place-card__image-wrapper`}>

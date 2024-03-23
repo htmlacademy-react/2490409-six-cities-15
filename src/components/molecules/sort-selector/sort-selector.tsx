@@ -16,7 +16,7 @@ function SortSelector({selectedSort, onSelect}: SortSelectorProps) {
   };
 
   return (
-    <form className="places__sorting" action="#" method="get">
+    <form className="places__sorting" action="#">
       <span className="places__sorting-caption">Sort by</span>
       &nbsp;
       <span className="places__sorting-type" tabIndex={0} onClick={toggle}>
