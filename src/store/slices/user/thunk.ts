@@ -18,14 +18,15 @@ const fetchUserByTokenAction = createAsyncThunk<AuthenticatedUserType, Token, As
 const loginAction = createAsyncThunk<AuthenticatedUserType, AuthenticationForm, AsyncActionsArgsType>(
   'auth/login',
   async ({login, password}) => {
+    const formData = new FormData();
+    formData.append('email', login);
+    formData.append('password', password);
     const response = await API.post<AuthenticatedUserType>(
       API_ROUTE.Post.Login,
-      {
-        data: {
-          email: login,
-          password,
-        },
-      });
+      {email: login, password},
+    );
+
+    saveToken(response.data.token);
 
     return response.data;
   },

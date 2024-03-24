@@ -13,6 +13,7 @@ function SmallInput(props: SmallInputProps): ReactElement {
     <div className="login__input-wrapper form__input-wrapper">
       <label className="visually-hidden">{props.label}</label>
       <input
+        id={props.name}
         className="login__input form__input"
         type={props.type}
         name={props.name}

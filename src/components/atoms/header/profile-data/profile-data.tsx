@@ -1,9 +1,9 @@
-import {ReactElement} from 'react';
-import {Link} from 'react-router-dom';
+import { ReactElement } from 'react';
+import { Link } from 'react-router-dom';
 import { AvatarImage, Counter, Email } from '..';
+import {APP_ROUTE} from '../../../../constants';
 
 type ProfileDataProps = {
-  link: string;
   email: string;
   favoritesCounter: number;
 };
@@ -13,7 +13,7 @@ function ProfileData(props: ProfileDataProps): ReactElement {
     <li className="header__nav-item user">
       <Link
         className="header__nav-link header__nav-link--profile"
-        to={props.link}
+        to={APP_ROUTE.Favorites}
       >
         <AvatarImage/>
         <Email email={props.email}/>

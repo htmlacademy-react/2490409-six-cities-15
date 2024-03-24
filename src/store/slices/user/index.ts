@@ -9,13 +9,13 @@ import { clearUser, setUser } from './extra-reducers.ts';
 
 type UserStateType = {
   user: Nullable<AuthenticatedUserType>;
-  authStatus: AuthStatusType;
+  authorizationStatus: AuthStatusType;
   error: string | null;
 };
 
 const initialState: UserStateType = {
   user: null,
-  authStatus: AUTH_STATUS.Unknown,
+  authorizationStatus: AUTH_STATUS.Unknown,
   error: null,
 };
 
@@ -25,7 +25,7 @@ const userSlice = createSlice({
   reducers: userReducer,
   selectors: {
     user: (state) => state.user,
-    authStatus: (state) => state.authStatus,
+    authStatus: (state) => state.authorizationStatus,
   },
   extraReducers: (builder) => {
     builder

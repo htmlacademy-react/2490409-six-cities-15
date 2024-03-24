@@ -3,34 +3,24 @@ import { ReactElement } from 'react';
 import { useAuthStatus } from '../../../hooks';
 import { APP_ROUTE, AUTH_STATUS } from '../../../constants';
 import { ProfileData, SignInButton, SignOutButton } from '../../atoms/header';
-
-// todo: remove later
-type ProfileDataProps = {
-  link: string;
-  email: string;
-  favoritesCounter: number;
-};
+import { useAppSelector } from '../../../store/helpers.ts';
+import { userSelectors } from '../../../store/slices/user';
 
 type HeaderProps = {
   isLogoActive?: boolean;
 };
 
 function Header({ isLogoActive }: HeaderProps) {
-  //todo: get info from Redux (?)
-  const profileData: ProfileDataProps = {
-    link: APP_ROUTE.Favorites,
-    email: 'Oliver.conner@gmail.com',
-    favoritesCounter: 3,
-  };
+  //todo: add real counter!!!
+  const profileData = useAppSelector(userSelectors.user);
 
   const navListData: ReactElement = useAuthStatus() === AUTH_STATUS.Auth ? (
     <>
       <ProfileData
-        link={profileData.link}
-        email={profileData.email}
-        favoritesCounter={profileData.favoritesCounter}
+        email={profileData?.email ?? ''}
+        favoritesCounter={3}
       />
-      <SignOutButton link={'#'} />
+      <SignOutButton />
     </>
   ) : (
     <SignInButton link={APP_ROUTE.Login} />
