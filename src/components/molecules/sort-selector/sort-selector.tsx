@@ -1,6 +1,6 @@
 import { SortSelectorItem } from '../../atoms';
 import { SORT_TYPES, SortTypesType } from '../../../constants';
-import { useState } from 'react';
+import { useBoolean } from '../../../hooks';
 
 type SortSelectorProps = {
   selectedSort: SortTypesType;
@@ -8,22 +8,18 @@ type SortSelectorProps = {
 };
 
 function SortSelector({selectedSort, onSelect}: SortSelectorProps) {
-  const [isOpened, setIsOpened] = useState(false);
-
-  const handleOpenState = () => {
-    setIsOpened((openState) => !openState);
-  };
+  const {isOn: isOpened, off, toggle} = useBoolean(false);
 
   const handleSort = (sort: SortTypesType) => {
     onSelect(sort);
-    setIsOpened(false);
+    off();
   };
 
   return (
     <form className="places__sorting" action="#" method="get">
       <span className="places__sorting-caption">Sort by</span>
       &nbsp;
-      <span className="places__sorting-type" tabIndex={0} onClick={handleOpenState}>
+      <span className="places__sorting-type" tabIndex={0} onClick={toggle}>
         { selectedSort }
         <svg className="places__sorting-arrow" width="7" height="4">
           <use xlinkHref="#icon-arrow-select"></use>

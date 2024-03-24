@@ -4,7 +4,7 @@ import {OfferCardStyleClassType, OfferData} from '../../../types';
 type OffersListProps = {
   offers: OfferData[];
   classNames: string;
-  handleHoverOnCard?: (id?: string) => void;
+  handleHoverOnCard?: (id: string) => void;
   handleCardLeave?: () => void;
   placeType: OfferCardStyleClassType;
   hasVerticalLayout: boolean;

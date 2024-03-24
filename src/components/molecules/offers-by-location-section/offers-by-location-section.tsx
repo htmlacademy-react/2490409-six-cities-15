@@ -1,7 +1,8 @@
 import { TabButton } from '../../atoms';
-import { APP_ROUTE, CitiesType } from '../../../constants';
+import { CitiesType } from '../../../constants';
 import { OffersList } from '..';
 import { OfferData } from '../../../types';
+import {createMainRouteWithCity} from '../../../utils';
 
 type OffersByLocationSectionProps = {
   offers: OfferData[];
@@ -12,7 +13,7 @@ function OffersByLocationSection({offers, city}: OffersByLocationSectionProps) {
   return (
     <li className="favorites__locations-items">
       <div className="favorites__locations locations locations--current">
-        <TabButton tabName={city} link={`${APP_ROUTE.Main}?city=${city}`} isSelected/>
+        <TabButton tabName={city} link={createMainRouteWithCity(city)} isSelected/>
       </div>
       <OffersList
         offers={offers}

@@ -1,4 +1,5 @@
 import { CitiesType } from '../constants';
+import { HostUserType } from '../types';
 
 type OfferData = {
   id: string;
@@ -31,12 +32,6 @@ type OfferDetailData = {
   maxAdults: number;
 };
 
-type HostUserType = {
-  isPro: boolean;
-  name: string;
-  avatarUrl: string;
-};
-
 type CommentData = {
   id: string;
   comment: string;
@@ -59,7 +54,6 @@ type LocationType = {
 export type {
   OfferData,
   OfferDetailData,
-  HostUserType,
   CommentData,
   CityType,
   LocationType,
