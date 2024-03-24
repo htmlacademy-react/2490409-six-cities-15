@@ -1,7 +1,7 @@
 import { OfferData } from '../../../types';
 import { CitiesType } from '../../../constants';
 import { Map, OffersListWithSort } from '../../molecules';
-import { offersActions, offerSelectors } from '../../../store/slices/offers';
+import { offersActions, offersSelectors } from '../../../store/slices/offers';
 import { useActionCreators, useAppSelector } from '../../../store/helpers.ts';
 import { useCallback } from 'react';
 
@@ -21,7 +21,7 @@ function OffersListWithMap({offersFromCurrentCity, currentCity}: OffersListWithM
     // eslint-disable-next-line
   }, []);
 
-  const activeOfferId = useAppSelector(offerSelectors.activeOfferId);
+  const activeOfferId = useAppSelector(offersSelectors.activeOfferId);
 
   return (
     <>

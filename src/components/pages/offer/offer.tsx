@@ -8,7 +8,7 @@ import {
   fetchNearbyOffersAction
 } from '../../../store/slices/offers/thunk.ts';
 import { useAppDispatch, useAppSelector } from '../../../store/helpers.ts';
-import { offerSelectors } from '../../../store/slices/offers';
+import { offersSelectors } from '../../../store/slices/offers';
 import { NotFoundPage } from '../index.ts';
 
 function OfferPage(): ReactElement {
@@ -22,10 +22,10 @@ function OfferPage(): ReactElement {
     // eslint-disable-next-line
   }, [offerId]);
 
-  const isLoading = useAppSelector(offerSelectors.isLoading);
-  const offer = useAppSelector(offerSelectors.detailOffer);
-  const nearbyOffers = useAppSelector(offerSelectors.nearbyOffers);
-  const reviews = useAppSelector(offerSelectors.detailOfferReviews);
+  const isLoading = useAppSelector(offersSelectors.isLoading);
+  const offer = useAppSelector(offersSelectors.detailOffer);
+  const nearbyOffers = useAppSelector(offersSelectors.nearbyOffers);
+  const reviews = useAppSelector(offersSelectors.detailOfferReviews);
 
   if (!isLoading && offer === null) {
     return <NotFoundPage type="offer" />;
