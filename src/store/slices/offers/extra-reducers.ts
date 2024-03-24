@@ -1,22 +1,24 @@
 import { OffersStateType } from './index.ts';
 import { PayloadAction } from '@reduxjs/toolkit';
 import { OfferData } from '../../../types';
+import { REQUEST_STATUS } from '../../../constants';
 
-const setOffers = (state: OffersStateType, action: PayloadAction<OfferData[]>) => {
+const setOffersFulfilled = (state: OffersStateType, action: PayloadAction<OfferData[]>) => {
   state.offers = action.payload;
-  state.isLoading = false;
+  state.requestStatus = REQUEST_STATUS.Success;
 };
 
-const clearOffers = (state: OffersStateType) => {
+const setOffersRejected = (state: OffersStateType) => {
   state.offers = [];
+  state.requestStatus = REQUEST_STATUS.Error;
 };
 
 const setOffersLoading = (state: OffersStateType) => {
-  state.isLoading = true;
+  state.requestStatus = REQUEST_STATUS.Loading;
 };
 
 export {
-  setOffers,
-  clearOffers,
+  setOffersFulfilled,
+  setOffersRejected,
   setOffersLoading,
 };
