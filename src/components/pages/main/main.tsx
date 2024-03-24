@@ -1,7 +1,8 @@
 import { ReactElement } from 'react';
 import { Header, OffersListWithMap } from '../../organisms';
 import { CityTabs, MainEmptyState } from '../../molecules';
-import { CITIES, CitiesType } from '../../../constants';
+import { CITIES } from '../../../constants';
+import { CitiesType } from '../../../types';
 import { redirect, useParams } from 'react-router-dom';
 import { createMainRouteWithCity, isCity } from '../../../utils';
 import classNames from 'classnames';

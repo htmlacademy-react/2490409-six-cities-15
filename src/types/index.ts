@@ -18,6 +18,15 @@ import {
   AuthStatusType,
   AuthenticationForm,
 } from './auth.ts';
+import {
+  RequestStatusType,
+} from './request-status.ts';
+import {
+  CitiesType,
+} from './cities.ts';
+import {
+  SortTypesType,
+} from './sort.ts';
 
 export type {
   IconsAndLabelsStyleClassType,
@@ -33,4 +42,7 @@ export type {
   AuthenticatedUserType,
   AuthStatusType,
   AuthenticationForm,
+  RequestStatusType,
+  CitiesType,
+  SortTypesType,
 };

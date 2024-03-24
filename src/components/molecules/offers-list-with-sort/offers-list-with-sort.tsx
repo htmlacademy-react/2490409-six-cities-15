@@ -1,6 +1,7 @@
 import { OffersList, SortSelector } from '..';
 import { OfferData } from '../../../types';
-import { CitiesType, SORT_TYPES, SortTypesType } from '../../../constants';
+import { SORT_TYPES } from '../../../constants';
+import { CitiesType, SortTypesType } from '../../../types';
 import { useCallback, useState } from 'react';
 import { sortOffers } from '../../../utils';
 
