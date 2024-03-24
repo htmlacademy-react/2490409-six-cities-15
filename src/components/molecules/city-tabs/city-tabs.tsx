@@ -1,5 +1,6 @@
 import { ReactElement } from 'react';
-import { CITIES, CitiesType } from '../../../constants';
+import { CITIES } from '../../../constants';
+import { CitiesType } from '../../../types';
 import { TabButton } from '../../atoms';
 import { createMainRouteWithCity, isCity } from '../../../utils';
 

@@ -1,5 +1,6 @@
 import { SortSelectorItem } from '../../atoms';
-import { SORT_TYPES, SortTypesType } from '../../../constants';
+import { SORT_TYPES } from '../../../constants';
+import { SortTypesType } from '../../../types';
 import { useBooleanHelpers } from '../../../hooks';
 
 type SortSelectorProps = {
