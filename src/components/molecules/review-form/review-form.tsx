@@ -16,7 +16,7 @@ function ReviewForm() {
 
     setReview({
       ...review,
-      [name]: isNaN(Number(value)) ? value : Number(value),
+      [name]: name === 'rating' ? Number(value) : value,
     });
   };
 
