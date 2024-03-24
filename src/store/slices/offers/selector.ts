@@ -3,7 +3,7 @@ import { OffersStateType } from './index.ts';
 const offersSelectors = {
   offers: (state: OffersStateType) => state.offers,
   favoriteOffers: (state: OffersStateType) => state.offers.filter((offer) => offer.isFavorite),
-  isLoading: (state: OffersStateType) => state.isLoading,
+  setRequestStatus: (state: OffersStateType) => state.requestStatus,
   activeOfferId: (state: OffersStateType) => state.activeOfferId,
 };
 

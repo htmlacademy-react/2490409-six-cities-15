@@ -10,6 +10,7 @@ import {
 import { useAppDispatch, useAppSelector } from '../../../store/helpers.ts';
 import { NotFoundPage } from '../index.ts';
 import { detailOfferSelectors } from '../../../store/slices/detail-offer';
+import { REQUEST_STATUS } from '../../../constants';
 
 function OfferPage(): ReactElement {
   const { id: offerId = '' } = useParams();
@@ -22,12 +23,12 @@ function OfferPage(): ReactElement {
     // eslint-disable-next-line
   }, [offerId]);
 
-  const isLoading = useAppSelector(detailOfferSelectors.isLoading);
+  const requestStatus = useAppSelector(detailOfferSelectors.getRequestStatus);
   const offer = useAppSelector(detailOfferSelectors.detailOffer);
   const nearbyOffers = useAppSelector(detailOfferSelectors.nearbyOffers);
   const reviews = useAppSelector(detailOfferSelectors.detailOfferReviews);
 
-  if (!isLoading && offer === null) {
+  if (!requestStatus && offer === null) {
     return <NotFoundPage type="offer" />;
   }
 
@@ -43,7 +44,7 @@ function OfferPage(): ReactElement {
       <Header/>
       <main className="page__main page__main--offer">
         {
-          isLoading
+          requestStatus === REQUEST_STATUS.Loading
             ? <LoaderContainer/>
             : (
               offer &&
