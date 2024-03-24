@@ -3,10 +3,10 @@ import { Header, Footer } from '../../organisms';
 import { FavoritesEmptyState, OffersListWithCitiesSections } from '../../molecules';
 import classNames from 'classnames';
 import { useAppSelector } from '../../../store/helpers.ts';
-import { offerSelectors } from '../../../store/slices/offers';
+import { offersSelectors } from '../../../store/slices/offers';
 
 function FavoritesPage(): ReactElement {
-  const favoriteOffers = useAppSelector(offerSelectors.offers).filter((item) => item.isFavorite);
+  const favoriteOffers = useAppSelector(offersSelectors.favoriteOffers);
 
   const isEmpty = favoriteOffers.length === 0;
   const divClassName = classNames(
