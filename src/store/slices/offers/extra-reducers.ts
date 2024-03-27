@@ -27,9 +27,20 @@ const toggleFavoriteStatus = (
   }
 };
 
+const updateFavorites = (
+  state: OffersStateType, action: PayloadAction<OfferData[]>
+) => {
+  const favoriteOffersIds = action.payload.map((offer) => offer.id);
+
+  for (const [i, offer] of state.offers.entries()) {
+    state.offers[i].isFavorite = favoriteOffersIds.includes(offer.id);
+  }
+};
+
 export {
   setOffersFulfilled,
   setOffersRejected,
   setOffersLoading,
   toggleFavoriteStatus,
+  updateFavorites,
 };
