@@ -45,15 +45,15 @@ function OfferCard({
   }, []);
 
   return (
-    <Link to={offerLink}>
-      <article
-        className={`${props.placeType}__card place-card`}
-        onMouseOver={handleMouseEnter}
-        onMouseOut={handleMouseLeave}
-      >
-        {props.isPremium && <PremiumLabel/>}
-        <div className={`${props.placeType}__image-wrapper place-card__image-wrapper`}>
+    <article
+      className={`${props.placeType}__card place-card`}
+      onMouseOver={handleMouseEnter}
+      onMouseOut={handleMouseLeave}
+    >
+      {props.isPremium && <PremiumLabel/>}
+      <div className={`${props.placeType}__image-wrapper place-card__image-wrapper`}>
 
+        <Link to={offerLink}>
           <img
             className="place-card__image"
             src={props.previewImage}
@@ -61,20 +61,22 @@ function OfferCard({
             height={previewImageSize.height}
             alt="Place image"
           />
+        </Link>
+      </div>
+      <div className={infoClassName}>
+        <div className="place-card__price-wrapper">
+          <Price price={props.price} />
+          <BookmarkIcon id={props.id} isActive={props.isFavorite} size={{ width: 18, height: 19 }}/>
         </div>
-        <div className={infoClassName}>
-          <div className="place-card__price-wrapper">
-            <Price price={props.price} />
-            <BookmarkIcon id={props.id} isActive={props.isFavorite} size={{ width: 18, height: 19 }}/>
-          </div>
-          <Rating rating={props.rating} />
-          <h2 className="place-card__name">
+        <Rating rating={props.rating} />
+        <h2 className="place-card__name">
+          <Link to={offerLink}>
             {props.title}
-          </h2>
-          <p className="place-card__type">{capitalize(props.type)}</p>
-        </div>
-      </article>
-    </Link>
+          </Link>
+        </h2>
+        <p className="place-card__type">{capitalize(props.type)}</p>
+      </div>
+    </article>
   );
 }
 
