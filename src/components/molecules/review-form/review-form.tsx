@@ -4,14 +4,14 @@ import { useAppDispatch, useAppSelector } from '../../../store/helpers.ts';
 import { addCommentAction } from '../../../store/slices/detail-offer/thunk.ts';
 import { detailOfferSelectors } from '../../../store/slices/detail-offer';
 
-type THandleOnChange = ChangeEventHandler<HTMLTextAreaElement | HTMLInputElement>;
+type HandleOnChangeType = ChangeEventHandler<HTMLTextAreaElement | HTMLInputElement>;
 
 function ReviewForm() {
   const dispatch = useAppDispatch();
   const initialReviewState = {rating: 0, comment: ''};
   const [review, setReview] = useState(initialReviewState);
 
-  const handleChange: THandleOnChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
+  const handleChange: HandleOnChangeType = (e: ChangeEvent<HTMLTextAreaElement>) => {
     const { name, value } = e.currentTarget;
 
     setReview({
@@ -52,6 +52,8 @@ function ReviewForm() {
         placeholder="Tell how was your stay, what you like and what can be improved"
         value={review.comment}
         onChange={handleChange}
+        maxLength={300}
+        minLength={50}
       />
       <div className="reviews__button-wrapper" >
         <p className="reviews__help">
