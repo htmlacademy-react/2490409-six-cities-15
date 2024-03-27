@@ -1,9 +1,8 @@
-import { createAsyncThunk } from '@reduxjs/toolkit';
 import { CommentData, OfferData, OfferDetailData } from '../../../types';
-import { AsyncActionsArgsType, setOfferIdInRoute } from '../../helpers.ts';
+import { setOfferIdInRoute, createAppAsyncThunk } from '../../helpers.ts';
 import { API_ROUTE } from '../../../constants';
 
-const fetchDetailOfferAction = createAsyncThunk<OfferDetailData, OfferData['id'], AsyncActionsArgsType>(
+const fetchDetailOfferAction = createAppAsyncThunk<OfferDetailData, OfferData['id']>(
   'fetch/detailOffer',
   async (id, { extra: api}) => {
     const response = await api.get<OfferDetailData>(
@@ -14,7 +13,7 @@ const fetchDetailOfferAction = createAsyncThunk<OfferDetailData, OfferData['id']
   },
 );
 
-const fetchNearbyOffersAction = createAsyncThunk<OfferData[], OfferData['id'], AsyncActionsArgsType>(
+const fetchNearbyOffersAction = createAppAsyncThunk<OfferData[], OfferData['id']>(
   'fetch/nearByOffers',
   async (id, { extra: api}) => {
     const response = await api.get<OfferData[]>(
@@ -25,7 +24,7 @@ const fetchNearbyOffersAction = createAsyncThunk<OfferData[], OfferData['id'], A
   },
 );
 
-const fetchCommentsAction = createAsyncThunk<CommentData[], OfferData['id'], AsyncActionsArgsType>(
+const fetchCommentsAction = createAppAsyncThunk<CommentData[], OfferData['id']>(
   'fetch/fetchComments',
   async (id, { extra: api}) => {
     const response = await api.get<CommentData[]>(
@@ -36,10 +35,9 @@ const fetchCommentsAction = createAsyncThunk<CommentData[], OfferData['id'], Asy
   },
 );
 
-const addCommentAction = createAsyncThunk<
+const addCommentAction = createAppAsyncThunk<
   CommentData,
-  Pick<CommentData, 'comment' | 'rating'> & { id: OfferDetailData['id'] },
-  AsyncActionsArgsType
+  Pick<CommentData, 'comment' | 'rating'> & { id: OfferDetailData['id'] }
 >(
   'send/addComment',
   async ({id: offerId, comment, rating}, { extra: api}) => {
