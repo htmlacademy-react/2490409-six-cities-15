@@ -1,9 +1,9 @@
 import { ReactElement } from 'react';
 import { Header, OffersListWithMap } from '../../organisms';
 import { CityTabs, MainEmptyState } from '../../molecules';
-import {CITIES, REQUEST_STATUS} from '../../../constants';
+import {APP_ROUTE, CITIES, REQUEST_STATUS} from '../../../constants';
 import { CitiesType } from '../../../types';
-import { redirect, useParams } from 'react-router-dom';
+import {redirect, useNavigate, useParams} from 'react-router-dom';
 import { createMainRouteWithCity, isCity } from '../../../utils';
 import classNames from 'classnames';
 import { useAppSelector } from '../../../store/helpers.ts';
@@ -11,14 +11,22 @@ import { capitalize } from '../../../utils';
 import { offersSelectors } from '../../../store/slices/offers';
 import { LoaderContainer } from '../../molecules';
 
-function MainPage(): ReactElement {
+function MainPage(): ReactElement | null {
   const filterCityName = (city: string) => isCity(city) ? city : null;
+  const navigate = useNavigate();
 
   const { city: cityFromPath = CITIES.Paris } = useParams();
-  const currentCity = filterCityName(capitalize(cityFromPath.toLowerCase())) ?? CITIES.Paris;
 
+  const currentCity = filterCityName(capitalize(cityFromPath.toLowerCase()));
   const offersFromCurrentCity = useAppSelector(offersSelectors.offers)
     .filter((item) => item.city.name === currentCity);
+  const requestStatus = useAppSelector(offersSelectors.setRequestStatus);
+
+  if (!currentCity) {
+    navigate(APP_ROUTE.NotFound);
+
+    return null;
+  }
 
   const isEmpty = offersFromCurrentCity.length === 0;
   const mainClassName = classNames(
@@ -35,8 +43,6 @@ function MainPage(): ReactElement {
   const handleCitySelect = (cityName: CitiesType) => {
     redirect(createMainRouteWithCity(cityName));
   };
-
-  const requestStatus = useAppSelector(offersSelectors.setRequestStatus);
 
   return (
     <div className="page page--gray page--main">

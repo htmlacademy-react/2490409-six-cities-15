@@ -4,6 +4,7 @@ const APP_ROUTE = {
   Login: '/login',
   Favorites: '/favorites',
   Offer: '/offer/:id',
+  NotFound: '/not-found',
 } as const;
 
 const API_ROUTE = {
