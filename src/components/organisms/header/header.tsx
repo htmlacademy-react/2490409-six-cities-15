@@ -5,21 +5,22 @@ import { APP_ROUTE, AUTH_STATUS } from '../../../constants';
 import { ProfileData, SignInButton, SignOutButton } from '../../atoms/header';
 import { useAppSelector } from '../../../store/helpers.ts';
 import { userSelectors } from '../../../store/slices/user';
+import { offersSelectors } from '../../../store/slices/offers';
 
 type HeaderProps = {
   isLogoActive?: boolean;
 };
 
 function Header({ isLogoActive }: HeaderProps) {
-  //todo: add real counter!!!
   const profileData = useAppSelector(userSelectors.user);
+  const favoritesCounter = useAppSelector(offersSelectors.favoriteOffers).length;
 
   const navListData: ReactElement = useAuthStatus() === AUTH_STATUS.Auth ? (
     <>
       <ProfileData
         avatarUrl={profileData?.avatarUrl}
         email={profileData?.email ?? ''}
-        favoritesCounter={3}
+        favoritesCounter={favoritesCounter}
       />
       <SignOutButton />
     </>
