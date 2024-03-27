@@ -65,7 +65,7 @@ function OfferCard({
         <div className={infoClassName}>
           <div className="place-card__price-wrapper">
             <Price price={props.price} />
-            <BookmarkIcon isActive={props.isFavorite} size={{ width: 18, height: 19 }}/>
+            <BookmarkIcon id={props.id} isActive={props.isFavorite} size={{ width: 18, height: 19 }}/>
           </div>
           <Rating rating={props.rating} />
           <h2 className="place-card__name">
