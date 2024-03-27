@@ -1,12 +1,13 @@
 import { createSlice } from '@reduxjs/toolkit';
-import {OfferData, RequestStatusType} from '../../../types';
-import { fetchOffersAction } from './thunk.ts';
+import { OfferData, RequestStatusType } from '../../../types';
+import { changeFavoriteStatusAction, fetchOffersAction } from './thunk.ts';
 import { offersReducer } from './reducers.ts';
 import { sliceName } from './meta.ts';
 import {
   setOffersRejected,
   setOffersLoading,
   setOffersFulfilled,
+  toggleFavoriteStatus,
 } from './extra-reducers.ts';
 import { offersSelectors as selectors } from './selector.ts';
 import { REQUEST_STATUS } from '../../../constants';
@@ -34,7 +35,9 @@ const offersSlice = createSlice({
     builder
       .addCase(fetchOffersAction.pending, setOffersLoading)
       .addCase(fetchOffersAction.fulfilled, setOffersFulfilled)
-      .addCase(fetchOffersAction.rejected, setOffersRejected);
+      .addCase(fetchOffersAction.rejected, setOffersRejected)
+      .addCase(changeFavoriteStatusAction.pending, toggleFavoriteStatus)
+      .addCase(changeFavoriteStatusAction.rejected, toggleFavoriteStatus);
   },
 });
 
