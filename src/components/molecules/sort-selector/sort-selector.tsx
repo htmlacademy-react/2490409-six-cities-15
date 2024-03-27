@@ -1,6 +1,7 @@
 import { SortSelectorItem } from '../../atoms';
-import { SORT_TYPES, SortTypesType } from '../../../constants';
-import { useBoolean } from '../../../hooks';
+import { SORT_TYPES } from '../../../constants';
+import { SortTypesType } from '../../../types';
+import { useBooleanHelpers } from '../../../hooks';
 
 type SortSelectorProps = {
   selectedSort: SortTypesType;
@@ -8,7 +9,7 @@ type SortSelectorProps = {
 };
 
 function SortSelector({selectedSort, onSelect}: SortSelectorProps) {
-  const {isOn: isOpened, off, toggle} = useBoolean(false);
+  const {isOn: isOpened, off, toggle} = useBooleanHelpers(false);
 
   const handleSort = (sort: SortTypesType) => {
     onSelect(sort);
@@ -16,7 +17,7 @@ function SortSelector({selectedSort, onSelect}: SortSelectorProps) {
   };
 
   return (
-    <form className="places__sorting" action="#" method="get">
+    <form className="places__sorting" action="#">
       <span className="places__sorting-caption">Sort by</span>
       &nbsp;
       <span className="places__sorting-type" tabIndex={0} onClick={toggle}>

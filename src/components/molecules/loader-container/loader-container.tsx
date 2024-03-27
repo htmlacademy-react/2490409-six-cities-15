@@ -1,8 +1,9 @@
 import Loader from '../../atoms/loader/loader.tsx';
+import './loader-container.css';
 
 function LoaderContainer() {
   return (
-    <div style={{display: 'flex', alignItems: 'center', justifyContent: 'center', width: '100%', height: '100%'}}>
+    <div className="loader-container">
       <Loader />
     </div>
   );

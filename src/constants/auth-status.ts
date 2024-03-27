@@ -4,4 +4,6 @@ const AUTH_STATUS = {
   Unknown: 'Unknown',
 } as const;
 
-export default AUTH_STATUS;
+export {
+  AUTH_STATUS,
+};

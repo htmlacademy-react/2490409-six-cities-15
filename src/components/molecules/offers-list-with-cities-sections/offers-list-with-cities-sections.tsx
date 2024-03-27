@@ -1,4 +1,4 @@
-import { CitiesType } from '../../../constants';
+import { CitiesType } from '../../../types';
 import { OfferData } from '../../../types';
 import { OffersByLocationSection } from '../../molecules';
 

@@ -1,5 +1,3 @@
-type CitiesType = typeof CITIES[keyof typeof CITIES];
-
 const CITIES = {
   Paris: 'Paris',
   Cologne: 'Cologne',
@@ -9,5 +7,6 @@ const CITIES = {
   Dusseldorf: 'Dusseldorf',
 } as const;
 
-export default CITIES;
-export type { CitiesType };
+export {
+  CITIES,
+};

@@ -1,48 +1,59 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { OfferData } from '../../../types';
-import { fetchOffers } from './thunk.ts';
+import { OfferData, RequestStatusType } from '../../../types';
+import {
+  changeFavoriteStatusAction,
+  fetchFavoritesOffersAction,
+  fetchOffersAction,
+} from './thunk.ts';
 import { offersReducer } from './reducers.ts';
 import { sliceName } from './meta.ts';
-import { clearOffers, setOffersLoading } from './extra-reducers.ts';
+import {
+  setOffersRejected,
+  setOffersLoading,
+  setOffersFulfilled,
+  toggleFavoriteStatus,
+  updateFavorites,
+} from './extra-reducers.ts';
+import { offersSelectors as selectors } from './selector.ts';
+import { REQUEST_STATUS } from '../../../constants';
 
 type OffersStateType = {
   offers: OfferData[];
-  isLoading: boolean;
+  requestStatus: RequestStatusType;
   activeOfferId: string | null;
-  // error: string | null;
+  error: string | null;
 };
 
 const initialState: OffersStateType = {
   offers: [],
-  isLoading: true,
+  requestStatus: REQUEST_STATUS.Idle,
   activeOfferId: null,
-  // error: null,
+  error: null,
 };
 
 const offersSlice = createSlice({
   initialState,
   name: sliceName,
   reducers: offersReducer,
-  selectors: {
-    offers: (state) => state.offers,
-    isLoading: (state) => state.isLoading,
-    activeOfferId: (state) => state.activeOfferId,
-  },
+  selectors: selectors,
   extraReducers: (builder) => {
     builder
-      .addCase(fetchOffers.pending, setOffersLoading)
-      .addCase(fetchOffers.fulfilled, offersReducer.setOffers)
-      .addCase(fetchOffers.rejected, clearOffers);
+      .addCase(fetchOffersAction.pending, setOffersLoading)
+      .addCase(fetchOffersAction.fulfilled, setOffersFulfilled)
+      .addCase(fetchOffersAction.rejected, setOffersRejected)
+      .addCase(changeFavoriteStatusAction.pending, toggleFavoriteStatus)
+      .addCase(changeFavoriteStatusAction.rejected, toggleFavoriteStatus)
+      .addCase(fetchFavoritesOffersAction.fulfilled, updateFavorites);
   },
 });
 
 const { actions: offersActions } = offersSlice;
-const { selectors: offerSelectors } = offersSlice;
+const { selectors: offersSelectors } = offersSlice;
 
 export {
   offersSlice,
   offersActions,
-  offerSelectors,
+  offersSelectors,
 };
 
 export type {

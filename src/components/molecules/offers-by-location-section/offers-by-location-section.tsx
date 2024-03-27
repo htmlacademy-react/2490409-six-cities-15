@@ -1,8 +1,8 @@
 import { TabButton } from '../../atoms';
-import { CitiesType } from '../../../constants';
+import { CitiesType } from '../../../types';
 import { OffersList } from '..';
 import { OfferData } from '../../../types';
-import {createMainRouteWithCity} from '../../../utils';
+import { createMainRouteWithCity } from '../../../utils';
 
 type OffersByLocationSectionProps = {
   offers: OfferData[];
@@ -18,8 +18,6 @@ function OffersByLocationSection({offers, city}: OffersByLocationSectionProps) {
       <OffersList
         offers={offers}
         classNames={'favorites__places'}
-        handleHoverOnCard={() => {}}
-        handleCardLeave={() => {}}
         hasVerticalLayout={false}
         placeType={'favorites'}
       />

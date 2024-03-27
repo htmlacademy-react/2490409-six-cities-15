@@ -1,8 +1,22 @@
 import {ReactElement} from 'react';
+import classNames from 'classnames';
 
-function AvatarImage(): ReactElement {
+type AvatarImageProps = {
+  avatarUrl?: string;
+}
+
+function AvatarImage({avatarUrl}: AvatarImageProps): ReactElement {
+  const styleClasses = classNames(
+    'header__avatar-wrapper',
+    {'user__avatar': avatarUrl},
+    {'user__avatar-wrapper': !avatarUrl},
+  );
+
   return (
-    <div className="header__avatar-wrapper user__avatar-wrapper"></div>
+    <>
+      {avatarUrl && <img src={avatarUrl} alt="User avatar" className={styleClasses}/>}
+      {!avatarUrl && <div className={styleClasses} />}
+    </>
   );
 }
 

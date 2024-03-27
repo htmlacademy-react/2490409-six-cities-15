@@ -1,10 +1,12 @@
-import {ReactElement} from 'react';
+import {FormEvent, ReactElement} from 'react';
 
 type SmallInputProps = {
   label: string;
   type: string;
   name: string;
   placeholder: string;
+  handleChange: (e: FormEvent<HTMLInputElement>) => void;
+  autoComplete?: string;
   isRequired: boolean;
 };
 
@@ -19,6 +21,8 @@ function SmallInput(props: SmallInputProps): ReactElement {
         name={props.name}
         placeholder={props.placeholder}
         required={props.isRequired}
+        autoComplete={props.autoComplete}
+        onChange={props.handleChange}
       />
     </div>
   );

@@ -4,11 +4,13 @@ const APP_ROUTE = {
   Login: '/login',
   Favorites: '/favorites',
   Offer: '/offer/:id',
+  NotFound: '/not-found',
 } as const;
 
 const API_ROUTE = {
   Get : {
     OffersList: '/offers',
+    DetailOffer: '/offers/:offerId',
     NearBy: '/offers/:offerId/nearby',
     Favorites: '/favorite',
     Comments: '/comments/:offerId',
