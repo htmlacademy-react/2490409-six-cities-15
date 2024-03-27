@@ -29,7 +29,7 @@ function DetailOfferContent(
               <h1 className="offer__name">{offer.title}</h1>
               <BookmarkIcon id={offer.id} size={{width: 31, height: 33}} isActive={offer.isFavorite} type={elementsType}/>
             </div>
-            <Rating rating={offer.rating} type={elementsType}/>
+            <Rating rating={offer.rating} type={elementsType} showValue/>
             <OfferFeatures maxAdultsCount={offer.maxAdults} bedroomsCount={offer.bedrooms} housingType={offer.type}/>
             <Price price={offer.price} type={'offer'}/>
             <GoodsList goods={offer.goods}/>
@@ -44,7 +44,7 @@ function DetailOfferContent(
             <Map
               classType="offer"
               style={{maxWidth: '60%'}}
-              locations={[...nearbyLocations, currentLocation]}
+              locations={[...nearbyLocations.slice(0, 3), currentLocation]}
               city={offer.city}
               selectedCardId={offer.id}
             />
