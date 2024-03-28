@@ -1,9 +1,13 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { OfferData, RequestStatusType } from '../../../types';
+import {CommentData, OfferData, OfferDetailData, RequestStatusType} from '../../../types';
 import {
   changeFavoriteStatusAction,
   fetchFavoritesOffersAction,
   fetchOffersAction,
+  addCommentAction,
+  fetchCommentsAction,
+  fetchDetailOfferAction,
+  fetchNearbyOffersAction,
 } from './thunk.ts';
 import { offersReducer } from './reducers.ts';
 import { sliceName } from './meta.ts';
@@ -13,12 +17,23 @@ import {
   setOffersFulfilled,
   toggleFavoriteStatus,
   updateFavorites,
+  addReview,
+  setDataLoading,
+  setDetailOfferFulfilled,
+  setDetailOfferRejected,
+  setNearbyOffersFulfilled,
+  setNearbyOffersRejected,
+  setReviewsFulfilled,
+  setReviewsRejected,
 } from './extra-reducers.ts';
 import { offersSelectors as selectors } from './selectors.ts';
 import { REQUEST_STATUS } from '../../../constants';
 
 type OffersStateType = {
   offers: OfferData[];
+  currentDetailOffer: OfferDetailData | null;
+  currentDetailOfferReviews: CommentData[] | null;
+  currentDetailOfferNearbyOffers: OfferData[] | null;
   requestStatus: RequestStatusType;
   activeOfferId: string | null;
   error: string | null;
@@ -26,6 +41,9 @@ type OffersStateType = {
 
 const initialState: OffersStateType = {
   offers: [],
+  currentDetailOffer: null,
+  currentDetailOfferReviews: null,
+  currentDetailOfferNearbyOffers: null,
   requestStatus: REQUEST_STATUS.Idle,
   activeOfferId: null,
   error: null,
@@ -43,7 +61,16 @@ const offersSlice = createSlice({
       .addCase(fetchOffersAction.rejected, setOffersRejected)
       .addCase(changeFavoriteStatusAction.pending, toggleFavoriteStatus)
       .addCase(changeFavoriteStatusAction.rejected, toggleFavoriteStatus)
-      .addCase(fetchFavoritesOffersAction.fulfilled, updateFavorites);
+      .addCase(fetchFavoritesOffersAction.fulfilled, updateFavorites)
+      .addCase(fetchDetailOfferAction.pending, setDataLoading)
+      .addCase(fetchDetailOfferAction.fulfilled, setDetailOfferFulfilled)
+      .addCase(fetchDetailOfferAction.rejected, setDetailOfferRejected)
+      .addCase(fetchNearbyOffersAction.pending, setDataLoading)
+      .addCase(fetchNearbyOffersAction.fulfilled, setNearbyOffersFulfilled)
+      .addCase(fetchNearbyOffersAction.rejected, setNearbyOffersRejected)
+      .addCase(fetchCommentsAction.fulfilled, setReviewsFulfilled)
+      .addCase(fetchCommentsAction.rejected, setReviewsRejected)
+      .addCase(addCommentAction.fulfilled, addReview);
   },
 });
 

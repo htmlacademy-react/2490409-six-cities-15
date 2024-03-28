@@ -6,10 +6,10 @@ import {
   fetchCommentsAction,
   fetchDetailOfferAction,
   fetchNearbyOffersAction
-} from '../../../store/slices/detail-offer/thunk.ts';
+} from '../../../store/slices/offers/thunk.ts';
 import { useAppDispatch, useAppSelector } from '../../../store/helpers.ts';
 import { NotFoundPage } from '../index.ts';
-import { detailOfferSelectors } from '../../../store/slices/detail-offer';
+import { offersSelectors } from '../../../store/slices/offers';
 import { REQUEST_STATUS } from '../../../constants';
 
 function OfferPage(): ReactElement {
@@ -20,13 +20,14 @@ function OfferPage(): ReactElement {
     dispatch(fetchDetailOfferAction(offerId));
     dispatch(fetchNearbyOffersAction(offerId));
     dispatch(fetchCommentsAction(offerId));
-    // eslint-disable-next-line
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [offerId]);
 
-  const requestStatus = useAppSelector(detailOfferSelectors.getRequestStatus);
-  const offer = useAppSelector(detailOfferSelectors.detailOffer);
-  const nearbyOffers = useAppSelector(detailOfferSelectors.nearbyOffers);
-  const reviews = useAppSelector(detailOfferSelectors.detailOfferReviews);
+  const requestStatus = useAppSelector(offersSelectors.getRequestStatus);
+  const offer = useAppSelector(offersSelectors.detailOffer);
+  const nearbyOffers = useAppSelector(offersSelectors.nearbyOffers);
+  const reviews = useAppSelector(offersSelectors.detailOfferReviews);
 
   if (!requestStatus && offer === null) {
     return <NotFoundPage type="offer" />;
