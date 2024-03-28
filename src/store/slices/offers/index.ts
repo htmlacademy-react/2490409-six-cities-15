@@ -14,7 +14,7 @@ import {
   toggleFavoriteStatus,
   updateFavorites,
 } from './extra-reducers.ts';
-import { offersSelectors as selectors } from './selector.ts';
+import { offersSelectors as selectors } from './selectors.ts';
 import { REQUEST_STATUS } from '../../../constants';
 
 type OffersStateType = {
