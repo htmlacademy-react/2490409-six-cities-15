@@ -1,4 +1,4 @@
-import { ReactElement, useEffect } from 'react';
+import { ReactElement } from 'react';
 import { Header, Footer } from '../../organisms';
 import { FavoritesEmptyState, OffersListWithCitiesSections } from '../../molecules';
 import classNames from 'classnames';
@@ -8,10 +8,7 @@ import { fetchFavoritesOffersAction } from '../../../store/slices/offers/thunk.t
 
 function FavoritesPage(): ReactElement {
   const dispatch = useAppDispatch();
-  useEffect(() => {
-    dispatch(fetchFavoritesOffersAction());
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  dispatch(fetchFavoritesOffersAction());
 
   const favoriteOffers = useAppSelector(offersSelectors.favoriteOffers);
 
