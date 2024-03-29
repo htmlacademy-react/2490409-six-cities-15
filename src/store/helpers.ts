@@ -18,8 +18,6 @@ const useActionCreators = <Actions extends ActionCreatorsMapObject>(actions: Act
   return useMemo(() => bindActionCreators(actions, dispatch), []);
 };
 
-const setOfferIdInRoute = (route: string, id: string) => route.replace(':offerId', id);
-
 type AsyncActionsArgsType = {
   dispatch: AppDispatch;
   state: StoreStateType;
@@ -30,7 +28,6 @@ export {
   useAppDispatch,
   useAppSelector,
   useActionCreators,
-  setOfferIdInRoute,
 };
 
 export type {
