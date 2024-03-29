@@ -1,6 +1,6 @@
 import { SortSelectorItem } from '../../atoms';
 import { SORT_TYPES, SortTypesType } from '../../../constants';
-import { useBooleanHelpers } from '../../../hooks';
+import { useBoolean } from '../../../hooks';
 
 type SortSelectorProps = {
   selectedSort: SortTypesType;
@@ -8,7 +8,7 @@ type SortSelectorProps = {
 };
 
 function SortSelector({selectedSort, onSelect}: SortSelectorProps) {
-  const {isOn: isOpened, off, toggle} = useBooleanHelpers(false);
+  const {isOn: isOpened, off, toggle} = useBoolean(false);
 
   const handleSort = (sort: SortTypesType) => {
     onSelect(sort);
