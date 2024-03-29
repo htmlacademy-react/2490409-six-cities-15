@@ -1,8 +1,7 @@
 import { Gallery, GoodsList, Host, Map, OfferFeatures, OffersList, ReviewsSection} from '../../molecules';
 import { BookmarkIcon, PremiumLabel, Price, Rating} from '../../atoms';
-import { CommentData, IconsAndLabelsStyleClassType, LocationType, OfferData, OfferDetailData } from '../../../types';
+import {CommentData, IconsAndLabelsStyleClassType, LocationType, OfferData, OfferDetailData} from '../../../types';
 import { ReactElement} from 'react';
-import './detail-offer-content.css';
 
 type LocationWithIdType = LocationType & {id: string};
 
@@ -40,7 +39,7 @@ function DetailOfferContent(
         {
           nearbyLocations &&
           nearbyOffers &&
-          <div className="detail-offer__map-container">
+          <div style={{width: '100%', display: 'flex', justifyContent: 'center'}}>
             <Map
               classType="offer"
               style={{maxWidth: '60%'}}

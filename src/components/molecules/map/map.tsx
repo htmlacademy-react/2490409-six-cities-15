@@ -17,6 +17,7 @@ function Map({locations, city, selectedCardId = null, classType, style}: MapProp
   const mapRef = useRef(null);
   const map = useMap(mapRef, location);
 
+
   useCityLocation(map, location);
 
   useMarkers(map, locations, selectedCardId);
