@@ -27,7 +27,7 @@ function DetailOfferContent(
             <PremiumLabel type={elementsType}/>
             <div className="offer__name-wrapper">
               <h1 className="offer__name">{offer.title}</h1>
-              <BookmarkIcon id={offer.id} size={{width: 31, height: 33}} isActive={offer.isFavorite}/>
+              <BookmarkIcon size={{width: 31, height: 33}} isActive={offer.isFavorite}/>
             </div>
             <Rating rating={offer.rating} type={elementsType}/>
             <OfferFeatures maxAdultsCount={offer.maxAdults} bedroomsCount={offer.bedrooms} housingType={offer.type}/>

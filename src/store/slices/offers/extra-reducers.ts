@@ -17,19 +17,8 @@ const setOffersLoading = (state: OffersStateType) => {
   state.requestStatus = REQUEST_STATUS.Loading;
 };
 
-const toggleFavoriteStatus = (
-  state: OffersStateType, action: PayloadAction<unknown, string, { arg: { id: OfferData['id'] } }>
-) => {
-  const i = state.offers.findIndex((offer) => offer.id === action.meta.arg.id);
-
-  if (i > -1) {
-    state.offers[i] = { ...state.offers[i], isFavorite: !state.offers[i].isFavorite };
-  }
-};
-
 export {
   setOffersFulfilled,
   setOffersRejected,
   setOffersLoading,
-  toggleFavoriteStatus,
 };
