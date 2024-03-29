@@ -1,13 +1,14 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { AsyncActionsArgsType, setOfferIdInRoute } from '../../helpers.ts';
+import {AsyncActionsArgsType, setOfferIdInRoute} from '../../helpers.ts';
 import { API_ROUTE } from '../../../constants';
+import { API } from '../../../services';
 import { OfferData } from '../../../types';
 
 
 const fetchOffersAction = createAsyncThunk<OfferData[], undefined, AsyncActionsArgsType>(
   'fetch/offersList',
-  async (_arg, { extra: api}) => {
-    const response = await api.get<OfferData[]>(API_ROUTE.Get.OffersList);
+  async () => {
+    const response = await API.get<OfferData[]>(API_ROUTE.Get.OffersList);
 
     await new Promise((resolve) => setTimeout(resolve, 300));
 
@@ -21,8 +22,8 @@ const changeFavoriteStatusAction = createAsyncThunk<
   AsyncActionsArgsType
 >(
   'send/changeFavoriteStatus',
-  async ({id: offerId, status}, { extra: api}) => {
-    const response = await api.post<OfferData>(
+  async ({id: offerId, status}) => {
+    const response = await API.post<OfferData>(
       setOfferIdInRoute(API_ROUTE.Post.SetFavorite, offerId)
         .replace(':status', status ? '1' : '0'),
       {
@@ -38,8 +39,8 @@ const changeFavoriteStatusAction = createAsyncThunk<
 
 const fetchFavoritesOffersAction = createAsyncThunk<OfferData[], undefined, AsyncActionsArgsType>(
   'fetch/favoritesOffers',
-  async (_arg, { extra: api}) => {
-    const response = await api.get<OfferData[]>(API_ROUTE.Get.Favorites);
+  async () => {
+    const response = await API.get<OfferData[]>(API_ROUTE.Get.Favorites);
 
     return response.data;
   },
