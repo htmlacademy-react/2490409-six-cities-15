@@ -11,10 +11,6 @@ function LoginForm() {
   const handleSubmitForm = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    if (!/^(?=.*[0-9])(?=.*[a-zA-Z]).*$/.test(review.password)) {
-      return;
-    }
-
     dispatch(
       loginAction({
         login: review.email,
