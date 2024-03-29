@@ -20,14 +20,14 @@ function TabButton({tabName, isSelected, onClick = () => {}, link = '#'}: TabBut
   };
 
   return (
-    <div className="locations__item" onClick={handleClick}>
+    <li className="locations__item" onClick={handleClick}>
       <Link
         className={locationClassName}
         to={link}
       >
         <span>{tabName}</span>
       </Link>
-    </div>
+    </li>
   );
 }
 

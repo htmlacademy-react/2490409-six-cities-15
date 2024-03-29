@@ -33,7 +33,6 @@ function LoginForm() {
           name="email"
           placeholder="Email"
           handleChange={handleInputChange}
-          autoComplete="email"
           isRequired
         />
         <SmallInput
@@ -42,7 +41,6 @@ function LoginForm() {
           name="password"
           placeholder="Password"
           handleChange={handleInputChange}
-          autoComplete="current-password"
           isRequired
         />
         <button className="login__submit form__submit button" type="submit">
