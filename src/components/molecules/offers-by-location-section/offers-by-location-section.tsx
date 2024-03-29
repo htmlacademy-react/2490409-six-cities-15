@@ -18,6 +18,8 @@ function OffersByLocationSection({offers, city}: OffersByLocationSectionProps) {
       <OffersList
         offers={offers}
         classNames={'favorites__places'}
+        handleHoverOnCard={() => {}}
+        handleCardLeave={() => {}}
         hasVerticalLayout={false}
         placeType={'favorites'}
       />

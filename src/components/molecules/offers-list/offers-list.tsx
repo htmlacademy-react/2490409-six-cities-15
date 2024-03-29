@@ -10,7 +10,7 @@ type OffersListProps = {
   hasVerticalLayout: boolean;
 };
 
-function OffersList(props: OffersListProps) {
+function OffersList({handleHoverOnCard = ()=> {}, handleCardLeave = () => {}, ...props}: OffersListProps) {
   return (
     <div className={props.classNames}>
       {
@@ -18,8 +18,8 @@ function OffersList(props: OffersListProps) {
           <OfferCard
             {...place}
             key={place.id}
-            onMouseEnter={props.handleHoverOnCard}
-            onMouseLeave={props.handleCardLeave}
+            onMouseEnter={handleHoverOnCard}
+            onMouseLeave={handleCardLeave}
             placeType={props.placeType}
             hasVerticalLayout={props.hasVerticalLayout}
           />
