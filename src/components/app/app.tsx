@@ -47,10 +47,6 @@ function App(): ReactElement {
           }
         />
         <Route
-          path={APP_ROUTE.NotFound}
-          element={<NotFoundPage/>}
-        />
-        <Route
           path={'*'}
           element={<NotFoundPage/>}
         />
