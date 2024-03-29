@@ -11,8 +11,8 @@ function OfferFeatures({maxAdultsCount, bedroomsCount, housingType}: OfferFeatur
   return (
     <ul className="offer__features">
       <OfferFeatureItem content={capitalize(housingType)} type={'entire'} />
-      <OfferFeatureItem content={`${bedroomsCount} Bedroom${bedroomsCount === 1 ? '' : 's'}`} type={'bedrooms'} />
-      <OfferFeatureItem content={`Max ${maxAdultsCount} adult${maxAdultsCount === 1 ? '' : 's'}`} type={'adults'} />
+      <OfferFeatureItem content={`${bedroomsCount} Bedrooms`} type={'bedrooms'} />
+      <OfferFeatureItem content={`Max ${maxAdultsCount} adults`} type={'adults'} />
     </ul>
   );
 }
