@@ -3,10 +3,6 @@ import { capitalize } from './string.ts';
 import { sortOffers } from './sort-offers.ts';
 import { isCity } from './city.ts';
 import { createMainRouteWithCity } from './routing.ts';
-import {
-  calcEaseWhiteBlackColor,
-  calcNextColorChannelValue,
-} from './color.ts';
 
 export {
   ScrollToTop,
@@ -14,6 +10,4 @@ export {
   sortOffers,
   isCity,
   createMainRouteWithCity,
-  calcEaseWhiteBlackColor,
-  calcNextColorChannelValue,
 };
