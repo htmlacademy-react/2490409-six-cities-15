@@ -1,7 +1,7 @@
 const REQUEST_STATUS = {
   Idle: 'Idle',
   Loading: 'Loading',
-  Success: 'Status',
+  Status: 'Status',
   Error: 'Error',
 } as const;
 

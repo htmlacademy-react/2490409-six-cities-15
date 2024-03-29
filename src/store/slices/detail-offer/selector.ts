@@ -4,7 +4,7 @@ const detailOfferSelectors = {
   detailOffer: (state: DetailOfferStateType) => state.detailOffer,
   detailOfferReviews: (state: DetailOfferStateType) => state.detailOfferReviews,
   nearbyOffers: (state: DetailOfferStateType) => state.nearbyOffers,
-  getRequestStatus: (state: DetailOfferStateType) => state.requestStatus,
+  isLoading: (state: DetailOfferStateType) => state.isLoading,
 };
 
 export {

@@ -1,26 +1,25 @@
 import { createSlice } from '@reduxjs/toolkit';
-import {OfferData, RequestStatusType} from '../../../types';
+import { OfferData } from '../../../types';
 import { fetchOffersAction } from './thunk.ts';
 import { offersReducer } from './reducers.ts';
 import { sliceName } from './meta.ts';
 import {
-  setOffersRejected,
+  clearOffers,
   setOffersLoading,
-  setOffersFulfilled,
+  setOffers,
 } from './extra-reducers.ts';
 import { offersSelectors as selectors } from './selector.ts';
-import { REQUEST_STATUS } from '../../../constants';
 
 type OffersStateType = {
   offers: OfferData[];
-  requestStatus: RequestStatusType;
+  isLoading: boolean;
   activeOfferId: string | null;
   error: string | null;
 };
 
 const initialState: OffersStateType = {
   offers: [],
-  requestStatus: REQUEST_STATUS.Idle,
+  isLoading: true,
   activeOfferId: null,
   error: null,
 };
@@ -33,8 +32,8 @@ const offersSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(fetchOffersAction.pending, setOffersLoading)
-      .addCase(fetchOffersAction.fulfilled, setOffersFulfilled)
-      .addCase(fetchOffersAction.rejected, setOffersRejected);
+      .addCase(fetchOffersAction.fulfilled, setOffers)
+      .addCase(fetchOffersAction.rejected, clearOffers);
   },
 });
 

@@ -1,7 +1,7 @@
 import { ReactElement } from 'react';
 import { Header, OffersListWithMap } from '../../organisms';
 import { CityTabs, MainEmptyState } from '../../molecules';
-import {CITIES, REQUEST_STATUS} from '../../../constants';
+import { CITIES } from '../../../constants';
 import { CitiesType } from '../../../types';
 import { redirect, useParams } from 'react-router-dom';
 import { createMainRouteWithCity, isCity } from '../../../utils';
@@ -36,7 +36,7 @@ function MainPage(): ReactElement {
     redirect(createMainRouteWithCity(cityName));
   };
 
-  const requestStatus = useAppSelector(offersSelectors.setRequestStatus);
+  const isLoading = useAppSelector(offersSelectors.isLoading);
 
   return (
     <div className="page page--gray page--main">
@@ -45,7 +45,7 @@ function MainPage(): ReactElement {
         <h1 className="visually-hidden">Cities</h1>
         <CityTabs onCityChanged={handleCitySelect} currTab={currentCity}/>
         {
-          requestStatus === REQUEST_STATUS.Loading
+          isLoading
             ? <LoaderContainer/>
             : (
               <div className="cities">

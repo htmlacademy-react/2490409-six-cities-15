@@ -1,53 +1,52 @@
 import { DetailOfferStateType } from './index.ts';
 import { PayloadAction } from '@reduxjs/toolkit';
 import { CommentData, OfferData, OfferDetailData } from '../../../types';
-import { REQUEST_STATUS } from '../../../constants';
 
-const setDataLoading = (state: DetailOfferStateType) => {
-  state.requestStatus = REQUEST_STATUS.Loading;
+const setOffersLoading = (state: DetailOfferStateType) => {
+  state.isLoading = true;
 };
 
-const setDetailOfferFulfilled = (state: DetailOfferStateType, action: PayloadAction<OfferDetailData>) => {
+const setDetailOffer = (state: DetailOfferStateType, action: PayloadAction<OfferDetailData>) => {
   state.detailOffer = action.payload;
-  state.requestStatus = REQUEST_STATUS.Success;
+  state.isLoading = false;
 };
 
-const setDetailOfferRejected = (state: DetailOfferStateType) => {
+const clearDetailOffer = (state: DetailOfferStateType) => {
   state.detailOffer = null;
-  state.requestStatus = REQUEST_STATUS.Error;
+  state.isLoading = false;
 };
 
-const setNearbyOffersFulfilled = (state: DetailOfferStateType, action: PayloadAction<OfferData[]>) => {
+const setNearbyOffers = (state: DetailOfferStateType, action: PayloadAction<OfferData[]>) => {
   state.nearbyOffers = action.payload;
-  state.requestStatus = REQUEST_STATUS.Success;
+  state.isLoading = false;
 };
 
-const setNearbyOffersRejected = (state: DetailOfferStateType) => {
+const clearNearbyOffers = (state: DetailOfferStateType) => {
   state.nearbyOffers = null;
-  state.requestStatus = REQUEST_STATUS.Error;
+  state.isLoading = false;
 };
 
-const setReviewsFulfilled = (state: DetailOfferStateType, action: PayloadAction<CommentData[]>) => {
-  state.detailOfferReviews = action.payload;
-  state.requestStatus = REQUEST_STATUS.Success;
-};
-
-const setReviewsRejected = (state: DetailOfferStateType) => {
+const clearReviews = (state: DetailOfferStateType) => {
   state.detailOfferReviews = null;
-  state.requestStatus = REQUEST_STATUS.Error;
+  state.isLoading = false;
 };
 
 const addReview = (state: DetailOfferStateType, action: PayloadAction<CommentData>) => {
   state.detailOfferReviews = [...state.detailOfferReviews ?? [], action.payload];
 };
 
+const setReviews = (state: DetailOfferStateType, action: PayloadAction<CommentData[]>) => {
+  state.detailOfferReviews = action.payload;
+  state.isLoading = false;
+};
+
 export {
-  setDataLoading,
-  setDetailOfferFulfilled,
-  setDetailOfferRejected,
-  setNearbyOffersFulfilled,
-  setNearbyOffersRejected,
-  setReviewsFulfilled,
-  setReviewsRejected,
+  setOffersLoading,
+  setDetailOffer,
+  clearDetailOffer,
+  setNearbyOffers,
+  clearNearbyOffers,
+  setReviews,
+  clearReviews,
   addReview,
 };
