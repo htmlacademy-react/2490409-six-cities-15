@@ -1,6 +1,6 @@
 import { OffersStateType } from './index.ts';
 import { PayloadAction } from '@reduxjs/toolkit';
-import { CommentData, OfferData, OfferDetailData } from '../../../types';
+import { OfferData } from '../../../types';
 import { REQUEST_STATUS } from '../../../constants';
 
 const setOffersFulfilled = (state: OffersStateType, action: PayloadAction<OfferData[]>) => {
@@ -21,14 +21,9 @@ const toggleFavoriteStatus = (
   state: OffersStateType, action: PayloadAction<unknown, string, { arg: { id: OfferData['id'] } }>
 ) => {
   const i = state.offers.findIndex((offer) => offer.id === action.meta.arg.id);
-  const newFavoriteStatus = !state.offers[i].isFavorite;
 
   if (i > -1) {
-    state.offers[i] = { ...state.offers[i], isFavorite: newFavoriteStatus};
-  }
-
-  if (state.currentDetailOffer?.id === action.meta.arg.id) {
-    state.currentDetailOffer.isFavorite = newFavoriteStatus;
+    state.offers[i] = { ...state.offers[i], isFavorite: !state.offers[i].isFavorite };
   }
 };
 
@@ -42,57 +37,10 @@ const updateFavorites = (
   }
 };
 
-const setDataLoading = (state: OffersStateType) => {
-  state.requestStatus = REQUEST_STATUS.Loading;
-};
-
-const setDetailOfferFulfilled = (state: OffersStateType, action: PayloadAction<OfferDetailData>) => {
-  state.currentDetailOffer = action.payload;
-  state.requestStatus = REQUEST_STATUS.Success;
-};
-
-const setDetailOfferRejected = (state: OffersStateType) => {
-  state.currentDetailOffer = null;
-  state.requestStatus = REQUEST_STATUS.Error;
-};
-
-const setNearbyOffersFulfilled = (state: OffersStateType, action: PayloadAction<OfferData[]>) => {
-  state.currentDetailOfferNearbyOffers = action.payload;
-  state.requestStatus = REQUEST_STATUS.Success;
-};
-
-const setNearbyOffersRejected = (state: OffersStateType) => {
-  state.currentDetailOfferNearbyOffers = null;
-  state.requestStatus = REQUEST_STATUS.Error;
-};
-
-const setReviewsFulfilled = (state: OffersStateType, action: PayloadAction<CommentData[]>) => {
-  state.currentDetailOfferReviews = action.payload;
-  state.requestStatus = REQUEST_STATUS.Success;
-};
-
-const setReviewsRejected = (state: OffersStateType) => {
-  state.currentDetailOfferReviews = null;
-  state.requestStatus = REQUEST_STATUS.Error;
-};
-
-const addReview = (state: OffersStateType, action: PayloadAction<CommentData>) => {
-  state.currentDetailOfferReviews = [...state.currentDetailOfferReviews ?? [], action.payload];
-};
-
-
 export {
   setOffersFulfilled,
   setOffersRejected,
   setOffersLoading,
   toggleFavoriteStatus,
   updateFavorites,
-  setDataLoading,
-  setDetailOfferFulfilled,
-  setDetailOfferRejected,
-  setNearbyOffersFulfilled,
-  setNearbyOffersRejected,
-  setReviewsFulfilled,
-  setReviewsRejected,
-  addReview,
 };

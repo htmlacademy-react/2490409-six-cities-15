@@ -34,16 +34,14 @@ function OfferCard({
     if (onMouseEnter) {
       onMouseEnter(props.id);
     }
-
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line
   }, []);
 
   const handleMouseLeave = useCallback(() => {
     if (onMouseLeave) {
       onMouseLeave();
     }
-
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line
   }, []);
 
   return (

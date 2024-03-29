@@ -35,9 +35,8 @@ function BookmarkIcon({id, isActive = false, type = 'place-card', size}: Bookmar
         { id , status: !isActive }
       ),
     );
-
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isActive]);
+  }, []);
 
   const className = classNames(
     'button',

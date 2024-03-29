@@ -10,7 +10,6 @@ function FavoritesPage(): ReactElement {
   const dispatch = useAppDispatch();
   useEffect(() => {
     dispatch(fetchFavoritesOffersAction());
-
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
