@@ -1,6 +1,6 @@
 import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';
 import { store } from './index.ts';
-import {ActionCreatorsMapObject, bindActionCreators, createAsyncThunk} from '@reduxjs/toolkit';
+import { ActionCreatorsMapObject, bindActionCreators } from '@reduxjs/toolkit';
 import { useMemo } from 'react';
 import { AxiosInstance } from 'axios';
 
@@ -22,20 +22,16 @@ const useActionCreators = <Actions extends ActionCreatorsMapObject>(actions: Act
 const setOfferIdInRoute = (route: string, id: string) => route.replace(':offerId', id);
 
 type AsyncActionsArgsType = {
-  state: StoreStateType;
   dispatch: AppDispatch;
-  rejectValue: string;
+  state: StoreStateType;
   extra: AxiosInstance;
 };
-
-const createAppAsyncThunk = createAsyncThunk.withTypes<AsyncActionsArgsType>();
 
 export {
   useAppDispatch,
   useAppSelector,
   useActionCreators,
   setOfferIdInRoute,
-  createAppAsyncThunk,
 };
 
 export type {
