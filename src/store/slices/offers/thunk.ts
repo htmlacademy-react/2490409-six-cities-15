@@ -4,7 +4,7 @@ import { API_ROUTE } from '../../../constants';
 import { OfferData } from '../../../types';
 
 
-const fetchOffersAction = createAsyncThunk<OfferData[], void, AsyncActionsArgsType>(
+const fetchOffersAction = createAsyncThunk<OfferData[], undefined, AsyncActionsArgsType>(
   'fetch/offersList',
   async (_arg, { extra: api}) => {
     const response = await api.get<OfferData[]>(API_ROUTE.Get.OffersList);
@@ -36,7 +36,7 @@ const changeFavoriteStatusAction = createAsyncThunk<
 );
 
 
-const fetchFavoritesOffersAction = createAsyncThunk<OfferData[], void, AsyncActionsArgsType>(
+const fetchFavoritesOffersAction = createAsyncThunk<OfferData[], undefined, AsyncActionsArgsType>(
   'fetch/favoritesOffers',
   async (_arg, { extra: api}) => {
     const response = await api.get<OfferData[]>(API_ROUTE.Get.Favorites);

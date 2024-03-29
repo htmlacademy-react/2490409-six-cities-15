@@ -14,11 +14,20 @@ type OfferData = {
   rating: number;
 };
 
-type OfferDetailData = OfferData & {
+type OfferDetailData = {
+  id: string;
+  title: string;
   description: string;
+  type: string;
+  price: number;
   images: string[];
+  city: CityType;
+  location: LocationType;
   goods: string[];
   host: HostUserType;
+  isPremium: boolean;
+  isFavorite: boolean;
+  rating: number;
   bedrooms: number;
   maxAdults: number;
 };

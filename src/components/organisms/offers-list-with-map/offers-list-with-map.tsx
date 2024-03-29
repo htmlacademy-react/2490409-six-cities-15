@@ -13,13 +13,11 @@ function OffersListWithMap({offersFromCurrentCity, currentCity}: OffersListWithM
   const { setActiveOfferId } = useActionCreators(offersActions);
   const handleHoverOnCard = useCallback((id: string) => {
     setActiveOfferId(id);
-
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line
   }, []);
   const handleCardLeave = useCallback(() => {
     setActiveOfferId(null);
-
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line
   }, []);
 
   const activeOfferId = useAppSelector(offersSelectors.activeOfferId);
