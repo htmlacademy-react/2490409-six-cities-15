@@ -1,6 +1,5 @@
 import { OfferData } from '../types';
-import { SORT_TYPES } from '../constants';
-import { SortTypesType } from '../types';
+import { SORT_TYPES, SortTypesType } from '../constants';
 
 export function sortOffers(sortType: SortTypesType, offers: OfferData[]) {
   switch (sortType) {

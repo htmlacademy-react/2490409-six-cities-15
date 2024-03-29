@@ -1,6 +1,6 @@
 import classNames from 'classnames';
 import { useCallback } from 'react';
-import { SortTypesType } from '../../../types';
+import { SortTypesType } from '../../../constants';
 
 type SortSelectorItemProps = {
   isSelected: boolean;

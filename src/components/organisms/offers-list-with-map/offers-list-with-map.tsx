@@ -1,4 +1,5 @@
-import { OfferData, CitiesType } from '../../../types';
+import { OfferData } from '../../../types';
+import { CitiesType } from '../../../constants';
 import { Map, OffersListWithSort } from '../../molecules';
 import { offersActions, offersSelectors } from '../../../store/slices/offers';
 import { useActionCreators, useAppSelector } from '../../../store/helpers.ts';

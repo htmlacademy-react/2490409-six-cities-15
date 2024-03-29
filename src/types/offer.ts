@@ -1,4 +1,4 @@
-import { CitiesType } from '../types';
+import { CitiesType } from '../constants';
 import { HostUserType } from '../types';
 
 type OfferData = {

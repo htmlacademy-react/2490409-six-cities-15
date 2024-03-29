@@ -1,8 +1,8 @@
 import { TabButton } from '../../atoms';
-import { CitiesType } from '../../../types';
+import { CitiesType } from '../../../constants';
 import { OffersList } from '..';
 import { OfferData } from '../../../types';
-import { createMainRouteWithCity } from '../../../utils';
+import {createMainRouteWithCity} from '../../../utils';
 
 type OffersByLocationSectionProps = {
   offers: OfferData[];
