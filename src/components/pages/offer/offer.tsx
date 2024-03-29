@@ -17,11 +17,9 @@ function OfferPage(): ReactElement {
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    Promise.all([
-      dispatch(fetchDetailOfferAction(offerId)),
-      dispatch(fetchNearbyOffersAction(offerId)),
-      dispatch(fetchCommentsAction(offerId))
-    ]);
+    dispatch(fetchDetailOfferAction(offerId));
+    dispatch(fetchNearbyOffersAction(offerId));
+    dispatch(fetchCommentsAction(offerId));
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [offerId]);
