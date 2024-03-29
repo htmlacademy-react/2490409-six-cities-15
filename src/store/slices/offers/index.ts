@@ -18,7 +18,6 @@ import {
   setOffersLoading,
   setDetailOffer, setNearbyOffers, setReviews, setOffers,
 } from './extra-reducers.ts';
-import { offersSelectors as selectors } from './selector.ts';
 
 type OffersStateType = {
   offers: OfferData[];
@@ -44,7 +43,14 @@ const offersSlice = createSlice({
   initialState,
   name: sliceName,
   reducers: offersReducer,
-  selectors: selectors,
+  selectors: {
+    offers: (state) => state.offers,
+    detailOffer: (state) => state.detailOffer,
+    detailOfferReviews: (state) => state.detailOfferReviews,
+    nearbyOffers: (state) => state.nearbyOffers,
+    isLoading: (state) => state.isLoading,
+    activeOfferId: (state) => state.activeOfferId,
+  },
   extraReducers: (builder) => {
     builder
       .addCase(fetchOffersAction.pending, setOffersLoading)
@@ -63,12 +69,12 @@ const offersSlice = createSlice({
 });
 
 const { actions: offersActions } = offersSlice;
-const { selectors: offersSelectors } = offersSlice;
+const { selectors: offerSelectors } = offersSlice;
 
 export {
   offersSlice,
   offersActions,
-  offersSelectors,
+  offerSelectors,
 };
 
 export type {

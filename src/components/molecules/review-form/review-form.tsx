@@ -2,7 +2,7 @@ import { RatingButton } from '../../molecules';
 import { ChangeEvent, ChangeEventHandler, FormEventHandler, useState } from 'react';
 import { useAppDispatch, useAppSelector } from '../../../store/helpers.ts';
 import { addCommentAction} from '../../../store/slices/offers/thunk.ts';
-import { offersSelectors } from '../../../store/slices/offers';
+import { offerSelectors } from '../../../store/slices/offers';
 
 type THandleOnChange = ChangeEventHandler<HTMLTextAreaElement | HTMLInputElement>;
 
@@ -21,7 +21,7 @@ function ReviewForm() {
   };
 
 
-  const offerId = useAppSelector(offersSelectors.detailOffer)?.id || '';
+  const offerId = useAppSelector(offerSelectors.detailOffer)?.id || '';
 
   const handleSubmit: FormEventHandler<HTMLFormElement> = (event) => {
     event.preventDefault();

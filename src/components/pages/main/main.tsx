@@ -7,7 +7,7 @@ import { createMainRouteWithCity, isCity } from '../../../utils';
 import classNames from 'classnames';
 import { useAppSelector } from '../../../store/helpers.ts';
 import { capitalize } from '../../../utils';
-import { offersSelectors } from '../../../store/slices/offers';
+import { offerSelectors } from '../../../store/slices/offers';
 import { LoaderContainer } from '../../molecules';
 
 function MainPage(): ReactElement {
@@ -16,7 +16,7 @@ function MainPage(): ReactElement {
   const { city: cityFromPath = CITIES.Paris } = useParams();
   const currentCity = filterCityName(capitalize(cityFromPath.toLowerCase())) ?? CITIES.Paris;
 
-  const offersFromCurrentCity = useAppSelector(offersSelectors.offers)
+  const offersFromCurrentCity = useAppSelector(offerSelectors.offers)
     .filter((item) => item.city.name === currentCity);
 
   const isEmpty = offersFromCurrentCity.length === 0;
@@ -35,7 +35,7 @@ function MainPage(): ReactElement {
     redirect(createMainRouteWithCity(cityName));
   };
 
-  const isLoading = useAppSelector(offersSelectors.isLoading);
+  const isLoading = useAppSelector(offerSelectors.isLoading);
 
   return (
     <div className="page page--gray page--main">
