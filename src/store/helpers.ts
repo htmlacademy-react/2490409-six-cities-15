@@ -8,11 +8,19 @@ type StoreStateType = ReturnType<typeof store.getState>;
 
 type AppDispatch = typeof store.dispatch;
 
+// type BoundActions<Actions extends ActionCreatorsMapObject> = {
+//   // eslint-disable-next-line @typescript-eslint/no-explicit-any
+//   [key in keyof Actions]?: Actions[key] extends AsyncThunk<any, any, any> ? BoundAsyncThunk<Actions[key]> : Actions[key];
+// };
+//
+// // eslint-disable-next-line @typescript-eslint/no-explicit-any
+// type BoundAsyncThunk<Thunk extends AsyncThunk<any, any, any>> = (...args: Parameters<Thunk>) => ReturnType<ReturnType<Thunk>>;
+
 const useAppDispatch = () => useDispatch<AppDispatch>();
 
 const useAppSelector: TypedUseSelectorHook<StoreStateType> = useSelector;
 
-const useActionCreators = <Actions extends ActionCreatorsMapObject>(actions: Actions) => {
+const useActionCreators = <Actions extends ActionCreatorsMapObject>(actions: Actions)/*:  BoundActions<Actions> */ => {
   const dispatch = useDispatch();
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
