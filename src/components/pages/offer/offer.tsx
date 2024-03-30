@@ -28,7 +28,7 @@ function OfferPage(): ReactElement {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [offerId]);
 
-  const requestStatus = useAppSelector(offersSelectors.getRequestStatus);
+  const requestStatus = useAppSelector(offersSelectors.offersRequestStatus);
   const offer = useAppSelector(offersSelectors.detailOffer);
   const nearbyOffers = useAppSelector(offersSelectors.nearbyOffers);
   const reviews = useAppSelector(offersSelectors.detailOfferReviews);

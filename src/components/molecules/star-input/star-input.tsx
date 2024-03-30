@@ -5,9 +5,10 @@ type StarInputProps = {
   title: 'perfect' | 'good' | 'not bad' | 'badly' | 'terribly';
   checked: boolean;
   handleChange: (event: ChangeEvent<HTMLInputElement>) => void;
+  isDisabled: boolean;
 };
 
-function StarInput({id, title, checked, handleChange}: StarInputProps) {
+function StarInput({id, title, checked, handleChange, isDisabled}: StarInputProps) {
   return (
     <>
       <input
@@ -18,6 +19,7 @@ function StarInput({id, title, checked, handleChange}: StarInputProps) {
         type="radio"
         onChange={handleChange}
         checked={checked}
+        disabled={isDisabled}
       />
       <label
         htmlFor={`${id}-stars`}

@@ -4,13 +4,14 @@ import { ChangeEvent } from 'react';
 type RatingButtonProps = {
   value: number;
   handleChange: (event: ChangeEvent<HTMLInputElement>) => void;
+  isDisabled: boolean;
 };
 
 function isIdInRange (id: number): id is 1 | 2 | 3 | 4 | 5 {
   return (id >= 1 && id <= 5);
 }
 
-function RatingButton({value, handleChange}: RatingButtonProps) {
+function RatingButton({value, handleChange, isDisabled}: RatingButtonProps) {
   const titles = {
     5: 'perfect',
     4: 'good',
@@ -33,6 +34,7 @@ function RatingButton({value, handleChange}: RatingButtonProps) {
                 title={titles[id]}
                 checked={value === id}
                 handleChange={handleChange}
+                isDisabled={isDisabled}
               />
             );
           }

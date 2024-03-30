@@ -20,7 +20,7 @@ function MainPage(): ReactElement | null {
   const currentCity = filterCityName(capitalize(cityFromPath.toLowerCase()));
   const offersFromCurrentCity = useAppSelector(offersSelectors.offers)
     .filter((item) => item.city.name === currentCity);
-  const requestStatus = useAppSelector(offersSelectors.getRequestStatus);
+  const requestStatus = useAppSelector(offersSelectors.offersRequestStatus);
 
   if (!currentCity) {
     navigate(APP_ROUTE.NotFound);

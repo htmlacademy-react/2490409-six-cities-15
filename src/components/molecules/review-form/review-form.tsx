@@ -3,6 +3,7 @@ import { ChangeEvent, ChangeEventHandler, FormEventHandler, useState } from 'rea
 import { useAppDispatch, useAppSelector } from '../../../store/helpers.ts';
 import { addCommentAction } from '../../../store/slices/offers/thunk.ts';
 import { offersSelectors } from '../../../store/slices/offers';
+import { REQUEST_STATUS } from '../../../constants';
 
 type HandleOnChangeType = ChangeEventHandler<HTMLTextAreaElement | HTMLInputElement>;
 
@@ -37,13 +38,15 @@ function ReviewForm() {
     setReview(initialReviewState);
   };
 
+  const isLoading = useAppSelector(offersSelectors.reviewRequestStatus) === REQUEST_STATUS.Loading;
+
   return (
     <form className="reviews__form form" onSubmit={handleSubmit}>
       <label className="reviews__label form__label" htmlFor="review">
         Your review
       </label>
       <div className="reviews__rating-form form__rating">
-        <RatingButton handleChange={handleChange} value={review.rating} />
+        <RatingButton handleChange={handleChange} value={review.rating} isDisabled={isLoading}/>
       </div>
       <textarea
         className="reviews__textarea form__textarea"
@@ -54,6 +57,7 @@ function ReviewForm() {
         onChange={handleChange}
         maxLength={300}
         minLength={50}
+        disabled={isLoading}
       />
       <div className="reviews__button-wrapper" >
         <p className="reviews__help">
@@ -65,7 +69,7 @@ function ReviewForm() {
         <button
           className="reviews__submit form__submit button"
           type="submit"
-          disabled={review.comment.length < 50 || review.rating <= 0}
+          disabled={review.comment.length < 50 || review.rating <= 0 || isLoading}
         >
           Submit
         </button>

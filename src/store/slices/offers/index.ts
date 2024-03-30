@@ -17,7 +17,6 @@ import {
   setOffersFulfilled,
   toggleFavoriteStatus,
   updateFavorites,
-  addReview,
   setDataLoading,
   setDetailOfferFulfilled,
   setDetailOfferRejected,
@@ -25,6 +24,9 @@ import {
   setNearbyOffersRejected,
   setReviewsFulfilled,
   setReviewsRejected,
+  addReviewPending,
+  addReviewFulfilled,
+  addReviewRejected,
 } from './extra-reducers.ts';
 import { offersSelectors as selectors } from './selectors.ts';
 import { REQUEST_STATUS } from '../../../constants';
@@ -34,7 +36,8 @@ type OffersStateType = {
   currentDetailOffer: OfferDetailData | null;
   currentDetailOfferReviews: CommentData[] | null;
   currentDetailOfferNearbyOffers: OfferData[] | null;
-  requestStatus: RequestStatusType;
+  offersRequestStatus: RequestStatusType;
+  reviewRequestStatus: RequestStatusType;
   activeOfferId: string | null;
 };
 
@@ -43,7 +46,8 @@ const initialState: OffersStateType = {
   currentDetailOffer: null,
   currentDetailOfferReviews: null,
   currentDetailOfferNearbyOffers: null,
-  requestStatus: REQUEST_STATUS.Idle,
+  offersRequestStatus: REQUEST_STATUS.Idle,
+  reviewRequestStatus: REQUEST_STATUS.Idle,
   activeOfferId: null,
 };
 
@@ -68,7 +72,9 @@ const offersSlice = createSlice({
       .addCase(fetchNearbyOffersAction.rejected, setNearbyOffersRejected)
       .addCase(fetchCommentsAction.fulfilled, setReviewsFulfilled)
       .addCase(fetchCommentsAction.rejected, setReviewsRejected)
-      .addCase(addCommentAction.fulfilled, addReview);
+      .addCase(addCommentAction.pending, addReviewPending)
+      .addCase(addCommentAction.fulfilled, addReviewFulfilled)
+      .addCase(addCommentAction.rejected, addReviewRejected);
   },
 });
 
