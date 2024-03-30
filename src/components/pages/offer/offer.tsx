@@ -11,6 +11,8 @@ import { useAppDispatch, useAppSelector } from '../../../store/helpers.ts';
 import { ErrorPage } from '../index.ts';
 import { offersSelectors } from '../../../store/slices/offers';
 import { REQUEST_STATUS } from '../../../constants';
+import classNames from 'classnames';
+import './offer.css';
 
 function OfferPage(): ReactElement {
   const { id: offerId = '' } = useParams();
@@ -42,12 +44,25 @@ function OfferPage(): ReactElement {
     ));
   }
 
+  const isLoading = requestStatus === REQUEST_STATUS.Loading;
+
+  const divClassname = classNames(
+    'page',
+    {'offer__loading': isLoading},
+  );
+
+  const mainClassname = classNames(
+    'page__main',
+    'page__main--offer',
+    {'page__offer__loading': isLoading},
+  );
+
   return (
-    <div className="page">
+    <div className={divClassname}>
       <Header/>
-      <main className="page__main page__main--offer">
+      <main className={mainClassname}>
         {
-          requestStatus === REQUEST_STATUS.Loading
+          isLoading
             ? <LoaderContainer/>
             : (
               offer &&
