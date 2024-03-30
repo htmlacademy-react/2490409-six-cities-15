@@ -1,15 +1,13 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { AuthenticatedUserType, AuthStatusType } from '../../../types';
-import { Nullable } from 'vitest';
 import { AUTH_STATUS } from '../../../constants';
 import { loginAction, fetchUserByTokenAction, logoutAction } from './thunk.ts';
-import { userReducer } from './reducers.ts';
 import { sliceName } from './meta.ts';
 import { clearUser, setUser } from './extra-reducers.ts';
 import { userSelectors as selectors } from './selectors.ts';
 
 type UserStateType = {
-  user: Nullable<AuthenticatedUserType>;
+  user: AuthenticatedUserType | null;
   authorizationStatus: AuthStatusType;
   error: string | null;
 };
@@ -23,7 +21,7 @@ const initialState: UserStateType = {
 const userSlice = createSlice({
   initialState,
   name: sliceName,
-  reducers: userReducer,
+  reducers: {},
   selectors: selectors,
   extraReducers: (builder) => {
     builder

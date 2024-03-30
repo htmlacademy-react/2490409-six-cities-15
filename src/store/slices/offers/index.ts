@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import {CommentData, OfferData, OfferDetailData, RequestStatusType} from '../../../types';
+import { CommentData, OfferData, OfferDetailData, RequestStatusType } from '../../../types';
 import {
   changeFavoriteStatusAction,
   fetchFavoritesOffersAction,
