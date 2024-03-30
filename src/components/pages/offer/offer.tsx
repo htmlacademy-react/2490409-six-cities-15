@@ -1,6 +1,6 @@
-import {ReactElement, useEffect} from 'react';
+import { ReactElement, useEffect } from 'react';
 import { DetailOfferContent, Header } from '../../organisms';
-import { LoaderContainer } from '../../molecules';
+import { Loader } from '../../molecules';
 import { useParams } from 'react-router-dom';
 import {
   fetchCommentsAction,
@@ -63,7 +63,7 @@ function OfferPage(): ReactElement {
       <main className={mainClassname}>
         {
           isLoading
-            ? <LoaderContainer/>
+            ? <Loader/>
             : (
               offer &&
               <DetailOfferContent

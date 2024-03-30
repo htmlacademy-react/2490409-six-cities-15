@@ -1,15 +1,15 @@
 import { ReactElement } from 'react';
 import { Header, OffersListWithMap } from '../../organisms';
 import { CityTabs, MainEmptyState } from '../../molecules';
-import {APP_ROUTE, CITIES, REQUEST_STATUS} from '../../../constants';
+import { APP_ROUTE, CITIES, REQUEST_STATUS } from '../../../constants';
 import { CitiesType } from '../../../types';
-import {redirect, useNavigate, useParams} from 'react-router-dom';
+import { redirect, useNavigate, useParams } from 'react-router-dom';
 import { createMainRouteWithCity, isCity } from '../../../utils';
 import classNames from 'classnames';
 import { useAppSelector } from '../../../store/helpers.ts';
 import { capitalize } from '../../../utils';
 import { offersSelectors } from '../../../store/slices/offers';
-import { LoaderContainer } from '../../molecules';
+import { Loader } from '../../molecules';
 
 function MainPage(): ReactElement | null {
   const filterCityName = (city: string) => isCity(city) ? city : null;
@@ -52,7 +52,7 @@ function MainPage(): ReactElement | null {
         <CityTabs onCityChanged={handleCitySelect} currTab={currentCity}/>
         {
           requestStatus === REQUEST_STATUS.Loading
-            ? <LoaderContainer/>
+            ? <Loader/>
             : (
               <div className="cities">
                 <div className={divClassname}>
