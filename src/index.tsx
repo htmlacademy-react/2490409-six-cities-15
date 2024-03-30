@@ -6,7 +6,7 @@ import { Provider } from 'react-redux';
 import { fetchOffersAction } from './store/slices/offers/thunk.ts';
 import { fetchUserByTokenAction } from './store/slices/user/thunk.ts';
 import { getToken } from './services';
-import {Bounce, ToastContainer} from 'react-toastify';
+import { Bounce, ToastContainer } from 'react-toastify';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -21,7 +21,7 @@ root.render(
       <ToastContainer
         position="top-right"
         autoClose={2000}
-        limit={1}
+        limit={3}
         hideProgressBar={false}
         newestOnTop
         closeOnClick

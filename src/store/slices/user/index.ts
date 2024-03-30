@@ -9,13 +9,11 @@ import { userSelectors as selectors } from './selectors.ts';
 type UserStateType = {
   user: AuthenticatedUserType | null;
   authorizationStatus: AuthStatusType;
-  error: string | null;
 };
 
 const initialState: UserStateType = {
   user: null,
   authorizationStatus: AUTH_STATUS.Unknown,
-  error: null,
 };
 
 const userSlice = createSlice({

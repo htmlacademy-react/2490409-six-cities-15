@@ -36,7 +36,6 @@ type OffersStateType = {
   currentDetailOfferNearbyOffers: OfferData[] | null;
   requestStatus: RequestStatusType;
   activeOfferId: string | null;
-  error: string | null;
 };
 
 const initialState: OffersStateType = {
@@ -46,7 +45,6 @@ const initialState: OffersStateType = {
   currentDetailOfferNearbyOffers: null,
   requestStatus: REQUEST_STATUS.Idle,
   activeOfferId: null,
-  error: null,
 };
 
 const offersSlice = createSlice({
