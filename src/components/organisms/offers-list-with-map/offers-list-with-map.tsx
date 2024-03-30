@@ -2,7 +2,7 @@ import { OfferData } from '../../../types';
 import { CitiesType } from '../../../constants';
 import { Map, OffersListWithSort } from '../../molecules';
 import { offersActions, offerSelectors } from '../../../store/slices/offers';
-import {useActionCreators, useAppSelector} from '../../../store/helpers.ts';
+import { useActionCreators, useAppSelector } from '../../../store/helpers.ts';
 
 type OffersListWithMapProps = {
   offersFromCurrentCity: OfferData[];

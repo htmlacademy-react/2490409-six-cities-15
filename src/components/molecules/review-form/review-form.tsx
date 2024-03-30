@@ -1,12 +1,17 @@
 import { RatingButton } from '../../molecules';
-import {ChangeEvent, ChangeEventHandler, useState} from 'react';
+import { ChangeEvent, ChangeEventHandler, FormEventHandler, useState } from 'react';
+import { useAppDispatch, useAppSelector } from '../../../store/helpers.ts';
+import { addCommentAction} from '../../../store/slices/offers/thunk.ts';
+import { offerSelectors } from '../../../store/slices/offers';
 
 type THandleOnChange = ChangeEventHandler<HTMLTextAreaElement | HTMLInputElement>;
 
 function ReviewForm() {
-  const [review, setReview] = useState({rating: 0, comment: ''});
+  const dispatch = useAppDispatch();
+  const initialReviewState = {rating: 0, comment: ''};
+  const [review, setReview] = useState(initialReviewState);
 
-  const handleOnChange: THandleOnChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
+  const handleChange: THandleOnChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
     const { name, value } = e.currentTarget;
 
     setReview({
@@ -15,13 +20,30 @@ function ReviewForm() {
     });
   };
 
+
+  const offerId = useAppSelector(offerSelectors.detailOffer)?.id || '';
+
+  const handleSubmit: FormEventHandler<HTMLFormElement> = (event) => {
+    event.preventDefault();
+
+    dispatch(
+      addCommentAction({
+        id: offerId,
+        comment: review.comment,
+        rating: review.rating,
+      })
+    );
+
+    setReview(initialReviewState);
+  };
+
   return (
-    <form className="reviews__form form" action="#" method="post">
+    <form className="reviews__form form" onSubmit={handleSubmit}>
       <label className="reviews__label form__label" htmlFor="review">
         Your review
       </label>
       <div className="reviews__rating-form form__rating">
-        <RatingButton handleOnChange={handleOnChange}/>
+        <RatingButton handleChange={handleChange} value={review.rating} />
       </div>
       <textarea
         className="reviews__textarea form__textarea"
@@ -29,9 +51,9 @@ function ReviewForm() {
         name="comment"
         placeholder="Tell how was your stay, what you like and what can be improved"
         value={review.comment}
-        onChange={handleOnChange}
+        onChange={handleChange}
       />
-      <div className="reviews__button-wrapper">
+      <div className="reviews__button-wrapper" >
         <p className="reviews__help">
           To submit review please make sure to set{' '}
           <span className="reviews__star">rating</span> and describe

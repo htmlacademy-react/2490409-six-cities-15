@@ -10,7 +10,6 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { APP_ROUTE } from '../../constants';
 import { PrivateRoute } from '../../routing';
 import { ScrollToTop } from '../../utils';
-import { comments, detailOffer, getOffersInNear } from '../../mocks';
 
 function App(): ReactElement {
   return (
@@ -31,7 +30,7 @@ function App(): ReactElement {
         />
         <Route
           path={APP_ROUTE.Offer}
-          element={<OfferPage otherPlacesNear={getOffersInNear(detailOffer)} offer={detailOffer} reviews={comments}/>}
+          element={<OfferPage/>}
         />
         <Route
           path={APP_ROUTE.Favorites}

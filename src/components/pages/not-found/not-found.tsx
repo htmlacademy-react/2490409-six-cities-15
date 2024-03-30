@@ -21,7 +21,7 @@ function NotFoundPage({type = 'page'}: NotFoundPageProps): ReactElement {
             404
           </div>
           <br/>
-          <div style={{fontSize: 18}}>
+          <div style={{fontSize: 18, maxWidth: 260, textAlign: 'center'}}>
             {variant[type]}
           </div>
         </div>

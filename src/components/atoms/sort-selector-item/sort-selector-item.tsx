@@ -14,13 +14,13 @@ function SortSelectorItem({isSelected, value, onClick}: SortSelectorItemProps) {
     {'places__option--active': isSelected},
   );
 
-  const handleOnClick = useCallback(() => onClick(value), [onClick, value]);
+  const handleClick = useCallback(() => onClick(value), [onClick, value]);
 
   return (
     <li
       className={className}
       tabIndex={0}
-      onClick={handleOnClick}
+      onClick={handleClick}
     >
       {value}
     </li>

@@ -3,10 +3,11 @@ import {ChangeEvent} from 'react';
 type StarInputProps = {
   id: 1 | 2 | 3 | 4 | 5;
   title: 'perfect' | 'good' | 'not bad' | 'badly' | 'terribly';
-  handleOnChange: (event: ChangeEvent<HTMLInputElement>) => void;
+  checked: boolean;
+  handleChange: (event: ChangeEvent<HTMLInputElement>) => void;
 };
 
-function StarInput({id, title, handleOnChange}: StarInputProps) {
+function StarInput({id, title, checked, handleChange}: StarInputProps) {
   return (
     <>
       <input
@@ -15,7 +16,8 @@ function StarInput({id, title, handleOnChange}: StarInputProps) {
         defaultValue={id}
         id={`${id}-stars`}
         type="radio"
-        onChange={handleOnChange}
+        onChange={handleChange}
+        checked={checked}
       />
       <label
         htmlFor={`${id}-stars`}

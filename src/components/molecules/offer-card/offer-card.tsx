@@ -30,13 +30,13 @@ function OfferCard({
     {'favorites__card-info': props.placeType === 'favorites'},
   );
 
-  const handleOnMouseEnter = () => onMouseEnter(props.id);
+  const handleMouseEnter = () => onMouseEnter(props.id);
 
   return (
     <Link to={offerLink}>
       <article
         className={`${props.placeType}__card place-card`}
-        onMouseEnter={handleOnMouseEnter}
+        onMouseEnter={handleMouseEnter}
         onMouseOut={onMouseLeave}
       >
         {props.isPremium && <PremiumLabel/>}

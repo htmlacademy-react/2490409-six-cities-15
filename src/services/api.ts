@@ -1,11 +1,11 @@
-import axios, {AxiosInstance, InternalAxiosRequestConfig} from 'axios';
+import axios, { AxiosInstance, InternalAxiosRequestConfig } from 'axios';
 import { BASE_URL } from '../constants';
-import {getToken} from './token.ts';
+import { getToken } from './token.ts';
 
 const createAPI = (): AxiosInstance => {
   const api = axios.create({
     baseURL: BASE_URL,
-    timeout: 5000,
+    timeout: 50000,
   });
 
   api.interceptors.request.use(
