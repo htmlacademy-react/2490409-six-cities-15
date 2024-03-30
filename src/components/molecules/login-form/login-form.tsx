@@ -1,30 +1,30 @@
 import { SmallInput } from '../../atoms';
-import { FormEvent, useState } from 'react';
+import { FormEvent, useRef } from 'react';
 import { loginAction } from '../../../store/slices/user/thunk.ts';
 import { useAppDispatch } from '../../../store/helpers.ts';
 
 function LoginForm() {
   const dispatch = useAppDispatch();
-  const [review, setReview] =
-    useState({email: '', password: ''});
+  const emailRef = useRef<HTMLInputElement>(null);
+  const passwordRef = useRef<HTMLInputElement>(null);
 
   const handleSubmitForm = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    if (!/^(?=.*[0-9])(?=.*[a-zA-Z]).*$/.test(review.password)) {
+    if (!emailRef.current || !passwordRef.current) {
+      return;
+    }
+
+    if (!/^(?=.*[0-9])(?=.*[a-zA-Z]).*$/.test(passwordRef.current.value)) {
       return;
     }
 
     dispatch(
       loginAction({
-        login: review.email,
-        password: review.password,
+        login: emailRef.current.value,
+        password: passwordRef.current.value,
       })
     );
-  };
-
-  const handleInputChange = (event: FormEvent<HTMLInputElement>) => {
-    setReview({...review, [event.currentTarget.name]: event.currentTarget.value});
   };
 
   return (
@@ -32,20 +32,20 @@ function LoginForm() {
       <h1 className="login__title">Sign in</h1>
       <form className="login__form form" onSubmit={handleSubmitForm}>
         <SmallInput
+          reference={emailRef}
           label="E-mail"
           type="email"
           name="email"
           placeholder="Email"
-          handleChange={handleInputChange}
           autoComplete="email"
           isRequired
         />
         <SmallInput
+          reference={passwordRef}
           label="Password"
           type="password"
           name="password"
           placeholder="Password"
-          handleChange={handleInputChange}
           autoComplete="current-password"
           isRequired
         />
