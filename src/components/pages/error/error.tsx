@@ -3,7 +3,7 @@ import { ContentOnTheRight } from '../../templates';
 import { TabButton } from '../../atoms';
 import { APP_ROUTE } from '../../../constants';
 import { StatusCodes } from 'http-status-codes';
-import './not-found.css';
+import './error.css';
 
 type NotFoundPageProps = {
   type?: keyof typeof variant;

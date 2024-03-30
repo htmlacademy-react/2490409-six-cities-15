@@ -11,7 +11,11 @@ import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { redirect } from '../routing';
 
-const statusCodeMapping: Record<number, boolean> = {
+const preconfiguredErrorsMapping: Record<string, string> = {
+  'ERR_NETWORK': 'Network error. Check your internet connection.',
+};
+
+const displayErrorStatusCodeMapping: Record<number, boolean> = {
   [StatusCodes.BAD_REQUEST]: true,
   [StatusCodes.UNAUTHORIZED]: true,
   [StatusCodes.FORBIDDEN]: true,
@@ -25,8 +29,9 @@ const redirectStatusCodeMapping: Record<number, string> = {
   [StatusCodes.SERVICE_UNAVAILABLE]: APP_ROUTE.ServerError,
 };
 
-const shouldDisplayError = (response: AxiosResponse) => statusCodeMapping[response.status];
+const shouldDisplayError = (response: AxiosResponse) => displayErrorStatusCodeMapping[response.status];
 const getRedirectRoute = (response: AxiosResponse) => redirectStatusCodeMapping[response.status];
+const getPreconfiguredErrorMessage = (code: string) => preconfiguredErrorsMapping[code];
 
 const createAPI = (): AxiosInstance => {
   const api = axios.create({
@@ -59,6 +64,13 @@ const createAPI = (): AxiosInstance => {
         const redirectRoute = getRedirectRoute(error.response);
         if (redirectRoute) {
           redirect(redirectRoute);
+        }
+      }
+
+      if (error.code) {
+        const preconfiguredMessage = getPreconfiguredErrorMessage(error.code);
+        if (preconfiguredMessage) {
+          toast.warn(preconfiguredMessage);
         }
       }
 
