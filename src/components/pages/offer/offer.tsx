@@ -8,7 +8,7 @@ import {
   fetchNearbyOffersAction
 } from '../../../store/slices/offers/thunk.ts';
 import { useAppDispatch, useAppSelector } from '../../../store/helpers.ts';
-import { NotFoundPage } from '../index.ts';
+import { ErrorPage } from '../index.ts';
 import { offersSelectors } from '../../../store/slices/offers';
 import { REQUEST_STATUS } from '../../../constants';
 
@@ -32,7 +32,7 @@ function OfferPage(): ReactElement {
   const reviews = useAppSelector(offersSelectors.detailOfferReviews);
 
   if (!requestStatus && offer === null) {
-    return <NotFoundPage type="offer" />;
+    return <ErrorPage/>;
   }
 
   let placesNear = null;

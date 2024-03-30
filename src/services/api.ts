@@ -1,20 +1,30 @@
-import axios, { AxiosError, AxiosInstance, AxiosResponse, InternalAxiosRequestConfig } from 'axios';
-import { BASE_URL } from '../constants';
+import axios, {
+  AxiosError,
+  AxiosInstance,
+  AxiosResponse,
+  InternalAxiosRequestConfig,
+} from 'axios';
+import { APP_ROUTE, BASE_URL } from '../constants';
 import { getToken } from './token.ts';
 import { StatusCodes } from 'http-status-codes';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { redirect } from '../routing';
 
 const statusCodeMapping: Record<number, boolean> = {
   [StatusCodes.BAD_REQUEST]: true,
   [StatusCodes.UNAUTHORIZED]: true,
   [StatusCodes.FORBIDDEN]: true,
-  [StatusCodes.NOT_FOUND]: true,
   [StatusCodes.CONFLICT]: true,
-  [StatusCodes.INTERNAL_SERVER_ERROR]: true,
+};
+
+const redirectStatusCodeMapping: Record<number, string> = {
+  [StatusCodes.NOT_FOUND]: APP_ROUTE.NotFound,
+  [StatusCodes.INTERNAL_SERVER_ERROR]: APP_ROUTE.ServerError,
 };
 
 const shouldDisplayError = (response: AxiosResponse) => statusCodeMapping[response.status];
+const getRedirectRoute = (response: AxiosResponse) => redirectStatusCodeMapping[response.status];
 
 const createAPI = (): AxiosInstance => {
   const api = axios.create({
@@ -37,10 +47,17 @@ const createAPI = (): AxiosInstance => {
   api.interceptors.response.use(
     (response) => response,
     (error: AxiosError<{ message: string }>) => {
-      if (error.response && shouldDisplayError(error.response)) {
-        const detailMessage = (error.response.data);
+      if (error.response) {
+        if (shouldDisplayError(error.response)) {
+          const detailMessage = (error.response.data);
 
-        toast.warn(detailMessage.message);
+          toast.warn(detailMessage.message);
+        }
+
+        const redirectRoute = getRedirectRoute(error.response);
+        if (redirectRoute) {
+          redirect(redirectRoute);
+        }
       }
 
       throw error;

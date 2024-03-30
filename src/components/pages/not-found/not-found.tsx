@@ -2,6 +2,7 @@ import { ReactElement } from 'react';
 import { ContentOnTheRight } from '../../templates';
 import { TabButton } from '../../atoms';
 import { APP_ROUTE } from '../../../constants';
+import { StatusCodes } from 'http-status-codes';
 import './not-found.css';
 
 type NotFoundPageProps = {
@@ -9,17 +10,17 @@ type NotFoundPageProps = {
 };
 
 const variant = {
-  offer: 'This offer isn\'t active or doesn\'t exist',
-  page: 'This page does not exist',
+  serverError: 'Something went wrong... Standby, we are working on it',
+  notFound: 'This page does not exist',
 };
 
-function NotFoundPage({type = 'page'}: NotFoundPageProps): ReactElement {
+function ErrorPage({type = 'notFound'}: NotFoundPageProps): ReactElement {
   return (
     <ContentOnTheRight
       leftSideContent={
         <div className="not-found__container">
           <div className="not-found__error-number">
-            404
+            {type === 'notFound' ? StatusCodes.NOT_FOUND : StatusCodes.INTERNAL_SERVER_ERROR}
           </div>
           <br/>
           <div className="not-found__error-text">
@@ -27,9 +28,9 @@ function NotFoundPage({type = 'page'}: NotFoundPageProps): ReactElement {
           </div>
         </div>
       }
-      rightSideButton={<TabButton tabName={'Back to main page'} isSelected={false} link={APP_ROUTE.Main} />}
+      rightSideButton={<TabButton tabName={type === 'notFound' ? 'Back to main page' : 'Try again'} isSelected={false} link={APP_ROUTE.Main} />}
     />
   );
 }
 
-export default NotFoundPage;
+export default ErrorPage;

@@ -1,7 +1,7 @@
 import { Navigate } from 'react-router-dom';
 import { PropsWithChildren } from 'react';
-import { useAuthStatus } from '../../hooks';
-import { AuthStatusType } from '../../types';
+import { useAuthStatus } from '../hooks';
+import { AuthStatusType } from '../types';
 
 type PrivateRouteProps = PropsWithChildren<{
   allowedAuthStatuses: AuthStatusType | AuthStatusType[];
