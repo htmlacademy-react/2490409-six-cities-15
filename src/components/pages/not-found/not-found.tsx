@@ -17,6 +17,7 @@ const variant = {
 function ErrorPage({type = 'notFound'}: NotFoundPageProps): ReactElement {
   return (
     <ContentOnTheRight
+      showAccountData
       leftSideContent={
         <div className="not-found__container">
           <div className="not-found__error-number">

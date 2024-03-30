@@ -57,7 +57,7 @@ const setDetailOfferRejected = (state: OffersStateType) => {
 };
 
 const setNearbyOffersFulfilled = (state: OffersStateType, action: PayloadAction<OfferData[]>) => {
-  state.currentDetailOfferNearbyOffers = action.payload;
+  state.currentDetailOfferNearbyOffers = action.payload.slice(0, 3);
   state.offersRequestStatus = REQUEST_STATUS.Success;
 };
 

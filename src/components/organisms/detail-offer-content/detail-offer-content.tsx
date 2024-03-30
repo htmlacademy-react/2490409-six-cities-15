@@ -24,7 +24,7 @@ function DetailOfferContent(
         <Gallery images={offer.images}/>
         <div className="offer__container container">
           <div className="offer__wrapper">
-            <PremiumLabel type={elementsType}/>
+            {offer.isPremium && <PremiumLabel type={elementsType}/>}
             <div className="offer__name-wrapper">
               <h1 className="offer__name">{offer.title}</h1>
               <BookmarkIcon id={offer.id} size={{width: 31, height: 33}} isActive={offer.isFavorite} type={elementsType}/>
@@ -44,7 +44,7 @@ function DetailOfferContent(
             <Map
               classType="offer"
               style={{maxWidth: '60%'}}
-              locations={[...nearbyLocations.slice(0, 3), currentLocation]}
+              locations={[...nearbyLocations, currentLocation]}
               city={offer.city}
               selectedCardId={offer.id}
             />

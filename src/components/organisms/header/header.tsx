@@ -11,7 +11,7 @@ type HeaderProps = {
   isLogoActive?: boolean;
 };
 
-function Header({ isLogoActive }: HeaderProps) {
+function Header({ isLogoActive = false }: HeaderProps) {
   const profileData = useAppSelector(userSelectors.user);
   const favoritesCounter = useAppSelector(offersSelectors.favoriteOffers).length;
 

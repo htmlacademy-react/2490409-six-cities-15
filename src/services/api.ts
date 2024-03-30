@@ -16,11 +16,13 @@ const statusCodeMapping: Record<number, boolean> = {
   [StatusCodes.UNAUTHORIZED]: true,
   [StatusCodes.FORBIDDEN]: true,
   [StatusCodes.CONFLICT]: true,
+  [StatusCodes.INTERNAL_SERVER_ERROR]: true,
 };
 
 const redirectStatusCodeMapping: Record<number, string> = {
   [StatusCodes.NOT_FOUND]: APP_ROUTE.NotFound,
-  [StatusCodes.INTERNAL_SERVER_ERROR]: APP_ROUTE.ServerError,
+  [StatusCodes.BAD_GATEWAY]: APP_ROUTE.ServerError,
+  [StatusCodes.SERVICE_UNAVAILABLE]: APP_ROUTE.ServerError,
 };
 
 const shouldDisplayError = (response: AxiosResponse) => statusCodeMapping[response.status];

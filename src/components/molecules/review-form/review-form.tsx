@@ -33,9 +33,11 @@ function ReviewForm() {
         comment: review.comment,
         rating: review.rating,
       })
-    );
-
-    setReview(initialReviewState);
+    )
+      .unwrap()
+      .then(() => {
+        setReview(initialReviewState);
+      });
   };
 
   const isLoading = useAppSelector(offersSelectors.reviewRequestStatus) === REQUEST_STATUS.Loading;
@@ -55,8 +57,6 @@ function ReviewForm() {
         placeholder="Tell how was your stay, what you like and what can be improved"
         value={review.comment}
         onChange={handleChange}
-        maxLength={300}
-        minLength={50}
         disabled={isLoading}
       />
       <div className="reviews__button-wrapper" >
@@ -64,12 +64,16 @@ function ReviewForm() {
           To submit review please make sure to set{' '}
           <span className="reviews__star">rating</span> and describe
           your stay with at least{' '}
-          <b className="reviews__text-amount">50 characters</b>.
+          <b className="reviews__text-amount">50 characters</b> and no longer than <b className="reviews__text-amount">300 characters</b>.
         </p>
         <button
           className="reviews__submit form__submit button"
           type="submit"
-          disabled={review.comment.length < 50 || review.rating <= 0 || isLoading}
+          disabled={
+            review.comment.length > 300 || review.comment.length < 50
+            || review.rating <= 0
+            || isLoading
+          }
         >
           Submit
         </button>
