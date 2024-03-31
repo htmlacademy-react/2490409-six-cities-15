@@ -20,14 +20,20 @@ import Map from './map/map.tsx';
 import OffersByLocationSection from './offers-by-location-section/offers-by-location-section.tsx';
 import OffersList from './offers-list/offers-list.tsx';
 import Loader from './loader/loader.tsx';
+import { memo } from 'react';
+
+const MemorizedOfferCard = memo(OfferCard);
+const MemorizedSortSelector = memo(SortSelector);
+const MemorizedOffersList = memo(OffersList);
+const MemorizedOffersListWithSort = memo(OffersListWithSort);
 
 export {
   CityTabs,
   GoodsList,
   LoginForm,
-  OfferCard,
-  SortSelector,
-  OffersListWithSort,
+  MemorizedOfferCard as OfferCard,
+  MemorizedSortSelector as SortSelector,
+  MemorizedOffersListWithSort as OffersListWithSort,
   OffersListWithCitiesSections,
   FavoritesEmptyState,
   MainEmptyState,
@@ -42,6 +48,6 @@ export {
   StarInput,
   Map,
   OffersByLocationSection,
-  OffersList,
+  MemorizedOffersList as OffersList,
   Loader,
 };

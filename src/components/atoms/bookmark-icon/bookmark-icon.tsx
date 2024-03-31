@@ -1,6 +1,6 @@
 import { IconsAndLabelsStyleClassType, OfferData } from '../../../types';
 import classNames from 'classnames';
-import { MouseEventHandler, useCallback } from 'react';
+import { MouseEventHandler } from 'react';
 import { changeFavoriteStatusAction } from '../../../store/slices/offers/thunk.ts';
 import { useAppDispatch } from '../../../store/helpers.ts';
 import { useAuthStatus } from '../../../hooks';
@@ -21,7 +21,7 @@ function BookmarkIcon({id, isActive = false, type = 'place-card', size}: Bookmar
   const authStatus = useAuthStatus();
   const navigate = useNavigate();
 
-  const handleClick: MouseEventHandler<HTMLButtonElement> = useCallback((e) => {
+  const handleClick: MouseEventHandler<HTMLButtonElement> = (e) => {
     e.preventDefault();
 
     if (authStatus !== AUTH_STATUS.Auth) {
@@ -35,9 +35,7 @@ function BookmarkIcon({id, isActive = false, type = 'place-card', size}: Bookmar
         { id , status: !isActive }
       ),
     );
-
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isActive]);
+  };
 
   const className = classNames(
     'button',

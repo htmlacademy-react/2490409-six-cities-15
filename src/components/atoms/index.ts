@@ -12,19 +12,30 @@ import Price from './price/price.tsx';
 import OfferFeatureItem from './offer-feature-item/offer-feature-item.tsx';
 import LOGO_ICON_SIZE from './logo-icon/logo-icon-size.ts';
 import { LogoIconSizeType } from './logo-icon/logo-icon-size.ts';
+import { memo } from 'react';
+
+const MemorizedLogoIcon = memo(LogoIcon);
+const MemorizedHeaderLogoIcon = memo(HeaderLogoIcon);
+const MemorizedBookmarkIcon = memo(BookmarkIcon);
+const MemorizedGoodListItem = memo(GoodListItem);
+const MemorizedPremiumLabel = memo(PremiumLabel);
+const MemorizedSmallInput = memo(SmallInput);
+const MemorizedRating = memo(Rating);
+const MemorizedGalleryItem = memo(GalleryItem);
+const MemorizedPrice = memo(Price);
 
 export {
-  BookmarkIcon,
-  GoodListItem,
-  HeaderLogoIcon,
-  PremiumLabel,
-  SmallInput,
+  MemorizedBookmarkIcon as BookmarkIcon,
+  MemorizedGoodListItem as GoodListItem,
+  MemorizedHeaderLogoIcon as HeaderLogoIcon,
+  MemorizedPremiumLabel as PremiumLabel,
+  MemorizedSmallInput as SmallInput,
   SortSelectorItem,
   TabButton,
-  LogoIcon,
-  Rating,
-  GalleryItem,
-  Price,
+  MemorizedLogoIcon as LogoIcon,
+  MemorizedRating as Rating,
+  MemorizedGalleryItem as GalleryItem,
+  MemorizedPrice as Price,
   OfferFeatureItem,
   LOGO_ICON_SIZE,
 };
