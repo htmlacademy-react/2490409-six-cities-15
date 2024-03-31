@@ -64,8 +64,8 @@ function DetailOfferContent(
               <h2 className="near-places__title">Other places in the neighbourhood</h2>
               <OffersList
                 offers={nearbyOffers}
-                classNames={'near-places__list places__list'}
-                placeType={'near-places'}
+                classNames="near-places__list places__list"
+                placeType="near-places"
                 hasVerticalLayout
               />
             </section>
