@@ -2,12 +2,11 @@ import { useRef, CSSProperties } from 'react';
 import { useCityLocation, useMap, useMarkers } from '../../../hooks';
 import { CityType, LocationType, MapStyleClassType } from '../../../types';
 import 'leaflet/dist/leaflet.css';
-import { Nullable } from 'vitest';
 
 type MapProps = {
   locations: Array<LocationType & { id: string }>;
   city: CityType;
-  selectedCardId?: Nullable<string>;
+  selectedCardId?: string | null;
   classType?: MapStyleClassType;
   style?: CSSProperties;
 };

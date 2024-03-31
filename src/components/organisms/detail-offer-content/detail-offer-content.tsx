@@ -19,7 +19,7 @@ function DetailOfferContent(
 ): ReactElement {
   const currentLocation = useMemo(() => ({...offer.location, id: offer.id}), [offer]);
   const currentLocationAndNearby = useMemo(
-    () => ([...nearbyLocations ?? [], currentLocation]),
+    () => ([...(nearbyLocations ?? []), currentLocation]),
     [nearbyLocations, currentLocation],
   );
   const mapStyle = useMemo(() => ({maxWidth: '60%'}), []);

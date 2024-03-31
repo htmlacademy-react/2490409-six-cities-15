@@ -2,7 +2,7 @@ import { OfferData, CitiesType } from '../../../types';
 import { Map, OffersListWithSort } from '../../molecules';
 import { offersActions, offersSelectors } from '../../../store/slices/offers';
 import { useActionCreators, useAppSelector } from '../../../store/helpers.ts';
-import { useCallback, useMemo } from 'react';
+import { useCallback, useEffect, useMemo } from 'react';
 
 type OffersListWithMapProps = {
   offersFromCurrentCity: OfferData[];
@@ -11,6 +11,11 @@ type OffersListWithMapProps = {
 
 function OffersListWithMap({offersFromCurrentCity, currentCity}: OffersListWithMapProps) {
   const { setActiveOfferId } = useActionCreators(offersActions);
+  useEffect(() => {
+    setActiveOfferId(null);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   const handleHoverOnCard = useCallback((id: string) => {
     setActiveOfferId(id);
 
