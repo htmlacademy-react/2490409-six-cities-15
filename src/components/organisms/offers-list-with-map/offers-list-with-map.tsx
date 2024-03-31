@@ -2,7 +2,7 @@ import { OfferData, CitiesType } from '../../../types';
 import { Map, OffersListWithSort } from '../../molecules';
 import { offersActions, offersSelectors } from '../../../store/slices/offers';
 import { useActionCreators, useAppSelector } from '../../../store/helpers.ts';
-import { useCallback } from 'react';
+import { useCallback, useMemo } from 'react';
 
 type OffersListWithMapProps = {
   offersFromCurrentCity: OfferData[];
@@ -23,6 +23,10 @@ function OffersListWithMap({offersFromCurrentCity, currentCity}: OffersListWithM
   }, []);
 
   const activeOfferId = useAppSelector(offersSelectors.activeOfferId);
+  const locations = useMemo(
+    () => offersFromCurrentCity.map((offer) => ({ ...offer.location, id: offer.id })),
+    [offersFromCurrentCity]
+  );
 
   return (
     <>
@@ -35,7 +39,7 @@ function OffersListWithMap({offersFromCurrentCity, currentCity}: OffersListWithM
       <div className="cities__right-section">
         <Map
           classType="cities"
-          locations={offersFromCurrentCity.map((offer) => ({ ...offer.location, id: offer.id }))}
+          locations={locations}
           city={offersFromCurrentCity[0].city}
           selectedCardId={activeOfferId}
         />

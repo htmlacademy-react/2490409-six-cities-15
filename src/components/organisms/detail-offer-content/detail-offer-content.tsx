@@ -1,7 +1,7 @@
 import { Gallery, GoodsList, Host, Map, OfferFeatures, OffersList, ReviewsSection} from '../../molecules';
 import { BookmarkIcon, PremiumLabel, Price, Rating} from '../../atoms';
 import { CommentData, IconsAndLabelsStyleClassType, LocationType, OfferData, OfferDetailData } from '../../../types';
-import { ReactElement} from 'react';
+import { ReactElement, useMemo } from 'react';
 import './detail-offer-content.css';
 
 type LocationWithIdType = LocationType & {id: string};
@@ -12,12 +12,18 @@ type DetailOfferContentProps = {
   reviews: CommentData[] | null;
   nearbyOffers: OfferData[] | null;
   nearbyLocations: LocationWithIdType[] | null;
-  currentLocation: LocationWithIdType;
 };
 
 function DetailOfferContent(
-  {offer, elementsType, reviews, nearbyOffers, nearbyLocations, currentLocation}: DetailOfferContentProps
+  {offer, elementsType, reviews, nearbyOffers, nearbyLocations}: DetailOfferContentProps
 ): ReactElement {
+  const currentLocation = useMemo(() => ({...offer.location, id: offer.id}), [offer]);
+  const currentLocationAndNearby = useMemo(
+    () => ([...nearbyLocations ?? [], currentLocation]),
+    [nearbyLocations, currentLocation],
+  );
+  const mapStyle = useMemo(() => ({maxWidth: '60%'}), []);
+
   return (
     <>
       <section className="offer">
@@ -43,8 +49,8 @@ function DetailOfferContent(
           <div className="detail-offer__map-container">
             <Map
               classType="offer"
-              style={{maxWidth: '60%'}}
-              locations={[...nearbyLocations, currentLocation]}
+              style={mapStyle}
+              locations={currentLocationAndNearby}
               city={offer.city}
               selectedCardId={offer.id}
             />

@@ -72,7 +72,6 @@ function OfferPage(): ReactElement {
                 reviews={reviews}
                 nearbyOffers={nearbyOffers}
                 nearbyLocations={placesNear}
-                currentLocation={{...offer.location, id: offer.id}}
               />
             )
         }

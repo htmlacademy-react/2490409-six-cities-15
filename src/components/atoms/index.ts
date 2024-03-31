@@ -20,9 +20,11 @@ const MemorizedBookmarkIcon = memo(BookmarkIcon);
 const MemorizedGoodListItem = memo(GoodListItem);
 const MemorizedPremiumLabel = memo(PremiumLabel);
 const MemorizedSmallInput = memo(SmallInput);
+const MemorizedTabButton = memo(TabButton);
 const MemorizedRating = memo(Rating);
 const MemorizedGalleryItem = memo(GalleryItem);
 const MemorizedPrice = memo(Price);
+const MemorizedOfferFeatureItem = memo(OfferFeatureItem);
 
 export {
   MemorizedBookmarkIcon as BookmarkIcon,
@@ -31,12 +33,12 @@ export {
   MemorizedPremiumLabel as PremiumLabel,
   MemorizedSmallInput as SmallInput,
   SortSelectorItem,
-  TabButton,
+  MemorizedTabButton as TabButton,
   MemorizedLogoIcon as LogoIcon,
   MemorizedRating as Rating,
   MemorizedGalleryItem as GalleryItem,
   MemorizedPrice as Price,
-  OfferFeatureItem,
+  MemorizedOfferFeatureItem as OfferFeatureItem,
   LOGO_ICON_SIZE,
 };
 

@@ -4,6 +4,7 @@ import useMarkers from './use-markers.ts';
 import useSelect from './use-select.ts';
 import { useBooleanHelpers } from './use-boolean-helpers.ts';
 import { useAuthStatus } from './routing.ts';
+import { useFavoriteOffers } from './use-favorite-offers.ts';
 
 export {
   useMap,
@@ -12,4 +13,5 @@ export {
   useSelect,
   useBooleanHelpers,
   useAuthStatus,
+  useFavoriteOffers,
 };

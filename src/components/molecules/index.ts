@@ -22,14 +22,20 @@ import OffersList from './offers-list/offers-list.tsx';
 import Loader from './loader/loader.tsx';
 import { memo } from 'react';
 
+const MemorizedGoodsList = memo(GoodsList);
 const MemorizedOfferCard = memo(OfferCard);
 const MemorizedSortSelector = memo(SortSelector);
+const MemorizedGallery = memo(Gallery);
+const MemorizedOfferFeatures = memo(OfferFeatures);
+const MemorizedHost = memo(Host);
+const MemorizedReviewsList = memo(ReviewsList);
 const MemorizedOffersList = memo(OffersList);
 const MemorizedOffersListWithSort = memo(OffersListWithSort);
+const MemorizedMap = memo(Map);
 
 export {
   CityTabs,
-  GoodsList,
+  MemorizedGoodsList as GoodsList,
   LoginForm,
   MemorizedOfferCard as OfferCard,
   MemorizedSortSelector as SortSelector,
@@ -37,16 +43,16 @@ export {
   OffersListWithCitiesSections,
   FavoritesEmptyState,
   MainEmptyState,
-  Gallery,
-  OfferFeatures,
-  Host,
+  MemorizedGallery as Gallery,
+  MemorizedOfferFeatures as OfferFeatures,
+  MemorizedHost as Host,
   ReviewsSection,
-  ReviewsList,
+  MemorizedReviewsList as ReviewsList,
   ReviewComment,
   ReviewForm,
   RatingButton,
   StarInput,
-  Map,
+  MemorizedMap as Map,
   OffersByLocationSection,
   MemorizedOffersList as OffersList,
   Loader,
