@@ -45,8 +45,8 @@ function OfferCard({
   return (
     <article
       className={`${props.placeType}__card place-card`}
-      onMouseOver={handleMouseEnter}
-      onMouseOut={handleMouseLeave}
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
     >
       {props.isPremium && <PremiumLabel/>}
       <div className={`${props.placeType}__image-wrapper place-card__image-wrapper`}>
