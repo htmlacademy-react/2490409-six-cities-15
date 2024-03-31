@@ -1,4 +1,6 @@
 import BookmarkIcon from './bookmark-icon/bookmark-icon.tsx';
+import BOOKMARK_ICON_SIZE from './bookmark-icon/bookmark-icon-size.ts';
+import { BookmarkIconSizeType } from './bookmark-icon/bookmark-icon-size.ts';
 import GoodListItem from './gool-list-item/gool-list-item.tsx';
 import HeaderLogoIcon from './header-logo-icon/header-logo-icon.tsx';
 import PremiumLabel from './premium-label/premium-label.tsx';
@@ -28,6 +30,7 @@ const MemorizedOfferFeatureItem = memo(OfferFeatureItem);
 
 export {
   MemorizedBookmarkIcon as BookmarkIcon,
+  BOOKMARK_ICON_SIZE,
   MemorizedGoodListItem as GoodListItem,
   MemorizedHeaderLogoIcon as HeaderLogoIcon,
   MemorizedPremiumLabel as PremiumLabel,
@@ -44,5 +47,6 @@ export {
 
 export type {
   LogoIconSizeType,
+  BookmarkIconSizeType,
 };
 

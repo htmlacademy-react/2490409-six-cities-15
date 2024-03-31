@@ -1,5 +1,5 @@
 import { RatingButton } from '../../molecules';
-import { ChangeEvent, ChangeEventHandler, FormEventHandler, useState } from 'react';
+import { ChangeEvent, ChangeEventHandler, FormEventHandler, useCallback, useRef, useState } from 'react';
 import { useAppDispatch, useAppSelector } from '../../../store/helpers.ts';
 import { addCommentAction } from '../../../store/slices/offers/thunk.ts';
 import { offersSelectors } from '../../../store/slices/offers';
@@ -9,17 +9,12 @@ type HandleOnChangeType = ChangeEventHandler<HTMLTextAreaElement | HTMLInputElem
 
 function ReviewForm() {
   const dispatch = useAppDispatch();
-  const initialReviewState = {rating: 0, comment: ''};
-  const [review, setReview] = useState(initialReviewState);
+  const [rating, setRating] = useState(0);
+  const commentRef = useRef<HTMLTextAreaElement>(null);
 
-  const handleChange: HandleOnChangeType = (e: ChangeEvent<HTMLTextAreaElement>) => {
-    const { name, value } = e.currentTarget;
-
-    setReview({
-      ...review,
-      [name]: name === 'rating' ? Number(value) : value,
-    });
-  };
+  const handleChange: HandleOnChangeType = useCallback((e: ChangeEvent<HTMLTextAreaElement>) => {
+    setRating(Number(e.currentTarget.value));
+  }, []);
 
 
   const offerId = useAppSelector(offersSelectors.detailOffer)?.id || '';
@@ -27,20 +22,26 @@ function ReviewForm() {
   const handleSubmit: FormEventHandler<HTMLFormElement> = (event) => {
     event.preventDefault();
 
+    if (!commentRef.current) {
+      return;
+    }
+
     dispatch(
       addCommentAction({
         id: offerId,
-        comment: review.comment,
-        rating: review.rating,
+        comment: commentRef.current.value,
+        rating,
       })
     )
       .unwrap()
       .then(() => {
-        setReview(initialReviewState);
+        setRating(rating);
       });
   };
 
   const isLoading = useAppSelector(offersSelectors.reviewRequestStatus) === REQUEST_STATUS.Loading;
+
+  const comment = commentRef.current?.value ?? '';
 
   return (
     <form className="reviews__form form" onSubmit={handleSubmit}>
@@ -48,15 +49,14 @@ function ReviewForm() {
         Your review
       </label>
       <div className="reviews__rating-form form__rating">
-        <RatingButton handleChange={handleChange} value={review.rating} isDisabled={isLoading}/>
+        <RatingButton handleChange={handleChange} value={rating} isDisabled={isLoading}/>
       </div>
       <textarea
-        className="reviews__textarea form__textarea"
+        ref={commentRef}
         id="comment"
         name="comment"
+        className="reviews__textarea form__textarea"
         placeholder="Tell how was your stay, what you like and what can be improved"
-        value={review.comment}
-        onChange={handleChange}
         disabled={isLoading}
       />
       <div className="reviews__button-wrapper" >
@@ -70,8 +70,8 @@ function ReviewForm() {
           className="reviews__submit form__submit button"
           type="submit"
           disabled={
-            review.comment.length > 300 || review.comment.length < 50
-            || review.rating <= 0
+            comment.length > 300 || comment.length < 50
+            || rating <= 0
             || isLoading
           }
         >

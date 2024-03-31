@@ -1,10 +1,10 @@
-type TLogoIconSizeDict = {
+type LogoIconSizeDictType = {
   [key in 'small' | 'medium']: [number, number];
 };
 
-type LogoIconSizeType = keyof TLogoIconSizeDict;
+type LogoIconSizeType = keyof LogoIconSizeDictType;
 
-const LOGO_ICON_SIZE: TLogoIconSizeDict = {
+const LOGO_ICON_SIZE: LogoIconSizeDictType = {
   small: [64, 33],
   medium: [81, 41],
 };

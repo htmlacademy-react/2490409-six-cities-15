@@ -28,7 +28,9 @@ const MemorizedSortSelector = memo(SortSelector);
 const MemorizedGallery = memo(Gallery);
 const MemorizedOfferFeatures = memo(OfferFeatures);
 const MemorizedHost = memo(Host);
+const MemorizedReviewsSection = memo(ReviewsSection);
 const MemorizedReviewsList = memo(ReviewsList);
+const MemorizedStarInput = memo(StarInput);
 const MemorizedOffersByLocationSection = memo(
   OffersByLocationSection,
   (prevProps, nextProps) => {
@@ -62,12 +64,12 @@ export {
   MemorizedGallery as Gallery,
   MemorizedOfferFeatures as OfferFeatures,
   MemorizedHost as Host,
-  ReviewsSection,
+  MemorizedReviewsSection as ReviewsSection,
   MemorizedReviewsList as ReviewsList,
   ReviewComment,
   ReviewForm,
   RatingButton,
-  StarInput,
+  MemorizedStarInput as StarInput,
   MemorizedMap as Map,
   MemorizedOffersByLocationSection as OffersByLocationSection,
   MemorizedOffersList as OffersList,
