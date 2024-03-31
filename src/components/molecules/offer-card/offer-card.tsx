@@ -1,7 +1,7 @@
 import { PremiumLabel, BookmarkIcon, Rating, Price } from '../../atoms';
 import { Link } from 'react-router-dom';
 import { OfferData } from '../../../types';
-import { ReactElement, useCallback} from 'react';
+import { ReactElement } from 'react';
 import { APP_ROUTE } from '../../../constants';
 import { capitalize } from '../../../utils';
 import classNames from 'classnames';
@@ -30,21 +30,17 @@ function OfferCard({
     {'favorites__card-info': props.placeType === 'favorites'},
   );
 
-  const handleMouseEnter = useCallback(() => {
+  const handleMouseEnter = () => {
     if (onMouseEnter) {
       onMouseEnter(props.id);
     }
+  };
 
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
-  const handleMouseLeave = useCallback(() => {
+  const handleMouseLeave = () => {
     if (onMouseLeave) {
       onMouseLeave();
     }
-
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  };
 
   return (
     <article
