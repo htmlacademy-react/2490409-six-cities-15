@@ -13,11 +13,11 @@ import { redirect } from '../routing';
 
 const preconfiguredErrorsMapping: Record<string, string> = {
   'ERR_NETWORK': 'Network error. Check your internet connection.',
+  [String(StatusCodes.UNAUTHORIZED)]: 'You are not logged in. Click on \'Sign in\' button to log in.',
 };
 
 const displayErrorStatusCodeMapping: Record<number, boolean> = {
   [StatusCodes.BAD_REQUEST]: true,
-  [StatusCodes.UNAUTHORIZED]: true,
   [StatusCodes.FORBIDDEN]: true,
   [StatusCodes.CONFLICT]: true,
   [StatusCodes.INTERNAL_SERVER_ERROR]: true,
@@ -64,6 +64,11 @@ const createAPI = (): AxiosInstance => {
         const redirectRoute = getRedirectRoute(error.response);
         if (redirectRoute) {
           redirect(redirectRoute);
+        }
+
+        const preconfiguredMessage = getPreconfiguredErrorMessage(String(error.response.status));
+        if (preconfiguredMessage) {
+          toast.warn(preconfiguredMessage);
         }
       }
 
