@@ -29,6 +29,22 @@ const MemorizedGallery = memo(Gallery);
 const MemorizedOfferFeatures = memo(OfferFeatures);
 const MemorizedHost = memo(Host);
 const MemorizedReviewsList = memo(ReviewsList);
+const MemorizedOffersByLocationSection = memo(
+  OffersByLocationSection,
+  (prevProps, nextProps) => {
+    if (prevProps.offers.length !== nextProps.offers.length) {
+      return false;
+    }
+
+    for (let i = 0; i < prevProps.offers.length; i++) {
+      if (prevProps.offers[i].id !== nextProps.offers[i].id) {
+        return false;
+      }
+    }
+
+    return true;
+  }
+);
 const MemorizedOffersList = memo(OffersList);
 const MemorizedOffersListWithSort = memo(OffersListWithSort);
 const MemorizedMap = memo(Map);
@@ -53,7 +69,7 @@ export {
   RatingButton,
   StarInput,
   MemorizedMap as Map,
-  OffersByLocationSection,
+  MemorizedOffersByLocationSection as OffersByLocationSection,
   MemorizedOffersList as OffersList,
   Loader,
 };
