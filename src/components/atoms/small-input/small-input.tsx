@@ -23,6 +23,7 @@ function SmallInput(props: SmallInputProps): ReactElement {
         placeholder={props.placeholder}
         required={props.isRequired}
         autoComplete={props.autoComplete}
+        defaultValue=""
       />
     </div>
   );

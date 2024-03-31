@@ -30,8 +30,6 @@ const MemorizedOfferFeatures = memo(OfferFeatures);
 const MemorizedHost = memo(Host);
 const MemorizedReviewsSection = memo(ReviewsSection);
 const MemorizedReviewsList = memo(ReviewsList);
-const MemorizedRatingButton = memo(RatingButton);
-const MemorizedStarInput = memo(StarInput);
 const MemorizedOffersByLocationSection = memo(
   OffersByLocationSection,
   (prevProps, nextProps) => {
@@ -69,8 +67,8 @@ export {
   MemorizedReviewsList as ReviewsList,
   ReviewComment,
   ReviewForm,
-  MemorizedRatingButton as RatingButton,
-  MemorizedStarInput as StarInput,
+  RatingButton,
+  StarInput,
   MemorizedMap as Map,
   MemorizedOffersByLocationSection as OffersByLocationSection,
   MemorizedOffersList as OffersList,
