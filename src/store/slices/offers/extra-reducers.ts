@@ -30,7 +30,7 @@ const toggleFavoriteStatus = (
   if (state.currentDetailOfferNearbyOffers) {
     const j = state.currentDetailOfferNearbyOffers.findIndex((offer) => offer.id === action.meta.arg.id);
     if (j > -1) {
-      state.currentDetailOfferNearbyOffers[i] = { ...state.currentDetailOfferNearbyOffers[i], isFavorite: newFavoriteStatus};
+      state.currentDetailOfferNearbyOffers[j] = { ...state.currentDetailOfferNearbyOffers[j], isFavorite: newFavoriteStatus};
     }
   }
 
