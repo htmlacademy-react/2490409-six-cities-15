@@ -2,7 +2,7 @@ import {ReactElement, RefObject} from 'react';
 
 type SmallInputProps = {
   label: string;
-  type: string;
+  type?: string;
   name: string;
   placeholder: string;
   autoComplete?: string;

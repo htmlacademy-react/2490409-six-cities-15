@@ -4,7 +4,8 @@ import {
   MainPage,
   LoginPage,
   OfferPage,
-  ErrorPage,
+  NotFoundPage,
+  ServerError,
 } from '../pages';
 import { Route, Routes } from 'react-router-dom';
 import { APP_ROUTE, AUTH_STATUS } from '../../constants';
@@ -49,15 +50,15 @@ function App(): ReactElement {
         />
         <Route
           path={APP_ROUTE.NotFound}
-          element={<ErrorPage/>}
+          element={<NotFoundPage/>}
         />
         <Route
           path={APP_ROUTE.ServerError}
-          element={<ErrorPage type="serverError"/>}
+          element={<ServerError/>}
         />
         <Route
           path={'*'}
-          element={<ErrorPage/>}
+          element={<NotFoundPage/>}
         />
       </Routes>
     </HistoryRouter>

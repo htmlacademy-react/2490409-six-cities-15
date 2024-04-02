@@ -1,5 +1,7 @@
-import ContentOnTheRight from './content-on-the-right/content-on-the-right.tsx';
+import ContentOnTheLeft from './content-on-the-left/content-on-the-left.tsx';
+import ErrorPage from './error-page/error-page.tsx';
 
 export {
-  ContentOnTheRight,
+  ContentOnTheLeft,
+  ErrorPage,
 };

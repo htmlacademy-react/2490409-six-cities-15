@@ -1,5 +1,5 @@
 import PrivateRoute from './private-route.tsx';
-import HistoryRouter from './history-route.tsx';
+import HistoryRouter from './history-router.tsx';
 import { browserHistory, redirect } from './history.ts';
 
 export {

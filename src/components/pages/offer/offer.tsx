@@ -8,7 +8,7 @@ import {
   fetchNearbyOffersAction
 } from '../../../store/slices/offers/thunk.ts';
 import { useAppDispatch, useAppSelector } from '../../../store/helpers.ts';
-import { ErrorPage } from '../index.ts';
+import { NotFoundPage } from '../index.ts';
 import { offersSelectors } from '../../../store/slices/offers';
 import { REQUEST_STATUS } from '../../../constants';
 import classNames from 'classnames';
@@ -19,11 +19,9 @@ function OfferPage(): ReactElement {
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    Promise.all([
-      dispatch(fetchDetailOfferAction(offerId)),
-      dispatch(fetchNearbyOffersAction(offerId)),
-      dispatch(fetchCommentsAction(offerId))
-    ]);
+    dispatch(fetchDetailOfferAction(offerId));
+    dispatch(fetchNearbyOffersAction(offerId));
+    dispatch(fetchCommentsAction(offerId));
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [offerId]);
@@ -34,7 +32,7 @@ function OfferPage(): ReactElement {
   const reviews = useAppSelector(offersSelectors.detailOfferReviews);
 
   if (!requestStatus && offer === null) {
-    return <ErrorPage/>;
+    return <NotFoundPage/>;
   }
 
   let placesNear = null;
