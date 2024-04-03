@@ -1,6 +1,6 @@
 import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';
 import { store } from './index.ts';
-import {ActionCreatorsMapObject, bindActionCreators, createAsyncThunk} from '@reduxjs/toolkit';
+import { ActionCreatorsMapObject, bindActionCreators, createAsyncThunk } from '@reduxjs/toolkit';
 import { useMemo } from 'react';
 import { AxiosInstance } from 'axios';
 

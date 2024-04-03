@@ -1,4 +1,4 @@
-import {PropsWithChildren, ReactElement} from 'react';
+import { PropsWithChildren, ReactElement } from 'react';
 import { HeaderLogoIcon } from '../../atoms';
 import { Header } from '../../organisms';
 

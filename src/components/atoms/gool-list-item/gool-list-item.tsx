@@ -1,9 +1,9 @@
-type GoodListItemProps = {
+type AdvantageListItemProps = {
   name: string;
 };
 
-function GoodListItem({name}: GoodListItemProps) {
+function AdvantageListItem({name}: AdvantageListItemProps) {
   return <li className="offer__inside-item">{name}</li>;
 }
 
-export default GoodListItem;
+export default AdvantageListItem;
