@@ -1,5 +1,5 @@
 import CityTabs from './city-tabs/city-tabs.tsx';
-import GoodsList from './goods-list/goods-list.tsx';
+import AdvantagesList from './advantages-list/advantages-list.tsx';
 import LoginForm from './login-form/login-form.tsx';
 import OfferCard from './offer-card/offer-card.tsx';
 import SortSelector from './sort-selector/sort-selector.tsx';
@@ -22,7 +22,7 @@ import OffersList from './offers-list/offers-list.tsx';
 import Loader from './loader/loader.tsx';
 import { memo } from 'react';
 
-const MemorizedGoodsList = memo(GoodsList);
+const MemorizedAdvantagesList = memo(AdvantagesList);
 const MemorizedOfferCard = memo(OfferCard);
 const MemorizedSortSelector = memo(SortSelector);
 const MemorizedGallery = memo(Gallery);
@@ -52,7 +52,7 @@ const MemorizedMap = memo(Map);
 
 export {
   CityTabs,
-  MemorizedGoodsList as GoodsList,
+  MemorizedAdvantagesList as AdvantagesList,
   LoginForm,
   MemorizedOfferCard as OfferCard,
   MemorizedSortSelector as SortSelector,
