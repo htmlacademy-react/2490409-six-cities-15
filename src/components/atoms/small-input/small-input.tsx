@@ -2,7 +2,7 @@ import {ReactElement, RefObject} from 'react';
 
 type SmallInputProps = {
   label: string;
-  type: string;
+  type?: string;
   name: string;
   placeholder: string;
   autoComplete?: string;
@@ -23,6 +23,7 @@ function SmallInput(props: SmallInputProps): ReactElement {
         placeholder={props.placeholder}
         required={props.isRequired}
         autoComplete={props.autoComplete}
+        defaultValue=""
       />
     </div>
   );

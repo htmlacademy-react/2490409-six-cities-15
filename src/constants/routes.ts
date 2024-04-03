@@ -4,7 +4,7 @@ const APP_ROUTE = {
   Login: '/login',
   Favorites: '/favorites',
   Offer: '/offer/:id',
-  NotFound: '/error',
+  NotFound: '/not-found',
   ServerError: '/server-error',
 } as const;
 

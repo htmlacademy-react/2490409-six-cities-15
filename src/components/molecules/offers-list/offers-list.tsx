@@ -1,5 +1,5 @@
 import { OfferCard } from '..';
-import {OfferCardStyleClassType, OfferData} from '../../../types';
+import { OfferCardStyleClassType, OfferData } from '../../../types';
 
 type OffersListProps = {
   offers: OfferData[];

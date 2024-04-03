@@ -1,11 +1,10 @@
 import { HeaderLogoIcon } from '../../atoms';
 import { ReactElement } from 'react';
-import { useAuthStatus } from '../../../hooks';
+import { useAuthStatus, useFavoriteOffers } from '../../../hooks';
 import { APP_ROUTE, AUTH_STATUS } from '../../../constants';
 import { ProfileData, SignInButton, SignOutButton } from '../../atoms/header';
 import { useAppSelector } from '../../../store/helpers.ts';
 import { userSelectors } from '../../../store/slices/user';
-import { offersSelectors } from '../../../store/slices/offers';
 
 type HeaderProps = {
   isLogoActive?: boolean;
@@ -13,15 +12,18 @@ type HeaderProps = {
 
 function Header({ isLogoActive = false }: HeaderProps) {
   const profileData = useAppSelector(userSelectors.user);
-  const favoritesCounter = useAppSelector(offersSelectors.favoriteOffers).length;
+  const favoritesCounter = useFavoriteOffers().length;
 
   const navListData: ReactElement = useAuthStatus() === AUTH_STATUS.Auth ? (
     <>
-      <ProfileData
-        avatarUrl={profileData?.avatarUrl}
-        email={profileData?.email ?? ''}
-        favoritesCounter={favoritesCounter}
-      />
+      {
+        profileData &&
+        <ProfileData
+          avatarUrl={profileData.avatarUrl}
+          email={profileData.email}
+          favoritesCounter={favoritesCounter}
+        />
+      }
       <SignOutButton />
     </>
   ) : (

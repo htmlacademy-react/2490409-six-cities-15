@@ -70,7 +70,8 @@ function ReviewForm() {
           className="reviews__submit form__submit button"
           type="submit"
           disabled={
-            review.comment.length > 300 || review.comment.length < 50
+            review.comment.length < 50
+            || review.comment.length > 300
             || review.rating <= 0
             || isLoading
           }

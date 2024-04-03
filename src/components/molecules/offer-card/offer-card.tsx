@@ -1,7 +1,7 @@
 import { PremiumLabel, BookmarkIcon, Rating, Price } from '../../atoms';
 import { Link } from 'react-router-dom';
 import { OfferData } from '../../../types';
-import { ReactElement, useCallback} from 'react';
+import { ReactElement } from 'react';
 import { APP_ROUTE } from '../../../constants';
 import { capitalize } from '../../../utils';
 import classNames from 'classnames';
@@ -30,27 +30,23 @@ function OfferCard({
     {'favorites__card-info': props.placeType === 'favorites'},
   );
 
-  const handleMouseEnter = useCallback(() => {
+  const handleMouseEnter = () => {
     if (onMouseEnter) {
       onMouseEnter(props.id);
     }
+  };
 
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
-  const handleMouseLeave = useCallback(() => {
+  const handleMouseLeave = () => {
     if (onMouseLeave) {
       onMouseLeave();
     }
-
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  };
 
   return (
     <article
       className={`${props.placeType}__card place-card`}
-      onMouseOver={handleMouseEnter}
-      onMouseOut={handleMouseLeave}
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
     >
       {props.isPremium && <PremiumLabel/>}
       <div className={`${props.placeType}__image-wrapper place-card__image-wrapper`}>
@@ -68,7 +64,7 @@ function OfferCard({
       <div className={infoClassName}>
         <div className="place-card__price-wrapper">
           <Price price={props.price} />
-          <BookmarkIcon id={props.id} isActive={props.isFavorite} size={{ width: 18, height: 19 }}/>
+          <BookmarkIcon id={props.id} isActive={props.isFavorite} size="small"/>
         </div>
         <Rating rating={props.rating} />
         <h2 className="place-card__name">

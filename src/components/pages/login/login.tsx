@@ -1,5 +1,5 @@
 import { ReactElement } from 'react';
-import { ContentOnTheRight } from '../../templates';
+import { ContentOnTheLeft } from '../../templates';
 import { LoginForm } from '../../molecules';
 import { TabButton } from '../../atoms';
 import { CITIES } from '../../../constants';
@@ -11,15 +11,16 @@ function LoginPage(): ReactElement {
   const randomCityKey = Object.keys(CITIES)[randomNumber] as CitiesType;
 
   return (
-    <ContentOnTheRight
-      leftSideContent={<LoginForm/>}
+    <ContentOnTheLeft
       rightSideButton={
         <TabButton
           tabName={CITIES[randomCityKey]} isSelected={false}
           link={createMainRouteWithCity(CITIES[randomCityKey])}
         />
       }
-    />
+    >
+      <LoginForm/>
+    </ContentOnTheLeft>
   );
 }
 

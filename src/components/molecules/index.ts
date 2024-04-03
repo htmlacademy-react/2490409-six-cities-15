@@ -20,28 +20,57 @@ import Map from './map/map.tsx';
 import OffersByLocationSection from './offers-by-location-section/offers-by-location-section.tsx';
 import OffersList from './offers-list/offers-list.tsx';
 import Loader from './loader/loader.tsx';
+import { memo } from 'react';
+
+const MemorizedGoodsList = memo(GoodsList);
+const MemorizedOfferCard = memo(OfferCard);
+const MemorizedSortSelector = memo(SortSelector);
+const MemorizedGallery = memo(Gallery);
+const MemorizedOfferFeatures = memo(OfferFeatures);
+const MemorizedHost = memo(Host);
+const MemorizedReviewsSection = memo(ReviewsSection);
+const MemorizedReviewsList = memo(ReviewsList);
+const MemorizedOffersByLocationSection = memo(
+  OffersByLocationSection,
+  (prevProps, nextProps) => {
+    if (prevProps.offers.length !== nextProps.offers.length) {
+      return false;
+    }
+
+    for (let i = 0; i < prevProps.offers.length; i++) {
+      if (prevProps.offers[i].id !== nextProps.offers[i].id) {
+        return false;
+      }
+    }
+
+    return true;
+  }
+);
+const MemorizedOffersList = memo(OffersList);
+const MemorizedOffersListWithSort = memo(OffersListWithSort);
+const MemorizedMap = memo(Map);
 
 export {
   CityTabs,
-  GoodsList,
+  MemorizedGoodsList as GoodsList,
   LoginForm,
-  OfferCard,
-  SortSelector,
-  OffersListWithSort,
+  MemorizedOfferCard as OfferCard,
+  MemorizedSortSelector as SortSelector,
+  MemorizedOffersListWithSort as OffersListWithSort,
   OffersListWithCitiesSections,
   FavoritesEmptyState,
   MainEmptyState,
-  Gallery,
-  OfferFeatures,
-  Host,
-  ReviewsSection,
-  ReviewsList,
+  MemorizedGallery as Gallery,
+  MemorizedOfferFeatures as OfferFeatures,
+  MemorizedHost as Host,
+  MemorizedReviewsSection as ReviewsSection,
+  MemorizedReviewsList as ReviewsList,
   ReviewComment,
   ReviewForm,
   RatingButton,
   StarInput,
-  Map,
-  OffersByLocationSection,
-  OffersList,
+  MemorizedMap as Map,
+  MemorizedOffersByLocationSection as OffersByLocationSection,
+  MemorizedOffersList as OffersList,
   Loader,
 };

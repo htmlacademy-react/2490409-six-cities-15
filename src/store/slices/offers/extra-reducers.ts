@@ -27,6 +27,13 @@ const toggleFavoriteStatus = (
     state.offers[i] = { ...state.offers[i], isFavorite: newFavoriteStatus};
   }
 
+  if (state.currentDetailOfferNearbyOffers) {
+    const j = state.currentDetailOfferNearbyOffers.findIndex((offer) => offer.id === action.meta.arg.id);
+    if (j > -1) {
+      state.currentDetailOfferNearbyOffers[j] = { ...state.currentDetailOfferNearbyOffers[j], isFavorite: newFavoriteStatus};
+    }
+  }
+
   if (state.currentDetailOffer?.id === action.meta.arg.id) {
     state.currentDetailOffer.isFavorite = newFavoriteStatus;
   }

@@ -1,5 +1,4 @@
 import classNames from 'classnames';
-import { useCallback } from 'react';
 import { SortTypesType } from '../../../types';
 
 type SortSelectorItemProps = {
@@ -14,7 +13,7 @@ function SortSelectorItem({isSelected, value, onClick}: SortSelectorItemProps) {
     {'places__option--active': isSelected},
   );
 
-  const handleClick = useCallback(() => onClick(value), [onClick, value]);
+  const handleClick = () => onClick(value);
 
   return (
     <li

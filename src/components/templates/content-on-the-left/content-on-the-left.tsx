@@ -1,14 +1,13 @@
-import { ReactElement } from 'react';
+import {PropsWithChildren, ReactElement} from 'react';
 import { HeaderLogoIcon } from '../../atoms';
 import { Header } from '../../organisms';
 
-type SmallContentOnTheRightProps = {
+type SmallContentOnTheRightProps = PropsWithChildren<{
   showAccountData?: boolean;
-  leftSideContent: ReactElement;
   rightSideButton: ReactElement;
-};
+}>;
 
-function ContentOnTheRight({showAccountData, leftSideContent, rightSideButton}: SmallContentOnTheRightProps): ReactElement {
+function ContentOnTheLeft({showAccountData, children, rightSideButton}: SmallContentOnTheRightProps): ReactElement {
 
   return (
     <div className="page page--gray page--login">
@@ -28,7 +27,7 @@ function ContentOnTheRight({showAccountData, leftSideContent, rightSideButton}: 
       <main className="page__main page__main--login">
         <div className="page__login-container container">
           <section className="login">
-            {leftSideContent}
+            {children}
           </section>
           <section className="locations locations--login locations--current">
             {rightSideButton}
@@ -39,4 +38,4 @@ function ContentOnTheRight({showAccountData, leftSideContent, rightSideButton}: 
   );
 }
 
-export default ContentOnTheRight;
+export default ContentOnTheLeft;

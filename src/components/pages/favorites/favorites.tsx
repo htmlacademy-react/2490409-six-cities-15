@@ -2,9 +2,9 @@ import { ReactElement, useEffect } from 'react';
 import { Header, Footer } from '../../organisms';
 import { FavoritesEmptyState, OffersListWithCitiesSections } from '../../molecules';
 import classNames from 'classnames';
-import { useAppDispatch, useAppSelector } from '../../../store/helpers.ts';
-import { offersSelectors } from '../../../store/slices/offers';
+import { useAppDispatch } from '../../../store/helpers.ts';
 import { fetchFavoritesOffersAction } from '../../../store/slices/offers/thunk.ts';
+import { useFavoriteOffers } from '../../../hooks';
 
 function FavoritesPage(): ReactElement {
   const dispatch = useAppDispatch();
@@ -14,7 +14,7 @@ function FavoritesPage(): ReactElement {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const favoriteOffers = useAppSelector(offersSelectors.favoriteOffers);
+  const favoriteOffers = useFavoriteOffers();
 
   const isEmpty = favoriteOffers.length === 0;
   const divClassName = classNames(

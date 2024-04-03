@@ -1,4 +1,4 @@
-import { ReactElement } from 'react';
+import { ReactElement, useCallback } from 'react';
 import { CITIES } from '../../../constants';
 import { CitiesType } from '../../../types';
 import { TabButton } from '../../atoms';
@@ -10,11 +10,12 @@ type CityTabsProps = {
 };
 
 function CityTabs({onCityChanged, currTab}: CityTabsProps): ReactElement {
-  const handleTabChange = (city: string) => {
+  const handleTabChange = useCallback((city: string) => {
     if (isCity(city)) {
       onCityChanged(city);
     }
-  };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <div className="tabs">
