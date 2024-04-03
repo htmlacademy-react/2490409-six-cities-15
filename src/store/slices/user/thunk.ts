@@ -1,13 +1,12 @@
-import { createAsyncThunk } from '@reduxjs/toolkit';
 import { AuthenticatedUserType, AuthenticationForm } from '../../../types';
-import { AsyncActionsArgsType } from '../../helpers.ts';
-import { API, dropToken, saveToken, Token } from '../../../services';
+import { createAppAsyncThunk } from '../../helpers.ts';
+import { dropToken, saveToken, Token } from '../../../services';
 import { API_ROUTE } from '../../../constants';
 
-const fetchUserByTokenAction = createAsyncThunk<AuthenticatedUserType, Token, AsyncActionsArgsType>(
+const fetchUserByTokenAction = createAppAsyncThunk<AuthenticatedUserType, Token>(
   'fetch/user',
-  async (token) => {
-    const response = await API.get<AuthenticatedUserType>(API_ROUTE.Get.AuthDataByToken, { data: token });
+  async (token, { extra: api}) => {
+    const response = await api.get<AuthenticatedUserType>(API_ROUTE.Get.AuthDataByToken, { data: token });
 
     saveToken(token);
 
@@ -15,10 +14,10 @@ const fetchUserByTokenAction = createAsyncThunk<AuthenticatedUserType, Token, As
   },
 );
 
-const loginAction = createAsyncThunk<AuthenticatedUserType, AuthenticationForm, AsyncActionsArgsType>(
+const loginAction = createAppAsyncThunk<AuthenticatedUserType, AuthenticationForm>(
   'auth/login',
-  async ({login, password}) => {
-    const response = await API.post<AuthenticatedUserType>(
+  async ({login, password}, { extra: api}) => {
+    const response = await api.post<AuthenticatedUserType>(
       API_ROUTE.Post.Login,
       {email: login, password},
     );
@@ -29,10 +28,10 @@ const loginAction = createAsyncThunk<AuthenticatedUserType, AuthenticationForm, 
   },
 );
 
-const logoutAction = createAsyncThunk<void, Token, AsyncActionsArgsType>(
+const logoutAction = createAppAsyncThunk<void, Token>(
   'auth/logout',
-  async (token) => {
-    await API.delete(API_ROUTE.Delete.Logout, { data: token });
+  async (token, { extra: api}) => {
+    await api.delete(API_ROUTE.Delete.Logout, { data: token });
     dropToken();
   },
 );

@@ -1,8 +1,8 @@
-import { OfferData } from '../../../types';
-import { CitiesType } from '../../../constants';
+import { OfferData, CitiesType } from '../../../types';
 import { Map, OffersListWithSort } from '../../molecules';
-import { offersActions, offerSelectors } from '../../../store/slices/offers';
+import { offersActions, offersSelectors } from '../../../store/slices/offers';
 import { useActionCreators, useAppSelector } from '../../../store/helpers.ts';
+import { useCallback } from 'react';
 
 type OffersListWithMapProps = {
   offersFromCurrentCity: OfferData[];
@@ -11,14 +11,18 @@ type OffersListWithMapProps = {
 
 function OffersListWithMap({offersFromCurrentCity, currentCity}: OffersListWithMapProps) {
   const { setActiveOfferId } = useActionCreators(offersActions);
-  const handleHoverOnCard = (id: string) => {
+  const handleHoverOnCard = useCallback((id: string) => {
     setActiveOfferId(id);
-  };
-  const handleCardLeave = () => {
-    setActiveOfferId(null);
-  };
 
-  const activeOfferId = useAppSelector(offerSelectors.activeOfferId);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+  const handleCardLeave = useCallback(() => {
+    setActiveOfferId(null);
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  const activeOfferId = useAppSelector(offersSelectors.activeOfferId);
 
   return (
     <>

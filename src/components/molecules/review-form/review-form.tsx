@@ -1,27 +1,28 @@
 import { RatingButton } from '../../molecules';
 import { ChangeEvent, ChangeEventHandler, FormEventHandler, useState } from 'react';
 import { useAppDispatch, useAppSelector } from '../../../store/helpers.ts';
-import { addCommentAction} from '../../../store/slices/offers/thunk.ts';
-import { offerSelectors } from '../../../store/slices/offers';
+import { addCommentAction } from '../../../store/slices/offers/thunk.ts';
+import { offersSelectors } from '../../../store/slices/offers';
+import { REQUEST_STATUS } from '../../../constants';
 
-type THandleOnChange = ChangeEventHandler<HTMLTextAreaElement | HTMLInputElement>;
+type HandleOnChangeType = ChangeEventHandler<HTMLTextAreaElement | HTMLInputElement>;
 
 function ReviewForm() {
   const dispatch = useAppDispatch();
   const initialReviewState = {rating: 0, comment: ''};
   const [review, setReview] = useState(initialReviewState);
 
-  const handleChange: THandleOnChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
+  const handleChange: HandleOnChangeType = (e: ChangeEvent<HTMLTextAreaElement>) => {
     const { name, value } = e.currentTarget;
 
     setReview({
       ...review,
-      [name]: isNaN(Number(value)) ? value : Number(value),
+      [name]: name === 'rating' ? Number(value) : value,
     });
   };
 
 
-  const offerId = useAppSelector(offerSelectors.detailOffer)?.id || '';
+  const offerId = useAppSelector(offersSelectors.detailOffer)?.id || '';
 
   const handleSubmit: FormEventHandler<HTMLFormElement> = (event) => {
     event.preventDefault();
@@ -32,10 +33,14 @@ function ReviewForm() {
         comment: review.comment,
         rating: review.rating,
       })
-    );
-
-    setReview(initialReviewState);
+    )
+      .unwrap()
+      .then(() => {
+        setReview(initialReviewState);
+      });
   };
+
+  const isLoading = useAppSelector(offersSelectors.reviewRequestStatus) === REQUEST_STATUS.Loading;
 
   return (
     <form className="reviews__form form" onSubmit={handleSubmit}>
@@ -43,7 +48,7 @@ function ReviewForm() {
         Your review
       </label>
       <div className="reviews__rating-form form__rating">
-        <RatingButton handleChange={handleChange} value={review.rating} />
+        <RatingButton handleChange={handleChange} value={review.rating} isDisabled={isLoading}/>
       </div>
       <textarea
         className="reviews__textarea form__textarea"
@@ -52,18 +57,23 @@ function ReviewForm() {
         placeholder="Tell how was your stay, what you like and what can be improved"
         value={review.comment}
         onChange={handleChange}
+        disabled={isLoading}
       />
       <div className="reviews__button-wrapper" >
         <p className="reviews__help">
           To submit review please make sure to set{' '}
           <span className="reviews__star">rating</span> and describe
           your stay with at least{' '}
-          <b className="reviews__text-amount">50 characters</b>.
+          <b className="reviews__text-amount">50 characters</b> and no longer than <b className="reviews__text-amount">300 characters</b>.
         </p>
         <button
           className="reviews__submit form__submit button"
           type="submit"
-          disabled={review.comment.length < 50 || review.rating <= 0}
+          disabled={
+            review.comment.length > 300 || review.comment.length < 50
+            || review.rating <= 0
+            || isLoading
+          }
         >
           Submit
         </button>

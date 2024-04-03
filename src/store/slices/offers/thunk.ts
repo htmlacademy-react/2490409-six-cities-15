@@ -1,15 +1,12 @@
-import { createAsyncThunk } from '@reduxjs/toolkit';
-import { AsyncActionsArgsType } from '../../helpers.ts';
+import { createAppAsyncThunk, setOfferIdInRoute } from '../../helpers.ts';
 import { API_ROUTE } from '../../../constants';
-import { API } from '../../../services';
 import { CommentData, OfferData, OfferDetailData } from '../../../types';
 
-const replaceOfferId = (route: string, id: string) => route.replace(':offerId', id);
 
-const fetchOffersAction = createAsyncThunk<OfferData[], undefined, AsyncActionsArgsType>(
+const fetchOffersAction = createAppAsyncThunk<OfferData[], void>(
   'fetch/offersList',
-  async () => {
-    const response = await API.get<OfferData[]>(API_ROUTE.Get.OffersList);
+  async (_arg, { extra: api}) => {
+    const response = await api.get<OfferData[]>(API_ROUTE.Get.OffersList);
 
     await new Promise((resolve) => setTimeout(resolve, 300));
 
@@ -17,51 +14,11 @@ const fetchOffersAction = createAsyncThunk<OfferData[], undefined, AsyncActionsA
   },
 );
 
-const fetchDetailOfferAction = createAsyncThunk<OfferDetailData, OfferData['id'], AsyncActionsArgsType>(
-  'fetch/detailOffer',
-  async (id) => {
-    const response = await API.get<OfferDetailData>(replaceOfferId(API_ROUTE.Get.DetailOffer, id));
-
-    return response.data;
-  },
-);
-
-const fetchNearbyOffersAction = createAsyncThunk<OfferData[], OfferData['id'], AsyncActionsArgsType>(
-  'fetch/nearByOffers',
-  async (id) => {
-    const response = await API.get<OfferData[]>(replaceOfferId(API_ROUTE.Get.NearBy, id));
-
-    return response.data;
-  },
-);
-
-const fetchFavoritesOffersAction = createAsyncThunk<OfferData[], undefined, AsyncActionsArgsType>(
-  'fetch/favoritesOffers',
-  async () => {
-    const response = await API.get<OfferData[]>(API_ROUTE.Get.Favorites);
-
-    return response.data;
-  },
-);
-
-const fetchCommentsAction = createAsyncThunk<CommentData[], OfferData['id'], AsyncActionsArgsType>(
-  'fetch/fetchComments',
-  async (id) => {
-    const response = await API.get<CommentData[]>(replaceOfferId(API_ROUTE.Get.Comments, id));
-
-    return response.data;
-  },
-);
-
-const changeFavoriteStatusAction = createAsyncThunk<
-  OfferData,
-  {id: OfferData['id']; status: boolean},
-  AsyncActionsArgsType
->(
+const changeFavoriteStatusAction = createAppAsyncThunk<OfferData, {id: OfferData['id']; status: boolean}>(
   'send/changeFavoriteStatus',
-  async ({id: offerId, status}) => {
-    const response = await API.post<OfferData>(
-      replaceOfferId(API_ROUTE.Post.SetFavorite, offerId)
+  async ({id: offerId, status}, { extra: api}) => {
+    const response = await api.post<OfferData>(
+      setOfferIdInRoute(API_ROUTE.Post.SetFavorite, offerId)
         .replace(':status', status ? '1' : '0'),
       {
         offerId,
@@ -73,26 +30,69 @@ const changeFavoriteStatusAction = createAsyncThunk<
   },
 );
 
-const addCommentAction = createAsyncThunk<
-  CommentData,
-  Pick<CommentData, 'comment' | 'rating'> & { id: OfferDetailData['id'] },
-  AsyncActionsArgsType
->(
-  'send/addComment',
-  async ({id: offerId, comment, rating}) => {
-    const response = await API.post<CommentData>(replaceOfferId(API_ROUTE.Post.AddComment, offerId), { comment, rating });
+
+const fetchFavoritesOffersAction = createAppAsyncThunk<OfferData[], void>(
+  'fetch/favoritesOffers',
+  async (_arg, { extra: api}) => {
+    const response = await api.get<OfferData[]>(API_ROUTE.Get.Favorites);
 
     return response.data;
   },
 );
 
+const fetchDetailOfferAction = createAppAsyncThunk<OfferDetailData, OfferData['id']>(
+  'fetch/detailOffer',
+  async (id, { extra: api}) => {
+    const response = await api.get<OfferDetailData>(
+      setOfferIdInRoute(API_ROUTE.Get.DetailOffer, id)
+    );
+
+    return response.data;
+  },
+);
+
+const fetchNearbyOffersAction = createAppAsyncThunk<OfferData[], OfferData['id']>(
+  'fetch/nearByOffers',
+  async (id, { extra: api}) => {
+    const response = await api.get<OfferData[]>(
+      setOfferIdInRoute(API_ROUTE.Get.NearBy, id)
+    );
+
+    return response.data;
+  },
+);
+
+const fetchCommentsAction = createAppAsyncThunk<CommentData[], OfferData['id']>(
+  'fetch/fetchComments',
+  async (id, { extra: api}) => {
+    const response = await api.get<CommentData[]>(
+      setOfferIdInRoute(API_ROUTE.Get.Comments, id)
+    );
+
+    return response.data;
+  },
+);
+
+const addCommentAction = createAppAsyncThunk<
+  CommentData,
+  Pick<CommentData, 'comment' | 'rating'> & { id: OfferDetailData['id'] }
+>(
+  'send/addComment',
+  async ({id: offerId, comment, rating}, { extra: api}) => {
+    const response = await api.post<CommentData>(
+      setOfferIdInRoute(API_ROUTE.Post.AddComment, offerId), { comment, rating }
+    );
+
+    return response.data;
+  },
+);
 
 export {
   fetchOffersAction,
+  changeFavoriteStatusAction,
+  fetchFavoritesOffersAction,
   fetchDetailOfferAction,
   fetchNearbyOffersAction,
   fetchCommentsAction,
-  fetchFavoritesOffersAction,
-  changeFavoriteStatusAction,
   addCommentAction,
 };

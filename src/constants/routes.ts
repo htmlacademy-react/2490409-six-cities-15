@@ -4,6 +4,8 @@ const APP_ROUTE = {
   Login: '/login',
   Favorites: '/favorites',
   Offer: '/offer/:id',
+  NotFound: '/error',
+  ServerError: '/server-error',
 } as const;
 
 const API_ROUTE = {

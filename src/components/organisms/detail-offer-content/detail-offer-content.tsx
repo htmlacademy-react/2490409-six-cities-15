@@ -1,7 +1,8 @@
 import { Gallery, GoodsList, Host, Map, OfferFeatures, OffersList, ReviewsSection} from '../../molecules';
 import { BookmarkIcon, PremiumLabel, Price, Rating} from '../../atoms';
-import {CommentData, IconsAndLabelsStyleClassType, LocationType, OfferData, OfferDetailData} from '../../../types';
+import { CommentData, IconsAndLabelsStyleClassType, LocationType, OfferData, OfferDetailData } from '../../../types';
 import { ReactElement} from 'react';
+import './detail-offer-content.css';
 
 type LocationWithIdType = LocationType & {id: string};
 
@@ -23,12 +24,12 @@ function DetailOfferContent(
         <Gallery images={offer.images}/>
         <div className="offer__container container">
           <div className="offer__wrapper">
-            <PremiumLabel type={elementsType}/>
+            {offer.isPremium && <PremiumLabel type={elementsType}/>}
             <div className="offer__name-wrapper">
               <h1 className="offer__name">{offer.title}</h1>
-              <BookmarkIcon size={{width: 31, height: 33}} isActive={offer.isFavorite}/>
+              <BookmarkIcon id={offer.id} size={{width: 31, height: 33}} isActive={offer.isFavorite} type={elementsType}/>
             </div>
-            <Rating rating={offer.rating} type={elementsType}/>
+            <Rating rating={offer.rating} type={elementsType} showValue/>
             <OfferFeatures maxAdultsCount={offer.maxAdults} bedroomsCount={offer.bedrooms} housingType={offer.type}/>
             <Price price={offer.price} type={'offer'}/>
             <GoodsList goods={offer.goods}/>
@@ -39,7 +40,7 @@ function DetailOfferContent(
         {
           nearbyLocations &&
           nearbyOffers &&
-          <div style={{width: '100%', display: 'flex', justifyContent: 'center'}}>
+          <div className="detail-offer__map-container">
             <Map
               classType="offer"
               style={{maxWidth: '60%'}}

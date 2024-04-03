@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-function useBoolean(initial: boolean = false) {
+function useBooleanHelpers(initial: boolean = false) {
   const [isOn, setIsOn] = useState(initial);
 
   return {
@@ -12,6 +12,6 @@ function useBoolean(initial: boolean = false) {
 }
 
 export {
-  useBoolean,
+  useBooleanHelpers,
 };
 

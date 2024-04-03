@@ -19,7 +19,7 @@ import StarInput from './star-input/star-input.tsx';
 import Map from './map/map.tsx';
 import OffersByLocationSection from './offers-by-location-section/offers-by-location-section.tsx';
 import OffersList from './offers-list/offers-list.tsx';
-import LoaderContainer from './loader-container/loader-container.tsx';
+import Loader from './loader/loader.tsx';
 
 export {
   CityTabs,
@@ -43,5 +43,5 @@ export {
   Map,
   OffersByLocationSection,
   OffersList,
-  LoaderContainer,
+  Loader,
 };

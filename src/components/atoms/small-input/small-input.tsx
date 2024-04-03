@@ -1,12 +1,13 @@
-import {FormEvent, ReactElement} from 'react';
+import {ReactElement, RefObject} from 'react';
 
 type SmallInputProps = {
   label: string;
   type: string;
   name: string;
   placeholder: string;
-  handleChange: (e: FormEvent<HTMLInputElement>) => void;
+  autoComplete?: string;
   isRequired: boolean;
+  reference: RefObject<HTMLInputElement>;
 };
 
 function SmallInput(props: SmallInputProps): ReactElement {
@@ -14,13 +15,14 @@ function SmallInput(props: SmallInputProps): ReactElement {
     <div className="login__input-wrapper form__input-wrapper">
       <label className="visually-hidden">{props.label}</label>
       <input
+        ref={props.reference}
         id={props.name}
         className="login__input form__input"
         type={props.type}
         name={props.name}
         placeholder={props.placeholder}
         required={props.isRequired}
-        onChange={props.handleChange}
+        autoComplete={props.autoComplete}
       />
     </div>
   );

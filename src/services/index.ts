@@ -1,8 +1,8 @@
-import API from './api.ts';
+import createAPI from './api.ts';
 import { getToken, saveToken, dropToken, Token } from './token.ts';
 
 export {
-  API,
+  createAPI,
   getToken,
   saveToken,
   dropToken,

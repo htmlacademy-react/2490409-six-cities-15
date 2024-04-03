@@ -1,6 +1,6 @@
-import {ReactElement, useEffect} from 'react';
+import { ReactElement, useEffect } from 'react';
 import { DetailOfferContent, Header } from '../../organisms';
-import { LoaderContainer } from '../../molecules';
+import { Loader } from '../../molecules';
 import { useParams } from 'react-router-dom';
 import {
   fetchCommentsAction,
@@ -8,27 +8,33 @@ import {
   fetchNearbyOffersAction
 } from '../../../store/slices/offers/thunk.ts';
 import { useAppDispatch, useAppSelector } from '../../../store/helpers.ts';
-import { offerSelectors } from '../../../store/slices/offers';
-import { NotFoundPage } from '../index.ts';
+import { ErrorPage } from '../index.ts';
+import { offersSelectors } from '../../../store/slices/offers';
+import { REQUEST_STATUS } from '../../../constants';
+import classNames from 'classnames';
+import './offer.css';
 
 function OfferPage(): ReactElement {
   const { id: offerId = '' } = useParams();
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    dispatch(fetchDetailOfferAction(offerId));
-    dispatch(fetchNearbyOffersAction(offerId));
-    dispatch(fetchCommentsAction(offerId));
-    // eslint-disable-next-line
+    Promise.all([
+      dispatch(fetchDetailOfferAction(offerId)),
+      dispatch(fetchNearbyOffersAction(offerId)),
+      dispatch(fetchCommentsAction(offerId))
+    ]);
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [offerId]);
 
-  const isLoading = useAppSelector(offerSelectors.isLoading);
-  const offer = useAppSelector(offerSelectors.detailOffer);
-  const nearbyOffers = useAppSelector(offerSelectors.nearbyOffers);
-  const reviews = useAppSelector(offerSelectors.detailOfferReviews);
+  const requestStatus = useAppSelector(offersSelectors.offersRequestStatus);
+  const offer = useAppSelector(offersSelectors.detailOffer);
+  const nearbyOffers = useAppSelector(offersSelectors.nearbyOffers);
+  const reviews = useAppSelector(offersSelectors.detailOfferReviews);
 
-  if (!isLoading && offer === null) {
-    return <NotFoundPage type="offer" />;
+  if (!requestStatus && offer === null) {
+    return <ErrorPage/>;
   }
 
   let placesNear = null;
@@ -38,13 +44,26 @@ function OfferPage(): ReactElement {
     ));
   }
 
+  const isLoading = requestStatus === REQUEST_STATUS.Loading;
+
+  const divClassname = classNames(
+    'page',
+    {'offer__loading': isLoading},
+  );
+
+  const mainClassname = classNames(
+    'page__main',
+    'page__main--offer',
+    {'page__offer__loading': isLoading},
+  );
+
   return (
-    <div className="page">
+    <div className={divClassname}>
       <Header/>
-      <main className="page__main page__main--offer">
+      <main className={mainClassname}>
         {
           isLoading
-            ? <LoaderContainer/>
+            ? <Loader/>
             : (
               offer &&
               <DetailOfferContent
