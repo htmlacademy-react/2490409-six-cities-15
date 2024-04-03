@@ -5,13 +5,13 @@ import { APP_ROUTE } from '../../../constants';
 import { StatusCodes } from 'http-status-codes';
 import './error-page.css';
 
-type NotFoundPageProps = {
+type ErrorPageProps = {
   statusCode: typeof StatusCodes[keyof typeof StatusCodes];
   errorDescription: string;
   buttonText: string;
 };
 
-function ErrorPage({statusCode, errorDescription, buttonText}: NotFoundPageProps): ReactElement {
+function ErrorPage({statusCode, errorDescription, buttonText}: ErrorPageProps): ReactElement {
   return (
     <ContentOnTheLeft
       showAccountData

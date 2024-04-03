@@ -27,6 +27,7 @@ import {
 import {
   SortTypesType,
 } from './sort.ts';
+import { ReviewType } from './review.ts';
 
 export type {
   IconsAndLabelsStyleClassType,
@@ -45,4 +46,5 @@ export type {
   RequestStatusType,
   CitiesType,
   SortTypesType,
+  ReviewType,
 };

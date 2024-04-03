@@ -30,17 +30,9 @@ function OfferCard({
     {'favorites__card-info': props.placeType === 'favorites'},
   );
 
-  const handleMouseEnter = () => {
-    if (onMouseEnter) {
-      onMouseEnter(props.id);
-    }
-  };
+  const handleMouseEnter = () => onMouseEnter?.(props.id);
 
-  const handleMouseLeave = () => {
-    if (onMouseLeave) {
-      onMouseLeave();
-    }
-  };
+  const handleMouseLeave = () => onMouseLeave?.();
 
   return (
     <article

@@ -1,5 +1,5 @@
-import {OfferFeatureItem} from '../../atoms';
-import {capitalize} from '../../../utils';
+import { OfferFeatureItem } from '../../atoms';
+import { capitalize, pluralize } from '../../../utils';
 
 type OfferFeaturesProps = {
   maxAdultsCount: number;
@@ -11,8 +11,8 @@ function OfferFeatures({maxAdultsCount, bedroomsCount, housingType}: OfferFeatur
   return (
     <ul className="offer__features">
       <OfferFeatureItem content={capitalize(housingType)} type={'entire'} />
-      <OfferFeatureItem content={`${bedroomsCount} Bedroom${bedroomsCount === 1 ? '' : 's'}`} type={'bedrooms'} />
-      <OfferFeatureItem content={`Max ${maxAdultsCount} adult${maxAdultsCount === 1 ? '' : 's'}`} type={'adults'} />
+      <OfferFeatureItem content={`${bedroomsCount} ${pluralize('Bedroom', bedroomsCount)}`} type={'bedrooms'} />
+      <OfferFeatureItem content={`Max ${maxAdultsCount} ${pluralize('adult', maxAdultsCount)}`} type={'adults'} />
     </ul>
   );
 }
