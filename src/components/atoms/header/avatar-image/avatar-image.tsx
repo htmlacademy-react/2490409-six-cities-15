@@ -12,12 +12,7 @@ function AvatarImage({avatarUrl}: AvatarImageProps): ReactElement {
     {'user__avatar-wrapper': !avatarUrl},
   );
 
-  return (
-    <>
-      {avatarUrl && <img src={avatarUrl} alt="User avatar" className={styleClasses}/>}
-      {!avatarUrl && <div className={styleClasses} />}
-    </>
-  );
+  return avatarUrl ? <img src={avatarUrl} alt="User avatar" className={styleClasses}/> : <div className={styleClasses}/>;
 }
 
 export default AvatarImage;

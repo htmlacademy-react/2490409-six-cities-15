@@ -17,7 +17,7 @@ function MainPage(): ReactElement | null {
 
   const { city: cityFromPath = CITIES.Paris } = useParams();
 
-  const currentCity = filterCityName(capitalize(cityFromPath.toLowerCase()));
+  const currentCity = filterCityName(capitalize(cityFromPath?.toLowerCase() ?? ''));
   const offersFromCurrentCity = useAppSelector(offersSelectors.offers)
     .filter((item) => item.city.name === currentCity);
   const requestStatus = useAppSelector(offersSelectors.offersRequestStatus);

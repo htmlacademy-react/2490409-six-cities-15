@@ -11,27 +11,27 @@ import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { redirect } from '../routing';
 
-const preconfiguredErrorsMapping: Record<string, string> = {
+const PRECONFIGURED_ERRORS_MAPPING: Record<string, string> = {
   'ERR_NETWORK': 'Network error. Check your internet connection.',
   [String(StatusCodes.UNAUTHORIZED)]: 'You are not logged in. Click on \'Sign in\' button to log in.',
-};
+} as const;
 
-const displayErrorStatusCodeMapping: Record<number, boolean> = {
+const DISPLAY_ERROR_STATUS_CODE_MAPPING: Record<number, boolean> = {
   [StatusCodes.BAD_REQUEST]: true,
   [StatusCodes.FORBIDDEN]: true,
   [StatusCodes.CONFLICT]: true,
   [StatusCodes.INTERNAL_SERVER_ERROR]: true,
-};
+} as const;
 
-const redirectStatusCodeMapping: Record<number, string> = {
+const REDIRECT_STATUS_CODE_MAPPING: Record<number, string> = {
   [StatusCodes.NOT_FOUND]: APP_ROUTE.NotFound,
   [StatusCodes.BAD_GATEWAY]: APP_ROUTE.ServerError,
   [StatusCodes.SERVICE_UNAVAILABLE]: APP_ROUTE.ServerError,
-};
+} as const;
 
-const shouldDisplayError = (response: AxiosResponse) => displayErrorStatusCodeMapping[response.status];
-const getRedirectRoute = (response: AxiosResponse) => redirectStatusCodeMapping[response.status];
-const getPreconfiguredErrorMessage = (code: string) => preconfiguredErrorsMapping[code];
+const shouldDisplayError = (response: AxiosResponse) => DISPLAY_ERROR_STATUS_CODE_MAPPING[response.status];
+const getRedirectRoute = (response: AxiosResponse) => REDIRECT_STATUS_CODE_MAPPING[response.status];
+const getPreconfiguredErrorMessage = (code: string) => PRECONFIGURED_ERRORS_MAPPING[code];
 
 const createAPI = (): AxiosInstance => {
   const api = axios.create({

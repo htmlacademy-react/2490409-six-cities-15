@@ -1,8 +1,8 @@
-import {ChangeEvent} from 'react';
+import { ChangeEvent } from 'react';
 
 type StarInputProps = {
-  id: 1 | 2 | 3 | 4 | 5;
-  title: 'perfect' | 'good' | 'not bad' | 'badly' | 'terribly';
+  id: number;
+  title: string;
   checked: boolean;
   handleChange: (event: ChangeEvent<HTMLInputElement>) => void;
   isDisabled: boolean;

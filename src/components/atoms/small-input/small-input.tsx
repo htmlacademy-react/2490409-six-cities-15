@@ -1,4 +1,4 @@
-import {ReactElement, RefObject} from 'react';
+import { ReactElement, RefObject } from 'react';
 
 type SmallInputProps = {
   label: string;
