@@ -5,6 +5,7 @@ import { addCommentAction } from '../../../store/slices/offers/thunk.ts';
 import { offersSelectors } from '../../../store/slices/offers';
 import { REQUEST_STATUS } from '../../../constants';
 import { ReviewType } from '../../../types';
+import { useDetailOffer } from '../../../hooks';
 
 type HandleOnChangeType = ChangeEventHandler<HTMLTextAreaElement | HTMLInputElement>;
 
@@ -27,7 +28,7 @@ function ReviewForm() {
   };
 
 
-  const offerId = useAppSelector(offersSelectors.detailOffer)?.id || '';
+  const offerId = useDetailOffer()?.id || '';
 
   const handleSubmit: FormEventHandler<HTMLFormElement> = (event) => {
     event.preventDefault();

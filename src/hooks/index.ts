@@ -5,6 +5,8 @@ import useSelect from './use-select.ts';
 import { useBooleanHelpers } from './use-boolean-helpers.ts';
 import { useAuthStatus } from './routing.ts';
 import { useFavoriteOffers } from './use-favorite-offers.ts';
+import { useNearbyOffers } from './use-nearby-offers.ts';
+import { useDetailOffer } from './use-detail-offer.ts';
 
 export {
   useMap,
@@ -14,4 +16,6 @@ export {
   useBooleanHelpers,
   useAuthStatus,
   useFavoriteOffers,
+  useNearbyOffers,
+  useDetailOffer,
 };

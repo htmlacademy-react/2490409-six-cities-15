@@ -33,9 +33,9 @@ import { REQUEST_STATUS } from '../../../constants';
 
 type OffersStateType = {
   offers: OfferData[];
-  currentDetailOffer: OfferDetailData | null;
-  currentDetailOfferReviews: CommentData[] | null;
-  currentDetailOfferNearbyOffers: OfferData[] | null;
+  additionalOfferData: Omit<OfferDetailData, keyof OfferData> & {id: OfferData['id']} | null;
+  detailOfferReviews: CommentData[] | null;
+  nearbyOffersIds: Array<OfferData['id']>;
   offersRequestStatus: RequestStatusType;
   reviewRequestStatus: RequestStatusType;
   activeOfferId: string | null;
@@ -43,9 +43,9 @@ type OffersStateType = {
 
 const initialState: OffersStateType = {
   offers: [],
-  currentDetailOffer: null,
-  currentDetailOfferReviews: null,
-  currentDetailOfferNearbyOffers: null,
+  additionalOfferData: null,
+  detailOfferReviews: null,
+  nearbyOffersIds: [],
   offersRequestStatus: REQUEST_STATUS.Idle,
   reviewRequestStatus: REQUEST_STATUS.Idle,
   activeOfferId: null,

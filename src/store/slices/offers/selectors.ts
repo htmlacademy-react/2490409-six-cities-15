@@ -5,9 +5,9 @@ const offersSelectors = {
   offersRequestStatus: (state: OffersStateType) => state.offersRequestStatus,
   reviewRequestStatus: (state: OffersStateType) => state.reviewRequestStatus,
   activeOfferId: (state: OffersStateType) => state.activeOfferId,
-  detailOffer: (state: OffersStateType) => state.currentDetailOffer,
-  detailOfferReviews: (state: OffersStateType) => state.currentDetailOfferReviews,
-  nearbyOffers: (state: OffersStateType) => state.currentDetailOfferNearbyOffers,
+  additionalOfferData: (state: OffersStateType) => state.additionalOfferData,
+  detailOfferReviews: (state: OffersStateType) => state.detailOfferReviews,
+  nearbyOffersIds: (state: OffersStateType) => state.nearbyOffersIds,
 };
 
 export {
