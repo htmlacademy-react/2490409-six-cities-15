@@ -15,7 +15,6 @@ function FavoritesPage(): ReactElement {
   }, []);
 
   const favoriteOffers = useFavoriteOffers();
-
   const isEmpty = favoriteOffers.length === 0;
   const divClassName = classNames(
     'page',

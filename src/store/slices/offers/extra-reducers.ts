@@ -20,21 +20,36 @@ const setOffersLoading = (state: OffersStateType) => {
 const toggleFavoriteStatus = (
   state: OffersStateType, action: PayloadAction<unknown, string, { arg: { id: OfferData['id'] } }>
 ) => {
-  const i = state.offers.findIndex((offer) => offer.id === action.meta.arg.id);
-  const newFavoriteStatus = !state.offers[i].isFavorite;
+  const i = state.offers.findIndex(({ id }) => id === action.meta.arg.id);
+  const j =
+    state.currentDetailOfferNearbyOffers
+      ? state.currentDetailOfferNearbyOffers.findIndex(({ id }) => id === action.meta.arg.id)
+      : -1;
+
+  const newFavoriteStatus =
+    (
+      state.offers[i]
+      && !state.offers[i].isFavorite
+    )
+    ?? (
+      state.currentDetailOffer
+      && !state.currentDetailOffer.isFavorite
+    )
+    ?? (
+      state.currentDetailOfferNearbyOffers
+      && state.currentDetailOfferNearbyOffers[j]
+      && !state.currentDetailOfferNearbyOffers[j].isFavorite
+    );
 
   if (i > -1) {
     state.offers[i] = { ...state.offers[i], isFavorite: newFavoriteStatus};
   }
 
-  if (state.currentDetailOfferNearbyOffers) {
-    const j = state.currentDetailOfferNearbyOffers.findIndex((offer) => offer.id === action.meta.arg.id);
-    if (j > -1) {
-      state.currentDetailOfferNearbyOffers[j] = { ...state.currentDetailOfferNearbyOffers[j], isFavorite: newFavoriteStatus};
-    }
+  if (j && j > -1 && state.currentDetailOfferNearbyOffers) {
+    state.currentDetailOfferNearbyOffers[j] = { ...state.currentDetailOfferNearbyOffers[j], isFavorite: newFavoriteStatus};
   }
 
-  if (state.currentDetailOffer?.id === action.meta.arg.id) {
+  if (state.currentDetailOffer && state.currentDetailOffer.id === action.meta.arg.id) {
     state.currentDetailOffer.isFavorite = newFavoriteStatus;
   }
 };
@@ -42,10 +57,20 @@ const toggleFavoriteStatus = (
 const updateFavorites = (
   state: OffersStateType, action: PayloadAction<OfferData[]>
 ) => {
-  const favoriteOffersIds = action.payload.map((offer) => offer.id);
+  const favoriteOffersIds = action.payload.map(({id}) => id);
 
   for (const [i, offer] of state.offers.entries()) {
     state.offers[i].isFavorite = favoriteOffersIds.includes(offer.id);
+  }
+
+  if (state.currentDetailOfferNearbyOffers) {
+    for (const [i, offer] of state.currentDetailOfferNearbyOffers.entries()) {
+      state.currentDetailOfferNearbyOffers[i].isFavorite = favoriteOffersIds.includes(offer.id);
+    }
+  }
+
+  if (state.currentDetailOffer && favoriteOffersIds.includes(state.currentDetailOffer.id)) {
+    state.currentDetailOffer.isFavorite = true;
   }
 };
 

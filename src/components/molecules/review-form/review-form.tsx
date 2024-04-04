@@ -4,7 +4,7 @@ import { useAppDispatch, useAppSelector } from '../../../store/helpers.ts';
 import { addCommentAction } from '../../../store/slices/offers/thunk.ts';
 import { offersSelectors } from '../../../store/slices/offers';
 import { REQUEST_STATUS } from '../../../constants';
-import {ReviewType} from '../../../types';
+import { ReviewType } from '../../../types';
 
 type HandleOnChangeType = ChangeEventHandler<HTMLTextAreaElement | HTMLInputElement>;
 
