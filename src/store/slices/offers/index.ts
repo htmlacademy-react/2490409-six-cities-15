@@ -1,5 +1,10 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { CommentData, OfferData, OfferDetailData, RequestStatusType } from '../../../types';
+import {
+  AdditionalDataType,
+  CommentData,
+  OfferData,
+  RequestStatusType,
+} from '../../../types';
 import {
   changeFavoriteStatusAction,
   fetchFavoritesOffersAction,
@@ -33,7 +38,7 @@ import { REQUEST_STATUS } from '../../../constants';
 
 type OffersStateType = {
   offers: OfferData[];
-  additionalOfferData: Omit<OfferDetailData, keyof OfferData> & {id: OfferData['id']} | null;
+  additionalOfferData: AdditionalDataType | null;
   detailOfferReviews: CommentData[] | null;
   nearbyOffersIds: Array<OfferData['id']>;
   offersRequestStatus: RequestStatusType;

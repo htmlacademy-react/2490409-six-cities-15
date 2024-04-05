@@ -10,6 +10,7 @@ import { OfferData,
   CityType,
   LocationType,
   HousingType,
+  AdditionalDataType,
 } from './offer.ts';
 import {
   HostUserType,
@@ -49,4 +50,5 @@ export type {
   SortTypesType,
   ReviewType,
   HousingType,
+  AdditionalDataType,
 };

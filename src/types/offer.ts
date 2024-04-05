@@ -26,6 +26,8 @@ type OfferDetailData = OfferData & {
   maxAdults: number;
 };
 
+type AdditionalDataType = Omit<OfferDetailData, keyof OfferData> & {id: OfferData['id']};
+
 type CommentData = {
   id: string;
   comment: string;
@@ -48,6 +50,7 @@ type LocationType = {
 export type {
   OfferData,
   OfferDetailData,
+  AdditionalDataType,
   CommentData,
   CityType,
   LocationType,
