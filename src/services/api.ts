@@ -13,7 +13,6 @@ import { redirect } from '../routing';
 
 const PRECONFIGURED_ERRORS_MAPPING: Record<string, string> = {
   'ERR_NETWORK': 'Network error. Check your internet connection.',
-  [String(StatusCodes.UNAUTHORIZED)]: 'You are not logged in. Click on \'Sign in\' button to log in.',
 } as const;
 
 const DISPLAY_ERROR_STATUS_CODE_MAPPING: Record<number, boolean> = {

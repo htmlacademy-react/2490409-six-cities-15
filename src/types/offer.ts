@@ -1,10 +1,13 @@
 import { CitiesType } from '../types';
 import { HostUserType } from '../types';
+import { HOUSING } from '../constants';
+
+type HousingType = keyof typeof HOUSING;
 
 type OfferData = {
   id: string;
   title: string;
-  type: string;
+  type: HousingType;
   price: number;
   previewImage: string;
   city: CityType;
@@ -48,4 +51,5 @@ export type {
   CommentData,
   CityType,
   LocationType,
+  HousingType,
 };
