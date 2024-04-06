@@ -1,7 +1,7 @@
 import BookmarkIcon from './bookmark-icon/bookmark-icon.tsx';
 import BOOKMARK_ICON_SIZE from './bookmark-icon/bookmark-icon-size.ts';
 import { BookmarkIconSizeType } from './bookmark-icon/bookmark-icon-size.ts';
-import AdvantageListItem from './gool-list-item/gool-list-item.tsx';
+import AdvantageListItem from './advantages-list-item/advantages-list-item.tsx';
 import HeaderLogoIcon from './header-logo-icon/header-logo-icon.tsx';
 import PremiumLabel from './premium-label/premium-label.tsx';
 import SmallInput from './small-input/small-input.tsx';

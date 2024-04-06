@@ -6,7 +6,7 @@ type PremiumLabelProps = {
 
 function PremiumLabel({type = 'place-card'}: PremiumLabelProps) {
   return (
-    <div className={`${type}__mark`}>
+    <div className={`${type}__mark`} data-testid="premium-label">
       <span>Premium</span>
     </div>
   );

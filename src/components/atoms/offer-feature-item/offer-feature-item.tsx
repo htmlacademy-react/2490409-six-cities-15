@@ -5,7 +5,7 @@ type OfferFeatureItemProps = {
   type: OfferFeatureType;
 };
 function OfferFeatureItem({content, type}: OfferFeatureItemProps) {
-  return <li className={`offer__feature offer__feature--${type}`}>{content}</li>;
+  return <li className={`offer__feature offer__feature--${type}`} data-testid="offer-feature-item">{content}</li>;
 }
 
 export default OfferFeatureItem;

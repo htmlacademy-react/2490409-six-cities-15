@@ -9,6 +9,7 @@ function LogoIcon({size}: LocoIconProps) {
 
   return (
     <img
+      data-testid={`logo-icon-${size}`}
       className="footer__logo"
       src="img/logo.svg"
       alt="6 cities logo"
