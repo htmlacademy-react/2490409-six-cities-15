@@ -3,7 +3,7 @@ import {
   makeFakeOfferId,
   makeFakeOffersState,
   makeFakeReview,
-  makeOfferAdditionalData
+  makeFakeOfferAdditionalData,
 } from '../../../utils/tests';
 import { offersActions, offersSlice } from './index.ts';
 import { REQUEST_STATUS } from '../../../constants';
@@ -212,7 +212,7 @@ describe('OffersReducer', () => {
         offersLen: 1,
       });
 
-      const expectedAdditionalOfferData = makeOfferAdditionalData(state.offers[0].id);
+      const expectedAdditionalOfferData = makeFakeOfferAdditionalData(state.offers[0].id);
       const detailOffer = {...expectedAdditionalOfferData, ...state.offers[0]};
 
       const { additionalOfferData, offersRequestStatus } = offersSlice.reducer(

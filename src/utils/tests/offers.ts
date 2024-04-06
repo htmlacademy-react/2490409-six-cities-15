@@ -34,18 +34,18 @@ const makeFakeOffer = (id: OfferData['id']): OfferData => ({
   rating: datatype.number({ min: 1, max: 5 }),
 });
 
-const makeHostUser = (): HostUserType => ({
+const makeFakeHostUser = (): HostUserType => ({
   name: name.title(),
   avatarUrl: image.image(),
   isPro: datatype.boolean(),
 });
 
-const makeOfferAdditionalData = (id: OfferData['id']): AdditionalDataType => ({
+const makeFakeOfferAdditionalData = (id: OfferData['id']): AdditionalDataType => ({
   id,
   description: lorem.words(30),
   images: Array(10).map(() => image.image()),
   goods: Array(10).map(() => datatype.string(10)),
-  host: makeHostUser(),
+  host: makeFakeHostUser(),
   bedrooms: datatype.number({min: 1, max: 3}),
   maxAdults: datatype.number({min: 1, max: 6}),
 });
@@ -55,7 +55,7 @@ const makeFakeReview = (id: OfferDetailData['id']): CommentData => ({
   comment: lorem.words(15),
   date: date.past(2).toLocaleDateString('en', { month: 'long', year: 'numeric' }),
   rating: datatype.number({ min: 1, max: 5 }),
-  user: makeHostUser(),
+  user: makeFakeHostUser(),
 });
 
 type FakeOffersStateProps = {
@@ -74,8 +74,8 @@ const makeFakeOffersState = (
     additionalDataIndex,
     detailOfferReviewsLen,
     nearbyIndexes,
-    offersRequestStatus,
-    reviewRequestStatus,
+    offersRequestStatus = REQUEST_STATUS.Idle,
+    reviewRequestStatus = REQUEST_STATUS.Idle,
     activeOfferIdIndex
   }: FakeOffersStateProps
 ): OffersStateType => {
@@ -85,13 +85,13 @@ const makeFakeOffersState = (
 
   return {
     offers,
-    additionalOfferData: additionalOfferDataId ? makeOfferAdditionalData(additionalOfferDataId) : null,
+    additionalOfferData: additionalOfferDataId ? makeFakeOfferAdditionalData(additionalOfferDataId) : null,
     detailOfferReviews: detailOfferReviewsLen !== undefined && additionalOfferDataId !== null
       ? Array(detailOfferReviewsLen).fill('').map(() => makeFakeReview(additionalOfferDataId))
       : null,
     nearbyOffersIds: nearbyIndexes ? nearbyIndexes.map((i) => offers[i].id) : [],
-    offersRequestStatus: offersRequestStatus ?? REQUEST_STATUS.Idle,
-    reviewRequestStatus: reviewRequestStatus ?? REQUEST_STATUS.Idle,
+    offersRequestStatus,
+    reviewRequestStatus,
     activeOfferId: activeOfferIdIndex ? offers[activeOfferIdIndex].id : null,
   };
 };
@@ -100,8 +100,8 @@ export {
   makeFakeOfferId,
   makeFakeLocation,
   makeFakeOffer,
-  makeOfferAdditionalData,
-  makeHostUser,
+  makeFakeOfferAdditionalData,
+  makeFakeHostUser,
   makeFakeOffersState,
   makeFakeReview,
 };

@@ -2,18 +2,27 @@ import {
   makeFakeOfferId,
   makeFakeLocation,
   makeFakeOffer,
-  makeOfferAdditionalData,
-  makeHostUser,
+  makeFakeOfferAdditionalData,
+  makeFakeHostUser,
   makeFakeOffersState,
   makeFakeReview,
 } from './offers.ts';
+
+import {
+  makeFakeAuthenticatedUser,
+  makeFakeUserState,
+  makeFakeAuthenticationForm,
+} from './user.ts';
 
 export {
   makeFakeOfferId,
   makeFakeLocation,
   makeFakeOffer,
-  makeOfferAdditionalData,
-  makeHostUser,
+  makeFakeOfferAdditionalData,
+  makeFakeHostUser,
   makeFakeOffersState,
   makeFakeReview,
+  makeFakeAuthenticatedUser,
+  makeFakeUserState,
+  makeFakeAuthenticationForm,
 };
