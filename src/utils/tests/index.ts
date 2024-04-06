@@ -14,6 +14,10 @@ import {
   makeFakeAuthenticationForm,
 } from './user.ts';
 
+import {
+  extractActionsTypes,
+} from './general.ts';
+
 export {
   makeFakeOfferId,
   makeFakeLocation,
@@ -25,4 +29,5 @@ export {
   makeFakeAuthenticatedUser,
   makeFakeUserState,
   makeFakeAuthenticationForm,
+  extractActionsTypes,
 };
