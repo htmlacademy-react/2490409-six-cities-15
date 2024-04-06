@@ -3,14 +3,17 @@ import { makeFakeHostUser } from '.';
 import { datatype, internet } from 'faker';
 import { UserStateType } from '../../store/slices/user';
 import { AUTH_STATUS } from '../../constants';
+import { Token } from '../../services';
 
-const makeFakeAuthenticatedUser = (): AuthenticatedUserType => {
+const makeFakeToken = () => datatype.string(15);
+
+const makeFakeAuthenticatedUser = (token?: Token): AuthenticatedUserType => {
   const hostUser = makeFakeHostUser();
 
   return {
     ...hostUser,
     email: internet.email(),
-    token: datatype.string(15),
+    token: token ?? makeFakeToken(),
   };
 };
 
@@ -30,6 +33,7 @@ const makeFakeUserState = ({shouldCreateUser = false, authorizationStatus = AUTH
 });
 
 export {
+  makeFakeToken,
   makeFakeAuthenticatedUser,
   makeFakeUserState,
   makeFakeAuthenticationForm,

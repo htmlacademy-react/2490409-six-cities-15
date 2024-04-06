@@ -9,6 +9,7 @@ import {
 } from './offers.ts';
 
 import {
+  makeFakeToken,
   makeFakeAuthenticatedUser,
   makeFakeUserState,
   makeFakeAuthenticationForm,
@@ -29,5 +30,6 @@ export {
   makeFakeAuthenticatedUser,
   makeFakeUserState,
   makeFakeAuthenticationForm,
+  makeFakeToken,
   extractActionsTypes,
 };

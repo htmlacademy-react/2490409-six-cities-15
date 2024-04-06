@@ -24,7 +24,7 @@ import {
 import { StatusCodes } from 'http-status-codes';
 import { OfferData } from '../../../types';
 
-describe('thunk actions', () => {
+describe('offers\' thunk actions', () => {
   const axios = createAPI();
   const mockAxiosAdapter = new MockAdapter(axios);
   // eslint-disable-next-line @typescript-eslint/no-unsafe-call,@typescript-eslint/no-unsafe-member-access
