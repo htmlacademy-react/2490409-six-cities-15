@@ -23,7 +23,7 @@ const toggleFavoriteStatus = (
   const i = state.offers.findIndex(({ id }) => id === action.meta.arg.id);
 
   if (i > -1) {
-    state.offers[i] = { ...state.offers[i], isFavorite: !state.offers[i].isFavorite};
+    state.offers[i].isFavorite = !state.offers[i].isFavorite;
   }
 };
 
@@ -90,6 +90,7 @@ const setNearbyOffersFulfilled = (state: OffersStateType, action: PayloadAction<
   });
 
   state.nearbyOffersIds = nearbyIds;
+  state.offersRequestStatus = REQUEST_STATUS.Success;
 };
 
 const setNearbyOffersRejected = (state: OffersStateType) => {
