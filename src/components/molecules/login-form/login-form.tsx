@@ -3,7 +3,6 @@ import { FormEvent, useRef } from 'react';
 import { loginAction } from '../../../store/slices/user/thunk.ts';
 import { useAppDispatch } from '../../../store/helpers.ts';
 import { toast } from 'react-toastify';
-import { browserHistory } from '../../../routing';
 
 function LoginForm() {
   const dispatch = useAppDispatch();
@@ -28,11 +27,7 @@ function LoginForm() {
         login: emailRef.current.value,
         password: passwordRef.current.value,
       })
-    )
-      .unwrap()
-      .then(() => {
-        browserHistory.go(-3);
-      });
+    );
   };
 
   return (

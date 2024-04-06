@@ -90,6 +90,8 @@ export {
   offersSlice,
   offersActions,
   offersSelectors,
+  // export for tests
+  initialState as offersInitialState,
 };
 
 export type {

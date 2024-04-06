@@ -1,12 +1,14 @@
 import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';
 import { store } from './index.ts';
-import { ActionCreatorsMapObject, bindActionCreators, createAsyncThunk } from '@reduxjs/toolkit';
+import { Action, ActionCreatorsMapObject, bindActionCreators, createAsyncThunk, ThunkDispatch } from '@reduxjs/toolkit';
 import { useMemo } from 'react';
 import { AxiosInstance } from 'axios';
+import { createAPI } from '../services';
 
 type StoreStateType = ReturnType<typeof store.getState>;
 
 type AppDispatch = typeof store.dispatch;
+type AppThunkDispatch = ThunkDispatch<StoreStateType, ReturnType<typeof createAPI>, Action>;
 
 const useAppDispatch = () => useDispatch<AppDispatch>();
 
@@ -20,6 +22,7 @@ const useActionCreators = <Actions extends ActionCreatorsMapObject>(actions: Act
 };
 
 const setOfferIdInRoute = (route: string, id: string) => route.replace(':offerId', id);
+const setFavoriteStatusInRoute = (route: string, status: boolean) => route.replace(':status', status ? '1' : '0');
 
 type AsyncActionsArgsType = {
   state: StoreStateType;
@@ -35,12 +38,14 @@ export {
   useAppSelector,
   useActionCreators,
   setOfferIdInRoute,
+  setFavoriteStatusInRoute,
   createAppAsyncThunk,
 };
 
 export type {
   StoreStateType,
   AppDispatch,
+  AppThunkDispatch,
   AsyncActionsArgsType,
 };
 

@@ -1,4 +1,4 @@
-import { AsyncActionsArgsType, createAppAsyncThunk, setOfferIdInRoute } from '../../helpers.ts';
+import {AsyncActionsArgsType, createAppAsyncThunk, setFavoriteStatusInRoute, setOfferIdInRoute} from '../../helpers.ts';
 import { API_ROUTE } from '../../../constants';
 import { CommentData, OfferData, OfferDetailData } from '../../../types';
 
@@ -18,8 +18,7 @@ const changeFavoriteStatusAction = createAppAsyncThunk<OfferData, {id: OfferData
   'send/changeFavoriteStatus',
   async ({id: offerId, status}, { extra: api}) => {
     const response = await api.post<OfferData>(
-      setOfferIdInRoute(API_ROUTE.Post.SetFavorite, offerId)
-        .replace(':status', status ? '1' : '0'),
+      setFavoriteStatusInRoute(setOfferIdInRoute(API_ROUTE.Post.SetFavorite, offerId), status),
       {
         offerId,
         status: status ? 1 : 0

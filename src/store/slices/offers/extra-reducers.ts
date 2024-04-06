@@ -43,20 +43,24 @@ const setDataLoading = (state: OffersStateType) => {
 
 const setDetailOfferFulfilled = (state: OffersStateType, action: PayloadAction<OfferDetailData>) => {
   const { payload } = action;
+  const offerData = {
+    id: payload.id,
+    title: payload.title,
+    type: payload.type,
+    price: payload.price,
+    previewImage: payload.previewImage,
+    city: payload.city,
+    location: payload.location,
+    isFavorite: payload.isFavorite,
+    isPremium: payload.isPremium,
+    rating: payload.rating,
+  };
+  const index = state.offers.findIndex(({id}) => id === payload.id);
 
-  if (state.offers.findIndex(({id}) => id === payload.id) === -1) {
-    state.offers.push({
-      id: payload.id,
-      title: payload.title,
-      type: payload.type,
-      price: payload.price,
-      previewImage: payload.previewImage,
-      city: payload.city,
-      location: payload.location,
-      isFavorite: payload.isFavorite,
-      isPremium: payload.isPremium,
-      rating: payload.rating,
-    });
+  if (index === -1) {
+    state.offers.push(offerData);
+  } else {
+    state.offers[index] = offerData;
   }
 
   state.additionalOfferData = {
