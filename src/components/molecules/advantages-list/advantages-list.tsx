@@ -9,7 +9,7 @@ function AdvantagesList({advantages}: AdvantagesListProps): ReactElement {
   const goodsListItems: ReactElement[] = advantages.map((advantage) => <AdvantageListItem key={advantage} name={advantage}/>);
 
   return (
-    <div className="offer__inside">
+    <div className="offer__inside" data-testid="advantages-list">
       <h2 className="offer__inside-title">{'What\'s inside'}</h2>
       <ul className="offer__inside-list">
         {goodsListItems}

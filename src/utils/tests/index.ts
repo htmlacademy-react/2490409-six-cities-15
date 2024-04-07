@@ -18,7 +18,7 @@ import {
 import {
   extractActionsTypes,
   withHistory,
-} from './general.ts';
+} from './general.tsx';
 
 export {
   makeFakeOfferId,
