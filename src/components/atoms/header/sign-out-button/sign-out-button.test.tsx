@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react';
 import SignOutButton from './sign-out-button.tsx';
-import { withHistory } from '../../../../utils/tests/general.tsx';
+import { withHistory } from '../../../../utils/tests';
 
 describe('SignOutButton component', () => {
   it('should render with text "Sign out"', () => {

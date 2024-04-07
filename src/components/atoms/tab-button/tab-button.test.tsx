@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react';
 import TabButton from './tab-button.tsx';
-import { withHistory } from '../../../utils/tests/general.tsx';
+import { withHistory } from '../../../utils/tests';
 import { datatype, internet } from 'faker';
 
 describe('ProfileData component', () => {

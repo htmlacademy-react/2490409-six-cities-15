@@ -1,7 +1,7 @@
 import { internet } from 'faker';
 import { render, screen } from '@testing-library/react';
 import SignInButton from './sign-in-button.tsx';
-import { withHistory } from '../../../../utils/tests/general.tsx';
+import { withHistory } from '../../../../utils/tests';
 
 describe('SignInButton component', () => {
   it('should render with text "Sign in"', () => {

@@ -1,7 +1,7 @@
 import { internet } from 'faker';
 import { render, screen } from '@testing-library/react';
 import ProfileData from './profile-data.tsx';
-import { withHistory } from '../../../../utils/tests/general.tsx';
+import { withHistory } from '../../../../utils/tests';
 
 describe('ProfileData component', () => {
   it('should have user email and number of favorite offers', () => {

@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react';
 import HeaderLogoIcon from './header-logo-icon.tsx';
-import {withHistory} from '../../../utils/tests/general.tsx';
+import { withHistory } from '../../../utils/tests';
 
 describe('HeaderLogo component', () => {
   it('should render with size "medium" and contain Logo', () => {
