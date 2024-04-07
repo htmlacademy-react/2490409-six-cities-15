@@ -8,7 +8,10 @@ import { createAPI } from '../../services';
 import thunk from 'redux-thunk';
 import MockAdapter from 'axios-mock-adapter';
 import { configureMockStore, MockStore } from '@jedmao/redux-mock-store';
-import { Provider} from 'react-redux';
+import { Provider } from 'react-redux';
+import { helpers } from 'faker';
+import { APP_ROUTE } from '../../constants';
+import { AppRouteType } from '../../types';
 
 const extractActionsTypes = (actions: Array<Action<string>>): string[] => actions.map(({ type }) => type);
 
@@ -49,8 +52,25 @@ function withStore(
 
 }
 
+const makeRandomAppRoute = (exclude?: AppRouteType[]) => {
+  const availableRoutes = Object.values(APP_ROUTE);
+  if (!exclude) {
+    return helpers.randomize(availableRoutes);
+  }
+
+  exclude.forEach((route) => {
+    const i = availableRoutes.indexOf(route);
+    if (i) {
+      availableRoutes.splice(i, 1);
+    }
+  });
+
+  return helpers.randomize(availableRoutes);
+};
+
 export {
   extractActionsTypes,
   withHistory,
   withStore,
+  makeRandomAppRoute,
 };

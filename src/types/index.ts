@@ -29,7 +29,12 @@ import {
 import {
   SortTypesType,
 } from './sort.ts';
-import { ReviewType } from './review.ts';
+import {
+  ReviewType,
+} from './review.ts';
+import {
+  AppRouteType
+} from './app-route.ts';
 
 export type {
   IconsAndLabelsStyleClassType,
@@ -51,4 +56,5 @@ export type {
   ReviewType,
   HousingType,
   AdditionalDataType,
+  AppRouteType,
 };

@@ -1,4 +1,4 @@
-import {AUTH_STATUS} from '../constants';
+import { AUTH_STATUS } from '../constants';
 
 type AuthStatusType = typeof AUTH_STATUS[keyof typeof AUTH_STATUS];
 

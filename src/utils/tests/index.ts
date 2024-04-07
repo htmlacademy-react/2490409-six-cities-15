@@ -13,11 +13,14 @@ import {
   makeFakeAuthenticatedUser,
   makeFakeUserState,
   makeFakeAuthenticationForm,
+  makeRandomAuthStatus,
 } from './user.ts';
 
 import {
   extractActionsTypes,
   withHistory,
+  withStore,
+  makeRandomAppRoute,
 } from './general.tsx';
 
 export {
@@ -29,9 +32,12 @@ export {
   makeFakeOffersState,
   makeFakeReview,
   makeFakeAuthenticatedUser,
+  makeRandomAuthStatus,
   makeFakeUserState,
   makeFakeAuthenticationForm,
   makeFakeToken,
   extractActionsTypes,
   withHistory,
+  withStore,
+  makeRandomAppRoute,
 };

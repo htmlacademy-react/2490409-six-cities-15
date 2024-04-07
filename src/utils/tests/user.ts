@@ -1,6 +1,6 @@
 import { AuthenticatedUserType, AuthStatusType } from '../../types';
 import { makeFakeHostUser } from '.';
-import { datatype, internet } from 'faker';
+import { datatype, helpers, internet } from 'faker';
 import { UserStateType } from '../../store/slices/user';
 import { AUTH_STATUS } from '../../constants';
 import { Token } from '../../services';
@@ -32,10 +32,27 @@ const makeFakeUserState = ({shouldCreateUser = false, authorizationStatus = AUTH
   authorizationStatus,
 });
 
+const makeRandomAuthStatus = (exclude?: AuthStatusType[]) => {
+  const availableStatuses = Object.values(AUTH_STATUS);
+  if (!exclude) {
+    return helpers.randomize(availableStatuses);
+  }
+
+  exclude.forEach((status) => {
+    const i = availableStatuses.indexOf(status);
+    if (i) {
+      availableStatuses.splice(i, 1);
+    }
+  });
+
+  return helpers.randomize(availableStatuses);
+};
+
 export {
   makeFakeToken,
   makeFakeAuthenticatedUser,
   makeFakeUserState,
   makeFakeAuthenticationForm,
+  makeRandomAuthStatus,
 };
 
