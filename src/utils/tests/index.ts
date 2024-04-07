@@ -17,6 +17,7 @@ import {
 
 import {
   extractActionsTypes,
+  withHistory,
 } from './general.ts';
 
 export {
@@ -32,4 +33,5 @@ export {
   makeFakeAuthenticationForm,
   makeFakeToken,
   extractActionsTypes,
+  withHistory,
 };

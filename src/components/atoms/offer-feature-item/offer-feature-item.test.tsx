@@ -5,7 +5,7 @@ import { datatype } from 'faker';
 describe('OfferFeatureItem component', () => {
   const id = 'offer-feature-item';
 
-  it('renders correctly adults', () => {
+  it('should render correct css class and text with type "adults"', () => {
     const content = datatype.string(20);
     const className = 'offer__feature--adults';
 
@@ -17,7 +17,7 @@ describe('OfferFeatureItem component', () => {
     expect(offerFeatureItem).toHaveClass(className);
   });
 
-  it('renders correctly entire', () => {
+  it('should render correct css class and text with type "entire"', () => {
     const content = datatype.string(20);
     const className = 'offer__feature--entire';
 
@@ -29,7 +29,7 @@ describe('OfferFeatureItem component', () => {
     expect(offerFeatureItem).toHaveClass(className);
   });
 
-  it('renders correctly bedrooms', () => {
+  it('should render correct css class and text with type "bedrooms"', () => {
     const content = datatype.string(20);
     const className = 'offer__feature--bedrooms';
 
