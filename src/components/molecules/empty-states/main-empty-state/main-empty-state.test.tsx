@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react';
 import MainEmptyState from './main-empty-state.tsx';
-import {CITIES} from '../../../../constants';
+import { CITIES } from '../../../../constants';
 
 describe('FavoritesEmptyState component', () => {
   it('should render with correct city, title and description', () => {

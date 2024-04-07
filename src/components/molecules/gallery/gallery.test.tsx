@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react';
 import Gallery from './gallery.tsx';
-import {image} from 'faker';
+import { image } from 'faker';
 
 describe('Gallery component', () => {
   it('should contain images and limit theirs number to 6', () => {
