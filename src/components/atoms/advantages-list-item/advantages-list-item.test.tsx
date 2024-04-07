@@ -1,8 +1,8 @@
 import { render, screen } from '@testing-library/react';
 import AdvantagesListItem from './advantages-list-item.tsx';
 
-describe('Component: AdvantagesListItem', () => {
-  it('should render correctly', () => {
+describe('AdvantagesListItem component', () => {
+  it('should render with text of advantage', () => {
     const text = 'TV';
 
     render(<AdvantagesListItem name={text}/>);

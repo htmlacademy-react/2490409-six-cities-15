@@ -1,8 +1,8 @@
 import { render, screen } from '@testing-library/react';
 import SmallInput from './small-input.tsx';
 
-describe('Counter component', () => {
-  it('renders correctly', () => {
+describe('SmallInput component', () => {
+  it('should have tag input, be required and have type "password"', () => {
     const id = 'small-input';
 
     const { container } = render(<SmallInput label="password" name="password" placeholder="Password" type="password" isRequired/>);
@@ -17,7 +17,7 @@ describe('Counter component', () => {
     expect(input).toHaveAttribute('type', 'password');
   });
 
-  it('renders correctly', () => {
+  it('should have tag input, be required and have type "email"', () => {
     const id = 'small-input';
 
     const { container } = render(<SmallInput label="email" name="email" placeholder="Email" type="email" isRequired/>);

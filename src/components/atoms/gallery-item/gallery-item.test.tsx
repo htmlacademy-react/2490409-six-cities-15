@@ -2,8 +2,8 @@ import { render, screen } from '@testing-library/react';
 import GalleryItem from './/gallery-item.tsx';
 import { image } from 'faker';
 
-describe('Component: AdvantagesListItem', () => {
-  it('should render correctly', () => {
+describe('AdvantagesListItem component', () => {
+  it('should render with tag "img" with attribute "alt", have class "offer__image"', () => {
     const containerId = 'gallery-item';
     const imgId = 'gallery-item-image';
     const link = image.image();

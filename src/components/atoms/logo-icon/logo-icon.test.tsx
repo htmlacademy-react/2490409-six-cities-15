@@ -1,7 +1,7 @@
 import { render, screen } from '@testing-library/react';
 import LogoIcon from './logo-icon.tsx';
 
-describe('LogoIcon', () => {
+describe('LogoIcon component', () => {
   it('renders correctly', () => {
     const size = 'medium';
     const logoId = `logo-icon-${size}`;

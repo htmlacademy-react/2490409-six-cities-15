@@ -2,7 +2,7 @@ import { render, screen } from '@testing-library/react';
 import Counter from './counter.tsx';
 
 describe('Counter component', () => {
-  it('renders correctly', () => {
+  it('should render with expected number', () => {
     const counterId = 'header-counter';
     const expectedCount = 3;
 

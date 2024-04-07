@@ -17,7 +17,7 @@ function SignOutButton(): ReactElement {
   };
 
   return (
-    <li className="header__nav-item">
+    <li className="header__nav-item" data-testid="sign-out-button">
       <Link className="header__nav-link" to="#" onClick={handleClick}>
         <span className="header__signout">Sign out</span>
       </Link>

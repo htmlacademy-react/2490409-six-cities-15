@@ -1,8 +1,8 @@
 import { render, screen } from '@testing-library/react';
 import Price from './price.tsx';
 
-describe('Counter component', () => {
-  it('renders correctly', () => {
+describe('Price component', () => {
+  it('should have text with price', () => {
     const id = 'price';
     const expectedPrice = 300;
 

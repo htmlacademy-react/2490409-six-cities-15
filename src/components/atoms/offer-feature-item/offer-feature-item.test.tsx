@@ -2,7 +2,7 @@ import OfferFeatureItem from './offer-feature-item.tsx';
 import { render, screen } from '@testing-library/react';
 import { datatype } from 'faker';
 
-describe('Offer Feature Item', () => {
+describe('OfferFeatureItem component', () => {
   const id = 'offer-feature-item';
 
   it('renders correctly adults', () => {

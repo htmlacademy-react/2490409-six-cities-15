@@ -1,9 +1,9 @@
 import { render, screen } from '@testing-library/react';
 import Email from './email.tsx';
-import {internet} from 'faker';
+import { internet } from 'faker';
 
-describe('Counter component', () => {
-  it('renders correctly', () => {
+describe('Email component', () => {
+  it('should render with email from props', () => {
     const id = 'header-email';
     const emailText = internet.email();
 

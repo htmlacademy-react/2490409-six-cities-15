@@ -2,8 +2,8 @@ import { render, screen } from '@testing-library/react';
 import AvatarImage from './avatar-image.tsx';
 import { image } from 'faker';
 
-describe('AvatarImage', () => {
-  it('renders correctly if have url', () => {
+describe('AvatarImage component', () => {
+  it('should render with tag "div" if haven\'t url', () => {
     const id = 'header-avatar-image';
 
     render(<AvatarImage />);
@@ -13,7 +13,7 @@ describe('AvatarImage', () => {
     expect(avatar.tagName.toLowerCase()).toBe('div');
   });
 
-  it('renders correctly if have url', () => {
+  it('should render with tag "img" if have url', () => {
     const id = 'header-avatar-image';
     const url = image.image();
 

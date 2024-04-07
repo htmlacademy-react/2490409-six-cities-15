@@ -1,8 +1,8 @@
 import { render, screen } from '@testing-library/react';
 import Rating from './rating.tsx';
 
-describe('Counter component', () => {
-  it('renders correctly without number', () => {
+describe('Rating component', () => {
+  it('should render stars without number', () => {
     const containerId = 'rating';
     const starsId = 'rating-stars';
     const ratingValue = 3.1;
@@ -18,7 +18,7 @@ describe('Counter component', () => {
     expect(stars).toHaveStyle(`width: ${expectedStars * 20}%`);
   });
 
-  it('renders correctly with number', () => {
+  it('should render stars with number', () => {
     const containerId = 'rating';
     const starsId = 'rating-stars';
     const ratingValue = 3.5;

@@ -2,7 +2,7 @@ import { render, screen } from '@testing-library/react';
 import PremiumLabel from './premium-label.tsx';
 
 describe('PremiumLabel component', () => {
-  it('renders correctly', () => {
+  it('should have text "Premium"', () => {
     const id = 'premium-label';
 
     render(<PremiumLabel/>);
