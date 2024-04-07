@@ -4,7 +4,7 @@ import { image } from 'faker';
 
 describe('AvatarImage', () => {
   it('renders correctly if have url', () => {
-    const id = 'avatar-image';
+    const id = 'header-avatar-image';
 
     render(<AvatarImage />);
 
