@@ -7,7 +7,7 @@ type RatingButtonProps = {
   isDisabled: boolean;
 };
 
-const titles: Record<number, string> = {
+const TITLES: Record<number, string> = {
   5: 'perfect',
   4: 'good',
   3: 'not bad',
@@ -28,7 +28,7 @@ function RatingButton({value, handleChange, isDisabled}: RatingButtonProps) {
             <StarInput
               key={id}
               id={id}
-              title={titles[id]}
+              title={TITLES[id]}
               checked={value === id}
               handleChange={handleChange}
               isDisabled={isDisabled}
