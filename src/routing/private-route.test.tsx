@@ -35,7 +35,7 @@ describe('Private Route component', () => {
         <Routes>
           <Route
             path={publicRoute}
-            element={publicComponent}
+            element={<span>{publicComponent}</span>}
           />
           <Route
             path={privateRoute}
@@ -44,7 +44,7 @@ describe('Private Route component', () => {
                 allowedAuthStatuses={allowedStatus}
                 redirectTo={publicRoute}
               >
-                {privateComponent}
+                <span>{privateComponent}</span>
               </PrivateRoute>
             }
           />
@@ -78,7 +78,7 @@ describe('Private Route component', () => {
         <Routes>
           <Route
             path={publicRoute}
-            element={publicComponent}
+            element={<span>{publicComponent}</span>}
           />
           <Route
             path={privateRoute}
@@ -87,7 +87,7 @@ describe('Private Route component', () => {
                 allowedAuthStatuses={allowedStatus}
                 redirectTo={publicRoute}
               >
-                {privateComponent}
+                <span>{privateComponent}</span>
               </PrivateRoute>
             }
           />
