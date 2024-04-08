@@ -56,3 +56,7 @@ export {
   makeRandomAuthStatus,
 };
 
+export type {
+  FakeUserStateProps,
+};
+

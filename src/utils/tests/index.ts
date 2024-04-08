@@ -21,6 +21,7 @@ import {
   withHistory,
   withStore,
   makeRandomAppRoute,
+  makeFakeStoreState,
 } from './general.tsx';
 
 export {
@@ -40,4 +41,5 @@ export {
   withHistory,
   withStore,
   makeRandomAppRoute,
+  makeFakeStoreState,
 };

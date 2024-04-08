@@ -12,6 +12,10 @@ import { Provider } from 'react-redux';
 import { helpers } from 'faker';
 import { APP_ROUTE } from '../../constants';
 import { AppRouteType } from '../../types';
+import {sliceName as offersSliceName} from '../../store/slices/offers/meta.ts';
+import {sliceName as userSliceName} from '../../store/slices/user/meta.ts';
+import {FakeUserStateProps, makeFakeUserState} from './user.ts';
+import {FakeOffersStateProps, makeFakeOffersState} from './offers.ts';
 
 const extractActionsTypes = (actions: Array<Action<string>>): string[] => actions.map(({ type }) => type);
 
@@ -68,9 +72,20 @@ const makeRandomAppRoute = (exclude?: AppRouteType[]) => {
   return helpers.randomize(availableRoutes);
 };
 
+type FakeStoreStateProps = {
+  offersStateProps?: FakeOffersStateProps;
+  userStateProps?: FakeUserStateProps;
+};
+
+const makeFakeStoreState = ({offersStateProps, userStateProps}: FakeStoreStateProps) => ({
+  [offersSliceName]: makeFakeOffersState(offersStateProps || {}),
+  [userSliceName]: makeFakeUserState(userStateProps || {}),
+});
+
 export {
   extractActionsTypes,
   withHistory,
   withStore,
   makeRandomAppRoute,
+  makeFakeStoreState,
 };

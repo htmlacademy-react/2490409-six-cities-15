@@ -1,6 +1,6 @@
 import { datatype, helpers, image, name, lorem, date } from 'faker';
 import {
-  AdditionalDataType, CommentData,
+  AdditionalDataType, CitiesType, CommentData,
   HostUserType,
   HousingType,
   LocationType,
@@ -18,14 +18,14 @@ const makeFakeLocation = (): LocationType => ({
   zoom: datatype.number({ min: 0, max: 180, precision: 0.01 }),
 });
 
-const makeFakeOffer = (id: OfferData['id'], isFavorite?: boolean): OfferData => ({
+const makeFakeOffer = (id: OfferData['id'], isFavorite?: boolean, city?: CitiesType): OfferData => ({
   id,
   title: datatype.string(30),
   type: helpers.randomize(Object.keys(HOUSING) as HousingType[]),
   price: datatype.number(1000),
   previewImage: image.image(),
   city: {
-    name: helpers.randomize(Object.values(CITIES)),
+    name: city ?? helpers.randomize(Object.values(CITIES)),
     location: makeFakeLocation(),
   },
   location: makeFakeLocation(),
@@ -59,10 +59,11 @@ const makeFakeReview = (id: OfferDetailData['id']): CommentData => ({
 });
 
 type FakeOffersStateProps = {
-  offersLen: number;
+  offersLen?: number;
   additionalDataIndex?: number;
   detailOfferReviewsLen?: number;
   offersFavoriteStatus?: boolean;
+  offersCity?: CitiesType;
   nearbyIndexes?: number[];
   offersRequestStatus?: RequestStatusType;
   reviewRequestStatus?: RequestStatusType;
@@ -71,10 +72,11 @@ type FakeOffersStateProps = {
 
 const makeFakeOffersState = (
   {
-    offersLen,
+    offersLen = 0,
     additionalDataIndex,
     detailOfferReviewsLen,
     offersFavoriteStatus,
+    offersCity,
     nearbyIndexes,
     offersRequestStatus = REQUEST_STATUS.Idle,
     reviewRequestStatus = REQUEST_STATUS.Idle,
@@ -82,8 +84,8 @@ const makeFakeOffersState = (
   }: FakeOffersStateProps
 ): OffersStateType => {
   const offersIds = Array(offersLen).fill('').map(() => datatype.uuid());
-  const offers = offersIds.map((id) => makeFakeOffer(id, offersFavoriteStatus));
-  const additionalOfferDataId = additionalDataIndex !== undefined ? offers[additionalDataIndex].id : null;
+  const offers = offersIds.map((id) => makeFakeOffer(id, offersFavoriteStatus, offersCity));
+  const additionalOfferDataId = offersLen > 0 && additionalDataIndex !== undefined ? offers[additionalDataIndex].id : null;
 
   return {
     offers,
@@ -106,4 +108,8 @@ export {
   makeFakeHostUser,
   makeFakeOffersState,
   makeFakeReview,
+};
+
+export type {
+  FakeOffersStateProps,
 };
