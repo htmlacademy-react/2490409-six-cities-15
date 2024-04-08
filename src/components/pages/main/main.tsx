@@ -1,4 +1,4 @@
-import { ReactElement } from 'react';
+import {ReactElement, useEffect} from 'react';
 import { Header, OffersListWithMap } from '../../organisms';
 import { CityTabs, MainEmptyState } from '../../molecules';
 import { APP_ROUTE, CITIES, REQUEST_STATUS } from '../../../constants';
@@ -22,9 +22,14 @@ function MainPage(): ReactElement | null {
     .filter((item) => item.city.name === currentCity);
   const requestStatus = useAppSelector(offersSelectors.offersRequestStatus);
 
-  if (!currentCity) {
-    navigate(APP_ROUTE.NotFound);
+  useEffect(() => {
+    if (!currentCity) {
+      navigate(APP_ROUTE.NotFound);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [currentCity]);
 
+  if (!currentCity) {
     return null;
   }
 
@@ -45,7 +50,7 @@ function MainPage(): ReactElement | null {
   };
 
   return (
-    <div className="page page--gray page--main">
+    <div className="page page--gray page--main" data-testid="main-page">
       <Header isLogoActive/>
       <main className={mainClassName}>
         <h1 className="visually-hidden">Cities</h1>

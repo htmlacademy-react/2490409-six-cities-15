@@ -27,7 +27,7 @@ function FavoritesPage(): ReactElement {
   );
 
   return (
-    <div className={divClassName}>
+    <div className={divClassName} data-testid="favorites-page">
       <Header/>
       <main className={mainClassName}>
         <div className="page__favorites-container container">

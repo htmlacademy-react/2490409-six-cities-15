@@ -12,6 +12,7 @@ function LoginPage(): ReactElement {
 
   return (
     <ContentOnTheLeft
+      testId="login-page"
       rightSideButton={
         <TabButton
           tabName={checkedCity} isSelected={false}

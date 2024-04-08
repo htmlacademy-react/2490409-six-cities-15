@@ -5,12 +5,13 @@ import { Header } from '../../organisms';
 type SmallContentOnTheRightProps = PropsWithChildren<{
   showAccountData?: boolean;
   rightSideButton: ReactElement;
+  testId?: string;
 }>;
 
-function ContentOnTheLeft({showAccountData, children, rightSideButton}: SmallContentOnTheRightProps): ReactElement {
+function ContentOnTheLeft({showAccountData, children, rightSideButton, testId}: SmallContentOnTheRightProps): ReactElement {
 
   return (
-    <div className="page page--gray page--login">
+    <div className="page page--gray page--login" data-testid={testId ?? 'content-on-the-left'}>
       {
         showAccountData
           ? <Header/>
