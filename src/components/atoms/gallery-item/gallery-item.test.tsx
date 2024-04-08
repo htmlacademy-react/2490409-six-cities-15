@@ -2,7 +2,7 @@ import { render, screen } from '@testing-library/react';
 import GalleryItem from './/gallery-item.tsx';
 import { image } from 'faker';
 
-describe('AdvantagesListItem component', () => {
+describe('GalleryItem component', () => {
   it('should render with tag "img" with attribute "alt", have class "offer__image"', () => {
     const containerId = 'gallery-item';
     const imgId = 'gallery-item-image';

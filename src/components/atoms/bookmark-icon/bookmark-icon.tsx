@@ -44,7 +44,7 @@ function BookmarkIcon({id, isActive = false, type = 'place-card', size}: Bookmar
   const [width, height] = BOOKMARK_ICON_SIZE[size];
 
   return (
-    <button className={className} type="button" onClick={handleClick}>
+    <button className={className} type="button" onClick={handleClick} data-testid="bookmark-icon">
       <svg className={`${type}__bookmark-icon`} width={width} height={height}>
         <use xlinkHref="#icon-bookmark"></use>
       </svg>
