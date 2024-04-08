@@ -34,10 +34,10 @@ const makeFakeOffer = (id: OfferData['id'], isFavorite?: boolean, city?: CitiesT
   rating: datatype.number({ min: 1, max: 5 }),
 });
 
-const makeFakeHostUser = (): HostUserType => ({
+const makeFakeHostUser = (isPro?: boolean): HostUserType => ({
   name: name.title(),
   avatarUrl: image.image(),
-  isPro: datatype.boolean(),
+  isPro: isPro ?? datatype.boolean(),
 });
 
 const makeFakeOfferAdditionalData = (id: OfferData['id']): AdditionalDataType => ({
