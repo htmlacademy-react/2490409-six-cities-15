@@ -38,6 +38,8 @@ export {
   userSlice,
   userActions,
   userSelectors,
+  // export for tests
+  initialState as userInitialState,
 };
 
 export type {

@@ -9,6 +9,8 @@ import { OfferData,
   CommentData,
   CityType,
   LocationType,
+  HousingType,
+  AdditionalDataType,
 } from './offer.ts';
 import {
   HostUserType,
@@ -27,6 +29,12 @@ import {
 import {
   SortTypesType,
 } from './sort.ts';
+import {
+  ReviewType,
+} from './review.ts';
+import {
+  AppRouteType
+} from './app-route.ts';
 
 export type {
   IconsAndLabelsStyleClassType,
@@ -45,4 +53,8 @@ export type {
   RequestStatusType,
   CitiesType,
   SortTypesType,
+  ReviewType,
+  HousingType,
+  AdditionalDataType,
+  AppRouteType,
 };

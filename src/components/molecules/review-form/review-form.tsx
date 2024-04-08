@@ -4,12 +4,18 @@ import { useAppDispatch, useAppSelector } from '../../../store/helpers.ts';
 import { addCommentAction } from '../../../store/slices/offers/thunk.ts';
 import { offersSelectors } from '../../../store/slices/offers';
 import { REQUEST_STATUS } from '../../../constants';
+import { ReviewType } from '../../../types';
+import { useDetailOffer } from '../../../hooks';
 
 type HandleOnChangeType = ChangeEventHandler<HTMLTextAreaElement | HTMLInputElement>;
 
 function ReviewForm() {
   const dispatch = useAppDispatch();
-  const initialReviewState = {rating: 0, comment: ''};
+  const initialReviewState: ReviewType = {
+    rating: 0,
+    comment: '',
+  };
+
   const [review, setReview] = useState(initialReviewState);
 
   const handleChange: HandleOnChangeType = (e: ChangeEvent<HTMLTextAreaElement>) => {
@@ -22,7 +28,7 @@ function ReviewForm() {
   };
 
 
-  const offerId = useAppSelector(offersSelectors.detailOffer)?.id || '';
+  const offerId = useDetailOffer()?.id || '';
 
   const handleSubmit: FormEventHandler<HTMLFormElement> = (event) => {
     event.preventDefault();

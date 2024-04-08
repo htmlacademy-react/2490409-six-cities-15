@@ -7,18 +7,16 @@ type RatingButtonProps = {
   isDisabled: boolean;
 };
 
-function isIdInRange (id: number): id is 1 | 2 | 3 | 4 | 5 {
-  return (id >= 1 && id <= 5);
-}
+const titles: Record<number, string> = {
+  5: 'perfect',
+  4: 'good',
+  3: 'not bad',
+  2: 'badly',
+  1: 'terribly',
+} as const;
 
 function RatingButton({value, handleChange, isDisabled}: RatingButtonProps) {
-  const titles = {
-    5: 'perfect',
-    4: 'good',
-    3: 'not bad',
-    2: 'badly',
-    1: 'terribly',
-  } as const;
+
 
   return (
     <>
@@ -26,18 +24,16 @@ function RatingButton({value, handleChange, isDisabled}: RatingButtonProps) {
         Array.from({length: 5}, (_, i: number) => {
           const id = ++i;
 
-          if (isIdInRange(id)) {
-            return (
-              <StarInput
-                key={id}
-                id={id}
-                title={titles[id]}
-                checked={value === id}
-                handleChange={handleChange}
-                isDisabled={isDisabled}
-              />
-            );
-          }
+          return (
+            <StarInput
+              key={id}
+              id={id}
+              title={titles[id]}
+              checked={value === id}
+              handleChange={handleChange}
+              isDisabled={isDisabled}
+            />
+          );
         })
           .reverse()
       }

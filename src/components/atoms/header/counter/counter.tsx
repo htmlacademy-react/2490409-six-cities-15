@@ -2,7 +2,7 @@ import { ReactElement } from 'react';
 
 function Counter({count}: {count: number}): ReactElement {
   return (
-    <span className="header__favorite-count">{count}</span>
+    <span data-testid="header-counter" className="header__favorite-count">{count}</span>
   );
 }
 

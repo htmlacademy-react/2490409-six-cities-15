@@ -1,4 +1,4 @@
-import {ReactElement, RefObject} from 'react';
+import { ReactElement, RefObject } from 'react';
 
 type SmallInputProps = {
   label: string;
@@ -7,12 +7,12 @@ type SmallInputProps = {
   placeholder: string;
   autoComplete?: string;
   isRequired: boolean;
-  reference: RefObject<HTMLInputElement>;
+  reference?: RefObject<HTMLInputElement>;
 };
 
 function SmallInput(props: SmallInputProps): ReactElement {
   return (
-    <div className="login__input-wrapper form__input-wrapper">
+    <div className="login__input-wrapper form__input-wrapper" data-testid="small-input">
       <label className="visually-hidden">{props.label}</label>
       <input
         ref={props.reference}

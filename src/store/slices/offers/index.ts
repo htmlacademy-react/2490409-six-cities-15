@@ -1,5 +1,10 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { CommentData, OfferData, OfferDetailData, RequestStatusType } from '../../../types';
+import {
+  AdditionalDataType,
+  CommentData,
+  OfferData,
+  RequestStatusType,
+} from '../../../types';
 import {
   changeFavoriteStatusAction,
   fetchFavoritesOffersAction,
@@ -33,9 +38,9 @@ import { REQUEST_STATUS } from '../../../constants';
 
 type OffersStateType = {
   offers: OfferData[];
-  currentDetailOffer: OfferDetailData | null;
-  currentDetailOfferReviews: CommentData[] | null;
-  currentDetailOfferNearbyOffers: OfferData[] | null;
+  additionalOfferData: AdditionalDataType | null;
+  detailOfferReviews: CommentData[] | null;
+  nearbyOffersIds: Array<OfferData['id']>;
   offersRequestStatus: RequestStatusType;
   reviewRequestStatus: RequestStatusType;
   activeOfferId: string | null;
@@ -43,9 +48,9 @@ type OffersStateType = {
 
 const initialState: OffersStateType = {
   offers: [],
-  currentDetailOffer: null,
-  currentDetailOfferReviews: null,
-  currentDetailOfferNearbyOffers: null,
+  additionalOfferData: null,
+  detailOfferReviews: null,
+  nearbyOffersIds: [],
   offersRequestStatus: REQUEST_STATUS.Idle,
   reviewRequestStatus: REQUEST_STATUS.Idle,
   activeOfferId: null,
@@ -85,6 +90,8 @@ export {
   offersSlice,
   offersActions,
   offersSelectors,
+  // export for tests
+  initialState as offersInitialState,
 };
 
 export type {

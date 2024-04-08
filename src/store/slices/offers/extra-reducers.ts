@@ -20,29 +20,17 @@ const setOffersLoading = (state: OffersStateType) => {
 const toggleFavoriteStatus = (
   state: OffersStateType, action: PayloadAction<unknown, string, { arg: { id: OfferData['id'] } }>
 ) => {
-  const i = state.offers.findIndex((offer) => offer.id === action.meta.arg.id);
-  const newFavoriteStatus = !state.offers[i].isFavorite;
+  const i = state.offers.findIndex(({ id }) => id === action.meta.arg.id);
 
   if (i > -1) {
-    state.offers[i] = { ...state.offers[i], isFavorite: newFavoriteStatus};
-  }
-
-  if (state.currentDetailOfferNearbyOffers) {
-    const j = state.currentDetailOfferNearbyOffers.findIndex((offer) => offer.id === action.meta.arg.id);
-    if (j > -1) {
-      state.currentDetailOfferNearbyOffers[j] = { ...state.currentDetailOfferNearbyOffers[j], isFavorite: newFavoriteStatus};
-    }
-  }
-
-  if (state.currentDetailOffer?.id === action.meta.arg.id) {
-    state.currentDetailOffer.isFavorite = newFavoriteStatus;
+    state.offers[i].isFavorite = !state.offers[i].isFavorite;
   }
 };
 
 const updateFavorites = (
   state: OffersStateType, action: PayloadAction<OfferData[]>
 ) => {
-  const favoriteOffersIds = action.payload.map((offer) => offer.id);
+  const favoriteOffersIds = action.payload.map(({id}) => id);
 
   for (const [i, offer] of state.offers.entries()) {
     state.offers[i].isFavorite = favoriteOffersIds.includes(offer.id);
@@ -54,32 +42,73 @@ const setDataLoading = (state: OffersStateType) => {
 };
 
 const setDetailOfferFulfilled = (state: OffersStateType, action: PayloadAction<OfferDetailData>) => {
-  state.currentDetailOffer = action.payload;
+  const { payload } = action;
+  const offerData = {
+    id: payload.id,
+    title: payload.title,
+    type: payload.type,
+    price: payload.price,
+    previewImage: payload.previewImage,
+    city: payload.city,
+    location: payload.location,
+    isFavorite: payload.isFavorite,
+    isPremium: payload.isPremium,
+    rating: payload.rating,
+  };
+  const index = state.offers.findIndex(({id}) => id === payload.id);
+
+  if (index === -1) {
+    state.offers.push(offerData);
+  } else {
+    state.offers[index] = offerData;
+  }
+
+  state.additionalOfferData = {
+    id: payload.id,
+    description: payload.description,
+    images: payload.images,
+    goods: payload.goods,
+    host: payload.host,
+    bedrooms: payload.bedrooms,
+    maxAdults: payload.maxAdults,
+  };
+
   state.offersRequestStatus = REQUEST_STATUS.Success;
 };
 
 const setDetailOfferRejected = (state: OffersStateType) => {
-  state.currentDetailOffer = null;
+  state.additionalOfferData = null;
   state.offersRequestStatus = REQUEST_STATUS.Error;
 };
 
 const setNearbyOffersFulfilled = (state: OffersStateType, action: PayloadAction<OfferData[]>) => {
-  state.currentDetailOfferNearbyOffers = action.payload.slice(0, 3);
+  const nearby = action.payload.slice(0, 3);
+  const nearbyIds: Array<OfferData['id']> = [];
+
+  nearby.forEach((offer) => {
+    if (state.offers.findIndex(({ id }) => offer.id === id) === -1) {
+      state.offers.push(offer);
+    }
+
+    nearbyIds.push(offer.id);
+  });
+
+  state.nearbyOffersIds = nearbyIds;
   state.offersRequestStatus = REQUEST_STATUS.Success;
 };
 
 const setNearbyOffersRejected = (state: OffersStateType) => {
-  state.currentDetailOfferNearbyOffers = null;
+  state.nearbyOffersIds = [];
   state.offersRequestStatus = REQUEST_STATUS.Error;
 };
 
 const setReviewsFulfilled = (state: OffersStateType, action: PayloadAction<CommentData[]>) => {
-  state.currentDetailOfferReviews = action.payload;
+  state.detailOfferReviews = action.payload;
   state.offersRequestStatus = REQUEST_STATUS.Success;
 };
 
 const setReviewsRejected = (state: OffersStateType) => {
-  state.currentDetailOfferReviews = null;
+  state.detailOfferReviews = null;
   state.offersRequestStatus = REQUEST_STATUS.Error;
 };
 
@@ -88,7 +117,7 @@ const addReviewPending = (state: OffersStateType) => {
 };
 
 const addReviewFulfilled = (state: OffersStateType, action: PayloadAction<CommentData>) => {
-  state.currentDetailOfferReviews = [...state.currentDetailOfferReviews ?? [], action.payload];
+  state.detailOfferReviews = [...state.detailOfferReviews ?? [], action.payload];
   state.reviewRequestStatus = REQUEST_STATUS.Success;
 };
 

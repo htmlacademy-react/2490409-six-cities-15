@@ -2,8 +2,7 @@ import { PremiumLabel, BookmarkIcon, Rating, Price } from '../../atoms';
 import { Link } from 'react-router-dom';
 import { OfferData } from '../../../types';
 import { ReactElement } from 'react';
-import { APP_ROUTE } from '../../../constants';
-import { capitalize } from '../../../utils';
+import { APP_ROUTE, HOUSING } from '../../../constants';
 import classNames from 'classnames';
 import { OfferCardStyleClassType } from '../../../types';
 
@@ -30,17 +29,9 @@ function OfferCard({
     {'favorites__card-info': props.placeType === 'favorites'},
   );
 
-  const handleMouseEnter = () => {
-    if (onMouseEnter) {
-      onMouseEnter(props.id);
-    }
-  };
+  const handleMouseEnter = () => onMouseEnter?.(props.id);
 
-  const handleMouseLeave = () => {
-    if (onMouseLeave) {
-      onMouseLeave();
-    }
-  };
+  const handleMouseLeave = () => onMouseLeave?.();
 
   return (
     <article
@@ -72,7 +63,7 @@ function OfferCard({
             {props.title}
           </Link>
         </h2>
-        <p className="place-card__type">{capitalize(props.type)}</p>
+        <p className="place-card__type">{HOUSING[props.type]}</p>
       </div>
     </article>
   );

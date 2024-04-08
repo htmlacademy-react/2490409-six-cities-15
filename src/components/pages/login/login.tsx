@@ -3,19 +3,19 @@ import { ContentOnTheLeft } from '../../templates';
 import { LoginForm } from '../../molecules';
 import { TabButton } from '../../atoms';
 import { CITIES } from '../../../constants';
-import { createMainRouteWithCity } from '../../../utils';
-import { CitiesType } from '../../../types';
+import { createMainRouteWithCity, isCity } from '../../../utils';
 
 function LoginPage(): ReactElement {
   const randomNumber = Math.round(Math.random() * 6);
-  const randomCityKey = Object.keys(CITIES)[randomNumber] as CitiesType;
+  const randomCityKey = Object.keys(CITIES)[randomNumber];
+  const checkedCity = isCity(randomCityKey) ? CITIES[randomCityKey] : CITIES.Amsterdam;
 
   return (
     <ContentOnTheLeft
       rightSideButton={
         <TabButton
-          tabName={CITIES[randomCityKey]} isSelected={false}
-          link={createMainRouteWithCity(CITIES[randomCityKey])}
+          tabName={checkedCity} isSelected={false}
+          link={createMainRouteWithCity(checkedCity)}
         />
       }
     >

@@ -2,6 +2,7 @@ import { SmallInput } from '../../atoms';
 import { FormEvent, useRef } from 'react';
 import { loginAction } from '../../../store/slices/user/thunk.ts';
 import { useAppDispatch } from '../../../store/helpers.ts';
+import { toast } from 'react-toastify';
 
 function LoginForm() {
   const dispatch = useAppDispatch();
@@ -16,6 +17,8 @@ function LoginForm() {
     }
 
     if (!/^(?=.*[0-9])(?=.*[a-zA-Z]).*$/.test(passwordRef.current.value)) {
+      toast.warn('Password should contain at least 1 letter and 1 number');
+
       return;
     }
 

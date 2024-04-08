@@ -15,7 +15,7 @@ function HeaderLogoIcon({ size, isActive = false }: LogoIconProps) {
   );
 
   return (
-    <div className="header__left">
+    <div className="header__left" data-testid={`header-logo-icon-${size}`}>
       <Link className={linkClass} to={APP_ROUTE.Main}>
         <LogoIcon size={size}/>
       </Link>

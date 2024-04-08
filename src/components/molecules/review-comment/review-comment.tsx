@@ -1,18 +1,15 @@
 import { CommentData } from '../../../types';
 import { Rating } from '../../atoms';
 import './review-comment.css';
-import {useMemo} from 'react';
 
 type ReviewCommentProps = {
   review: CommentData;
 };
 
+const DATE_FORMAT = { month: 'long', year: 'numeric' } as const;
+
 function ReviewComment({review}: ReviewCommentProps) {
   const datetime = new Date(review.date);
-  const dateFormat = useMemo<{ month: 'long'; year: 'numeric' }>(
-    () => ({ month: 'long', year: 'numeric' }),
-    [],
-  );
 
   return (
     <li className="reviews__item">
@@ -32,7 +29,7 @@ function ReviewComment({review}: ReviewCommentProps) {
         <Rating rating={review.rating} type={'reviews'}/>
         <p className="reviews__text">{review.comment}</p>
         <time className="reviews__time" dateTime={review.date}>
-          {datetime.toLocaleDateString('en', dateFormat)}
+          {datetime.toLocaleDateString('en', DATE_FORMAT)}
         </time>
       </div>
     </li>

@@ -17,6 +17,7 @@ function SortSelectorItem({isSelected, value, onClick}: SortSelectorItemProps) {
 
   return (
     <li
+      data-testid="sort-selector-item"
       className={className}
       tabIndex={0}
       onClick={handleClick}

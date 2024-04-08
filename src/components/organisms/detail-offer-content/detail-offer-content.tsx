@@ -1,4 +1,4 @@
-import { Gallery, GoodsList, Host, Map, OfferFeatures, OffersList, ReviewsSection} from '../../molecules';
+import { Gallery, AdvantagesList, Host, Map, OfferFeatures, OffersList, ReviewsSection} from '../../molecules';
 import { BookmarkIcon, PremiumLabel, Price, Rating} from '../../atoms';
 import { CommentData, IconsAndLabelsStyleClassType, LocationType, OfferData, OfferDetailData } from '../../../types';
 import { ReactElement } from 'react';
@@ -36,7 +36,7 @@ function DetailOfferContent(
             <Rating rating={offer.rating} type={elementsType} showValue/>
             <OfferFeatures maxAdultsCount={offer.maxAdults} bedroomsCount={offer.bedrooms} housingType={offer.type}/>
             <Price price={offer.price} type={'offer'}/>
-            <GoodsList goods={offer.goods}/>
+            <AdvantagesList advantages={offer.goods}/>
             <Host user={offer.host} description={offer.description}/>
             <ReviewsSection reviews={reviews}/>
           </div>
