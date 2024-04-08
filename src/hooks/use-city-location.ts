@@ -14,4 +14,6 @@ function useCityLocation(map: Map | null, location: LocationType) {
   }, [latitude, longitude, zoom, map]);
 }
 
-export default useCityLocation;
+export {
+  useCityLocation,
+};

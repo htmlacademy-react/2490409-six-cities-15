@@ -46,4 +46,6 @@ function useMarkers(
   }, [map, locations, selectedCardId]);
 }
 
-export default useMarkers;
+export {
+  useMarkers,
+};
