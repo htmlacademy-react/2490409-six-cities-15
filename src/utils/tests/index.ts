@@ -22,6 +22,7 @@ import {
   withStore,
   makeRandomAppRoute,
   makeFakeStoreState,
+  getStoreWrapper,
 } from './general.tsx';
 
 export {
@@ -42,4 +43,5 @@ export {
   withStore,
   makeRandomAppRoute,
   makeFakeStoreState,
+  getStoreWrapper,
 };

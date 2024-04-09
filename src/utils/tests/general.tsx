@@ -1,5 +1,5 @@
 import { Action } from '@reduxjs/toolkit';
-import { ReactElement } from 'react';
+import { FC, ReactElement } from 'react';
 import { createMemoryHistory, MemoryHistory } from 'history';
 import { HelmetProvider } from 'react-helmet-async';
 import { HistoryRouter } from '../../routing';
@@ -72,6 +72,16 @@ const makeRandomAppRoute = (exclude?: AppRouteType[]) => {
   return helpers.randomize(availableRoutes);
 };
 
+function getStoreWrapper(initialState: Partial<StoreStateType>): FC {
+  const store = configureMockStore<
+    StoreStateType, Action<string>, AppThunkDispatch
+  >()(initialState);
+
+  return function withProvider({children}: { children?: ReactElement }) {
+    return <Provider store={store}>{children}</Provider>;
+  };
+}
+
 type FakeStoreStateProps = {
   offersStateProps?: FakeOffersStateProps;
   userStateProps?: FakeUserStateProps;
@@ -88,4 +98,5 @@ export {
   withStore,
   makeRandomAppRoute,
   makeFakeStoreState,
+  getStoreWrapper,
 };
