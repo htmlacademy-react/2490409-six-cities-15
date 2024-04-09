@@ -5,7 +5,7 @@ import { AppRoute, AuthStatus, Cities, RequestStatus } from '../../constants';
 import { render, screen } from '@testing-library/react';
 import { setOfferIdInRoute } from '../../store/helpers.ts';
 import { sliceName } from '../../store/slices/offers/meta.ts';
-import {datatype} from 'faker';
+import { datatype } from 'faker';
 
 describe('App routing', () => {
   let mockHistory: MemoryHistory;

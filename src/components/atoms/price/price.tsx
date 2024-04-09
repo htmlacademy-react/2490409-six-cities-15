@@ -1,4 +1,4 @@
-import {IconsAndLabelsStyleClassType} from '../../../types';
+import { IconsAndLabelsStyleClassType } from '../../../types';
 
 type PriceProps = {
   price: number;
