@@ -6,8 +6,8 @@ type ReviewsListProps = {
 };
 
 const prepareReviews = (reviews: CommentData[]) => (
-  reviews
-    .toSorted((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
+  [...reviews]
+    .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
     .slice(0, 10)
 );
 
