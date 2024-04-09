@@ -30,11 +30,19 @@ const toggleFavoriteStatus = (
 const updateFavorites = (
   state: OffersStateType, action: PayloadAction<OfferData[]>
 ) => {
-  const favoriteOffersIds = action.payload.map(({id}) => id);
-
-  for (const [i, offer] of state.offers.entries()) {
-    state.offers[i].isFavorite = favoriteOffersIds.includes(offer.id);
+  for (let i = 0; i < state.offers.length; i++) {
+    state.offers[i].isFavorite = false;
   }
+
+  action.payload.forEach((offer) => {
+    const i = state.offers.findIndex(({ id }) => id === offer.id);
+
+    if (i > -1) {
+      state.offers[i].isFavorite = true;
+    } else {
+      state.offers.push(offer);
+    }
+  });
 };
 
 const setDataLoading = (state: OffersStateType) => {
