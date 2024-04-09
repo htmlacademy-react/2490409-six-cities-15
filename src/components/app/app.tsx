@@ -22,7 +22,7 @@ function App(): ReactElement {
         path={AppRoute.Login}
         element={
           <PrivateRoute
-            allowedAuthStatuses={[AuthStatus.Unknown, AuthStatus.NoAuth]}
+            allowedAuthStatuses={[AuthStatus.NoAuth, AuthStatus.Unknown]}
             redirectTo={AppRoute.Main}
           >
             <LoginPage/>
@@ -37,7 +37,7 @@ function App(): ReactElement {
         path={AppRoute.Favorites}
         element={
           <PrivateRoute
-            allowedAuthStatuses={AuthStatus.Auth}
+            allowedAuthStatuses={[AuthStatus.Unknown, AuthStatus.Auth]}
             redirectTo={AppRoute.Login}
           >
             <FavoritesPage/>
