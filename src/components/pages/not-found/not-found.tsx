@@ -8,6 +8,7 @@ function NotFoundPage(): ReactElement {
       statusCode={StatusCodes.NOT_FOUND}
       errorDescription="This page does not exist"
       buttonText="Back to main page"
+      testId="not-found-page"
     />
   );
 }

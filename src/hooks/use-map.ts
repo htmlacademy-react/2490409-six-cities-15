@@ -38,4 +38,6 @@ function useMap(mapRef: MutableRefObject<HTMLElement | null>, location: Location
   return map;
 }
 
-export default useMap;
+export {
+  useMap,
+};

@@ -1,6 +1,6 @@
-import { SORT_TYPES } from '../constants';
+import { SortTypes } from '../constants';
 
-type SortTypesType = typeof SORT_TYPES[keyof typeof SORT_TYPES];
+type SortTypesType = typeof SortTypes[keyof typeof SortTypes];
 
 export type {
   SortTypesType,

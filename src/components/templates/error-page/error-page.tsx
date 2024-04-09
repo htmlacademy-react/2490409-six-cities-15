@@ -1,7 +1,7 @@
 import { ReactElement } from 'react';
 import { ContentOnTheLeft } from '../../templates';
 import { TabButton } from '../../atoms';
-import { APP_ROUTE } from '../../../constants';
+import { AppRoute } from '../../../constants';
 import { StatusCodes } from 'http-status-codes';
 import './error-page.css';
 
@@ -9,13 +9,15 @@ type ErrorPageProps = {
   statusCode: typeof StatusCodes[keyof typeof StatusCodes];
   errorDescription: string;
   buttonText: string;
+  testId?: string;
 };
 
-function ErrorPage({statusCode, errorDescription, buttonText}: ErrorPageProps): ReactElement {
+function ErrorPage({statusCode, errorDescription, buttonText, testId}: ErrorPageProps): ReactElement {
   return (
     <ContentOnTheLeft
       showAccountData
-      rightSideButton={<TabButton tabName={buttonText} isSelected={false} link={APP_ROUTE.Main}/>}
+      rightSideButton={<TabButton tabName={buttonText} isSelected={false} link={AppRoute.Main}/>}
+      testId={testId ?? 'error-page-template'}
     >
       <div className="not-found__container">
         <div className="not-found__error-number">

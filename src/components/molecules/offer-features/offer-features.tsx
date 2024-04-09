@@ -1,7 +1,7 @@
 import { OfferFeatureItem } from '../../atoms';
 import { pluralize } from '../../../utils';
 import { HousingType } from '../../../types';
-import { HOUSING } from '../../../constants';
+import { Housing } from '../../../constants';
 
 type OfferFeaturesProps = {
   maxAdultsCount: number;
@@ -12,7 +12,7 @@ type OfferFeaturesProps = {
 function OfferFeatures({maxAdultsCount, bedroomsCount, housingType}: OfferFeaturesProps) {
   return (
     <ul className="offer__features">
-      <OfferFeatureItem content={HOUSING[housingType]} type="entire" />
+      <OfferFeatureItem content={Housing[housingType]} type="entire" />
       <OfferFeatureItem content={`${bedroomsCount} ${pluralize('Bedroom', bedroomsCount)}`} type="bedrooms" />
       <OfferFeatureItem content={`Max ${maxAdultsCount} ${pluralize('adult', maxAdultsCount)}`} type="adults" />
     </ul>

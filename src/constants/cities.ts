@@ -1,4 +1,4 @@
-const CITIES = {
+const Cities = {
   Paris: 'Paris',
   Cologne: 'Cologne',
   Brussels: 'Brussels',
@@ -8,5 +8,5 @@ const CITIES = {
 } as const;
 
 export {
-  CITIES,
+  Cities,
 };

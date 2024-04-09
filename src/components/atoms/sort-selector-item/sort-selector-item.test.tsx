@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react';
 import SortSelectorItem from './sort-selector-item.tsx';
-import {SortTypesType} from '../../../types';
+import { SortTypesType } from '../../../types';
 
 describe('SortSelectorItem component', () => {
   it('should be in document, have content from props, to be tag "li", to have class "places__option--active" if is selected', () => {

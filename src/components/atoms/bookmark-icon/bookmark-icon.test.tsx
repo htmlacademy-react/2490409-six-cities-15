@@ -1,11 +1,9 @@
 import { render, screen } from '@testing-library/react';
 import BookmarkIcon from './bookmark-icon.tsx';
-import { extractActionsTypes, withHistory, withStore } from '../../../utils/tests';
+import { extractActionsTypes, makeFakeStoreState, withHistory, withStore } from '../../../utils/tests';
 import { userEvent } from '@testing-library/user-event';
-import { makeFakeOffersState, makeFakeUserState } from '../../../utils/tests';
 import { sliceName as offersSliceName } from '../../../store/slices/offers/meta.ts';
-import { sliceName as userSliceName } from '../../../store/slices/user/meta.ts';
-import { API_ROUTE, APP_ROUTE, AUTH_STATUS } from '../../../constants';
+import { ApiRoute, AppRoute, AuthStatus } from '../../../constants';
 import { setFavoriteStatusInRoute, setOfferIdInRoute } from '../../../store/helpers.ts';
 import { changeFavoriteStatusAction } from '../../../store/slices/offers/thunk.ts';
 import { StatusCodes } from 'http-status-codes';
@@ -16,28 +14,27 @@ describe('BookmarkIcon component', () => {
   it('should dispatch changeFavoriteStatusAction on click', async () => {
     const bookmarkId = 'bookmark-icon';
     const isFavorite = false;
-    const offersState = makeFakeOffersState({
-      offersLen: 1,
-      offersFavoriteStatus: isFavorite,
+    const storeState = makeFakeStoreState({
+      offersStateProps: {
+        offersLen: 1,
+        offersFavoriteStatus: isFavorite,
+      },
+      userStateProps: {
+        shouldCreateUser: false,
+        authorizationStatus: AuthStatus.Auth,
+      },
     });
-    const userState = makeFakeUserState({
-      shouldCreateUser: true,
-      authorizationStatus: AUTH_STATUS.Auth,
-    });
-    const offerId = offersState.offers[0].id;
+    const offerId = storeState[offersSliceName].offers[0].id;
 
     const { withStoreComponent, mockStore, mockAxiosAdapter } = withStore(
       withHistory(<BookmarkIcon id={offerId} isActive={isFavorite} type="offer" size="medium"/>),
-      {
-        [offersSliceName]: offersState,
-        [userSliceName]: userState,
-      },
+      storeState,
     );
 
     mockAxiosAdapter
       .onPost(
         setFavoriteStatusInRoute(
-          setOfferIdInRoute(API_ROUTE.Post.SetFavorite, offerId),
+          setOfferIdInRoute(ApiRoute.Post.SetFavorite, offerId),
           !isFavorite
         ),
       )
@@ -59,19 +56,21 @@ describe('BookmarkIcon component', () => {
 
   it('should redirect to LoginPage if user is not authorized', async () => {
     const mockHistory = createMemoryHistory();
-    mockHistory.push(APP_ROUTE.Offer);
+    mockHistory.push(AppRoute.Offer);
 
     const bookmarkId = 'bookmark-icon';
     const isFavorite = false;
-    const offersState = makeFakeOffersState({
-      offersLen: 1,
-      offersFavoriteStatus: isFavorite,
+    const storeState = makeFakeStoreState({
+      offersStateProps: {
+        offersLen: 1,
+        offersFavoriteStatus: isFavorite,
+      },
+      userStateProps: {
+        shouldCreateUser: false,
+        authorizationStatus: AuthStatus.NoAuth,
+      },
     });
-    const userState = makeFakeUserState({
-      shouldCreateUser: false,
-      authorizationStatus: AUTH_STATUS.NoAuth,
-    });
-    const offerId = offersState.offers[0].id;
+    const offerId = storeState[offersSliceName].offers[0].id;
     const bookmarkIconComponent = <BookmarkIcon id={offerId} isActive={isFavorite} type="offer" size="medium"/>;
     const loginPageComponent = 'LoginPage';
 
@@ -79,20 +78,17 @@ describe('BookmarkIcon component', () => {
       withHistory(
         <Routes>
           <Route
-            path={APP_ROUTE.Login}
+            path={AppRoute.Login}
             element={loginPageComponent}
           />
           <Route
-            path={APP_ROUTE.Offer}
+            path={AppRoute.Offer}
             element={bookmarkIconComponent}
           />
         </Routes>,
         mockHistory,
       ),
-      {
-        [offersSliceName]: offersState,
-        [userSliceName]: userState,
-      },
+      storeState,
     );
 
     render(withStoreComponent);

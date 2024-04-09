@@ -34,7 +34,7 @@ import {
   addReviewRejected,
 } from './extra-reducers.ts';
 import { offersSelectors as selectors } from './selectors.ts';
-import { REQUEST_STATUS } from '../../../constants';
+import { RequestStatus } from '../../../constants';
 
 type OffersStateType = {
   offers: OfferData[];
@@ -51,8 +51,8 @@ const initialState: OffersStateType = {
   additionalOfferData: null,
   detailOfferReviews: null,
   nearbyOffersIds: [],
-  offersRequestStatus: REQUEST_STATUS.Idle,
-  reviewRequestStatus: REQUEST_STATUS.Idle,
+  offersRequestStatus: RequestStatus.Idle,
+  reviewRequestStatus: RequestStatus.Idle,
   activeOfferId: null,
 };
 

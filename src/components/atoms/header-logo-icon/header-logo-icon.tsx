@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import { LogoIcon, LogoIconSizeType } from '..';
-import { APP_ROUTE } from '../../../constants';
+import { AppRoute } from '../../../constants';
 import classNames from 'classnames';
 
 type LogoIconProps = {
@@ -16,7 +16,7 @@ function HeaderLogoIcon({ size, isActive = false }: LogoIconProps) {
 
   return (
     <div className="header__left" data-testid={`header-logo-icon-${size}`}>
-      <Link className={linkClass} to={APP_ROUTE.Main}>
+      <Link className={linkClass} to={AppRoute.Main}>
         <LogoIcon size={size}/>
       </Link>
     </div>

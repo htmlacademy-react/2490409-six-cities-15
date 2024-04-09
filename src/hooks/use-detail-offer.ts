@@ -1,5 +1,5 @@
-import {useAppSelector} from '../store/helpers.ts';
-import {offersSelectors} from '../store/slices/offers';
+import { useAppSelector } from '../store/helpers.ts';
+import { offersSelectors } from '../store/slices/offers';
 import { OfferDetailData } from '../types';
 
 function useDetailOffer(): OfferDetailData | null {

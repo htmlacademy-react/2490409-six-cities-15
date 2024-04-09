@@ -6,7 +6,7 @@ import {
   makeFakeOfferAdditionalData,
 } from '../../../utils/tests';
 import { offersActions, offersSlice } from './index.ts';
-import { REQUEST_STATUS } from '../../../constants';
+import { RequestStatus } from '../../../constants';
 import {
   addCommentAction,
   changeFavoriteStatusAction, fetchCommentsAction,
@@ -39,8 +39,8 @@ describe('OffersReducer', () => {
       additionalOfferData: null,
       detailOfferReviews: null,
       nearbyOffersIds: [],
-      offersRequestStatus: REQUEST_STATUS.Idle,
-      reviewRequestStatus: REQUEST_STATUS.Idle,
+      offersRequestStatus: RequestStatus.Idle,
+      reviewRequestStatus: RequestStatus.Idle,
       activeOfferId: null,
     };
 
@@ -79,7 +79,7 @@ describe('OffersReducer', () => {
       );
 
       expect(offers).toEqual([]);
-      expect(offersRequestStatus).toBe(REQUEST_STATUS.Loading);
+      expect(offersRequestStatus).toBe(RequestStatus.Loading);
     },
   );
 
@@ -92,7 +92,7 @@ describe('OffersReducer', () => {
       );
 
       expect(offers).toEqual([offer]);
-      expect(offersRequestStatus).toBe(REQUEST_STATUS.Success);
+      expect(offersRequestStatus).toBe(RequestStatus.Success);
     },
   );
 
@@ -104,7 +104,7 @@ describe('OffersReducer', () => {
       );
 
       expect(offers).toEqual([]);
-      expect(offersRequestStatus).toBe(REQUEST_STATUS.Error);
+      expect(offersRequestStatus).toBe(RequestStatus.Error);
     },
   );
 
@@ -131,7 +131,7 @@ describe('OffersReducer', () => {
       });
 
 
-      expect(offersRequestStatus).toBe(REQUEST_STATUS.Idle);
+      expect(offersRequestStatus).toBe(RequestStatus.Idle);
     },
   );
 
@@ -157,7 +157,7 @@ describe('OffersReducer', () => {
         }
       });
 
-      expect(offersRequestStatus).toBe(REQUEST_STATUS.Idle);
+      expect(offersRequestStatus).toBe(RequestStatus.Idle);
     },
   );
 
@@ -186,7 +186,7 @@ describe('OffersReducer', () => {
         }
       });
 
-      expect(offersRequestStatus).toBe(REQUEST_STATUS.Idle);
+      expect(offersRequestStatus).toBe(RequestStatus.Idle);
     },
   );
 
@@ -202,7 +202,7 @@ describe('OffersReducer', () => {
       );
 
       expect(additionalOfferData).toEqual(null);
-      expect(offersRequestStatus).toBe(REQUEST_STATUS.Loading);
+      expect(offersRequestStatus).toBe(RequestStatus.Loading);
     },
   );
 
@@ -221,7 +221,7 @@ describe('OffersReducer', () => {
       );
 
       expect(additionalOfferData).toEqual(expectedAdditionalOfferData);
-      expect(offersRequestStatus).toBe(REQUEST_STATUS.Success);
+      expect(offersRequestStatus).toBe(RequestStatus.Success);
     },
   );
 
@@ -238,7 +238,7 @@ describe('OffersReducer', () => {
       );
 
       expect(additionalOfferData).toEqual(null);
-      expect(offersRequestStatus).toBe(REQUEST_STATUS.Error);
+      expect(offersRequestStatus).toBe(RequestStatus.Error);
     },
   );
 
@@ -260,7 +260,7 @@ describe('OffersReducer', () => {
       );
 
       expect(nearbyOffersIds).toEqual(expectedNearbyOffersIds);
-      expect(offersRequestStatus).toBe(REQUEST_STATUS.Loading);
+      expect(offersRequestStatus).toBe(RequestStatus.Loading);
     },
   );
 
@@ -280,7 +280,7 @@ describe('OffersReducer', () => {
 
       expect(offers).toContain(nearby[0]);
       expect(nearbyOffersIds).toEqual([nearbyId]);
-      expect(offersRequestStatus).toBe(REQUEST_STATUS.Success);
+      expect(offersRequestStatus).toBe(RequestStatus.Success);
     },
   );
 
@@ -297,7 +297,7 @@ describe('OffersReducer', () => {
       );
 
       expect(nearbyOffersIds).toEqual([]);
-      expect(offersRequestStatus).toBe(REQUEST_STATUS.Error);
+      expect(offersRequestStatus).toBe(RequestStatus.Error);
     },
   );
 
@@ -315,7 +315,7 @@ describe('OffersReducer', () => {
       );
 
       expect(detailOfferReviews).toEqual(comments);
-      expect(offersRequestStatus).toBe(REQUEST_STATUS.Success);
+      expect(offersRequestStatus).toBe(RequestStatus.Success);
     },
   );
 
@@ -332,7 +332,7 @@ describe('OffersReducer', () => {
       );
 
       expect(detailOfferReviews).toEqual(null);
-      expect(offersRequestStatus).toBe(REQUEST_STATUS.Error);
+      expect(offersRequestStatus).toBe(RequestStatus.Error);
     },
   );
 
@@ -350,7 +350,7 @@ describe('OffersReducer', () => {
       );
 
       expect(detailOfferReviews).toEqual(null);
-      expect(reviewRequestStatus).toBe(REQUEST_STATUS.Loading);
+      expect(reviewRequestStatus).toBe(RequestStatus.Loading);
     },
   );
 
@@ -369,7 +369,7 @@ describe('OffersReducer', () => {
       );
 
       expect(detailOfferReviews).toContain(newComment);
-      expect(reviewRequestStatus).toBe(REQUEST_STATUS.Success);
+      expect(reviewRequestStatus).toBe(RequestStatus.Success);
     },
   );
 
@@ -389,7 +389,7 @@ describe('OffersReducer', () => {
       );
 
       expect(detailOfferReviews).not.toContain(newComment);
-      expect(reviewRequestStatus).toBe(REQUEST_STATUS.Error);
+      expect(reviewRequestStatus).toBe(RequestStatus.Error);
     },
   );
 });

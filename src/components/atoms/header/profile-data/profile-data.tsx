@@ -1,7 +1,7 @@
 import { ReactElement } from 'react';
 import { Link } from 'react-router-dom';
 import { AvatarImage, Counter, Email } from '..';
-import { APP_ROUTE } from '../../../../constants';
+import { AppRoute } from '../../../../constants';
 
 type ProfileDataProps = {
   email: string;
@@ -14,7 +14,7 @@ function ProfileData(props: ProfileDataProps): ReactElement {
     <li className="header__nav-item user" data-testid="profile-data">
       <Link
         className="header__nav-link header__nav-link--profile"
-        to={APP_ROUTE.Favorites}
+        to={AppRoute.Favorites}
       >
         <AvatarImage avatarUrl={props.avatarUrl}/>
         <Email email={props.email}/>

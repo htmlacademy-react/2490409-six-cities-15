@@ -2,7 +2,7 @@ import { PremiumLabel, BookmarkIcon, Rating, Price } from '../../atoms';
 import { Link } from 'react-router-dom';
 import { OfferData } from '../../../types';
 import { ReactElement } from 'react';
-import { APP_ROUTE, HOUSING } from '../../../constants';
+import { AppRoute, Housing } from '../../../constants';
 import classNames from 'classnames';
 import { OfferCardStyleClassType } from '../../../types';
 
@@ -18,7 +18,7 @@ function OfferCard({
   onMouseLeave,
   ...props
 }: OfferCardProps): ReactElement {
-  const offerLink = APP_ROUTE.Offer.replace(':id', props.id);
+  const offerLink = AppRoute.Offer.replace(':id', props.id);
 
   const previewImageSize = props.hasVerticalLayout
     ? { width: 260, height: 200 }
@@ -63,7 +63,7 @@ function OfferCard({
             {props.title}
           </Link>
         </h2>
-        <p className="place-card__type">{HOUSING[props.type]}</p>
+        <p className="place-card__type">{Housing[props.type]}</p>
       </div>
     </article>
   );

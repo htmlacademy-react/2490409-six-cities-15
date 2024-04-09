@@ -1,5 +1,5 @@
 import { Action } from '@reduxjs/toolkit';
-import { ReactElement } from 'react';
+import { FC, ReactElement } from 'react';
 import { createMemoryHistory, MemoryHistory } from 'history';
 import { HelmetProvider } from 'react-helmet-async';
 import { HistoryRouter } from '../../routing';
@@ -10,7 +10,7 @@ import MockAdapter from 'axios-mock-adapter';
 import { configureMockStore, MockStore } from '@jedmao/redux-mock-store';
 import { Provider } from 'react-redux';
 import { helpers } from 'faker';
-import { APP_ROUTE } from '../../constants';
+import { AppRoute } from '../../constants';
 import { AppRouteType } from '../../types';
 import {sliceName as offersSliceName} from '../../store/slices/offers/meta.ts';
 import {sliceName as userSliceName} from '../../store/slices/user/meta.ts';
@@ -57,7 +57,7 @@ function withStore(
 }
 
 const makeRandomAppRoute = (exclude?: AppRouteType[]) => {
-  const availableRoutes = Object.values(APP_ROUTE);
+  const availableRoutes = Object.values(AppRoute);
   if (!exclude) {
     return helpers.randomize(availableRoutes);
   }
@@ -71,6 +71,16 @@ const makeRandomAppRoute = (exclude?: AppRouteType[]) => {
 
   return helpers.randomize(availableRoutes);
 };
+
+function getStoreWrapper(initialState: Partial<StoreStateType>): FC {
+  const store = configureMockStore<
+    StoreStateType, Action<string>, AppThunkDispatch
+  >()(initialState);
+
+  return function withProvider({children}: { children?: ReactElement }) {
+    return <Provider store={store}>{children}</Provider>;
+  };
+}
 
 type FakeStoreStateProps = {
   offersStateProps?: FakeOffersStateProps;
@@ -88,4 +98,5 @@ export {
   withStore,
   makeRandomAppRoute,
   makeFakeStoreState,
+  getStoreWrapper,
 };

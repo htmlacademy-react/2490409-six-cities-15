@@ -1,5 +1,5 @@
 import { ReactElement, useCallback } from 'react';
-import { CITIES } from '../../../constants';
+import { Cities } from '../../../constants';
 import { CitiesType } from '../../../types';
 import { TabButton } from '../../atoms';
 import { createMainRouteWithCity, isCity } from '../../../utils';
@@ -22,7 +22,7 @@ function CityTabs({onCityChanged, currTab}: CityTabsProps): ReactElement {
       <section className="locations container">
         <ul className="locations__list tabs__list">
           {
-            Object.values(CITIES).map((cityName) => (
+            Object.values(Cities).map((cityName) => (
               <TabButton
                 key={cityName}
                 tabName={cityName}

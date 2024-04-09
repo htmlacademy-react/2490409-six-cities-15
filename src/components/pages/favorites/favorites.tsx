@@ -4,15 +4,21 @@ import { FavoritesEmptyState, OffersListWithCitiesSections } from '../../molecul
 import classNames from 'classnames';
 import { useAppDispatch } from '../../../store/helpers.ts';
 import { fetchFavoritesOffersAction } from '../../../store/slices/offers/thunk.ts';
-import { useFavoriteOffers } from '../../../hooks';
+import { useAuthStatus, useFavoriteOffers } from '../../../hooks';
+import { AuthStatus } from '../../../constants';
+import { AuthStatusType } from '../../../types';
 
 function FavoritesPage(): ReactElement {
   const dispatch = useAppDispatch();
+  const authStatus: AuthStatusType = useAuthStatus();
+
   useEffect(() => {
-    dispatch(fetchFavoritesOffersAction());
+    if (authStatus === AuthStatus.Auth) {
+      dispatch(fetchFavoritesOffersAction());
+    }
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [authStatus]);
 
   const favoriteOffers = useFavoriteOffers();
   const isEmpty = favoriteOffers.length === 0;
@@ -27,7 +33,7 @@ function FavoritesPage(): ReactElement {
   );
 
   return (
-    <div className={divClassName}>
+    <div className={divClassName} data-testid="favorites-page">
       <Header/>
       <main className={mainClassName}>
         <div className="page__favorites-container container">

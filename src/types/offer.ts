@@ -1,8 +1,8 @@
 import { CitiesType } from '../types';
 import { HostUserType } from '../types';
-import { HOUSING } from '../constants';
+import { Housing } from '../constants';
 
-type HousingType = keyof typeof HOUSING;
+type HousingType = keyof typeof Housing;
 
 type OfferData = {
   id: string;

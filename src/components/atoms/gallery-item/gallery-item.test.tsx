@@ -1,5 +1,5 @@
 import { render, screen } from '@testing-library/react';
-import GalleryItem from './/gallery-item.tsx';
+import GalleryItem from './gallery-item.tsx';
 import { image } from 'faker';
 
 describe('GalleryItem component', () => {

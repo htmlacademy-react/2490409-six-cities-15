@@ -1,4 +1,4 @@
-const HOUSING = {
+const Housing = {
   apartment: 'Apartment',
   room: 'Room',
   house: 'House',
@@ -6,5 +6,5 @@ const HOUSING = {
 } as const;
 
 export {
-  HOUSING,
+  Housing,
 };

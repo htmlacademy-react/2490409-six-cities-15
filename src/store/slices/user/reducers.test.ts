@@ -1,4 +1,4 @@
-import { AUTH_STATUS } from '../../../constants';
+import { AuthStatus } from '../../../constants';
 import { userSlice } from './index.ts';
 import { makeFakeAuthenticatedUser, makeFakeAuthenticationForm, makeFakeUserState } from '../../../utils/tests';
 import { fetchUserByTokenAction, loginAction, logoutAction } from './thunk.ts';
@@ -17,7 +17,7 @@ describe('UserReducers', () => {
     const emptyAction = { type: '' };
     const initialState = {
       user: null,
-      authorizationStatus: AUTH_STATUS.Unknown,
+      authorizationStatus: AuthStatus.Unknown,
     };
 
     const result = userSlice.reducer(undefined, emptyAction);
@@ -28,7 +28,7 @@ describe('UserReducers', () => {
   it('should set user with "fetchUserByTokenAction.fulfilled"', () => {
     const state = makeFakeUserState({
       shouldCreateUser: false,
-      authorizationStatus: AUTH_STATUS.Auth,
+      authorizationStatus: AuthStatus.Auth,
     });
 
     const userFromServer = makeFakeAuthenticatedUser();
@@ -38,13 +38,13 @@ describe('UserReducers', () => {
     );
 
     expect(user).toEqual(userFromServer);
-    expect(authorizationStatus).toBe(AUTH_STATUS.Auth);
+    expect(authorizationStatus).toBe(AuthStatus.Auth);
   });
 
   it('should clear user with "fetchUserByTokenAction.rejected"', () => {
     const state = makeFakeUserState({
       shouldCreateUser: true,
-      authorizationStatus: AUTH_STATUS.Auth,
+      authorizationStatus: AuthStatus.Auth,
     });
 
     const { user, authorizationStatus } = userSlice.reducer(
@@ -53,13 +53,13 @@ describe('UserReducers', () => {
     );
 
     expect(user).toEqual(null);
-    expect(authorizationStatus).toBe(AUTH_STATUS.NoAuth);
+    expect(authorizationStatus).toBe(AuthStatus.NoAuth);
   });
 
   it('should set user with "loginAction.fulfilled"', () => {
     const state = makeFakeUserState({
       shouldCreateUser: false,
-      authorizationStatus: AUTH_STATUS.Unknown,
+      authorizationStatus: AuthStatus.Unknown,
     });
 
     const userFromServer = makeFakeAuthenticatedUser();
@@ -71,13 +71,13 @@ describe('UserReducers', () => {
     );
 
     expect(user).toBe(userFromServer);
-    expect(authorizationStatus).toBe(AUTH_STATUS.Auth);
+    expect(authorizationStatus).toBe(AuthStatus.Auth);
   });
 
   it('should clear user with "loginAction.rejected"', () => {
     const state = makeFakeUserState({
       shouldCreateUser: false,
-      authorizationStatus: AUTH_STATUS.Unknown,
+      authorizationStatus: AuthStatus.Unknown,
     });
 
     const authenticationForm = makeFakeAuthenticationForm();
@@ -88,13 +88,13 @@ describe('UserReducers', () => {
     );
 
     expect(user).toBe(null);
-    expect(authorizationStatus).toBe(AUTH_STATUS.NoAuth);
+    expect(authorizationStatus).toBe(AuthStatus.NoAuth);
   });
 
   it('should clear user with "logoutAction.fulfilled"', () => {
     const state = makeFakeUserState({
       shouldCreateUser: true,
-      authorizationStatus: AUTH_STATUS.Auth,
+      authorizationStatus: AuthStatus.Auth,
     });
 
     const { user, authorizationStatus } = userSlice.reducer(
@@ -103,6 +103,6 @@ describe('UserReducers', () => {
     );
 
     expect(user).toBe(null);
-    expect(authorizationStatus).toBe(AUTH_STATUS.NoAuth);
+    expect(authorizationStatus).toBe(AuthStatus.NoAuth);
   });
 });

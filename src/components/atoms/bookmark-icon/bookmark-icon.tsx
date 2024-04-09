@@ -4,7 +4,7 @@ import { MouseEventHandler } from 'react';
 import { changeFavoriteStatusAction } from '../../../store/slices/offers/thunk.ts';
 import { useAppDispatch } from '../../../store/helpers.ts';
 import { useAuthStatus } from '../../../hooks';
-import { APP_ROUTE, AUTH_STATUS } from '../../../constants';
+import { AppRoute, AuthStatus } from '../../../constants';
 import { useNavigate } from 'react-router-dom';
 import { BOOKMARK_ICON_SIZE, BookmarkIconSizeType } from '../index.ts';
 
@@ -22,8 +22,8 @@ function BookmarkIcon({id, isActive = false, type = 'place-card', size}: Bookmar
   const handleClick: MouseEventHandler<HTMLButtonElement> = (e) => {
     e.preventDefault();
 
-    if (authStatus !== AUTH_STATUS.Auth) {
-      navigate(APP_ROUTE.Login);
+    if (authStatus !== AuthStatus.Auth) {
+      navigate(AppRoute.Login);
 
       return;
     }

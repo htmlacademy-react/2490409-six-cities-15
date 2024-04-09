@@ -10,10 +10,10 @@ import {
 import { useAppDispatch, useAppSelector } from '../../../store/helpers.ts';
 import { NotFoundPage } from '../index.ts';
 import { offersSelectors } from '../../../store/slices/offers';
-import { REQUEST_STATUS } from '../../../constants';
+import { RequestStatus } from '../../../constants';
 import classNames from 'classnames';
 import './offer.css';
-import {useDetailOffer, useNearbyOffers} from '../../../hooks';
+import { useDetailOffer, useNearbyOffers } from '../../../hooks';
 
 function OfferPage(): ReactElement {
   const { id: offerId = '' } = useParams();
@@ -43,7 +43,7 @@ function OfferPage(): ReactElement {
     ));
   }
 
-  const isLoading = requestStatus === REQUEST_STATUS.Loading;
+  const isLoading = requestStatus === RequestStatus.Loading;
 
   const divClassname = classNames(
     'page',
@@ -57,7 +57,7 @@ function OfferPage(): ReactElement {
   );
 
   return (
-    <div className={divClassname}>
+    <div className={divClassname} data-testid="offer-page">
       <Header/>
       <main className={mainClassname}>
         {
