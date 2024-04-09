@@ -43,7 +43,9 @@ function ReviewForm() {
       .unwrap()
       .then(() => {
         setReview(initialReviewState);
-      });
+      })
+      // eslint-disable-next-line no-console
+      .catch(console.error);
   };
 
   const isLoading = useAppSelector(offersSelectors.reviewRequestStatus) === RequestStatus.Loading;
