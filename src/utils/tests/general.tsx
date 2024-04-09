@@ -10,7 +10,7 @@ import MockAdapter from 'axios-mock-adapter';
 import { configureMockStore, MockStore } from '@jedmao/redux-mock-store';
 import { Provider } from 'react-redux';
 import { helpers } from 'faker';
-import { APP_ROUTE } from '../../constants';
+import { AppRoute } from '../../constants';
 import { AppRouteType } from '../../types';
 import {sliceName as offersSliceName} from '../../store/slices/offers/meta.ts';
 import {sliceName as userSliceName} from '../../store/slices/user/meta.ts';
@@ -57,7 +57,7 @@ function withStore(
 }
 
 const makeRandomAppRoute = (exclude?: AppRouteType[]) => {
-  const availableRoutes = Object.values(APP_ROUTE);
+  const availableRoutes = Object.values(AppRoute);
   if (!exclude) {
     return helpers.randomize(availableRoutes);
   }

@@ -1,7 +1,7 @@
 import { HeaderLogoIcon } from '../../atoms';
 import { ReactElement } from 'react';
 import { useAuthStatus, useFavoriteOffers } from '../../../hooks';
-import { APP_ROUTE, AUTH_STATUS } from '../../../constants';
+import { AppRoute, AuthStatus } from '../../../constants';
 import { ProfileData, SignInButton, SignOutButton } from '../../atoms/header';
 import { useAppSelector } from '../../../store/helpers.ts';
 import { userSelectors } from '../../../store/slices/user';
@@ -14,7 +14,7 @@ function Header({ isLogoActive = false }: HeaderProps) {
   const profileData = useAppSelector(userSelectors.user);
   const favoritesCounter = useFavoriteOffers().length;
 
-  const navListData: ReactElement = useAuthStatus() === AUTH_STATUS.Auth ? (
+  const navListData: ReactElement = useAuthStatus() === AuthStatus.Auth ? (
     <>
       {
         profileData &&
@@ -27,7 +27,7 @@ function Header({ isLogoActive = false }: HeaderProps) {
       <SignOutButton />
     </>
   ) : (
-    <SignInButton link={APP_ROUTE.Login} />
+    <SignInButton link={AppRoute.Login} />
   );
 
   return (

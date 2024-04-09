@@ -1,12 +1,12 @@
 import {AsyncActionsArgsType, createAppAsyncThunk, setFavoriteStatusInRoute, setOfferIdInRoute} from '../../helpers.ts';
-import { API_ROUTE } from '../../../constants';
+import { ApiRoute } from '../../../constants';
 import { CommentData, OfferData, OfferDetailData } from '../../../types';
 
 
 const fetchOffersAction = createAppAsyncThunk<OfferData[], void, AsyncActionsArgsType>(
   'fetch/offersList',
   async (_arg, { extra: api}) => {
-    const response = await api.get<OfferData[]>(API_ROUTE.Get.OffersList);
+    const response = await api.get<OfferData[]>(ApiRoute.Get.OffersList);
 
     await new Promise((resolve) => setTimeout(resolve, 300));
 
@@ -18,7 +18,7 @@ const changeFavoriteStatusAction = createAppAsyncThunk<OfferData, {id: OfferData
   'send/changeFavoriteStatus',
   async ({id: offerId, status}, { extra: api}) => {
     const response = await api.post<OfferData>(
-      setFavoriteStatusInRoute(setOfferIdInRoute(API_ROUTE.Post.SetFavorite, offerId), status),
+      setFavoriteStatusInRoute(setOfferIdInRoute(ApiRoute.Post.SetFavorite, offerId), status),
       {
         offerId,
         status: status ? 1 : 0
@@ -33,7 +33,7 @@ const changeFavoriteStatusAction = createAppAsyncThunk<OfferData, {id: OfferData
 const fetchFavoritesOffersAction = createAppAsyncThunk<OfferData[], void, AsyncActionsArgsType>(
   'fetch/favoritesOffers',
   async (_arg, { extra: api}) => {
-    const response = await api.get<OfferData[]>(API_ROUTE.Get.Favorites);
+    const response = await api.get<OfferData[]>(ApiRoute.Get.Favorites);
 
     return response.data;
   },
@@ -43,7 +43,7 @@ const fetchDetailOfferAction = createAppAsyncThunk<OfferDetailData, OfferData['i
   'fetch/detailOffer',
   async (id, { extra: api}) => {
     const response = await api.get<OfferDetailData>(
-      setOfferIdInRoute(API_ROUTE.Get.DetailOffer, id)
+      setOfferIdInRoute(ApiRoute.Get.DetailOffer, id)
     );
 
     return response.data;
@@ -54,7 +54,7 @@ const fetchNearbyOffersAction = createAppAsyncThunk<OfferData[], OfferData['id']
   'fetch/nearByOffers',
   async (id, { extra: api}) => {
     const response = await api.get<OfferData[]>(
-      setOfferIdInRoute(API_ROUTE.Get.NearBy, id)
+      setOfferIdInRoute(ApiRoute.Get.NearBy, id)
     );
 
     return response.data;
@@ -65,7 +65,7 @@ const fetchCommentsAction = createAppAsyncThunk<CommentData[], OfferData['id'], 
   'fetch/fetchComments',
   async (id, { extra: api}) => {
     const response = await api.get<CommentData[]>(
-      setOfferIdInRoute(API_ROUTE.Get.Comments, id)
+      setOfferIdInRoute(ApiRoute.Get.Comments, id)
     );
 
     return response.data;
@@ -80,7 +80,7 @@ const addCommentAction = createAppAsyncThunk<
   'send/addComment',
   async ({id: offerId, comment, rating}, { extra: api}) => {
     const response = await api.post<CommentData>(
-      setOfferIdInRoute(API_ROUTE.Post.AddComment, offerId), { comment, rating }
+      setOfferIdInRoute(ApiRoute.Post.AddComment, offerId), { comment, rating }
     );
 
     return response.data;

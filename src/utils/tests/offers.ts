@@ -7,7 +7,7 @@ import {
   OfferData, OfferDetailData,
   RequestStatusType,
 } from '../../types';
-import { CITIES, HOUSING, REQUEST_STATUS } from '../../constants';
+import { Cities, Housing, RequestStatus } from '../../constants';
 import { OffersStateType } from '../../store/slices/offers';
 
 const makeFakeOfferId = (): OfferData['id'] => datatype.uuid();
@@ -21,11 +21,11 @@ const makeFakeLocation = (): LocationType => ({
 const makeFakeOffer = (id: OfferData['id'], isFavorite?: boolean, city?: CitiesType): OfferData => ({
   id,
   title: datatype.string(30),
-  type: helpers.randomize(Object.keys(HOUSING) as HousingType[]),
+  type: helpers.randomize(Object.keys(Housing) as HousingType[]),
   price: datatype.number(1000),
   previewImage: image.image(),
   city: {
-    name: city ?? helpers.randomize(Object.values(CITIES)),
+    name: city ?? helpers.randomize(Object.values(Cities)),
     location: makeFakeLocation(),
   },
   location: makeFakeLocation(),
@@ -78,8 +78,8 @@ const makeFakeOffersState = (
     offersFavoriteStatus,
     offersCity,
     nearbyIndexes,
-    offersRequestStatus = REQUEST_STATUS.Idle,
-    reviewRequestStatus = REQUEST_STATUS.Idle,
+    offersRequestStatus = RequestStatus.Idle,
+    reviewRequestStatus = RequestStatus.Idle,
     activeOfferIdIndex
   }: FakeOffersStateProps
 ): OffersStateType => {

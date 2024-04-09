@@ -1,4 +1,4 @@
-const REQUEST_STATUS = {
+const RequestStatus = {
   Idle: 'Idle',
   Loading: 'Loading',
   Success: 'Status',
@@ -6,6 +6,6 @@ const REQUEST_STATUS = {
 } as const;
 
 export {
-  REQUEST_STATUS,
+  RequestStatus,
 };
 

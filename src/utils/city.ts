@@ -1,8 +1,8 @@
-import { CITIES } from '../constants';
+import { Cities } from '../constants';
 import { CitiesType } from '../types';
 
 const isCity = (value: string): value is CitiesType => (
-  Object.values<string>(CITIES).includes(value)
+  Object.values<string>(Cities).includes(value)
 );
 
 export { isCity };

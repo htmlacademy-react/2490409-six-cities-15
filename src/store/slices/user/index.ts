@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { AuthenticatedUserType, AuthStatusType } from '../../../types';
-import { AUTH_STATUS } from '../../../constants';
+import { AuthStatus } from '../../../constants';
 import { loginAction, fetchUserByTokenAction, logoutAction } from './thunk.ts';
 import { sliceName } from './meta.ts';
 import { clearUser, setUser } from './extra-reducers.ts';
@@ -13,7 +13,7 @@ type UserStateType = {
 
 const initialState: UserStateType = {
   user: null,
-  authorizationStatus: AUTH_STATUS.Unknown,
+  authorizationStatus: AuthStatus.Unknown,
 };
 
 const userSlice = createSlice({

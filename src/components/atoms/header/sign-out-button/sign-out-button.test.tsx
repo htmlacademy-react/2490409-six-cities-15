@@ -1,7 +1,7 @@
 import { render, screen } from '@testing-library/react';
 import SignOutButton from './sign-out-button.tsx';
 import { extractActionsTypes, makeFakeStoreState, withHistory, withStore } from '../../../../utils/tests';
-import { API_ROUTE, AUTH_STATUS } from '../../../../constants';
+import { ApiRoute, AuthStatus } from '../../../../constants';
 import { userEvent } from '@testing-library/user-event';
 import { logoutAction } from '../../../../store/slices/user/thunk.ts';
 import { StatusCodes } from 'http-status-codes';
@@ -28,7 +28,7 @@ describe('SignOutButton component', () => {
 
     const store = makeFakeStoreState({
       userStateProps: {
-        authorizationStatus: AUTH_STATUS.Auth,
+        authorizationStatus: AuthStatus.Auth,
       }
     });
 
@@ -37,7 +37,7 @@ describe('SignOutButton component', () => {
       store,
     );
 
-    mockAxiosAdapter.onDelete(API_ROUTE.Delete.Logout).reply(StatusCodes.NO_CONTENT);
+    mockAxiosAdapter.onDelete(ApiRoute.Delete.Logout).reply(StatusCodes.NO_CONTENT);
 
     render(withStoreComponent);
 

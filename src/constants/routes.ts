@@ -1,4 +1,4 @@
-const APP_ROUTE = {
+const AppRoute = {
   Main: '/',
   MainWithCity: '/:city',
   Login: '/login',
@@ -8,7 +8,7 @@ const APP_ROUTE = {
   ServerError: '/server-error',
 } as const;
 
-const API_ROUTE = {
+const ApiRoute = {
   Get : {
     OffersList: '/offers',
     DetailOffer: '/offers/:offerId',
@@ -28,6 +28,6 @@ const API_ROUTE = {
 } as const;
 
 export {
-  APP_ROUTE,
-  API_ROUTE,
+  AppRoute,
+  ApiRoute,
 };

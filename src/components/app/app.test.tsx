@@ -1,7 +1,7 @@
 import { createMemoryHistory, MemoryHistory } from 'history';
 import { makeFakeStoreState, withHistory, withStore } from '../../utils/tests';
 import App from './app.tsx';
-import { APP_ROUTE, AUTH_STATUS, CITIES, REQUEST_STATUS } from '../../constants';
+import { AppRoute, AuthStatus, Cities, RequestStatus } from '../../constants';
 import { render, screen } from '@testing-library/react';
 import { setOfferIdInRoute } from '../../store/helpers.ts';
 import { sliceName } from '../../store/slices/offers/meta.ts';
@@ -17,7 +17,7 @@ describe('App routing', () => {
   it('should render main page for route APP_ROUTE.Main', () => {
     const mainPageId = 'main-page';
     const expectedText = /places?\sto\sstay\sin/;
-    mockHistory.push(APP_ROUTE.Main);
+    mockHistory.push(AppRoute.Main);
 
     const { withStoreComponent: app } = withStore(
       withHistory(
@@ -27,8 +27,8 @@ describe('App routing', () => {
       makeFakeStoreState({
         offersStateProps: {
           offersLen: 1,
-          offersRequestStatus: REQUEST_STATUS.Success,
-          offersCity: CITIES.Paris,
+          offersRequestStatus: RequestStatus.Success,
+          offersCity: Cities.Paris,
         },
       }),
     );
@@ -41,7 +41,7 @@ describe('App routing', () => {
 
   it('should render login page for route APP_ROUTE.Login', () => {
     const loginPageId = 'login-page';
-    mockHistory.push(APP_ROUTE.Login);
+    mockHistory.push(AppRoute.Login);
 
     const { withStoreComponent: app } = withStore(
       withHistory(
@@ -50,7 +50,7 @@ describe('App routing', () => {
       ),
       makeFakeStoreState({
         userStateProps: {
-          authorizationStatus: AUTH_STATUS.NoAuth,
+          authorizationStatus: AuthStatus.NoAuth,
         },
       }),
     );
@@ -71,12 +71,12 @@ describe('App routing', () => {
         additionalDataIndex: 0,
       },
       userStateProps: {
-        authorizationStatus: AUTH_STATUS.NoAuth,
+        authorizationStatus: AuthStatus.NoAuth,
       },
     });
     const offerId = store[sliceName].offers[0].id;
 
-    mockHistory.push(setOfferIdInRoute(APP_ROUTE.Offer, offerId));
+    mockHistory.push(setOfferIdInRoute(AppRoute.Offer, offerId));
 
     const { withStoreComponent: app } = withStore(
       withHistory(
@@ -99,11 +99,11 @@ describe('App routing', () => {
         offersFavoriteStatus: true,
       },
       userStateProps: {
-        authorizationStatus: AUTH_STATUS.Auth,
+        authorizationStatus: AuthStatus.Auth,
       },
     });
 
-    mockHistory.push(APP_ROUTE.Favorites);
+    mockHistory.push(AppRoute.Favorites);
 
     const { withStoreComponent: app } = withStore(
       withHistory(
@@ -122,7 +122,7 @@ describe('App routing', () => {
     const notFoundPageId = 'not-found-page';
     const store = makeFakeStoreState({});
 
-    mockHistory.push(APP_ROUTE.NotFound);
+    mockHistory.push(AppRoute.NotFound);
 
     const { withStoreComponent: app } = withStore(
       withHistory(
@@ -141,7 +141,7 @@ describe('App routing', () => {
     const serverErrorPageId = 'server-error-page';
     const store = makeFakeStoreState({});
 
-    mockHistory.push(APP_ROUTE.ServerError);
+    mockHistory.push(AppRoute.ServerError);
 
     const { withStoreComponent: app } = withStore(
       withHistory(
@@ -160,7 +160,7 @@ describe('App routing', () => {
     const notFoundPageId = 'not-found-page';
     const store = makeFakeStoreState({});
 
-    mockHistory.push(`${APP_ROUTE.Main}${datatype.string(20)}`);
+    mockHistory.push(`${AppRoute.Main}${datatype.string(20)}`);
 
     const { withStoreComponent: app } = withStore(
       withHistory(

@@ -1,5 +1,5 @@
 import { SortSelectorItem } from '../../atoms';
-import { SORT_TYPES } from '../../../constants';
+import { SortTypes } from '../../../constants';
 import { SortTypesType } from '../../../types';
 import { useBooleanHelpers } from '../../../hooks';
 
@@ -30,7 +30,7 @@ function SortSelector({selectedSort, onSelect}: SortSelectorProps) {
         isOpened && (
           <ul className="places__options places__options--custom places__options--opened">
             {
-              Object.values(SORT_TYPES).map((type) => (
+              Object.values(SortTypes).map((type) => (
                 <SortSelectorItem key={type} isSelected={type === selectedSort} value={type} onClick={handleSort}/>
               ))
             }

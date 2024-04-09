@@ -1,6 +1,6 @@
-import { APP_ROUTE } from '../constants';
+import { AppRoute } from '../constants';
 
-type AppRouteType = typeof APP_ROUTE[keyof typeof APP_ROUTE];
+type AppRouteType = typeof AppRoute[keyof typeof AppRoute];
 
 export type {
   AppRouteType,

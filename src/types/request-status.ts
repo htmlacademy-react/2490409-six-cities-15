@@ -1,6 +1,6 @@
-import { REQUEST_STATUS } from '../constants';
+import { RequestStatus } from '../constants';
 
-type RequestStatusType = typeof REQUEST_STATUS[keyof typeof REQUEST_STATUS];
+type RequestStatusType = typeof RequestStatus[keyof typeof RequestStatus];
 
 export type {
   RequestStatusType,

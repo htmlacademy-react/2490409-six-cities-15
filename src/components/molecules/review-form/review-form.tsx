@@ -3,7 +3,7 @@ import { ChangeEvent, ChangeEventHandler, FormEventHandler, useState } from 'rea
 import { useAppDispatch, useAppSelector } from '../../../store/helpers.ts';
 import { addCommentAction } from '../../../store/slices/offers/thunk.ts';
 import { offersSelectors } from '../../../store/slices/offers';
-import { REQUEST_STATUS } from '../../../constants';
+import { RequestStatus } from '../../../constants';
 import { ReviewType } from '../../../types';
 import { useDetailOffer } from '../../../hooks';
 
@@ -46,7 +46,7 @@ function ReviewForm() {
       });
   };
 
-  const isLoading = useAppSelector(offersSelectors.reviewRequestStatus) === REQUEST_STATUS.Loading;
+  const isLoading = useAppSelector(offersSelectors.reviewRequestStatus) === RequestStatus.Loading;
 
   return (
     <form className="reviews__form form" onSubmit={handleSubmit}>

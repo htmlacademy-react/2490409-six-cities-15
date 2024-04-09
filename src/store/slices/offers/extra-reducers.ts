@@ -1,20 +1,20 @@
 import { OffersStateType } from './index.ts';
 import { PayloadAction } from '@reduxjs/toolkit';
 import { CommentData, OfferData, OfferDetailData } from '../../../types';
-import { REQUEST_STATUS } from '../../../constants';
+import { RequestStatus } from '../../../constants';
 
 const setOffersFulfilled = (state: OffersStateType, action: PayloadAction<OfferData[]>) => {
   state.offers = action.payload;
-  state.offersRequestStatus = REQUEST_STATUS.Success;
+  state.offersRequestStatus = RequestStatus.Success;
 };
 
 const setOffersRejected = (state: OffersStateType) => {
   state.offers = [];
-  state.offersRequestStatus = REQUEST_STATUS.Error;
+  state.offersRequestStatus = RequestStatus.Error;
 };
 
 const setOffersLoading = (state: OffersStateType) => {
-  state.offersRequestStatus = REQUEST_STATUS.Loading;
+  state.offersRequestStatus = RequestStatus.Loading;
 };
 
 const toggleFavoriteStatus = (
@@ -38,7 +38,7 @@ const updateFavorites = (
 };
 
 const setDataLoading = (state: OffersStateType) => {
-  state.offersRequestStatus = REQUEST_STATUS.Loading;
+  state.offersRequestStatus = RequestStatus.Loading;
 };
 
 const setDetailOfferFulfilled = (state: OffersStateType, action: PayloadAction<OfferDetailData>) => {
@@ -73,12 +73,12 @@ const setDetailOfferFulfilled = (state: OffersStateType, action: PayloadAction<O
     maxAdults: payload.maxAdults,
   };
 
-  state.offersRequestStatus = REQUEST_STATUS.Success;
+  state.offersRequestStatus = RequestStatus.Success;
 };
 
 const setDetailOfferRejected = (state: OffersStateType) => {
   state.additionalOfferData = null;
-  state.offersRequestStatus = REQUEST_STATUS.Error;
+  state.offersRequestStatus = RequestStatus.Error;
 };
 
 const setNearbyOffersFulfilled = (state: OffersStateType, action: PayloadAction<OfferData[]>) => {
@@ -94,35 +94,35 @@ const setNearbyOffersFulfilled = (state: OffersStateType, action: PayloadAction<
   });
 
   state.nearbyOffersIds = nearbyIds;
-  state.offersRequestStatus = REQUEST_STATUS.Success;
+  state.offersRequestStatus = RequestStatus.Success;
 };
 
 const setNearbyOffersRejected = (state: OffersStateType) => {
   state.nearbyOffersIds = [];
-  state.offersRequestStatus = REQUEST_STATUS.Error;
+  state.offersRequestStatus = RequestStatus.Error;
 };
 
 const setReviewsFulfilled = (state: OffersStateType, action: PayloadAction<CommentData[]>) => {
   state.detailOfferReviews = action.payload;
-  state.offersRequestStatus = REQUEST_STATUS.Success;
+  state.offersRequestStatus = RequestStatus.Success;
 };
 
 const setReviewsRejected = (state: OffersStateType) => {
   state.detailOfferReviews = null;
-  state.offersRequestStatus = REQUEST_STATUS.Error;
+  state.offersRequestStatus = RequestStatus.Error;
 };
 
 const addReviewPending = (state: OffersStateType) => {
-  state.reviewRequestStatus = REQUEST_STATUS.Loading;
+  state.reviewRequestStatus = RequestStatus.Loading;
 };
 
 const addReviewFulfilled = (state: OffersStateType, action: PayloadAction<CommentData>) => {
   state.detailOfferReviews = [...state.detailOfferReviews ?? [], action.payload];
-  state.reviewRequestStatus = REQUEST_STATUS.Success;
+  state.reviewRequestStatus = RequestStatus.Success;
 };
 
 const addReviewRejected = (state: OffersStateType) => {
-  state.reviewRequestStatus = REQUEST_STATUS.Error;
+  state.reviewRequestStatus = RequestStatus.Error;
 };
 
 

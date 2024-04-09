@@ -1,7 +1,7 @@
 import { CommentData } from '../../../types';
 import { ReviewForm, ReviewsList } from '..';
 import { useAuthStatus } from '../../../hooks';
-import { AUTH_STATUS } from '../../../constants';
+import { AuthStatus } from '../../../constants';
 
 type ReviewsSectionProps = {
   reviews: CommentData[] | null;
@@ -14,7 +14,7 @@ function ReviewsSection({reviews}: ReviewsSectionProps) {
         Reviews · <span className="reviews__amount">{reviews ? reviews.length : 0}</span>
       </h2>
       {reviews && reviews.length > 0 && <ReviewsList reviews={reviews} />}
-      {useAuthStatus() === AUTH_STATUS.Auth && <ReviewForm />}
+      {useAuthStatus() === AuthStatus.Auth && <ReviewForm />}
     </section>
   );
 }

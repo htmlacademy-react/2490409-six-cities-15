@@ -1,7 +1,7 @@
 import {ReactElement, useEffect} from 'react';
 import { Header, OffersListWithMap } from '../../organisms';
 import { CityTabs, MainEmptyState } from '../../molecules';
-import { APP_ROUTE, CITIES, REQUEST_STATUS } from '../../../constants';
+import { AppRoute, Cities, RequestStatus } from '../../../constants';
 import { CitiesType } from '../../../types';
 import { redirect, useNavigate, useParams } from 'react-router-dom';
 import { createMainRouteWithCity, isCity } from '../../../utils';
@@ -15,7 +15,7 @@ function MainPage(): ReactElement | null {
   const filterCityName = (city: string) => isCity(city) ? city : null;
   const navigate = useNavigate();
 
-  const { city: cityFromPath = CITIES.Paris } = useParams();
+  const { city: cityFromPath = Cities.Paris } = useParams();
 
   const currentCity = filterCityName(capitalize(cityFromPath?.toLowerCase() ?? ''));
   const offersFromCurrentCity = useAppSelector(offersSelectors.offers)
@@ -24,7 +24,7 @@ function MainPage(): ReactElement | null {
 
   useEffect(() => {
     if (!currentCity) {
-      navigate(APP_ROUTE.NotFound);
+      navigate(AppRoute.NotFound);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentCity]);
@@ -56,7 +56,7 @@ function MainPage(): ReactElement | null {
         <h1 className="visually-hidden">Cities</h1>
         <CityTabs onCityChanged={handleCitySelect} currTab={currentCity}/>
         {
-          requestStatus === REQUEST_STATUS.Loading
+          requestStatus === RequestStatus.Loading
             ? <Loader/>
             : (
               <div className="cities">

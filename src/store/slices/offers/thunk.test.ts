@@ -13,7 +13,7 @@ import {
   fetchFavoritesOffersAction, fetchNearbyOffersAction,
   fetchOffersAction
 } from './thunk.ts';
-import { API_ROUTE } from '../../../constants';
+import { ApiRoute } from '../../../constants';
 import {
   extractActionsTypes,
   makeFakeOffer,
@@ -42,7 +42,7 @@ describe('offers\' thunk actions', () => {
     });
 
     it('should dispatch "fetchOffersAction.pending" and "fetchOffersAction.fulfilled" with thunk fetchOffersAction', async () => {
-      mockAxiosAdapter.onGet(API_ROUTE.Get.OffersList).reply(StatusCodes.OK);
+      mockAxiosAdapter.onGet(ApiRoute.Get.OffersList).reply(StatusCodes.OK);
       await store.dispatch(fetchOffersAction());
 
       const actions = extractActionsTypes(store.getActions());
@@ -55,7 +55,7 @@ describe('offers\' thunk actions', () => {
 
     it('should set offers after "fetchOffersAction.fulfilled" with thunk fetchOffersAction', async () => {
       const offers = [makeFakeOffer(makeFakeOfferId())];
-      mockAxiosAdapter.onGet(API_ROUTE.Get.OffersList).reply(
+      mockAxiosAdapter.onGet(ApiRoute.Get.OffersList).reply(
         StatusCodes.OK,
         offers,
       );
@@ -67,7 +67,7 @@ describe('offers\' thunk actions', () => {
     });
 
     it('should dispatch "fetchOffersAction.pending" and "fetchOffersAction.rejected" with thunk fetchOffersAction', async () => {
-      mockAxiosAdapter.onGet(API_ROUTE.Get.OffersList).reply(StatusCodes.BAD_REQUEST);
+      mockAxiosAdapter.onGet(ApiRoute.Get.OffersList).reply(StatusCodes.BAD_REQUEST);
 
       await store.dispatch(fetchOffersAction());
 
@@ -94,7 +94,7 @@ describe('offers\' thunk actions', () => {
 
     const getRoute = (isFavorite: boolean, testStore: ReturnType<typeof mockStoreCreator>) => (
       setFavoriteStatusInRoute(
-        setOfferIdInRoute(API_ROUTE.Post.SetFavorite, getFirstOfferId(testStore)),
+        setOfferIdInRoute(ApiRoute.Post.SetFavorite, getFirstOfferId(testStore)),
         isFavorite,
       )
     );
@@ -147,7 +147,7 @@ describe('offers\' thunk actions', () => {
     });
 
     it('should dispatch "fetchFavoritesOffersAction.pending" and "fetchFavoritesOffersAction.fulfilled" with thunk fetchFavoritesOffersAction', async () => {
-      mockAxiosAdapter.onGet(API_ROUTE.Get.Favorites).reply(StatusCodes.OK);
+      mockAxiosAdapter.onGet(ApiRoute.Get.Favorites).reply(StatusCodes.OK);
       await store.dispatch(fetchFavoritesOffersAction());
 
       const actions = extractActionsTypes(store.getActions());
@@ -161,7 +161,7 @@ describe('offers\' thunk actions', () => {
     it('should set offers after "fetchFavoritesOffersAction.fulfilled" with thunk fetchFavoritesOffersAction', async () => {
       const offers = [makeFakeOffer(makeFakeOfferId(), true)];
 
-      mockAxiosAdapter.onGet(API_ROUTE.Get.Favorites).reply(StatusCodes.OK, offers);
+      mockAxiosAdapter.onGet(ApiRoute.Get.Favorites).reply(StatusCodes.OK, offers);
       await store.dispatch(fetchFavoritesOffersAction());
 
       const fulfilledAction = store.getActions().at(1) as ReturnType<typeof fetchFavoritesOffersAction.fulfilled>;
@@ -170,7 +170,7 @@ describe('offers\' thunk actions', () => {
     });
 
     it('should dispatch "fetchFavoritesOffersAction.pending" and "fetchFavoritesOffersAction.rejected" with thunk fetchFavoritesOffersAction', async () => {
-      mockAxiosAdapter.onGet(API_ROUTE.Get.Favorites).reply(StatusCodes.BAD_REQUEST);
+      mockAxiosAdapter.onGet(ApiRoute.Get.Favorites).reply(StatusCodes.BAD_REQUEST);
 
       await store.dispatch(fetchFavoritesOffersAction());
 
@@ -192,7 +192,7 @@ describe('offers\' thunk actions', () => {
       });
     });
 
-    const getRoute = (testStore: ReturnType<typeof mockStoreCreator>) => setOfferIdInRoute(API_ROUTE.Get.DetailOffer, getFirstOfferId(testStore));
+    const getRoute = (testStore: ReturnType<typeof mockStoreCreator>) => setOfferIdInRoute(ApiRoute.Get.DetailOffer, getFirstOfferId(testStore));
 
     it('should dispatch "fetchDetailOfferAction.pending" and "fetchDetailOfferAction.fulfilled" with thunk fetchDetailOfferAction', async () => {
       mockAxiosAdapter.onGet(getRoute(store)).reply(StatusCodes.OK);
@@ -242,7 +242,7 @@ describe('offers\' thunk actions', () => {
       });
     });
 
-    const getRoute = (testStore: ReturnType<typeof mockStoreCreator>) => setOfferIdInRoute(API_ROUTE.Get.NearBy, getFirstOfferId(testStore));
+    const getRoute = (testStore: ReturnType<typeof mockStoreCreator>) => setOfferIdInRoute(ApiRoute.Get.NearBy, getFirstOfferId(testStore));
 
     it('should dispatch "fetchNearbyOffersAction.pending" and "fetchNearbyOffersAction.fulfilled" with thunk fetchNearbyOffersAction', async () => {
       mockAxiosAdapter.onGet(getRoute(store)).reply(StatusCodes.OK);
@@ -290,7 +290,7 @@ describe('offers\' thunk actions', () => {
       });
     });
 
-    const getRoute = (testStore: ReturnType<typeof mockStoreCreator>) => setOfferIdInRoute(API_ROUTE.Get.Comments, getFirstOfferId(testStore));
+    const getRoute = (testStore: ReturnType<typeof mockStoreCreator>) => setOfferIdInRoute(ApiRoute.Get.Comments, getFirstOfferId(testStore));
 
     it('should dispatch "fetchCommentsAction.pending" and "fetchCommentsAction.fulfilled" with thunk fetchCommentsAction', async () => {
       mockAxiosAdapter.onGet(getRoute(store)).reply(StatusCodes.OK);
@@ -340,7 +340,7 @@ describe('offers\' thunk actions', () => {
       });
     });
 
-    const getRoute = (testStore: ReturnType<typeof mockStoreCreator>) => setOfferIdInRoute(API_ROUTE.Post.AddComment, getFirstOfferId(testStore));
+    const getRoute = (testStore: ReturnType<typeof mockStoreCreator>) => setOfferIdInRoute(ApiRoute.Post.AddComment, getFirstOfferId(testStore));
 
     it('should dispatch "addCommentAction.pending" and "addCommentActionn.fulfilled" with thunk addCommentAction', async () => {
       const newComment = makeFakeReview(getFirstOfferId(store));

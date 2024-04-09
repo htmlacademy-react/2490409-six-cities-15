@@ -1,4 +1,4 @@
-const SORT_TYPES = {
+const SortTypes = {
   Popular: 'Popular',
   PriceASC: 'Price: low to high',
   PriceDESC: 'Price: high to low',
@@ -6,5 +6,5 @@ const SORT_TYPES = {
 } as const;
 
 export {
-  SORT_TYPES,
+  SortTypes,
 };

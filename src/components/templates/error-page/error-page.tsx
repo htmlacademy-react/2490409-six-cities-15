@@ -1,7 +1,7 @@
 import { ReactElement } from 'react';
 import { ContentOnTheLeft } from '../../templates';
 import { TabButton } from '../../atoms';
-import { APP_ROUTE } from '../../../constants';
+import { AppRoute } from '../../../constants';
 import { StatusCodes } from 'http-status-codes';
 import './error-page.css';
 
@@ -16,7 +16,7 @@ function ErrorPage({statusCode, errorDescription, buttonText, testId}: ErrorPage
   return (
     <ContentOnTheLeft
       showAccountData
-      rightSideButton={<TabButton tabName={buttonText} isSelected={false} link={APP_ROUTE.Main}/>}
+      rightSideButton={<TabButton tabName={buttonText} isSelected={false} link={AppRoute.Main}/>}
       testId={testId ?? 'error-page-template'}
     >
       <div className="not-found__container">

@@ -1,6 +1,6 @@
 import { OffersList, SortSelector } from '..';
 import { OfferData } from '../../../types';
-import { SORT_TYPES } from '../../../constants';
+import { SortTypes } from '../../../constants';
 import { CitiesType, SortTypesType } from '../../../types';
 import { useCallback, useState } from 'react';
 import { sortOffers } from '../../../utils';
@@ -14,7 +14,7 @@ type OfferCardsListProps = {
 
 function OffersListWithSort({offers, city, handleCardHover, handleCardLeave}: OfferCardsListProps) {
 
-  const [currentSort , setCurrentSort] = useState<SortTypesType>(SORT_TYPES.Popular);
+  const [currentSort , setCurrentSort] = useState<SortTypesType>(SortTypes.Popular);
 
   const handleSetSort = useCallback((sort: SortTypesType) => {
     setCurrentSort(sort);

@@ -4,7 +4,7 @@ import axios, {
   AxiosResponse,
   InternalAxiosRequestConfig,
 } from 'axios';
-import { APP_ROUTE, BASE_URL } from '../constants';
+import { AppRoute, BASE_URL } from '../constants';
 import { getToken } from './token.ts';
 import { StatusCodes } from 'http-status-codes';
 import { toast } from 'react-toastify';
@@ -23,9 +23,9 @@ const DISPLAY_ERROR_STATUS_CODE_MAPPING: Record<number, boolean> = {
 } as const;
 
 const REDIRECT_STATUS_CODE_MAPPING: Record<number, string> = {
-  [StatusCodes.NOT_FOUND]: APP_ROUTE.NotFound,
-  [StatusCodes.BAD_GATEWAY]: APP_ROUTE.ServerError,
-  [StatusCodes.SERVICE_UNAVAILABLE]: APP_ROUTE.ServerError,
+  [StatusCodes.NOT_FOUND]: AppRoute.NotFound,
+  [StatusCodes.BAD_GATEWAY]: AppRoute.ServerError,
+  [StatusCodes.SERVICE_UNAVAILABLE]: AppRoute.ServerError,
 } as const;
 
 const shouldDisplayError = (response: AxiosResponse) => DISPLAY_ERROR_STATUS_CODE_MAPPING[response.status];

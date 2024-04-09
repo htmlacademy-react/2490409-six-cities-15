@@ -3,7 +3,7 @@ import BookmarkIcon from './bookmark-icon.tsx';
 import { extractActionsTypes, makeFakeStoreState, withHistory, withStore } from '../../../utils/tests';
 import { userEvent } from '@testing-library/user-event';
 import { sliceName as offersSliceName } from '../../../store/slices/offers/meta.ts';
-import { API_ROUTE, APP_ROUTE, AUTH_STATUS } from '../../../constants';
+import { ApiRoute, AppRoute, AuthStatus } from '../../../constants';
 import { setFavoriteStatusInRoute, setOfferIdInRoute } from '../../../store/helpers.ts';
 import { changeFavoriteStatusAction } from '../../../store/slices/offers/thunk.ts';
 import { StatusCodes } from 'http-status-codes';
@@ -21,7 +21,7 @@ describe('BookmarkIcon component', () => {
       },
       userStateProps: {
         shouldCreateUser: false,
-        authorizationStatus: AUTH_STATUS.Auth,
+        authorizationStatus: AuthStatus.Auth,
       },
     });
     const offerId = storeState[offersSliceName].offers[0].id;
@@ -34,7 +34,7 @@ describe('BookmarkIcon component', () => {
     mockAxiosAdapter
       .onPost(
         setFavoriteStatusInRoute(
-          setOfferIdInRoute(API_ROUTE.Post.SetFavorite, offerId),
+          setOfferIdInRoute(ApiRoute.Post.SetFavorite, offerId),
           !isFavorite
         ),
       )
@@ -56,7 +56,7 @@ describe('BookmarkIcon component', () => {
 
   it('should redirect to LoginPage if user is not authorized', async () => {
     const mockHistory = createMemoryHistory();
-    mockHistory.push(APP_ROUTE.Offer);
+    mockHistory.push(AppRoute.Offer);
 
     const bookmarkId = 'bookmark-icon';
     const isFavorite = false;
@@ -67,7 +67,7 @@ describe('BookmarkIcon component', () => {
       },
       userStateProps: {
         shouldCreateUser: false,
-        authorizationStatus: AUTH_STATUS.NoAuth,
+        authorizationStatus: AuthStatus.NoAuth,
       },
     });
     const offerId = storeState[offersSliceName].offers[0].id;
@@ -78,11 +78,11 @@ describe('BookmarkIcon component', () => {
       withHistory(
         <Routes>
           <Route
-            path={APP_ROUTE.Login}
+            path={AppRoute.Login}
             element={loginPageComponent}
           />
           <Route
-            path={APP_ROUTE.Offer}
+            path={AppRoute.Offer}
             element={bookmarkIconComponent}
           />
         </Routes>,

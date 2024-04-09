@@ -6,7 +6,7 @@ import { AppThunkDispatch, StoreStateType } from '../../helpers.ts';
 import { sliceName } from './meta.ts';
 import { Action } from '@reduxjs/toolkit';
 import { userInitialState } from './index.ts';
-import { API_ROUTE } from '../../../constants';
+import { ApiRoute } from '../../../constants';
 import { StatusCodes } from 'http-status-codes';
 import {
   extractActionsTypes,
@@ -36,7 +36,7 @@ describe('user\'s thunk actions', () => {
 
     it('should dispatch "fetchUserByTokenAction.pending" and "fetchUserByTokenAction.fulfilled" with thunk fetchUserByTokenAction', async () => {
       const token = makeFakeToken();
-      mockAxiosAdapter.onGet(API_ROUTE.Get.AuthDataByToken).reply(StatusCodes.OK);
+      mockAxiosAdapter.onGet(ApiRoute.Get.AuthDataByToken).reply(StatusCodes.OK);
       await store.dispatch(fetchUserByTokenAction(token));
 
       const actions = extractActionsTypes(store.getActions());
@@ -51,7 +51,7 @@ describe('user\'s thunk actions', () => {
       const token = makeFakeToken();
       const authenticatedUser = makeFakeAuthenticatedUser(token);
 
-      mockAxiosAdapter.onGet(API_ROUTE.Get.AuthDataByToken).reply(StatusCodes.OK, authenticatedUser);
+      mockAxiosAdapter.onGet(ApiRoute.Get.AuthDataByToken).reply(StatusCodes.OK, authenticatedUser);
       await store.dispatch(fetchUserByTokenAction(token));
 
       const fulfilledAction = store.getActions().at(1) as ReturnType<typeof fetchUserByTokenAction.fulfilled>;
@@ -61,7 +61,7 @@ describe('user\'s thunk actions', () => {
 
     it('should dispatch "fetchUserByTokenAction.pending" and "fetchUserByTokenAction.rejected" with thunk fetchUserByTokenAction', async () => {
       const token = makeFakeToken();
-      mockAxiosAdapter.onGet(API_ROUTE.Get.AuthDataByToken).reply(StatusCodes.BAD_REQUEST);
+      mockAxiosAdapter.onGet(ApiRoute.Get.AuthDataByToken).reply(StatusCodes.BAD_REQUEST);
 
       await store.dispatch(fetchUserByTokenAction(token));
 
@@ -83,7 +83,7 @@ describe('user\'s thunk actions', () => {
       const userForm = makeFakeAuthenticationForm();
       const token = makeFakeToken();
 
-      mockAxiosAdapter.onPost(API_ROUTE.Post.Login).reply(StatusCodes.OK, token);
+      mockAxiosAdapter.onPost(ApiRoute.Post.Login).reply(StatusCodes.OK, token);
       await store.dispatch(loginAction(userForm));
 
       const actions = extractActionsTypes(store.getActions());
@@ -98,7 +98,7 @@ describe('user\'s thunk actions', () => {
       const userForm = makeFakeAuthenticationForm();
       const authenticatedUser = makeFakeAuthenticatedUser();
 
-      mockAxiosAdapter.onPost(API_ROUTE.Post.Login).reply(StatusCodes.OK, authenticatedUser);
+      mockAxiosAdapter.onPost(ApiRoute.Post.Login).reply(StatusCodes.OK, authenticatedUser);
       await store.dispatch(loginAction(userForm));
 
       const fulfilledAction = store.getActions().at(1) as ReturnType<typeof loginAction.fulfilled>;
@@ -112,7 +112,7 @@ describe('user\'s thunk actions', () => {
 
       const mockSaveToken = vi.spyOn(tokenStorage, 'saveToken');
 
-      mockAxiosAdapter.onPost(API_ROUTE.Post.Login).reply(StatusCodes.OK, authenticatedUser);
+      mockAxiosAdapter.onPost(ApiRoute.Post.Login).reply(StatusCodes.OK, authenticatedUser);
       await store.dispatch(loginAction(userForm));
 
       expect(mockSaveToken).toBeCalledTimes(1);
@@ -121,7 +121,7 @@ describe('user\'s thunk actions', () => {
 
     it('should dispatch "loginAction.pending" and "loginAction.rejected" with thunk loginAction', async () => {
       const userForm = makeFakeAuthenticationForm();
-      mockAxiosAdapter.onPost(API_ROUTE.Post.Login).reply(StatusCodes.BAD_REQUEST);
+      mockAxiosAdapter.onPost(ApiRoute.Post.Login).reply(StatusCodes.BAD_REQUEST);
 
       await store.dispatch(loginAction(userForm));
 
@@ -141,7 +141,7 @@ describe('user\'s thunk actions', () => {
 
     it('should dispatch "logoutAction.pending" and "logoutAction.fulfilled" with thunk logoutAction', async () => {
       const token = makeFakeToken();
-      mockAxiosAdapter.onDelete(API_ROUTE.Delete.Logout).reply(StatusCodes.NO_CONTENT);
+      mockAxiosAdapter.onDelete(ApiRoute.Delete.Logout).reply(StatusCodes.NO_CONTENT);
       await store.dispatch(logoutAction(token));
 
       const actions = extractActionsTypes(store.getActions());
@@ -156,7 +156,7 @@ describe('user\'s thunk actions', () => {
       const token = makeFakeToken();
       const mockDropToken = vi.spyOn(tokenStorage, 'dropToken');
 
-      mockAxiosAdapter.onDelete(API_ROUTE.Delete.Logout).reply(StatusCodes.NO_CONTENT);
+      mockAxiosAdapter.onDelete(ApiRoute.Delete.Logout).reply(StatusCodes.NO_CONTENT);
       await store.dispatch(logoutAction(token));
 
       expect(mockDropToken).toBeCalledTimes(1);
@@ -164,7 +164,7 @@ describe('user\'s thunk actions', () => {
 
     it('should dispatch "logoutAction.pending" and "logoutAction.rejected" with thunk logoutAction', async () => {
       const token = makeFakeToken();
-      mockAxiosAdapter.onDelete(API_ROUTE.Delete.Logout).reply(StatusCodes.BAD_REQUEST);
+      mockAxiosAdapter.onDelete(ApiRoute.Delete.Logout).reply(StatusCodes.BAD_REQUEST);
 
       await store.dispatch(fetchUserByTokenAction(token));
 

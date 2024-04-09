@@ -1,7 +1,7 @@
-import { APP_ROUTE } from '../constants';
+import { AppRoute } from '../constants';
 import { CitiesType } from '../types';
 
-const createMainRouteWithCity = (city: CitiesType) => APP_ROUTE.MainWithCity.replace(':city', city.toLowerCase());
+const createMainRouteWithCity = (city: CitiesType) => AppRoute.MainWithCity.replace(':city', city.toLowerCase());
 
 export {
   createMainRouteWithCity,
