@@ -1,5 +1,6 @@
 import { ReviewComment } from '../index.ts';
 import { CommentData } from '../../../types';
+import { MAX_REVIEWS_PER_PAGE } from '../../../constants';
 
 type ReviewsListProps = {
   reviews: CommentData[];
@@ -8,7 +9,7 @@ type ReviewsListProps = {
 const prepareReviews = (reviews: CommentData[]) => (
   [...reviews]
     .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
-    .slice(0, 10)
+    .slice(0, MAX_REVIEWS_PER_PAGE)
 );
 
 function ReviewsList({reviews}: ReviewsListProps) {
